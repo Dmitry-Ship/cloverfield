@@ -1,1 +1,1 @@
-export * from './MediaObject.jsx';
+export { default } from './MediaObject.jsx';

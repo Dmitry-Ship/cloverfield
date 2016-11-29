@@ -1,1 +1,1 @@
-export * from './ColorMenu.jsx';
+export { default } from './ColorMenu.jsx';

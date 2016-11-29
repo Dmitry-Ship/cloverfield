@@ -1,1 +1,1 @@
-export * from './TagArea.jsx';
+export { default } from './TagArea.jsx';

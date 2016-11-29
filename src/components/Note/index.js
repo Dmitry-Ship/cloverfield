@@ -1,1 +1,1 @@
-export * from './Note.jsx';
+export { default } from './Note.jsx';

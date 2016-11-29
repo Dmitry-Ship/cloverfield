@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import Masonry              from 'react-masonry-component';
+import Masonry from 'react-masonry-component';
 
-import Note                 from '../Note';
-import Loader                from '../basic/Loaders';
+import Note from '../Note';
+import Loader from '../basic/Loaders';
 
 const NotesList = ({
                     allNotes,

@@ -7,7 +7,7 @@ import styles from './MainLayout.css';
 import TopBarContainer from '../containers/TopBarContainer';
 
 const MainPage = ({children}) => (
-  <div className='main-layout'>
+  <div className={styles.layout}>
     <TopBarContainer />
     <main className={styles.main}>
       {children}

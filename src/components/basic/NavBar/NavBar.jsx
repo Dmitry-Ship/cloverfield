@@ -4,8 +4,8 @@ import styles from './NavBar.css';
 
 import { Link } from 'react-router';
 
-import Row from '../Row/Row';
-import Icon from '../Icon/Icon';
+import Row from '../Row';
+import Icon from '../Icon';
 
 const NavBar = ({items, children, className, itemClassName}) => (
   <Row className={`${className}`} auto={false} >

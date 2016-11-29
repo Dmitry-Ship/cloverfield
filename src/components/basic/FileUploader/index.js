@@ -1,1 +1,1 @@
-export * from './FileUploader.jsx';
+export { default } from './FileUploader.jsx';

@@ -4,13 +4,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
-    './src/App.js'
+    './src/routes.js'
   ],
   output: {
     path: __dirname,
     filename: 'bundle.js'
   },
     resolve: {
+    modulesDirectories: ['node_modules', './src'],
     extensions: ['', '.js', '.jsx']
   },
   module: {
@@ -34,8 +35,9 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]',
-        'postcss-loader')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1e&localIdentName=[name]__[local]___[hash:base64:5]',
+        'postcss-loader'
+        )
       },
       {
         test: /\.styl$/,
@@ -44,17 +46,21 @@ module.exports = {
     ]
   },
   postcss: function () {
-    require('postcss-cssnext'),
-    require('postcss-easy-import'),
-    require('postcss-normalize'),
-    require('postcss-utilities')
+    return [
+      require('postcss-utilities')(),
+      require('postcss-cssnext')(),
+      require('postcss-easy-import')(),
 
+
+    ]
   },
   stylus: {
     use: [require('rupture')(), require('nib')()],
     import: ["~rupture/rupture/index.styl", '~nib/lib/nib/index.styl']
   },
     plugins: [
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("styles.css", {
+          allChunks: true
+        })
     ]
 }

@@ -1,1 +1,1 @@
-export * from './ContentEditable.jsx';
+export { default } from './ContentEditable.jsx';

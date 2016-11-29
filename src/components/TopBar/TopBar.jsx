@@ -4,10 +4,10 @@ import styles from './TopBar.css';
 
 import { Link } from 'react-router';
 
-import Row from '../basic/Row/Row';
-import Icon from '../basic/Icon/Icon';
-import NavBar from '../basic/NavBar/NavBar';
-import Heading from '../basic/Heading/Heading';
+import Row from '../basic/Row';
+import Icon from '../basic/Icon';
+import NavBar from '../basic/NavBar';
+import Heading from '../basic/Heading';
 
 const TopBar = ({ appName, navBarItems }) => (
   <Row align={'space-between'} className={styles.topBar} >

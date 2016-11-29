@@ -1,1 +1,1 @@
-export * from './PopUpMenu.jsx';
+export { default } from './PopUpMenu.jsx';

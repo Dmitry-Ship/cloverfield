@@ -1,1 +1,1 @@
-export * from './Avatar.jsx';
+export { default } from  from './Avatar.jsx';

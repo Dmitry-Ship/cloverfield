@@ -2,11 +2,6 @@
 @import 'stylesheets/basic.css';
 @import 'stylesheets/normalize.css';
 
-.layout {
-  background: var(--color__grey);
-}
-
-.main {
-  margin-top: 55px;
-  height: calc(100vh - 55px);
+.page {
+  padding: .5px;
 }

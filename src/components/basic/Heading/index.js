@@ -1,1 +1,1 @@
-export * from './Heading.jsx';
+export { default } from './Heading.jsx';

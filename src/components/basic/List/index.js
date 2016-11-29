@@ -1,1 +1,1 @@
-export * from './List.jsx';
+export { default } from './List.jsx';

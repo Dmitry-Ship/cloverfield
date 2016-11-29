@@ -1,1 +1,1 @@
-export * from './ChangablePic.jsx';
+export { default } from './ChangablePic.jsx';

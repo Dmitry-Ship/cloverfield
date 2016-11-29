@@ -1,4 +1,6 @@
-@import '../../../stylesheets/colors.css';
+@import 'stylesheets/colors.css';
+@import 'stylesheets/basic.css';
+@import 'stylesheets/normalize.css';
 
 .sideMenu {
 	position: fixed;

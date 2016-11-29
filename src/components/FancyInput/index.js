@@ -1,1 +1,1 @@
-export * from './FancyInput.jsx';
+export { default } from './FancyInput.jsx';
