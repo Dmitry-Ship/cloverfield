@@ -1,0 +1,40 @@
+@import '../../stylesheets/colors.css';
+
+.profile {
+	position: relative;
+	display: flex;
+	height: 55px;
+	color: var(--color__icon);
+	cursor: pointer;
+}
+
+.profile:hover {
+	border-bottom: 3px solid var(--color__accent);
+	color: var(--color__accent);
+}
+
+.profile:hover .popUpMenu {
+	display: block;
+}
+
+.userinfo {
+	margin: 0;
+	padding-right: 10px;
+	line-height: 55px;
+}
+
+.avatar {
+	margin: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.popUpMenu {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	display: none;
+	background: white;
+	transform: translateX(-50%);
+}

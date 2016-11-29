@@ -1,0 +1,79 @@
+@import '../../stylesheets/colors.css';
+
+.colorMenu {
+	position: relative;
+}
+
+.colorMenu:hover .popupMenu {
+	display: block;
+}
+
+.palette {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+  width: 150px;
+  height: auto;
+}
+
+.circle {
+	margin: 4px 4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+	cursor: pointer;
+	transition: all 300ms ease-in-out;
+}
+
+.circle:first-child {
+	border: #808080;
+}
+
+.circle:hover {
+	border: 2px solid var(--color__flat__wet_asphalt);
+}
+
+.chosen {
+	border: 2px solid #000;
+}
+
+.popupMenu {
+  position: absolute;
+	bottom: 100%;
+	left: 50%;
+	display: none;
+  background: white;
+	transform: translateX(-50%);
+}
+
+.red {
+	background: var(--color__red);
+}
+
+.orange {
+	background: var(--color__orange);
+}
+
+.yellow {
+	background: var(--color__yellow);
+}
+
+.grey {
+	background: var(--color__grey);
+}
+
+.blue {
+	background: var(--color__blue);
+}
+
+.teal {
+	background: var(--color__teal);
+}
+
+.green {
+	background: var(--color__green);
+}
+
+.white {
+	background: #fff;
+}

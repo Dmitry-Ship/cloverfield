@@ -1,0 +1,32 @@
+.tagArea {
+	margin-bottom: 10px;
+	padding-top: 5px;
+	text-align: left;
+	font-size: 0.8rem;
+}
+
+.input {
+	position: relative;
+	display: inline-block;
+	margin: 0 5px 5px 0;
+}
+
+.input__field {
+	padding: 5px;
+	min-width: 50px;
+	outline: none;
+	background: transparent;
+}
+
+.input__field:focus + .input__suggestions {
+	display: block;
+}
+
+.input__suggestions {
+	position: absolute;
+	top: calc(100% + 10px);
+	left: 5px;
+	display: none;
+	background: white;
+	transform: translateX(-50%);
+}

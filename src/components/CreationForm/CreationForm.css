@@ -1,0 +1,100 @@
+@import '../../stylesheets/colors.css';
+
+.wrapper {
+	margin: 85px auto 30px auto;
+	width: 400px;
+	text-align: center;
+}
+
+.form {
+	background: white;
+	transition: background 150ms ease-in-out;
+}
+
+.unfolded .title {
+	display: block;
+}
+
+.unfolded .submition {
+	display: flex;
+}
+
+.field {
+	overflow: hidden;
+	padding: 15px;
+	width: 100%;
+	border: none;
+	background: transparent;
+	word-wrap: break-word;
+	font-size: 1.3rem;
+	line-height: 30px;
+	resize: none;
+}
+
+.title {
+	display: none;
+}
+
+.content {
+	display: block;
+}
+
+.submition {
+	z-index: 0;
+	display: none;
+	justify-content: space-between;
+	background: transparent;
+	line-height: 30px;
+	transition: all 150ms ease-in-out;
+}
+
+.attachments {
+	width: 50%;
+}
+
+.attachments:hover .attachments__icon {
+	opacity: 1;
+}
+
+.attachments__icon {
+	color: rgba(0,0,0,0.3);
+	opacity: 0;
+	cursor: pointer;
+	transition: all 150ms ease-in-out;
+}
+
+.attachments__icon:hover {
+	color: #000;
+}
+
+.red {
+	background: var(--color__red);
+}
+
+.orange {
+	background: var(--color__orange);
+}
+
+.yellow {
+	background: var(--color__yellow);
+}
+
+.grey {
+	background: var(--color__grey);
+}
+
+.blue {
+	background: var(--color__blue);
+}
+
+.teal {
+	background: var(--color__teal);
+}
+
+.green {
+	background: var(--color__green);
+}
+
+.white {
+	background: #fff;
+}

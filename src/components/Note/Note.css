@@ -1,0 +1,58 @@
+@import '../../stylesheets/colors.css';
+
+.note {
+	margin-bottom: 30px;
+	padding: 30px 15px 15px 15px;
+	width: 250px;
+	font-family: Lato;
+	line-height: 20px;
+	transition: background 300ms ease-in-out;
+
+}
+
+.note:hover .actions__icon {
+	opacity: 1;
+}
+
+.actions__icon {
+	color: rgba(0,0,0,0.3);
+	opacity: 0;
+	cursor: pointer;
+	transition: all 150ms ease-in-out;
+}
+
+.actions__icon:hover {
+	color: black;
+}
+
+.red {
+	background: var(--color__red);
+}
+
+.orange {
+	background: var(--color__orange);
+}
+
+.yellow {
+	background: var(--color__yellow);
+}
+
+.grey {
+	background: var(--color__grey);
+}
+
+.blue {
+	background: var(--color__blue);
+}
+
+.teal {
+	background: var(--color__teal);
+}
+
+.green {
+	background: var(--color__green);
+}
+
+.white {
+	background: #fff;
+}

@@ -1,0 +1,20 @@
+@import '../../stylesheets/colors.css';
+
+.topBar {
+	position: fixed;
+	top: 0;
+	z-index: 2;
+	padding: 0 5%;
+	width: 100%;
+  height: 55px;
+	background: #fff;
+}
+
+.appLogo {
+	display: block;
+	color: var(--color__accent);
+	font-weight: lighter;
+	font-size: 2rem;
+	font-family: Pacifico;
+	line-height: 55px;
+}
