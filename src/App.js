@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import './main.styl'
 
-import TextField from './basic/TextField/TextField.jsx';
-import Button from './basic/Button/Button.jsx';
-import Heading from './basic/Heading/Heading.jsx';
-import Loader from './basic/Loaders/Loader.jsx';
+import TextField from './components/basic/TextField/TextField';
+import Button from './components/basic/Button/Button';
+import Heading from './components/basic/Heading/Heading';
+import Loader from './components/basic/Loaders/Loader';
+import MediaObject from './components/basic/MediaObject/MediaObject';
 
 class App extends Component {
   constructor() {
@@ -20,7 +20,12 @@ class App extends Component {
 
         <TextField />
         <Button label="Click me!" />
+        <Button kind='secondary' label="Click me!" />
+
         <Loader type="triple-dots"/>
+        {/* <MediaObject title="Hello World" >
+          <p>Lol</p>
+        </MediaObject> */}
 
       </div>
     )

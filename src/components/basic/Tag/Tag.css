@@ -1,0 +1,30 @@
+.tag {
+	position: relative;
+	display: inline-block;
+	margin: 0 5px 5px 0;
+	padding: 5px 23px 5px 5px;
+	background: rgba(0,0,0,0.3);
+	cursor: pointer;
+}
+
+.tag:hover .icon {
+	opacity: 1;
+}
+
+.link {
+	color: #fff;
+}
+
+.icon {
+  position: absolute;
+	top: 50%;
+  right: 4px;
+	color: rgba(255,255,255,0.5);
+	opacity: 0;
+	transition: all 300ms ease-in-out;
+	transform: translateY(-50%);
+}
+
+.icon:hover {
+	color: #fff;
+}

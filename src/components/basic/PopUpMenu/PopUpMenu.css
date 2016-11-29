@@ -1,0 +1,35 @@
+@import '../../../stylesheets/colors.css';
+
+.popupMenu {
+	z-index: 2;
+	padding: 10px 0;
+	color: #000;
+}
+
+.list {
+	margin: 0;
+	padding: 0;
+}
+
+.item {
+	display: block;
+	padding: 12px 15px;
+	border-right: 3px solid transparent;
+	border-left: 3px solid transparent;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.item:hover {
+	border-right: 3px solid var(--color__accent);
+	border-left: 3px solid var(--color__accent);
+	color: var(--color__accent);
+}
+
+.item:hover .item__link {
+	color: var(--color__accent);
+}
+
+.item__link {
+	color: #000;
+}

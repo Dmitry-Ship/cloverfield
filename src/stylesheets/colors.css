@@ -1,0 +1,48 @@
+
+:root {
+  --color__primary: #e1e8f0;
+  --color__primary--light: lighten(var(--color__primary), 20%);
+  /*--color__primary--light: color(red blackness(20%));*/
+  --color__primary--dark: darken(var(--color__primary), 20%);
+  --color__secondary: #9068be;
+  --color__secondary--light: lighten(var(--color__secondary), 20%);
+  --color__secondary--dark: darken(var(--color__secondary), 20%);
+  --color__accent: #21A8A3;
+  --color__accent--light: lighten(var(--color__accent), 20%);
+  --color__accent--dark: darken(var(--color__accent), 20%);
+  --color__red: #e57373;
+  --color__orange: #FF8A65;
+  --color__yellow: #FFD54F;
+  --color__grey: #90A4AE;
+  --color__blue: #4FC3F7;
+  --color__teal: #4DB6AC;
+  --color__green: #81C784;
+  --color__bg: #dcdede;
+  --color__icon: darken(var(--color__bg), 70%);
+  --color__bg--dark: darken(var(--color__bg), 25%);
+  --color__flat__turquoise: #1abc9c;
+  --color__flat__emerald: #2ecc71;
+  --color__flat__peter_river: #3a9bdc;
+  --color__flat__amethyst: #9b59b6;
+  --color__flat__wet_asphalt: #34495e;
+  --color__flat__green_sea: #16a085;
+  --color__flat__nephrist: #27ae60;
+  --color__flat__belize_hole: #2980b9;
+  --color__flat__wisteria: #8e44ad;
+  --color__flat__midnight_blue: #2c3e50;
+  --color__flat__sun_flower: #f1c40f;
+  --color__flat__carrot: #e67e22;
+  --color__flat__alizarin: #e74c3c;
+  --color__flat__clouds: #ecf0f1;
+  --color__flat__concrete: #95a5a6;
+  --color__flat__orange: #f39c12;
+  --color__flat__pumpkin: #d35400;
+  --color__flat__pomegranate: #c0392b;
+  --color__flat__silver: #bdc3c7;
+  --color__flat__asbestos: #7f8c8d;
+}
+
+
+.lol {
+  color: red;
+}

@@ -1,0 +1,21 @@
+body {
+	font-family: Rubik;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style-type: none;
+}
+
+input,
+button,
+textarea {
+	outline: none;
+}
+
+* {
+	box-sizing: border-box;
+}

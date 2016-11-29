@@ -1,0 +1,22 @@
+@import '../../../stylesheets/colors.css';
+
+.fileUploader {
+	display: block;
+	margin: 0px 0px 30px 0px;
+	padding: 0 15px;
+  width: 100%;
+  height: 45px;
+	border-top: none;
+	border-right: 3px solid var(--color__primary--dark);
+	border-bottom: none;
+	border-left: 3px solid var(--color__primary--dark);
+	background: var(--color__primary--light);
+	font-size: 1rem;
+	transition: all 300ms ease-in-out;
+}
+
+.fileUploader:focus {
+	border-right: 3px solid #000;
+	border-left: 3px solid #000;
+	background: #fff;
+}
