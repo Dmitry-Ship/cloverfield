@@ -13,7 +13,7 @@ export default class CreationForm extends Component {
   constructor(props){
     super(props)
     this.state = {
-      className: '',
+      className: styles.form,
       title: '',
       content: '',
       color: 'white'
@@ -40,7 +40,7 @@ export default class CreationForm extends Component {
   }
 
   handleClickOut(e) {
-    if (e.target.parentNode !== this.theForm) this.setState({ className: '' })
+    if (e.target.parentNode !== this.theForm) this.setState({ className: styles.form })
   }
 
   handleTitleChange(e) {
@@ -75,7 +75,7 @@ export default class CreationForm extends Component {
     this.setState({
       title: '',
       content: '',
-      className: '',
+      className: styles.form,
       color: 'white'
     })
   }
@@ -96,16 +96,16 @@ export default class CreationForm extends Component {
         className={styles.wrapper} onClick={this.handleFocus}
         ref={c => this.theForm = c}>
         <Form
-          className={`${styles.form} ${className} ${color}`}
+          className={`${className} ${color}`}
           onSubmit={this.create}>
           <Textarea
-            className={`${styles.field} ${styles.title}`}
+            className={styles.title}
             onChange={this.handleTitleChange}
             value={title}
             placeholder={titlePlaceholder} />
 
           <Textarea
-            className={`${styles.field} ${styles.content}`}
+            className={styles.content}
             onChange={this.handleContentChange}
             value={content}
             maxLength={maxLength}
@@ -142,7 +142,7 @@ CreationForm.defaultProps = {
 CreationForm.propTypes = {
   titlePlaceholder: PropTypes.string.isRequired,
   contentPlaceholder: PropTypes.string.isRequired,
-  maxLength: PropTypes.number.isRequired,
-  onCreateItem: PropTypes.func.isRequired,
+  // maxLength: PropTypes.number.isRequired,
+  // onCreateItem: PropTypes.func.isRequired,
   validation: PropTypes.func,
 }

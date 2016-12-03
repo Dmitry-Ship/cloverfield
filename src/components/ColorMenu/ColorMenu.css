@@ -1,6 +1,4 @@
-@import 'stylesheets/colors.css';
-@import 'stylesheets/basic.css';
-@import 'stylesheets/normalize.css';
+
 
 .colorMenu {
 	position: relative;
@@ -50,32 +48,40 @@
 
 .red {
 	background: var(--color__red);
+	composes: circle;
 }
 
 .orange {
 	background: var(--color__orange);
+	composes: circle;
 }
 
 .yellow {
 	background: var(--color__yellow);
+	composes: circle;
 }
 
 .grey {
 	background: var(--color__grey);
+	composes: circle;
 }
 
 .blue {
 	background: var(--color__blue);
+	composes: circle;
 }
 
 .teal {
 	background: var(--color__teal);
+	composes: circle;
 }
 
 .green {
 	background: var(--color__green);
+	composes: circle;
 }
 
 .white {
 	background: #fff;
+	composes: circle;
 }

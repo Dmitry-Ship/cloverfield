@@ -4,12 +4,13 @@ import { Link } from 'react-router';
 
 import styles from './AboutPage.css';
 
-import Heading from '../components/basic/Heading/Heading';
+import Heading from '../components/basic/Heading';
+import Page from '../components/basic/Page';
 
 const AboutPage = () => (
-  <div className={styles.page}>
+  <Page className={styles.page}>
     <Heading size={1}>This is the About Page</Heading>
-  </div>
+  </Page>
 )
 
 export default AboutPage;

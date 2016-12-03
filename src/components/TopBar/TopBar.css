@@ -1,22 +1,13 @@
-@import 'stylesheets/colors.css';
-@import 'stylesheets/basic.css';
-@import 'stylesheets/normalize.css';
-
 .topBar {
 	position: fixed;
-	top: 0;
 	z-index: 2;
 	padding: 0 5%;
-	width: 100%;
-  height: 55px;
-	background: #fff;
+	size: 100% 55px;
+	background: white;
 }
 
-.appLogo {
+.logo {
 	display: block;
 	color: var(--color__accent);
-	font-weight: lighter;
-	font-size: 2rem;
-	font-family: Pacifico;
-	line-height: 55px;
+	composes: logo from '../../stylesheets/typography.css';
 }

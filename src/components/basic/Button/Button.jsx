@@ -15,7 +15,7 @@ const Button = ({ type,
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${styles.button} ${styles[kind]} ${className}`} >
+      className={`${styles[kind]} ${className}`} >
       <div>
         <span>{label}</span>
         {icon && <i className="material-icons">{icon}</i>}

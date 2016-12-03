@@ -12,7 +12,7 @@ import Heading from '../basic/Heading';
 const TopBar = ({ appName, navBarItems }) => (
   <Row align={'space-between'} className={styles.topBar} >
     <Heading size={2}>
-      <Link className={styles.appLogo} to="/" >{appName}</Link>
+      <Link className={styles.logo} to="/" >{appName}</Link>
     </Heading>
 
     <NavBar items={navBarItems}>

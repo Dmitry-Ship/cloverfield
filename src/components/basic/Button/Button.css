@@ -1,10 +1,7 @@
-@import 'stylesheets/colors.css';
-@import 'stylesheets/basic.css';
-@import 'stylesheets/normalize.css';
+/*@import '../../../stylesheets/colors.css';*/
 
 .button {
-	width: 85px;
-  height: 45px;
+	size: 85px 45px;
 	border: none;
 	font-size: 1rem;
 	cursor: pointer;
@@ -13,8 +10,8 @@
 
 .primary {
 	background: var(--color__secondary);
-
-
+	composes: button;
+	color: white;
 }
 
 .primary:hover {
@@ -26,11 +23,11 @@
 }
 
 .secondary {
-	border: 3px solid var(--color__secondary);
+	border: 3px solid;
+	border-color: var(--color__secondary);
 	background: transparent;
 	color: var(--color__secondary);
-
-  /*composes: lol from '../../../stylesheets/colors.css';*/
+	composes: button;
 }
 
 .secondary:hover {

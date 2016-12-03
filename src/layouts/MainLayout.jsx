@@ -6,7 +6,7 @@ import styles from './MainLayout.css';
 
 import TopBarContainer from '../containers/TopBarContainer';
 
-const MainPage = ({children}) => (
+const MainLayout = ({ children }) => (
   <div className={styles.layout}>
     <TopBarContainer />
     <main className={styles.main}>
@@ -15,4 +15,4 @@ const MainPage = ({children}) => (
   </div>
 )
 
-export default MainPage;
+export default MainLayout;

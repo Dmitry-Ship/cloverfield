@@ -18,7 +18,7 @@ const ColorMenu = ({ color, id, onSetColor, className }) => {
       <span
         onClick={setColor}
         key={i}
-        className={`${styles[item]} ${chosen} ${styles.circle}`} />
+        className={`${styles[item]} ${chosen}`} />
     )
   });
 

@@ -1,6 +1,3 @@
-@import 'stylesheets/colors.css';
-@import 'stylesheets/basic.css';
-@import 'stylesheets/normalize.css';
 
 .wrapper {
 	margin: 85px auto 30px auto;
@@ -11,6 +8,10 @@
 .form {
 	background: white;
 	transition: background 150ms ease-in-out;
+}
+
+.unfolded {
+	composes: form;
 }
 
 .unfolded .title {
@@ -35,10 +36,12 @@
 
 .title {
 	display: none;
+	composes: field;
 }
 
 .content {
 	display: block;
+	composes: field;
 }
 
 .submition {

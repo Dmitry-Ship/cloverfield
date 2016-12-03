@@ -1,12 +1,8 @@
-@import 'stylesheets/colors.css';
-@import 'stylesheets/basic.css';
-@import 'stylesheets/normalize.css';
-
 .layout {
   background: var(--color__grey);
 }
 
 .main {
-  margin-top: 55px;
-  height: calc(100vh - 55px);
+  padding-top: 55px;
+  height: 100vh;
 }
