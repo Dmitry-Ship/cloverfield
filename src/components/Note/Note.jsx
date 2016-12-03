@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './Note.css';
+import styles from './Note.styl';
 
 import Row from '../basic/Row';
 import Icon from '../basic/Icon';

@@ -1,0 +1,41 @@
+@import '../../styles/colors.styl'
+@import '../../styles/mixins.styl'
+
+.note
+  font-family Lato
+  line-height 20px
+  width 250px
+  background white
+  margin-bottom 30px
+  padding 30px 15px 15px 15px
+  transition background 300ms ease-in-out
+  +tablet()
+    width 100%
+  &:hover
+    .actions__icon
+      opacity 1
+
+.actions__icon
+  cursor pointer
+  color rgba(black, 0.3)
+  opacity 0
+  transition all 150ms ease-in-out
+  &:hover
+    color black
+
+.red
+  background $red
+.orange
+  background $orange
+.yellow
+  background $yellow
+.grey
+  background $grey
+.blue
+  background $blue
+.teal
+  background $teal
+.green
+  background $green
+.white
+  background white

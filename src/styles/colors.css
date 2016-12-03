@@ -82,3 +82,7 @@
   --color__flat__silver: #bdc3c7;
   --color__flat__asbestos: #7f8c8d;
 }
+
+.primaryColor {
+  color: var(--color__red);
+}

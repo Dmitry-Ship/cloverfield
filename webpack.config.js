@@ -12,7 +12,7 @@ module.exports = {
   },
     resolve: {
     modulesDirectories: ['node_modules', './src'],
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', 'css', 'styl']
   },
   module: {
     loaders: [
@@ -41,12 +41,17 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        loader: 'style-loader!css-loader!stylus-loader'
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss',
+          'stylus?sourceMap'
+        ],
+        exclude: /node_modules|lib/
       }
     ]
   },
   postcss: [
-    require('postcss-easy-import'),
+    // require('postcss-easy-import'),
     require('postcss-normalize'),
     require('postcss-utilities'),
     require('postcss-cssnext'),

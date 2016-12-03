@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Textarea from 'react-textarea-autosize';
 
-import styles from './CreationForm.css';
+import styles from './CreationForm.styl';
 
 import ColorMenu from '../ColorMenu';
 import Form from '../basic/Form';

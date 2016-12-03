@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './MediaObject.css';
-// import styles from './MediaObject.styl';
+import styles from './MediaObject.styl';
 
 import Icon from '../Icon';
 

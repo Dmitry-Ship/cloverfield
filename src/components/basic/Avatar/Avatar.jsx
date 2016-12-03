@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './Avatar';
+import styles from './Avatar.styl';
 
 import { Link } from 'react-router';
 

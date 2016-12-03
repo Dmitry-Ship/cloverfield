@@ -1,6 +1,7 @@
 .media {
 	display: flex;
 	align-items: flex-start;
+	background-color: yellow;
 }
 
 .figure {
@@ -8,5 +9,6 @@
 }
 
 .body {
+	composes: check from './lol.scss'; 
 	flex: 1;
 }

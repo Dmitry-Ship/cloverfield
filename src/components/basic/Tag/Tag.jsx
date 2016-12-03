@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './Tag.css';
+import styles from './Tag.styl';
 
 import { Link } from 'react-router';
 

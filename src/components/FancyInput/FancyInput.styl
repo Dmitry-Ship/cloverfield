@@ -1,0 +1,33 @@
+.fancy-input
+  text-align justify
+  margin 0 0 10px 0
+
+.fancy-input__text
+  padding 5px 10px
+  margin 0
+  cursor pointer
+  word-wrap break-word
+
+.fancy-input__input
+  word-wrap: break-word
+  display block
+  resize none
+  text-align justify
+  overflow hidden
+  padding 5px 10px
+  margin 0
+  width: 100%
+  border none
+  border-radius 5px
+  background rgba(white, 0)
+  &:focus
+    background rgba(white, 0.3)
+    animation out 120ms forwards
+
+@keyframes out
+  0%
+    box-shadow 0 0 0px rgba(black, 0.5)
+  50%
+    box-shadow 0 0 20px rgba(black, 0.15)
+  100%
+    box-shadow 0 0 10px rgba(black, 0.3)

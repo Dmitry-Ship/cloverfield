@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './NavBar.css';
+import styles from './NavBar.styl';
 
 import { Link } from 'react-router';
 

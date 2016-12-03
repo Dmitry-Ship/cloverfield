@@ -1,4 +1,4 @@
-.creation-form__wrapper
+.wrapper
   width 400px
   text-align center
   margin 85px auto 30px auto
@@ -7,15 +7,18 @@
   +mobile()
     width: 100%
 
-.creation-form
+.form
+  background white
   transition background 150ms ease-in-out
-  &--unfolded
-    .creation-from__title
-      display: block
-    .creation-from__submition
-      display: flex
 
-.creation-from__field
+.unfolded
+  composes form
+  .title
+    display block
+  .submition
+    display flex
+
+.field
   line-height 30px
   background transparent
   width 100%
@@ -26,13 +29,15 @@
   resize none
   overflow hidden
 
-.creation-from__title
-  display: none
+.title
+  composes field
+  display none
 
-.creation-from__content
+.content
+  composes field
   display block
 
-.creation-from__submition
+.submition
   z-index 0
   display none
   justify-content space-between
@@ -40,13 +45,14 @@
   line-height 30px
   transition all 150ms ease-in-out
 
-.creation-from__attachments
+.attachments
   width 50%
+  background $red
   &:hover
-    .creation-from__attachments__icon
+    .attachments__icon
       opacity 1
 
-.creation-from__attachments__icon
+.attachments__icon
   cursor pointer
   color rgba(black, 0.3)
   opacity 0

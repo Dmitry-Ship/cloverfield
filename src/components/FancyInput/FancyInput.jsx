@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import styles from './FancyInput.css';
+import styles from './FancyInput.styl';
 
 import Textarea from 'react-textarea-autosize';
 

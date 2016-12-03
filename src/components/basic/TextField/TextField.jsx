@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import styles from './TextField.css';
+import styles from './TextField.styl';
 
 export default class TextField extends Component {
   constructor(){
@@ -20,7 +20,7 @@ export default class TextField extends Component {
       className } = this.props;
     return (
       <input
-        className={styles.textfield}
+        className={styles.textField}
         // className={`text-field ${className}`}
         type={type}
         name={name}

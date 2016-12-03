@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './TopBar.css';
+import styles from './TopBar.styl';
 
 import { Link } from 'react-router';
 

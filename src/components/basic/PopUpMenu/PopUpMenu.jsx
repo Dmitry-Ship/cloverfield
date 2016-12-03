@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './PopUpMenu.css';
+import styles from './PopUpMenu.styl';
 
 import { Link } from 'react-router';
 import List from '../List';

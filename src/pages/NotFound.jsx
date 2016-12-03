@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './NotFound.css';
+import styles from './NotFound.styl';
 
 import Page from '../components/basic/Page';
 

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './ChangablePic.css';
+import styles from './ChangablePic.styl';
 
 import Icon from '../basic/Icon';
 import FileUploader from '../basic/FileUploader';

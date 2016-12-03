@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import './stylesheets/index.css';
+import './styles/index.styl';
 
 import { Router, Route, Link, hashHistory } from 'react-router'
 

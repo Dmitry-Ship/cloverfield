@@ -11,6 +11,7 @@
 .primary {
 	background: var(--color__secondary);
 	composes: button;
+	/*composes: primaryColor from 'styles/colors.css';*/
 	color: white;
 }
 

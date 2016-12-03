@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router';
 
-import styles from './MainLayout.css';
+import styles from './MainLayout.styl';
 
 import TopBarContainer from '../containers/TopBarContainer';
 

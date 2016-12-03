@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router';
 
-import styles from './AboutPage.css';
+import styles from './AboutPage.styl';
 
 import Heading from '../components/basic/Heading';
 import Page from '../components/basic/Page';

@@ -9,5 +9,6 @@
 .logo {
 	display: block;
 	color: var(--color__accent);
-	composes: logo from '../../stylesheets/typography.css';
+	/*composes: primaryColor from 'styles/colors.css';*/
+	composes: logo from 'styles/typography.css';
 }
