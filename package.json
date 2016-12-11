@@ -40,10 +40,14 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.4.0",
     "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.13.2"
   },
   "dependencies": {
+    "axios": "^0.15.3",
+    "body-parser": "^1.15.2",
     "css-loader": "^0.26.1",
+    "express": "^4.14.0",
     "lost": "^7.1.1",
     "nib": "^1.1.2",
     "postcss-normalize": "^0.3.0",

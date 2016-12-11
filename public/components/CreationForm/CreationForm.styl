@@ -1,0 +1,79 @@
+@import '../../styles/index.styl'
+
+.wrapper
+  width 400px
+  text-align center
+  margin 85px auto 30px auto
+  +tablet()
+    width 530px
+  +mobile()
+    width: 100%
+
+.form
+  background white
+  transition background 150ms ease-in-out
+
+.unfolded
+  composes form
+  .title
+    display block
+  .submition
+    display flex
+
+.field
+  line-height 30px
+  background transparent
+  width 100%
+  border none
+  font-size 1.3rem
+  padding 15px
+  word-wrap break-word
+  resize none
+  overflow hidden
+
+.title
+  composes field
+  display none
+
+.content
+  composes field
+  display block
+
+.submition
+  z-index 0
+  display none
+  justify-content space-between
+  background transparent
+  line-height 30px
+  transition all 150ms ease-in-out
+
+.attachments
+  width 50%
+  &:hover
+    .attachments__icon
+      opacity 1
+
+.attachments__icon
+  cursor pointer
+  color rgba(black, 0.3)
+  opacity 0
+  transition all 150ms ease-in-out
+  &:hover
+    color black
+
+.red
+  background color__red
+.orange
+  background color__orange
+.yellow
+  background color__yellow
+.grey
+  background color__grey
+.blue
+  background color__blue
+.teal
+  background color__teal
+.green
+  background color__green
+.white
+  background white

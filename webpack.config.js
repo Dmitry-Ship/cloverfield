@@ -4,14 +4,16 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
-    './src/routes.js'
+    'webpack-hot-middleware/client?reload=true',
+    './public/routes.js'
   ],
   output: {
     path: __dirname,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
     resolve: {
-    modulesDirectories: ['node_modules', './src'],
+    modulesDirectories: ['node_modules', './public'],
     extensions: ['', '.js', '.jsx', 'css', 'styl']
   },
   module: {
@@ -51,7 +53,7 @@ module.exports = {
     ]
   },
   postcss: [
-    // require('postcss-easy-import'),
+    require('postcss-easy-import'),
     require('postcss-normalize'),
     require('postcss-utilities'),
     require('postcss-cssnext'),
@@ -66,6 +68,12 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin("styles.css", {
           allChunks: true
-        })
+        }),
+        // Webpack 1.0
+        new webpack.optimize.OccurenceOrderPlugin(),
+        // Webpack 2.0 fixed this mispelling
+        // new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
     ]
 }
