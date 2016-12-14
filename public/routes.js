@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
-import './styles/index.styl';
+import { Router, Route, hashHistory } from 'react-router';
 
-import { Router, Route, Link, hashHistory } from 'react-router'
+import './styles/index.styl';
 
 import MainPageContainer from './containers/MainPageContainer';
 import AboutPage from './pages/AboutPage';
@@ -14,7 +14,7 @@ render((
   <Router history={hashHistory}>
     <Route component={MainLayout} >
       <Route path="/" component={MainPageContainer} />
-      <Route path="/about" component={AboutPage}/>
+      <Route path="/about" component={AboutPage} />
     </Route>
     <Route path="*" component={NotFound} />
   </Router>

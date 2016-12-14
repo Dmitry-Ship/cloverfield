@@ -7,7 +7,6 @@ import Icon from '../basic/Icon';
 import Card from '../basic/Card';
 import ColorMenu from '../ColorMenu';
 import FancyInput from '../FancyInput';
-import MediaObject from '../basic/MediaObject';
 
 // import TagAreaContainer from '../../containers/TagAreaContainer.jsx';
 
@@ -17,8 +16,7 @@ const Note = ({ note,
                 onSetColor,
                 onUpdateTitle,
                 onUpdateContent }) => {
-
-  const deleteNote = () => onDelete(note._id)
+  const deleteNote = () => onDelete(note._id);
   const updateTitle = value => onUpdateTitle(value, note._id);
   const updateContent = value => onUpdateContent(value, note._id);
   const setColor = color => onSetColor(color, note._id);
@@ -37,8 +35,7 @@ const Note = ({ note,
           onBlur={updateContent}
           maxLength={1000}
         />
-
-      {/* <TagAreaContainer note={note} /> */}
+{/* <TagAreaContainer note={note} /> */}
 
         {children}
       </div>
@@ -60,17 +57,22 @@ const Note = ({ note,
         />
       </Row>
     </Card>
-  )
-}
+  );
+};
 
 
 export default Note;
 
 Note.propTypes = {
-  // onDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
   onSetColor: PropTypes.func.isRequired,
   onUpdateTitle: PropTypes.func.isRequired,
-  // onUpdateContent: PropTypes.func.isRequired,
-  note: PropTypes.object.isRequired,
+  onUpdateContent: PropTypes.func.isRequired,
+  note: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    color: PropTypes.string,
+  }).isRequired,
   children: PropTypes.any,
-}
+};

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const noteSchema = new mongoose.Schema({
+
+const Schema = mongoose.Schema;
+const noteSchema = new Schema({
   title: String,
   content: String,
   color: String,
@@ -11,5 +13,10 @@ const noteSchema = new mongoose.Schema({
     type: Array,
     default: []
   }
+  // ,
+  // user: {
+  //   type: Schema.ObjectId,
+  //   ref: 'users'
+  // }
 });
 module.exports = mongoose.model('Note', noteSchema)

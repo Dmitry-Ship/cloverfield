@@ -6,36 +6,33 @@ import MainPage from '../pages/MainPage';
 
 export default class MainPageContainer extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      allNotes: [
-        {
-          _id: '123',
-          title: 'one',
-          content: 'two',
-          tags: [],
-          color: 'white'
-        }
-      ]
-    }
+      allNotes: []
+    };
     this.submit = this.submit.bind(this);
+  }
 
+  componentDidMount() {
+    axios.get('/notes')
+      .then(res => this.setState({ allNotes: res.data }))
+      .catch(err => console.log(err));
   }
 
   submit(data) {
-    axios.post('/submit', data)
+    axios.post('/notes', data)
     .then(res => {
       const prevList = this.state.allNotes;
-      this.setState({allNotes: prevList.concat([res.data])})
+      this.setState({ allNotes: prevList.concat([res.data]) });
     })
     .catch(err => console.log(err));
   }
 
+
   render() {
-    console.log(this.state.allNotes);
     return (
       <MainPage onSubmit={this.submit} allNotes={this.state.allNotes} />
-    )
+    );
   }
 }
 

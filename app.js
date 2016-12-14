@@ -1,5 +1,17 @@
-const express = require('express')
+// import express from 'express';
+// import path from 'path';
+// import favicon from 'serve-favicon';
+// import logger from 'morgan';
+// import cookieParser from 'cookie-parser';
+// import mongoose from 'mongoose';
+
+
+
+const express = require('express');
 const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -9,11 +21,11 @@ const webpackConfig = require('./webpack.config');
 const db = mongoose.connection;
 const compiler = webpack(webpackConfig);
 
-const createItem = require('./controllers/createItem');
+const manageNotes = require('./routes/manageNotes');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/notes');
+mongoose.connect('mongodb://localhost/test');
 db.on('error',  err => console.log('connection error', err));
 db.once('open', () => console.log('connected to Data Base'));
 
@@ -23,11 +35,30 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/submit', createItem);
+app.use('/notes', manageNotes);
 
-app.listen(3000, () => console.log('listening on port 3000!'))
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler
+app.use((err, req, res, next) => {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  // res.render('error');
+});
+
+module.exports = app;

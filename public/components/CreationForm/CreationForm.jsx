@@ -18,21 +18,20 @@ import Row from '../basic/Row';
 import Icon from '../basic/Icon';
 
 export default class CreationForm extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       className: form,
       titleText: '',
       contentText: '',
-      color: 'white'
-    }
+      color: 'white',
+    };
     this.handleFocus = this.handleFocus.bind(this);
     this.handleClickOut = this.handleClickOut.bind(this);
     this.create = this.create.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleContentChange = this.handleContentChange.bind(this);
     this.setColor = this.setColor.bind(this);
-
   }
 
   componentDidMount() {
@@ -41,22 +40,6 @@ export default class CreationForm extends Component {
 
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleClickOut);
-  }
-
-  handleFocus(){
-    this.setState({ className: unfolded })
-  }
-
-  handleClickOut(e) {
-    if (e.target.parentNode !== this.theForm) this.setState({ className: form })
-  }
-
-  handleTitleChange(e) {
-    const newTitle = e.target.value;
-
-    if (newTitle.length > 100) return;
-
-    this.setState({ titleText: newTitle });
   }
 
   handleContentChange(e) {
@@ -77,21 +60,37 @@ export default class CreationForm extends Component {
     const data = {
       title: this.state.titleText,
       content: this.state.contentText,
-      color: this.state.color
-    }
+      color: this.state.color,
+    };
 
-    this.props.onSubmit(data)
+    this.props.onSubmit(data);
 
     this.setState({
       titleText: '',
       contentText: '',
       className: form,
-      color: 'white'
-    })
+      color: 'white',
+    });
   }
 
   setColor(value) {
-    this.setState({ color: value})
+    this.setState({ color: value });
+  }
+
+  handleTitleChange(e) {
+    const newTitle = e.target.value;
+
+    if (newTitle.length > 100) return;
+
+    this.setState({ titleText: newTitle });
+  }
+
+  handleFocus() {
+    this.setState({ className: unfolded });
+  }
+
+  handleClickOut(e) {
+    if (e.target.parentNode !== this.theForm) this.setState({ className: form });
   }
 
   render() {
@@ -104,26 +103,30 @@ export default class CreationForm extends Component {
     return (
       <div
         className={wrapper} onClick={this.handleFocus}
-        ref={c => this.theForm = c}>
+        ref={c => this.theForm = c}
+      >
         <Form
           className={`${className} ${color}`}
-          onSubmit={this.create}>
+          onSubmit={this.create}
+        >
           <Textarea
             className={title}
             onChange={this.handleTitleChange}
             value={titleText}
-            placeholder={titlePlaceholder} />
+            placeholder={titlePlaceholder}
+          />
 
           <Textarea
             className={content}
             onChange={this.handleContentChange}
             value={contentText}
             maxLength={maxLength}
-            placeholder={contentPlaceholder} />
+            placeholder={contentPlaceholder}
+          />
 
           <div className={submition}>
             <Row className={attachments} auto={false} >
-              <Icon className={attachments__icon} name="image"/>
+              <Icon className={attachments__icon} name="image" />
 
               <ColorMenu
                 color={color}
@@ -131,7 +134,7 @@ export default class CreationForm extends Component {
                 className={attachments__icon}
               />
 
-              <Icon className={attachments__icon} name="more_vert"/>
+              <Icon className={attachments__icon} name="more_vert" />
             </Row>
             <Button
               kind="secondary"
@@ -141,18 +144,18 @@ export default class CreationForm extends Component {
           </div>
         </Form>
       </div>
-    )
+    );
   }
 }
 
 CreationForm.defaultProps = {
-  color: 'white'
-}
+  color: 'white',
+};
 
 CreationForm.propTypes = {
   titlePlaceholder: PropTypes.string.isRequired,
   contentPlaceholder: PropTypes.string.isRequired,
-  // maxLength: PropTypes.number.isRequired,
-  // onCreateItem: PropTypes.func.isRequired,
+  maxLength: PropTypes.number,
+  onSubmit: PropTypes.func.isRequired,
   validation: PropTypes.func,
-}
+};
