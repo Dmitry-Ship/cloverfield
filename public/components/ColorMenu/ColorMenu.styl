@@ -1,0 +1,59 @@
+@import '../../styles/index.styl'
+
+.colorMenu
+  position relative
+  &:hover
+    .popupMenu
+      display block
+
+.palette
+  size 150px auto
+  flex-wrap wrap
+  justify-content space-around
+  display flex
+
+.circle
+  circle(28px)
+  margin 4px 4px
+  transition all 300ms ease-in-out
+  cursor pointer
+  &:first-child
+    border grey
+  &:hover
+    border 2px solid flat_wet_asphalt
+
+.chosen
+  composes: circle
+  border 2px solid black
+
+.popupMenu
+  display none
+  tooltip(white, 10px, bottom)
+  transform translateX(-50%)
+  bottom calc(100% + 10px)
+  left 50%
+
+.red
+  composes: circle
+  background color__red
+.orange
+  composes: circle
+  background color__orange
+.yellow
+  composes: circle
+  background color__yellow
+.grey
+  composes: circle
+  background color__grey
+.blue
+  composes: circle
+  background color__blue
+.teal
+  composes: circle
+  background color__teal
+.green
+  composes: circle
+  background color__green
+.white
+  composes: circle
+  background white

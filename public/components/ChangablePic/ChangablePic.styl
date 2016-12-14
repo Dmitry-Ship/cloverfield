@@ -1,0 +1,23 @@
+@import '../../styles/index.styl'
+
+.changablePic
+  circle(220px)
+  margin auto
+  background-size cover
+  position relative
+  &:hover
+    .icon
+      color: rgba(white, .4)
+
+.uploader
+  display none !important
+
+.icon
+  cursor pointer
+  transition all 100ms ease-in-out
+  absolute left 50% top 65%
+  transform translate(-50%, -50%)
+  margin auto
+  color rgba(white, .0)
+  &:hover
+    color: rgba(white, .8)

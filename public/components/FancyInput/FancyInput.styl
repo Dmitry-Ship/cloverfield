@@ -1,0 +1,19 @@
+.contentEditable
+  text-align justify
+  margin 0 0 10px 0
+  padding 5px 10px
+  outline none
+  border-radius 5px
+  cursor pointer
+  background rgba(white, 0)
+  &:focus
+    background rgba(white, 0.3)
+    animation out 120ms forwards
+
+@keyframes out
+  0%
+    box-shadow 0 0 0px rgba(black, 0.5)
+  50%
+    box-shadow 0 0 20px rgba(black, 0.15)
+  100%
+    box-shadow 0 0 10px rgba(black, 0.3)
