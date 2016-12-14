@@ -5,17 +5,17 @@ import styles from './ColorMenu.styl';
 import PopUpMenu from '../basic/PopUpMenu';
 import Icon from '../basic/Icon';
 
-const ColorMenu = ({ color, id, onSetColor, className }) => {
-
-  const setColor = (e) => onSetColor(e.target.className.split(' ')[0], id)
+const ColorMenu = ({ color, onSetColor, className }) => {
 
   const colors = ['white', 'red', 'orange', 'yellow', 'grey', 'blue', 'teal', 'green'];
+
+  const setColor = color => onSetColor(color);
 
   const circles = colors.map((item, i) => {
     const chosen = item === color ? styles.chosen : ''
     return (
       <span
-        onClick={setColor}
+        onClick={setColor.bind(null, item)}
         key={i}
         className={`${styles[item]} ${chosen}`} />
     )
@@ -41,5 +41,6 @@ ColorMenu.defaultProps = {
 
 ColorMenu.propTypes = {
   color: PropTypes.string.isRequired,
-  onSetColor: PropTypes.func.isRequired
+  onSetColor: PropTypes.func.isRequired,
+  className: PropTypes.string
 };

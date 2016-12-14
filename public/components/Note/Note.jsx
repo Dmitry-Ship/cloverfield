@@ -9,7 +9,7 @@ import ColorMenu from '../ColorMenu';
 import FancyInput from '../FancyInput';
 import MediaObject from '../basic/MediaObject';
 
-import TagAreaContainer from '../../containers/TagAreaContainer.jsx';
+// import TagAreaContainer from '../../containers/TagAreaContainer.jsx';
 
 const Note = ({ note,
                 onDelete,
@@ -19,35 +19,36 @@ const Note = ({ note,
                 onUpdateContent }) => {
 
   const deleteNote = () => onDelete(note._id)
+  const updateTitle = value => onUpdateTitle(value, note._id);
+  const updateContent = value => onUpdateContent(value, note._id);
+  const setColor = color => onSetColor(color, note._id);
 
   return (
     <Card className={`${styles.note} ${styles[note.color]}`}>
       <div className={styles.content}>
         <FancyInput
           text={note.title}
-          id={note._id}
-          onBlur={onUpdateTitle}
+          onBlur={updateTitle}
           maxLength={24}
         />
 
         <FancyInput
-          id={note._id}
           text={note.content}
-          onBlur={onUpdateContent}
+          onBlur={updateContent}
           maxLength={1000}
         />
 
-      <TagAreaContainer note={note} />
+      {/* <TagAreaContainer note={note} /> */}
 
         {children}
       </div>
+
       <Row align="space-between" className={styles.actions}>
 
         <ColorMenu
           className={styles.actions__icon}
           color={note.color}
-          id={note._id}
-          onSetColor={onSetColor}
+          onSetColor={setColor}
         />
 
         <Icon
@@ -66,10 +67,10 @@ const Note = ({ note,
 export default Note;
 
 Note.propTypes = {
-  onDelete: PropTypes.func.isRequired,
+  // onDelete: PropTypes.func.isRequired,
   onSetColor: PropTypes.func.isRequired,
   onUpdateTitle: PropTypes.func.isRequired,
-  onUpdateContent: PropTypes.func.isRequired,
+  // onUpdateContent: PropTypes.func.isRequired,
   note: PropTypes.object.isRequired,
   children: PropTypes.any,
 }

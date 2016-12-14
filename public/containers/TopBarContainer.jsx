@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import TopBar from '../components/TopBar/TopBar';
+import TopBar from '../components/TopBar';
 
 const TopBarContainer = () => {
   const navBarItems = [

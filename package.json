@@ -49,6 +49,8 @@
     "css-loader": "^0.26.1",
     "express": "^4.14.0",
     "lost": "^7.1.1",
+    "mongodb": "^2.2.16",
+    "mongoose": "^4.7.2",
     "nib": "^1.1.2",
     "postcss-normalize": "^0.3.0",
     "react": "^15.4.1",

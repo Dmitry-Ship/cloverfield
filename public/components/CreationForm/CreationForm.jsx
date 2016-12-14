@@ -74,11 +74,13 @@ export default class CreationForm extends Component {
   create(e) {
     e.preventDefault();
 
-    const title = this.state.titleText,
-          content = this.state.contentText,
-          color = this.state.color;
+    const data = {
+      title: this.state.titleText,
+      content: this.state.contentText,
+      color: this.state.color
+    }
 
-    this.props.onSubmit(title, content, color)
+    this.props.onSubmit(data)
 
     this.setState({
       titleText: '',

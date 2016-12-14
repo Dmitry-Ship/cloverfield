@@ -1,53 +1,30 @@
 import React, { Component, PropTypes } from 'react';
 
-import styles from './FancyInput.styl';
+import { contentEditable } from './FancyInput.styl';
 
-import Textarea from 'react-textarea-autosize';
+const FancyInput = ({ text, maxLength, onBlur, className }) => {
 
-export default class FancyInput extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      editing: false
-    };
+  const updateValue = e => onBlur(e.target.innerHTML);
 
-    this.updateValue = this.updateValue.bind(this);
-    this.showInput = this.showInput.bind(this);
-  }
+  return (
+    <div
+      className={`${contentEditable} ${className}`}
+      contentEditable
+      onBlur={updateValue}
+      dangerouslySetInnerHTML={{__html: text}}
+    />
+  )
+}
 
-  showInput()  {
-    this.setState({ editing: true });
-  }
+export default FancyInput;
 
-  updateValue(e) {
-    const value = e.target.value
-    this.props.onBlur(value, this.props.id);
-    this.setState({ editing: false });
-  }
-
-  render() {
-    const { text, maxLength } = this.props;
-
-    return (
-      <div
-        className={styles.fancyInput} onClick={this.showInput}>
-        {this.state.editing
-          ? <Textarea
-              defaultValue={text}
-              autoFocus
-              maxLength={maxLength}
-              className={styles.input}
-              onBlur={this.updateValue} />
-          : <p className={styles.text}>{text}</p>}
-      </div>
-    )
-  }
+FancyInput.defaultProps = {
+  maxLength: 100
 }
 
 FancyInput.propTypes = {
-  text: PropTypes.string.isRequired,
-  maxLength: PropTypes.number.isRequired,
+  text: PropTypes.string,
+  maxLength: PropTypes.number,
   onBlur: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-
-};
+  className: PropTypes.string,
+}

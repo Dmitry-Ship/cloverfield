@@ -1,17 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import Masonry from 'react-masonry-component';
 
-import Note from '../Note';
-import Loader from '../basic/Loaders';
+import NoteContainer from '../../containers/NoteContainer.jsx';
 
-const NotesList = ({
-                    allNotes,
-                    onDelete,
-                    onUpdateTitle,
-                    onUpdateContent,
-                    onSetColor,
-                    params,
-                    loading }) => {
+import Loader from '../basic/Loader';
+
+const NotesList = ({ params, loading, allNotes }) => {
 
   const masonryOptions = {
     transitionDuration: 300,
@@ -34,20 +28,8 @@ const NotesList = ({
       {loading
         ? <Loader type={'triple-dots'} />
         : <Masonry options={masonryOptions} style={style}>
-          {notesToShow.map((note, i) => {
-            return (
-              <Note
-                key={i}
-                note={note}
-                onDelete={onDelete}
-                onSetColor={onSetColor}
-                onUpdateTitle={onUpdateTitle}
-                onUpdateContent={onUpdateContent}
-              />
-            )
-          })}
-
-        </Masonry>}
+            {notesToShow.map((note, i) => <NoteContainer key={i} note={note} />)}
+          </Masonry>}
     </section>
   )
 }
@@ -55,10 +37,5 @@ const NotesList = ({
 export default NotesList;
 
 NotesList.propTypes = {
-  onSetColor: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onUpdateTitle: PropTypes.func.isRequired,
-  onUpdateContent: PropTypes.func.isRequired,
-  onSetColor: PropTypes.func.isRequired,
   allNotes: PropTypes.arrayOf(React.PropTypes.object).isRequired,
 }
