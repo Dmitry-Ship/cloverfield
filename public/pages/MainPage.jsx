@@ -3,19 +3,19 @@ import React from 'react';
 import { page } from './MainPage.styl';
 
 import Page from '../components/basic/Page';
-import MediaObject from '../components/basic/MediaObject';
 import CreationFrom from '../components/CreationForm';
-import NotesListContainer from '../containers/NotesListContainer';
+import NotesList from '../components/NotesList';
 
-const MainPage = ({ onSubmit, allNotes }) => (
+const MainPage = ({
+  userName,
+  onSubmit,
+  allNotes,
+  onSetColor,
+  onUpdateTitle,
+  onUpdateContent,
+  onDelete }) => (
   <Page className={page}>
-
-    <MediaObject name="person" titleText="Hello World" icon="face" >
-      <p>master cleanse marfa, snackwave bitters lumbersexual DIY occupy
-        authentic. Meggings squid blog put a bird on it, listicle trust
-        fund man bun organic austin tumeric unicorn intelligentsia lo-fi
-        beard.</p>
-    </MediaObject>
+    <h1>{userName}</h1>
 
     <CreationFrom
       onSubmit={onSubmit}
@@ -23,7 +23,13 @@ const MainPage = ({ onSubmit, allNotes }) => (
       contentPlaceholder="Content"
     />
 
-    <NotesListContainer allNotes={allNotes} />
+    <NotesList
+      onSetColor={onSetColor}
+      onUpdateTitle={onUpdateTitle}
+      onUpdateContent={onUpdateContent}
+      onDelete={onDelete}
+      allNotes={allNotes}
+    />
 
   </Page>
 );

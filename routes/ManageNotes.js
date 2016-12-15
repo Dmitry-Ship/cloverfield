@@ -20,7 +20,6 @@ router.post('/', (req, res) => {
       res.send('error adding a user');
     } else {
       res.send(note);
-      console.log(`note ${note.title} created`);
     }
   });
 });
@@ -32,7 +31,6 @@ router.delete('/:id', (req, res) => {
         res.send('error deleting');
       } else {
         res.send(note);
-        console.log(`note ${req.params.id} removed`);
       }
     });
 });
@@ -51,7 +49,6 @@ router.put('/:id', (req, res) => {
         res.send('error updating');
       } else {
         res.send(note);
-        console.log(note.title);
       }
     });
 });

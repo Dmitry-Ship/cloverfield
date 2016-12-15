@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './Button.styl'
+import styles from './Button.styl';
 
 import Icon from '../Icon';
 
@@ -30,8 +30,8 @@ export default Button;
 
 Button.defaultProps = {
   disabled: false,
-  kind: 'primary'
-}
+  kind: 'primary',
+};
 
 Button.propTypes = {
   className: PropTypes.string,
