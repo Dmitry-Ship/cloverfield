@@ -150,11 +150,13 @@ export default class CreationForm extends Component {
 
 CreationForm.defaultProps = {
   color: 'white',
+  titlePlaceholder: 'Title',
+  contentPlaceholder: 'Content',
 };
 
 CreationForm.propTypes = {
-  titlePlaceholder: PropTypes.string.isRequired,
-  contentPlaceholder: PropTypes.string.isRequired,
+  titlePlaceholder: PropTypes.string,
+  contentPlaceholder: PropTypes.string,
   maxLength: PropTypes.number,
   onSubmit: PropTypes.func.isRequired,
   validation: PropTypes.func,

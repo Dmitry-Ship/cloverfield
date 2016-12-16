@@ -1,36 +1,22 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
 import { page } from './MainPage.styl';
 
 import Page from '../components/basic/Page';
-import CreationFrom from '../components/CreationForm';
-import NotesList from '../components/NotesList';
+import CreationFromContainer from '../containers/CreationFormContainer';
+import NotesListContainer from '../containers/NotesListContainer';
 
-const MainPage = ({
-  userName,
-  onSubmit,
-  allNotes,
-  onSetColor,
-  onUpdateTitle,
-  onUpdateContent,
-  onDelete }) => (
+import store from '../store';
+
+const MainPage = () => (
   <Page className={page}>
-    <h1>{userName}</h1>
-
-    <CreationFrom
-      onSubmit={onSubmit}
-      titlePlaceholder="Title"
-      contentPlaceholder="Content"
-    />
-
-    <NotesList
-      onSetColor={onSetColor}
-      onUpdateTitle={onUpdateTitle}
-      onUpdateContent={onUpdateContent}
-      onDelete={onDelete}
-      allNotes={allNotes}
-    />
-
+    <Provider store={store} >
+      <CreationFromContainer />
+    </Provider>
+    <Provider store={store} >
+      <NotesListContainer />
+    </Provider>
   </Page>
 );
 

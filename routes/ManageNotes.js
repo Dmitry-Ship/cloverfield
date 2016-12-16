@@ -30,7 +30,7 @@ router.delete('/:id', (req, res) => {
       if (err) {
         res.send('error deleting');
       } else {
-        res.send(note);
+        res.send(req.params.id);
       }
     });
 });
