@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    './public/routes.js'
+    './src/routes.js'
   ],
   output: {
     path: __dirname,
@@ -13,7 +13,7 @@ module.exports = {
     publicPath: '/'
   },
     resolve: {
-    modulesDirectories: ['node_modules', './public'],
+    modulesDirectories: ['node_modules', './src'],
     extensions: ['', '.js', '.jsx', 'css', 'styl']
   },
   module: {
