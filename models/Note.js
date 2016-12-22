@@ -7,16 +7,16 @@ const noteSchema = new Schema({
   color: String,
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   tags: {
     type: Array,
-    default: []
-  }
+    default: [],
+  },
   // ,
   // user: {
   //   type: Schema.ObjectId,
   //   ref: 'users'
   // }
 });
-module.exports = mongoose.model('Note', noteSchema)
+module.exports = mongoose.model('Note', noteSchema);

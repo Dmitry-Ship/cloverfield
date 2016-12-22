@@ -9,14 +9,19 @@ const Profile = ({ user, src, items, className }) => (
   <div className={`${styles.profile} ${className}`} >
     <Avatar className={styles.avatar} src={src} />
     <p className={styles.userinfo} >{user.username}</p>
-    <PopUpMenu className={styles.popUpMenu} items={items}/>
+    <PopUpMenu className={styles.popUpMenu} items={items} />
   </div>
-)
+);
 
 export default Profile;
+
+Profile.defaultProps = {
+  className: '',
+};
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
   src: PropTypes.string.isRequired,
-  className: PropTypes.string
-}
+  className: PropTypes.string,
+  items: PropTypes.arrayOf(PropTypes.object),
+};

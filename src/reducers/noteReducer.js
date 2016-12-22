@@ -1,71 +1,91 @@
-const noteReducer = (state = {
+import * as types from '../actions/actionTypes';
+
+const initialState = {
   fetching: false,
   fetched: false,
   notes: [],
   error: null,
-}, action) => {
+};
+
+const noteReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case 'FETCH_NOTES_PENDING':
+    case types.FETCH_NOTES:
+      return { ...state, fetching: true };
+    case types.FETCH_NOTES_SUCCESS:
+      return { ...state, notes: payload, fetched: true, fetching: false };
+    case types.FETCH_NOTES_FAILURE:
+      return { ...state, fetched: false, fetching: false, error: payload };
+    case types.CREATE_NOTE:
+      return state;
+    case types.CREATE_NOTE_SUCCESS:
+      return { ...state, notes: state.notes.concat([payload]) };
+    case types.CREATE_NOTE_FAILURE:
+      return { ...state, error: payload };
+    case types.CHANGE_TITLE:
+      return state;
+    case types.CHANGE_TITLE_SUCCESS:
       return {
         ...state,
-        fetched: false,
-        fetching: true,
+        notes: state.notes.map(note => note._id === payload._id
+                                        ? { ...note, title: payload.title }
+                                        : note),
       };
-    case 'FETCH_NOTES_FULFILLED':
+    case types.CHANGE_TITLE_FAILURE:
+      return { ...state, error: payload };
+    case types.CHANGE_CONTENT:
+      return state;
+    case types.CHANGE_CONTENT_SUCCESS:
       return {
         ...state,
-        notes: payload.data,
-        fetched: true,
-        fetching: false,
+        notes: state.notes.map(note => note._id === payload._id
+                                        ? { ...note, content: payload.content }
+                                        : note),
       };
-    case 'CREATE_NOTE_FULFILLED':
+    case types.CHANGE_CONTENT_FAILURE:
+      return { ...state, error: payload };
+    case types.CHANGE_COLOR:
+      return state;
+    case types.CHANGE_COLOR_SUCCESS:
       return {
         ...state,
-        notes: state.notes.concat([payload.data]),
+        notes: state.notes.map(note => note._id === payload._id
+                                        ? { ...note, color: payload.color }
+                                        : note),
       };
-    case 'CREATE_NOTE_REJECTED':
+    case types.CHANGE_COLOR_FAILURE:
+      return { ...state, error: payload };
+    case types.DELETE_NOTE:
+      return state;
+    case types.DELETE_NOTE_SUCCESS:
+      return { ...state, notes: state.notes.filter(item => item._id !== payload) };
+    case types.DELETE_NOTE_FAILURE:
+      return { ...state, error: payload };
+
+
+
+    case types.ADD_TAG:
+      return state;
+    case types.ADD_TAG_SUCCESS:
       return {
         ...state,
-        error: payload.data,
+        notes: state.notes.map(note => note._id === payload._id
+                                        ? { ...note, tags: note.tags.concat([payload.tag]) }
+                                        : note),
       };
-    case 'CHANGE_TITLE_FULFILLED':
+    case types.ADD_TAG_FAILURE:
+      return { ...state, error: payload };
+    case types.DELETE_TAG:
+      return state;
+    case types.DELETE_TAG_SUCCESS:
       return {
         ...state,
-        notes: state.notes.map((note) => {
-          return note._id === payload.data._id
-          ? Object.assign({}, note, { title: payload.data.title })
-          : note;
-        }),
+        notes: state.notes.map(note => note._id === payload._id
+                                        ? { ...note, tags: note.tags.filter(tag => tag !== payload.tag) }
+                                        : note)
       };
-    case 'CHANGE_CONTENT_FULFILLED':
-      return {
-        ...state,
-        notes: state.notes.map((note) => {
-          return note._id === payload.data._id
-          ? Object.assign({}, note, { content: payload.data.content })
-          : note;
-        }),
-      };
-    case 'CHANGE_COLOR_FULFILLED':
-      return {
-        ...state,
-        notes: state.notes.map((note) => {
-          return note._id === payload.data._id
-          ? Object.assign({}, note, { color: payload.data.color })
-          : note;
-        }),
-      };
-    case 'CHANGE_COLOR_REJECTED':
-      return {
-        ...state,
-        error: payload,
-      };
-    case 'DELETE_NOTE_FULFILLED':
-      return {
-        ...state,
-        notes: state.notes.filter(item => item._id !== payload.data),
-      };
+    case types.DELETE_TAG_FAILURE:
+      return { ...state, error: payload };
     default: return state;
   }
 };

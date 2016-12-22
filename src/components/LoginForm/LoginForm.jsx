@@ -26,8 +26,8 @@ export default class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const email = this.state.email,
-          password = this.state.password;
+    const email = this.state.email;
+    const password = this.state.password;
     this.props.onSubmit(email, password);
   }
 

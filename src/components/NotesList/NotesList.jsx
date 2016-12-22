@@ -1,54 +1,51 @@
 import React, { Component, PropTypes } from 'react';
 import Masonry from 'react-masonry-component';
 
-import Note from '../Note';
+import NoteContainer from '../../containers/NoteContainer';
 
 import Loader from '../basic/Loader';
 
-const NotesList = ({
-  params,
-  loading,
-  allNotes,
-  onSetColor,
-  onUpdateTitle,
-  onUpdateContent,
-  onDelete }) => {
-  const masonryOptions = {
-    transitionDuration: 300,
-    gutter: 30,
-    fitWidth: true,
-  };
+export default class NotesList extends Component {
+  componentWillMount() {
+    this.props.fetchNotes();
+  }
 
-  const style = {
-    margin: 'auto auto auto auto',
-  };
+  render() {
+    const { params, loading, allNotes } = this.props;
 
-  const filteredNotes = allNotes.filter((note) => {
-    return note.tags.includes(params);
-  });
+    const masonryOptions = {
+      transitionDuration: 300,
+      gutter: 30,
+      fitWidth: true,
+    };
 
-  const notesToShow = filteredNotes.length > 0 ? filteredNotes : allNotes;
+    const style = {
+      margin: 'auto',
+    };
 
-  return (
-    <section className="notes">
-      {loading
-        ? <Loader type={'triple-dots'} />
-        : <Masonry options={masonryOptions} style={style}>
-          {notesToShow.map((note, i) => <Note
-            note={note}
-            onSetColor={onSetColor}
-            onUpdateTitle={onUpdateTitle}
-            onUpdateContent={onUpdateContent}
-            onDelete={onDelete}
-            key={i}
-          />)}
-        </Masonry>}
-    </section>
-  );
-};
+    // const filteredNotes = allNotes.filter(note => note.tags.includes('params'));
 
-export default NotesList;
+    // const filteredNotes = allNotes.filter((note) => {
+    //   return note.tags.includes(params);
+    // });
+
+    // const notesToShow = filteredNotes.length > 0 ? filteredNotes : allNotes;
+
+    return (
+      <section className="notes">
+        {loading
+          ? <Loader type="triple-dots" />
+          : <Masonry options={masonryOptions} style={style}>
+            {allNotes.map((note, i) => <NoteContainer note={note} key={i} />)}
+          </Masonry>}
+      </section>
+    );
+  }
+}
 
 NotesList.propTypes = {
   allNotes: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  params: PropTypes.string,
+  loading: PropTypes.bool,
+  fetchNotes: PropTypes.func,
 };

@@ -11,7 +11,9 @@ import AboutPage from './pages/AboutPage';
 import MainLayout from './layouts/MainLayout';
 import NotFound from './pages/NotFound';
 
-import store from './store';
+import configureStore from './store/configureStore';
+
+const store = configureStore();
 
 render((
   <Provider store={store} >

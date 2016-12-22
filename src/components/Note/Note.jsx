@@ -8,11 +8,13 @@ import Card from '../basic/Card';
 import ColorMenu from '../ColorMenu';
 import FancyInput from '../FancyInput';
 
-// import TagAreaContainer from '../../containers/TagAreaContainer.jsx';
+import TagArea from '../TagArea';
 
 const Note = ({ note,
                 onDelete,
                 children,
+                onAddTag,
+                onDeleteTag,
                 onSetColor,
                 onUpdateTitle,
                 onUpdateContent }) => (
@@ -28,7 +30,7 @@ const Note = ({ note,
         onBlur={val => onUpdateContent(val, note._id)}
         maxLength={1000}
       />
-{/* <TagAreaContainer note={note} /> */}
+    <TagArea onDeleteTag={tag => onDeleteTag(tag, note._id)} tags={note.tags} onAddTag={tag => onAddTag(tag, note._id)} />
       {children}
     </div>
     <Row align="space-between" className={styles.actions}>
@@ -55,11 +57,11 @@ Note.propTypes = {
   onSetColor: PropTypes.func.isRequired,
   onUpdateTitle: PropTypes.func.isRequired,
   onUpdateContent: PropTypes.func.isRequired,
-  note: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string,
-    content: PropTypes.string,
-    color: PropTypes.string,
-  }).isRequired,
+  // note: PropTypes.shape({
+  //   _id: PropTypes.string.isRequired,
+  //   title: PropTypes.string,
+  //   content: PropTypes.string,
+  //   color: PropTypes.string,
+  // }).isRequired,
   children: PropTypes.any,
 };

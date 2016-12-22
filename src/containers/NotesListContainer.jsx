@@ -1,52 +1,16 @@
-import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import NotesList from '../components/NotesList';
 
-import {
-  changeColor,
-  changeTitle,
-  changeContent,
-  deleteNote,
-  fetchNotes } from '../actions/noteActions';
-
-class NotesListContainer extends Component {
-
-  componentDidMount() {
-    this.props.fetchNotes();
-  }
-  render() {
-    return (
-      <NotesList
-        onSetColor={this.props.changeColor}
-        onUpdateTitle={this.props.changeTitle}
-        onUpdateContent={this.props.changeContent}
-        onDelete={this.props.deleteNote}
-        allNotes={this.props.notes}
-      />
-    );
-  }
-}
+import { fetchNotes } from '../actions/noteActions';
 
 const mapStateToProps = store => ({
-  notes: store.noteReducer.notes,
+  allNotes: store.noteReducer.notes,
+  loading: store.noteReducer.fetching,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchNotes: () => dispatch(fetchNotes()),
-  changeColor: (color, id) => dispatch(changeColor(color, id)),
-  changeTitle: (title, id) => dispatch(changeTitle(title, id)),
-  changeContent: (content, id) => dispatch(changeContent(content, id)),
-  deleteNote: id => dispatch(deleteNote(id)),
 });
 
-NotesListContainer.propTypes = {
-  changeColor: PropTypes.func,
-  changeTitle: PropTypes.func,
-  changeContent: PropTypes.func,
-  deleteNote: PropTypes.func,
-  fetchNotes: PropTypes.func,
-  notes: PropTypes.arrayOf(PropTypes.object),
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NotesListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(NotesList);

@@ -38,6 +38,7 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const type = Object.keys(req.body);
+
   const option = { [type]: req.body[type] };
   Note.findOneAndUpdate({
     _id: req.params.id,
