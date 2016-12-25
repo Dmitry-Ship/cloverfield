@@ -5,15 +5,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    './public/routes.js'
+    './src'
   ],
   output: {
     path: __dirname,
     filename: 'bundle.js',
     publicPath: '/'
   },
-    resolve: {
-    modulesDirectories: ['node_modules', './public'],
+  resolve: {
+    modulesDirectories: ['node_modules', './src'],
     extensions: ['', '.js', '.jsx', 'css', 'styl']
   },
   module: {
@@ -63,17 +63,17 @@ module.exports = {
   ],
   stylus: {
     use: [require('rupture')(), require('nib')()],
-    import: ["~rupture/rupture/index.styl", '~nib/lib/nib/index.styl']
+    import: ['~rupture/rupture/index.styl', '~nib/lib/nib/index.styl']
   },
-    plugins: [
-        new ExtractTextPlugin("styles.css", {
-          allChunks: true
-        }),
-        // Webpack 1.0
-        new webpack.optimize.OccurenceOrderPlugin(),
-        // Webpack 2.0 fixed this mispelling
-        // new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-    ]
+  plugins: [
+    new ExtractTextPlugin('styles.css', {
+      allChunks: true
+    }),
+    // Webpack 1.0
+    new webpack.optimize.OccurenceOrderPlugin(),
+    // Webpack 2.0 fixed this mispelling
+    // new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ]
 }

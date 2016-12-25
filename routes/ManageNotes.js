@@ -30,7 +30,7 @@ router.delete('/:id', (req, res) => {
       if (err) {
         res.send('error deleting');
       } else {
-        res.send(note);
+        res.send(req.params.id);
       }
     });
 });
@@ -38,7 +38,15 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const type = Object.keys(req.body);
-  const option = { [type]: req.body[type] };
+
+  let option;
+  if (`${type}` === 'tags') {
+    option = { $push: { tags: req.body[type] } };
+  } else if (`${type}` === 'tagsDel') {
+    option = { $pull: { tags: req.body[type] } };
+  } else {
+    option = { [type]: req.body[type] };
+  }
   Note.findOneAndUpdate({
     _id: req.params.id,
   },
