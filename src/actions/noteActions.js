@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import * as types from './actionTypes';
 
+const url = '/notes';
+
 const fetchNotesSuccess = notes => ({
   type: types.FETCH_NOTES_SUCCESS,
   payload: notes,
@@ -14,7 +16,7 @@ const fetchNotesFailure = err => ({
 
 export const fetchNotes = () => (dispatch) => {
   dispatch({ type: types.FETCH_NOTES });
-  axios.get('/notes')
+  axios.get(url)
     .then(res => dispatch(fetchNotesSuccess(res.data)))
     .catch(err => dispatch(fetchNotesFailure(err)));
 };
@@ -31,7 +33,7 @@ const createNoteFailure = err => ({
 
 export const createNote = note => (dispatch) => {
   dispatch({ type: types.CREATE_NOTE });
-  axios.post('/notes', note)
+  axios.post(url, note)
     .then(res => dispatch(createNoteSuccess(res.data)))
     .catch(err => dispatch(createNoteFailure(err)));
 };
@@ -48,7 +50,7 @@ const changeTitleFailure = err => ({
 
 export const changeTitle = (title, id) => (dispatch) => {
   dispatch({ type: types.CHANGE_TITLE });
-  axios.put(`/notes/${id}`, { title })
+  axios.put(`${url}/${id}`, { title })
     .then(res => dispatch(changeTitleSuccess(res.data)))
     .catch(err => dispatch(changeTitleFailure(err)));
 };
@@ -65,7 +67,7 @@ const changeContentFailure = err => ({
 
 export const changeContent = (content, id) => (dispatch) => {
   dispatch({ type: types.CHANGE_CONTENT });
-  axios.put(`/notes/${id}`, { content })
+  axios.put(`${url}/${id}`, { content })
     .then(res => dispatch(changeContentSuccess(res.data)))
     .catch(err => dispatch(changeContentFailure(err)));
 };
@@ -82,7 +84,7 @@ const changeColorFailure = err => ({
 
 export const changeColor = (color, id) => (dispatch) => {
   dispatch({ type: types.CHANGE_COLOR });
-  axios.put(`/notes/${id}`, { color })
+  axios.put(`${url}/${id}`, { color })
     .then(res => dispatch(changeColorSuccess(res.data)))
     .catch(err => dispatch(changeColorFailure(err)));
 };
@@ -99,7 +101,7 @@ const deleteNoteFailure = err => ({
 
 export const deleteNote = id => (dispatch) => {
   dispatch({ type: types.DELETE_NOTE });
-  axios.delete(`/notes/${id}`)
+  axios.delete(`${url}/${id}`)
     .then(res => dispatch(deleteNoteSuccess(res.data)))
     .catch(err => dispatch(deleteNoteFailure(err)));
 };
@@ -115,11 +117,10 @@ const addTagFailure = err => ({
 });
 
 export const addTag = (tag, id) => (dispatch) => {
-  dispatch(addTagSuccess({_id: id, tag: tag }))
-  // dispatch({ type: types.ADD_TAG });
-  // axios.put(`/notes/${id}`, { tag })
-  //   .then(res => dispatch(addTagSuccess(res.data)))
-  //   .catch(err => dispatch(addTagFailure(err)));
+  dispatch({ type: types.ADD_TAG });
+  axios.put(`${url}/${id}`, { tags: tag })
+    .then(res => dispatch(addTagSuccess(res.data)))
+    .catch(err => dispatch(addTagFailure(err)));
 };
 
 const deleteTagSuccess = tag => ({
@@ -133,9 +134,8 @@ const deleteTagFailure = err => ({
 });
 
 export const deleteTag = (tag, id) => (dispatch) => {
-  dispatch(deleteTagSuccess({_id: id, tag: tag }))
-  // dispatch({ type: types.DELETE_TAG });
-  // axios.put(`/notes/${id}`, { tag })
-  //   .then(res => dispatch(addTagSuccess(res.data)))
-  //   .catch(err => dispatch(addTagFailure(err)));
+  dispatch({ type: types.DELETE_TAG });
+  axios.put(`${url}/${id}`, { tagsDel: tag })
+    .then(res => dispatch(deleteTagSuccess(res.data)))
+    .catch(err => dispatch(deleteTagFailure(err)));
 };
