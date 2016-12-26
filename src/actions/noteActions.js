@@ -4,14 +4,15 @@ import * as types from './actionTypes';
 
 const url = '/notes';
 
+
 const fetchNotesSuccess = notes => ({
   type: types.FETCH_NOTES_SUCCESS,
-  payload: notes,
+  notes,
 });
 
-const fetchNotesFailure = err => ({
+const fetchNotesFailure = error => ({
   type: types.FETCH_NOTES_FAILURE,
-  payload: err,
+  error,
 });
 
 export const fetchNotes = () => (dispatch) => {
@@ -21,14 +22,14 @@ export const fetchNotes = () => (dispatch) => {
     .catch(err => dispatch(fetchNotesFailure(err)));
 };
 
-const createNoteSuccess = notes => ({
+const createNoteSuccess = newNote => ({
   type: types.CREATE_NOTE_SUCCESS,
-  payload: notes,
+  newNote,
 });
 
-const createNoteFailure = err => ({
+const createNoteFailure = error => ({
   type: types.CREATE_NOTE_FAILURE,
-  payload: err,
+  error,
 });
 
 export const createNote = note => (dispatch) => {
@@ -38,14 +39,14 @@ export const createNote = note => (dispatch) => {
     .catch(err => dispatch(createNoteFailure(err)));
 };
 
-const changeTitleSuccess = title => ({
+const changeTitleSuccess = note => ({
   type: types.CHANGE_TITLE_SUCCESS,
-  payload: title,
+  note,
 });
 
-const changeTitleFailure = err => ({
+const changeTitleFailure = error => ({
   type: types.CHANGE_TITLE_FAILURE,
-  payload: err,
+  error,
 });
 
 export const changeTitle = (title, id) => (dispatch) => {
@@ -55,14 +56,14 @@ export const changeTitle = (title, id) => (dispatch) => {
     .catch(err => dispatch(changeTitleFailure(err)));
 };
 
-const changeContentSuccess = content => ({
+const changeContentSuccess = note => ({
   type: types.CHANGE_CONTENT_SUCCESS,
-  payload: content,
+  note,
 });
 
-const changeContentFailure = err => ({
+const changeContentFailure = error => ({
   type: types.CHANGE_CONTENT_FAILURE,
-  payload: err,
+  error,
 });
 
 export const changeContent = (content, id) => (dispatch) => {
@@ -72,14 +73,14 @@ export const changeContent = (content, id) => (dispatch) => {
     .catch(err => dispatch(changeContentFailure(err)));
 };
 
-const changeColorSuccess = color => ({
+const changeColorSuccess = note => ({
   type: types.CHANGE_COLOR_SUCCESS,
-  payload: color,
+  note,
 });
 
-const changeColorFailure = err => ({
+const changeColorFailure = error => ({
   type: types.CHANGE_COLOR_FAILURE,
-  payload: err,
+  error,
 });
 
 export const changeColor = (color, id) => (dispatch) => {
@@ -91,12 +92,12 @@ export const changeColor = (color, id) => (dispatch) => {
 
 const deleteNoteSuccess = id => ({
   type: types.DELETE_NOTE_SUCCESS,
-  payload: id,
+  id,
 });
 
-const deleteNoteFailure = err => ({
+const deleteNoteFailure = error => ({
   type: types.DELETE_NOTE_FAILURE,
-  payload: err,
+  error,
 });
 
 export const deleteNote = id => (dispatch) => {
@@ -106,14 +107,14 @@ export const deleteNote = id => (dispatch) => {
     .catch(err => dispatch(deleteNoteFailure(err)));
 };
 
-const addTagSuccess = tag => ({
+const addTagSuccess = note => ({
   type: types.ADD_TAG_SUCCESS,
-  payload: tag,
+  note,
 });
 
-const addTagFailure = err => ({
+const addTagFailure = error => ({
   type: types.ADD_TAG_FAILURE,
-  payload: err,
+  error,
 });
 
 export const addTag = (tag, id) => (dispatch) => {
@@ -123,14 +124,14 @@ export const addTag = (tag, id) => (dispatch) => {
     .catch(err => dispatch(addTagFailure(err)));
 };
 
-const deleteTagSuccess = tag => ({
+const deleteTagSuccess = note => ({
   type: types.DELETE_TAG_SUCCESS,
-  payload: tag,
+  note,
 });
 
-const deleteTagFailure = err => ({
+const deleteTagFailure = error => ({
   type: types.DELETE_TAG_FAILURE,
-  payload: err,
+  error,
 });
 
 export const deleteTag = (tag, id) => (dispatch) => {

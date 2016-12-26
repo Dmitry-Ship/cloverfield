@@ -89,5 +89,5 @@ TagArea.propTypes = {
   onDeleteTag: PropTypes.func.isRequired,
   // onSetTag: PropTypes.func.isRequired,
   // allTags: PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  // tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
 };

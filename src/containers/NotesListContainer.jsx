@@ -5,7 +5,7 @@ import NotesList from '../components/NotesList';
 import { fetchNotes } from '../actions/noteActions';
 
 const mapStateToProps = store => ({
-  allNotes: store.noteReducer.notes,
+  allNotes: store.noteReducer,
   loading: store.noteReducer.fetching,
 });
 
