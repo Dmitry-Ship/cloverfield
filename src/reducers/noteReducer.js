@@ -1,94 +1,46 @@
 import * as types from '../actions/actionTypes';
 
-const Note = (state = {}, action) => {
-  const { type, newNote, error, note } = action;
-  switch (type) {
-    case types.CREATE_NOTE_SUCCESS:
-      return {
-        _id: newNote._id,
-        title: newNote.title,
-        content: newNote.content,
-        color: newNote.color,
-        tags: newNote.tags,
-      };
-    case types.CREATE_NOTE_FAILURE:
-      return { ...state, error };
-    case types.CHANGE_TITLE:
-      return state;
-    case types.CHANGE_TITLE_SUCCESS:
-      if (state._id === note._id) {
-        return { ...state, title: note.title };
-      }
-      return state;
-    case types.CHANGE_TITLE_FAILURE:
-      return { ...state, error };
-    case types.CHANGE_CONTENT:
-      return state;
-    case types.CHANGE_CONTENT_SUCCESS:
-      if (state._id === note._id) {
-        return { ...state, content: note.content };
-      }
-      return state;
-    case types.CHANGE_CONTENT_FAILURE:
-      return { ...state, error };
-    case types.CHANGE_COLOR:
-      return state;
-    case types.CHANGE_COLOR_SUCCESS:
-      if (state._id === note._id) {
-        return { ...state, color: note.color };
-      }
-      return state;
-    case types.CHANGE_COLOR_FAILURE:
-      return { ...state, error };
-
-    case types.ADD_TAG:
-      return state;
-    case types.ADD_TAG_SUCCESS:
-      if (state._id === note._id) {
-        return { ...state, tags: note.tags };
-      }
-      return state;
-    case types.ADD_TAG_FAILURE:
-      return { ...state, error };
-    case types.DELETE_TAG:
-      return state;
-    case types.DELETE_TAG_SUCCESS:
-      if (state._id === note._id) {
-        return { ...state, tags: note.tags };
-      }
-      return state;
-    case types.DELETE_TAG_FAILURE:
-      return { ...state, error };
-    default: return state;
-  }
+const initialState = {
+  fetching: false,
+  notes: [],
+  error: null,
 };
 
-const noteReducer = (state = [], action) => {
-  const { type, notes, id, error } = action;
+const noteReducer = (state = initialState, action) => {
+  const { type, newNote, error, updatedNote, notes, id, prop } = action;
   switch (type) {
     case types.FETCH_NOTES:
-      return state;
+      return { ...state, fetching: true };
     case types.FETCH_NOTES_SUCCESS:
-      return notes;
+      return { ...state, notes, fetching: false };
     case types.FETCH_NOTES_FAILURE:
-      return state;
+      return { ...state, fetching: false, error };
     case types.CREATE_NOTE:
       return state;
     case types.CREATE_NOTE_SUCCESS:
-      return [...state, Note(undefined, action)];
+      return { ...state, notes: [...state.notes, newNote] };
+    case types.CREATE_NOTE_FAILURE:
+      return { ...state, error };
     case types.DELETE_NOTE:
       return state;
     case types.DELETE_NOTE_SUCCESS:
-      return state.filter(item => item._id !== id);
+      return { ...state, notes: state.notes.filter(item => item._id !== id) };
     case types.DELETE_NOTE_FAILURE:
       return { ...state, error };
-
-    case types.CHANGE_COLOR_SUCCESS:
-    case types.CHANGE_TITLE_SUCCESS:
-    case types.CHANGE_CONTENT_SUCCESS:
-    case types.ADD_TAG_SUCCESS:
-    case types.DELETE_TAG_SUCCESS:
-      return state.map(item => Note(item, action));
+    case types.EDIT_TAGS:
+    case types.EDIT_NOTE:
+      return state;
+    case types.EDIT_TAGS_SUCCESS:
+    case types.EDIT_NOTE_SUCCESS:
+      return {
+        ...state,
+        notes: state.notes.map(note => note._id === updatedNote._id
+                                        ? { ...note, [prop]: updatedNote[prop] }
+                                        : note),
+      };
+    case types.EDIT_TAGS_FAILURE:
+    case types.EDIT_NOTE_FAILURE:
+      return { ...state, error };
     default: return state;
   }
 };

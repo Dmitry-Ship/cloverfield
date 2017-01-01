@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   Note.create(req.body, (err, note) => {
     if (err) {
-      res.send('error adding a user');
+      res.send('error adding note');
     } else {
       res.send(note);
     }
@@ -35,23 +35,47 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-
-router.put('/:id', (req, res) => {
+router.put('/:id/tags', (req, res) => {
   const type = Object.keys(req.body);
 
   let option;
   if (`${type}` === 'tags') {
+    console.log('hello');
     option = { $push: { tags: req.body[type] } };
   } else if (`${type}` === 'tagsDel') {
     option = { $pull: { tags: req.body[type] } };
-  } else {
-    option = { [type]: req.body[type] };
   }
+
   Note.findOneAndUpdate({
     _id: req.params.id,
   },
     option,
-    { new: true, upsert: true }, //OMG!!!
+    { new: true, upsert: true }, // OMG!!!
+    (err, note) => {
+      if (err) {
+        res.send('error updating');
+      } else {
+        res.send(note);
+      }
+    });
+});
+
+router.put('/:id', (req, res) => {
+  const type = Object.keys(req.body);
+
+  // let option;
+  // if (`${type}` === 'tags') {
+  //   option = { $push: { tags: req.body[type] } };
+  // } else if (`${type}` === 'tagsDel') {
+  //   option = { $pull: { tags: req.body[type] } };
+  // } else {
+  const option = { [type]: req.body[type] };
+  // }
+  Note.findOneAndUpdate({
+    _id: req.params.id,
+  },
+    option,
+    { new: true, upsert: true }, // OMG!!!
     (err, note) => {
       if (err) {
         res.send('error updating');

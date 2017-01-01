@@ -10,14 +10,15 @@ import FancyInput from '../FancyInput';
 
 import TagArea from '../TagArea';
 
-const Note = ({ note,
-                onDelete,
-                children,
-                onAddTag,
-                onDeleteTag,
-                onSetColor,
-                onUpdateTitle,
-                onUpdateContent }) => (
+const Note = ({
+  note,
+  onDelete,
+  children,
+  onAddTag,
+  onDeleteTag,
+  onSetColor,
+  onUpdateTitle,
+  onUpdateContent }) => (
   <Card className={`${styles.note} ${styles[note.color]}`}>
     <div className={styles.content}>
       <FancyInput
@@ -30,7 +31,11 @@ const Note = ({ note,
         onBlur={val => onUpdateContent(val, note._id)}
         maxLength={1000}
       />
-    <TagArea onDeleteTag={tag => onDeleteTag(tag, note._id)} tags={note.tags} onAddTag={tag => onAddTag(tag, note._id)} />
+      <TagArea
+        onDeleteTag={tag => onDeleteTag(tag, note._id)}
+        tags={note.tags}
+        onAddTag={tag => onAddTag(tag, note._id)}
+      />
       {children}
     </div>
     <Row align="space-between" className={styles.actions}>
@@ -40,7 +45,8 @@ const Note = ({ note,
         onSetColor={col => onSetColor(col, note._id)}
       />
       <Icon
-        className={styles.actions__icon} name="delete"
+        className={styles.actions__icon}
+        name="delete"
         onClick={() => onDelete(note._id)}
       />
       <Icon
@@ -57,11 +63,14 @@ Note.propTypes = {
   onSetColor: PropTypes.func.isRequired,
   onUpdateTitle: PropTypes.func.isRequired,
   onUpdateContent: PropTypes.func.isRequired,
-  // note: PropTypes.shape({
-  //   _id: PropTypes.string.isRequired,
-  //   title: PropTypes.string,
-  //   content: PropTypes.string,
-  //   color: PropTypes.string,
-  // }).isRequired,
+  onAddTag: PropTypes.func.isRequired,
+  onDeleteTag: PropTypes.func.isRequired,
+  note: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    color: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
   children: PropTypes.any,
 };

@@ -4,7 +4,6 @@ import * as types from './actionTypes';
 
 const url = '/notes';
 
-
 const fetchNotesSuccess = notes => ({
   type: types.FETCH_NOTES_SUCCESS,
   notes,
@@ -39,55 +38,40 @@ export const createNote = note => (dispatch) => {
     .catch(err => dispatch(createNoteFailure(err)));
 };
 
-const changeTitleSuccess = note => ({
-  type: types.CHANGE_TITLE_SUCCESS,
-  note,
+const editNoteSuccess = (updatedNote, prop) => ({
+  type: types.EDIT_NOTE_SUCCESS,
+  updatedNote,
+  prop,
 });
 
-const changeTitleFailure = error => ({
-  type: types.CHANGE_TITLE_FAILURE,
+const editNoteFailure = error => ({
+  type: types.EDIT_NOTE_FAILURE,
   error,
 });
 
-export const changeTitle = (title, id) => (dispatch) => {
-  dispatch({ type: types.CHANGE_TITLE });
-  axios.put(`${url}/${id}`, { title })
-    .then(res => dispatch(changeTitleSuccess(res.data)))
-    .catch(err => dispatch(changeTitleFailure(err)));
+export const editNote = (prop, color, id) => (dispatch) => {
+  dispatch({ type: types.EDIT_NOTE });
+  axios.put(`${url}/${id}`, { [prop]: color })
+    .then(res => dispatch(editNoteSuccess(res.data, prop)))
+    .catch(err => dispatch(editNoteFailure(err)));
 };
 
-const changeContentSuccess = note => ({
-  type: types.CHANGE_CONTENT_SUCCESS,
-  note,
+const editTagsSuccess = (updatedNote, prop) => ({
+  type: types.EDIT_TAGS_SUCCESS,
+  updatedNote,
+  prop,
 });
 
-const changeContentFailure = error => ({
-  type: types.CHANGE_CONTENT_FAILURE,
+const editTagsFailure = error => ({
+  type: types.EDIT_TAGS_FAILURE,
   error,
 });
 
-export const changeContent = (content, id) => (dispatch) => {
-  dispatch({ type: types.CHANGE_CONTENT });
-  axios.put(`${url}/${id}`, { content })
-    .then(res => dispatch(changeContentSuccess(res.data)))
-    .catch(err => dispatch(changeContentFailure(err)));
-};
-
-const changeColorSuccess = note => ({
-  type: types.CHANGE_COLOR_SUCCESS,
-  note,
-});
-
-const changeColorFailure = error => ({
-  type: types.CHANGE_COLOR_FAILURE,
-  error,
-});
-
-export const changeColor = (color, id) => (dispatch) => {
-  dispatch({ type: types.CHANGE_COLOR });
-  axios.put(`${url}/${id}`, { color })
-    .then(res => dispatch(changeColorSuccess(res.data)))
-    .catch(err => dispatch(changeColorFailure(err)));
+export const editTags = (prop, color, id) => (dispatch) => {
+  dispatch({ type: types.EDIT_TAGS });
+  axios.put(`${url}/${id}/tags`, { [prop]: color })
+    .then(res => dispatch(editTagsSuccess(res.data, 'tags')))
+    .catch(err => dispatch(editTagsFailure(err)));
 };
 
 const deleteNoteSuccess = id => ({
@@ -105,38 +89,4 @@ export const deleteNote = id => (dispatch) => {
   axios.delete(`${url}/${id}`)
     .then(res => dispatch(deleteNoteSuccess(res.data)))
     .catch(err => dispatch(deleteNoteFailure(err)));
-};
-
-const addTagSuccess = note => ({
-  type: types.ADD_TAG_SUCCESS,
-  note,
-});
-
-const addTagFailure = error => ({
-  type: types.ADD_TAG_FAILURE,
-  error,
-});
-
-export const addTag = (tag, id) => (dispatch) => {
-  dispatch({ type: types.ADD_TAG });
-  axios.put(`${url}/${id}`, { tags: tag })
-    .then(res => dispatch(addTagSuccess(res.data)))
-    .catch(err => dispatch(addTagFailure(err)));
-};
-
-const deleteTagSuccess = note => ({
-  type: types.DELETE_TAG_SUCCESS,
-  note,
-});
-
-const deleteTagFailure = error => ({
-  type: types.DELETE_TAG_FAILURE,
-  error,
-});
-
-export const deleteTag = (tag, id) => (dispatch) => {
-  dispatch({ type: types.DELETE_TAG });
-  axios.put(`${url}/${id}`, { tagsDel: tag })
-    .then(res => dispatch(deleteTagSuccess(res.data)))
-    .catch(err => dispatch(deleteTagFailure(err)));
 };
