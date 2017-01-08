@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { fileUploader } from './FileUploader.css';
+import { fileUploader } from './FileUploader.styl';
 
 const FileUploader = ({
                         name,
@@ -13,14 +13,15 @@ const FileUploader = ({
                         className }) => (
   <input
     id={id}
-    type='file'
+    type="file"
     className={`${fileUploader} ${className}`}
     name={name}
     placeholder={placeholder}
     required={required}
     onChange={onChange}
-    accept={fileType}/>
-)
+    accept={fileType}
+  />
+);
 
 export default FileUploader;
 
@@ -34,5 +35,5 @@ FileUploader.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
-  //inputRenderer: PropTypes.func,
+  inputRenderer: PropTypes.func,
 }

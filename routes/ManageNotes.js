@@ -8,9 +8,8 @@ router.get('/', (req, res) => {
     .exec((err, notes) => {
       if (err) {
         res.send('error occured');
-      } else {
-        res.send(notes);
       }
+      res.send(notes);
     });
 });
 
@@ -18,20 +17,18 @@ router.post('/', (req, res) => {
   Note.create(req.body, (err, note) => {
     if (err) {
       res.send('error adding note');
-    } else {
-      res.send(note);
     }
+    res.send(note);
   });
 });
 
 router.delete('/:id', (req, res) => {
   Note.remove({ _id: req.params.id },
-    (err, note) => {
+    (err) => {
       if (err) {
         res.send('error deleting');
-      } else {
-        res.send(req.params.id);
       }
+      res.send(req.params.id);
     });
 });
 
@@ -40,7 +37,6 @@ router.put('/:id/tags', (req, res) => {
 
   let option;
   if (`${type}` === 'tags') {
-    console.log('hello');
     option = { $push: { tags: req.body[type] } };
   } else if (`${type}` === 'tagsDel') {
     option = { $pull: { tags: req.body[type] } };
@@ -54,23 +50,14 @@ router.put('/:id/tags', (req, res) => {
     (err, note) => {
       if (err) {
         res.send('error updating');
-      } else {
-        res.send(note);
       }
+      res.send(note);
     });
 });
 
 router.put('/:id', (req, res) => {
   const type = Object.keys(req.body);
-
-  // let option;
-  // if (`${type}` === 'tags') {
-  //   option = { $push: { tags: req.body[type] } };
-  // } else if (`${type}` === 'tagsDel') {
-  //   option = { $pull: { tags: req.body[type] } };
-  // } else {
   const option = { [type]: req.body[type] };
-  // }
   Note.findOneAndUpdate({
     _id: req.params.id,
   },
@@ -79,9 +66,8 @@ router.put('/:id', (req, res) => {
     (err, note) => {
       if (err) {
         res.send('error updating');
-      } else {
-        res.send(note);
       }
+      res.send(note);
     });
 });
 

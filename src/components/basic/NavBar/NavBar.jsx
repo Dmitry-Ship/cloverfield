@@ -24,9 +24,14 @@ const NavBarItem = ({ item, className }) => (
 
 export default NavBar;
 
+NavBarItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  className: PropTypes.string,
+};
+
 NavBar.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   children: PropTypes.any,
   className: PropTypes.string,
-  itemClassName: PropTypes.string,
+  itemClass: PropTypes.string,
 };

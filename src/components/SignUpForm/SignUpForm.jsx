@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router';
-
 import TextField from '../basic/TextField';
 import FileUploader from '../basic/FileUploader';
 import Form from '../basic/Form';
 import Button from '../basic/Button';
-import Card from '../basic/Card';
 
 export default class SignUpForm extends Component {
   constructor() {
     super();
     this.state = {
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -32,11 +29,11 @@ export default class SignUpForm extends Component {
   }
 
   handleFirstNameChange(e) {
-    this.setState({ first_name: e.target.value });
+    this.setState({ firstName: e.target.value });
   }
 
   handleLastNameChange(e) {
-    this.setState({ last_name: e.target.value });
+    this.setState({ lastName: e.target.value });
   }
 
   handleEmailChange(e) {
@@ -54,24 +51,23 @@ export default class SignUpForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const first_name = this.state.first_name,
-          last_name = this.state.last_name,
-          email = this.state.email,
-          password = this.state.password,
-          confirmPassword = this.state.confirmPassword,
-          file = this.state.userpic,
-          accountInfo = {
-            username: `${first_name} ${last_name}`,
-            email: email,
-            password: password,
-            userpic: file.name
+    const firstName = this.state.firstName;
+    const lastName = this.state.lastName;
+    const email = this.state.email;
+    const password = this.state.password;
+    const confirmPassword = this.state.confirmPassword;
+    const file = this.state.userpic;
+    const accountInfo = {
+            // username: `${firstName} ${lastName}`,
+            email,
+            password,
+            // userpic: file.name
           };
 
     if (password === confirmPassword && password !== '' && confirmPassword !== '') {
-      this.props.onSubmit(accountInfo, file)
-
+      this.props.onSubmit(accountInfo);
     } else {
-      Bert.alert('Passwords don`t match',  'danger', 'fixed-top', 'fa-frown-o')
+      alert('passwords don`t match');
     }
   }
 
@@ -83,14 +79,14 @@ export default class SignUpForm extends Component {
           placeholder="Add a userpic"
           fileType="image/*"
           onChange={this.handleUserpicChange}
-          required
+          // required
         />
 
         <TextField
           type="text"
           placeholder="First Name"
           onChange={this.handleFirstNameChange}
-          required
+          // required
         />
 
         <TextField

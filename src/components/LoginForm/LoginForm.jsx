@@ -28,7 +28,8 @@ export default class LoginForm extends Component {
     e.preventDefault();
     const email = this.state.email;
     const password = this.state.password;
-    this.props.onSubmit(email, password);
+    const data = { email, password };
+    this.props.onSubmit(data);
   }
 
   render() {
