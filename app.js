@@ -5,11 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-//////////////////
 const passport = require('passport');
-const flash = require('connect-flash');
-const session = require('express-session');
-///////////////////
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
@@ -17,11 +13,7 @@ const webpackConfig = require('./webpack.config');
 
 const db = mongoose.connection;
 const compiler = webpack(webpackConfig);
-
-const manageNotes = require('./routes/ManageNotes');
-const manageLogin = require('./routes/ManageLogin');
-const manageLogout = require('./routes/ManageLogout');
-const manageSignUp = require('./routes/ManageSignUp');
+const router = require('./routes');
 
 const app = express();
 
@@ -35,24 +27,15 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-///////////////
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
-///////////////////
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-app.use('/notes', manageNotes);
-app.use('/login', manageLogin);
-app.use('/logout', manageLogout);
-app.use('/signup', manageSignUp);
+router(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { login } from '../actions/authActions';
-import LoginForm from '../components/LoginForm';
+import Profile from '../components/Profile';
 
 const mapStateToProps = store => ({
-  isLoggedIn: store.authReducer.isLoggedIn,
+  user: store.authReducer.user,
 });
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: data => dispatch(login(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

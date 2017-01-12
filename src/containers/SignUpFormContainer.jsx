@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { signUp } from '../actions/authentificationActions';
+import { signUp } from '../actions/authActions';
 import SignUpForm from '../components/SignUpForm';
 
 const mapStateToProps = store => ({
-  isLoggedIn: store.authentificationReducer.isLoggedIn,
+  isLoggedIn: store.authReducer.isLoggedIn,
 });
 
 const mapDispatchToProps = dispatch => ({

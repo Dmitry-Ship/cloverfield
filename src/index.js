@@ -18,7 +18,7 @@ import configureStore from './store/configureStore';
 const store = configureStore();
 
 function isLoggedIn(nextState, replace, next) {
-  if (!store.getState().authentificationReducer.isLoggedIn) {
+  if (!store.getState().authReducer.isLoggedIn) {
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname },

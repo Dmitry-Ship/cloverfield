@@ -5,16 +5,17 @@ import { topBar, logo } from './TopBar.styl';
 import Row from '../basic/Row';
 import NavBar from '../basic/NavBar';
 import Heading from '../basic/Heading';
+// import ProfileContainer from '../../containers/ProfileContainer';
 
 const TopBar = ({ appName, navBarItems }) => (
   <Row align={'space-between'} className={topBar} >
     <Heading size={2}>
-      <Link className={logo} to="/" >{appName}</Link>
+      <Link className={logo} to="/#/" >{appName}</Link>
     </Heading>
 
     <NavBar items={navBarItems}>
-      {/* <SideMenuContainer  />
-      <ProfileContainer /> */}
+      {/* <SideMenuContainer  /> */}
+      {/* <ProfileContainer /> */}
     </NavBar>
   </Row>
 );

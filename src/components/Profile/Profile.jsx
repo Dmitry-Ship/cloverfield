@@ -21,7 +21,7 @@ Profile.defaultProps = {
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
-  src: PropTypes.string.isRequired,
+  // src: PropTypes.string.isRequired,
   className: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.object),
 };
