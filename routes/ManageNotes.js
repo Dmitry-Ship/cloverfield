@@ -4,7 +4,7 @@ const router = express.Router();
 const Note = require('../models/Note');
 
 router.get('/', (req, res) => {
-  Note.find({})
+  Note.find({ user: JSON.parse(req.cookies.user)._id })
     .exec((err, notes) => {
       if (err) {
         res.send('error occured');
@@ -14,11 +14,21 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  Note.create(req.body, (err, note) => {
+  const newNote = new Note({
+    title: req.body.title,
+    content: req.body.content,
+    color: req.body.color,
+    user: JSON.parse(req.cookies.user)._id,
+  });
+  newNote.save((err, data) => {
     if (err) {
       res.send('error adding note');
+    } else {
+      Note.findById(data._id).populate('user').exec((err, note) => {
+        if (err) res.send('error adding note');
+        else res.status(200).send(note);
+      });
     }
-    res.send(note);
   });
 });
 

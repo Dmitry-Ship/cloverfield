@@ -5,7 +5,6 @@ const initialState = {
   loggingIn: false,
   isLoggedIn: cookie.load('token') ? true : false,
   error: null,
-  user: null,
 };
 
 const authReducer = (state = initialState, action) => {

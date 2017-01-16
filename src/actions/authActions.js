@@ -18,10 +18,11 @@ export const login = data => (dispatch) => {
   axios.post('/login', data)
     .then((res) => {
       dispatch(loginSuccess(res.data));
-      cookie.save('token', res.data.token);
-      window.location.href = '/#/';
+      cookie.save('token', res.data.token, { path: '/' });
+      cookie.save('user', res.data.user, { path: '/' });
+      window.location.href = '/';
     })
-    .catch(err => dispatch(loginFailure(err)));
+    .catch(err => dispatch(loginFailure(err.response.data)));
 };
 
 const signUpSuccess = user => ({
@@ -39,14 +40,16 @@ export const signUp = data => (dispatch) => {
   axios.post('/signup', data)
     .then((res) => {
       dispatch(signUpSuccess(res.data));
-      cookie.save('token', res.data.token);
-      window.location.href = '/#/';
+      cookie.save('token', res.data.token, { path: '/' });
+      cookie.save('user', res.data.user, { path: '/' });
+      window.location.href = '/';
     })
-    .catch(err => dispatch(signUpFailure(err)));
+    .catch(err => dispatch(signUpFailure(err.response.data)));
 };
 
 export const logout = () => (dispatch) => {
   dispatch({ type: types.LOG_OUT_SUCCESS });
-  cookie.remove('token');
+  cookie.remove('token', { path: '/' });
+  cookie.remove('user', { path: '/' });
   window.location.href = '/#/login';
 };

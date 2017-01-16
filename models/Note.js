@@ -4,18 +4,12 @@ const noteSchema = mongoose.Schema({
   title: String,
   content: String,
   color: String,
-  date: {
-    type: Date,
-    default: Date.now,
+  createdAt: { type: Date, default: Date.now },
+  tags: [String],
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
   },
-  tags: {
-    type: Array,
-    default: [],
-  },
-  // user: {
-  //   type: Schema.ObjectId,
-  //   ref: 'users'
-  // }
 });
 
 module.exports = mongoose.model('Note', noteSchema);

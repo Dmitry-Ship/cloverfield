@@ -6,14 +6,25 @@ const config = require('../config/main');
 const User = require('../models/User');
 
 router.post('/', (req, res, next) => {
-  User.findOne({ email: req.body.email }, (err, user) => {
+  const { email } = req.body;
+  const { password } = req.body;
+
+  if (!email) {
+    return res.status(422).send('You must enter an email address.');
+  }
+
+  if (!password) {
+    return res.status(422).send('You must enter a password.');
+  }
+
+  User.findOne({ email: email }, (err, user) => {
     if (err) { return next(err); }
     if (user) {
-      res.send({ message: 'email is already taken' });
+      return res.status(422).send('That email address is already in use.');
     }
     const newUser = new User({
-      email: req.body.email,
-      password: req.body.password,
+      email: email,
+      password: password,
     });
 
     newUser.save((err, user) => {
@@ -23,7 +34,7 @@ router.post('/', (req, res, next) => {
         expiresIn: 10080,
       });
 
-      res.json({ token: `JWT ${token}` });
+      res.json({ token: `JWT ${token}`, user: user });
     });
   });
 });

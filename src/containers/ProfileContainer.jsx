@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login } from '../actions/authActions';
+import { fetchUser } from '../actions/authActions';
 import Profile from '../components/Profile';
 
 const mapStateToProps = store => ({
@@ -7,7 +7,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: data => dispatch(login(data)),
+  fetchUser: () => dispatch(fetchUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

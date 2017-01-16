@@ -5,14 +5,11 @@ const LocalStrategy = require('passport-local');
 const User = require('../models/User');
 const config = require('./main');
 
-// const opts = {};
-// opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
-// opts.secretOrKey = config.secret;
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeader(),
   secretOrKey: config.secret,
 }, (jwtPayload, done) => {
-  User.findById(jwtPayload._id, (err, user) => {
+  User.findById(jwtPayload._doc._id, (err, user) => {
     if (err) {
       return done(err, false);
     }
@@ -32,11 +29,11 @@ passport.use(new LocalStrategy({
     User.findOne({ email: email }, (err, user) => {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, { error: 'Incorrect email.' });
+        return done(null, false, 'Incorrect email.');
       }
       user.comparePassword(password, (err, isMatch) => {
         if (err) { return done(err); }
-        if (!isMatch) { return done(null, false, { error: 'Your login details could not be verified. Please try again.' }); }
+        if (!isMatch) { return done(null, false, 'Wrong password'); }
 
         return done(null, user);
       });

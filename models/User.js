@@ -15,11 +15,6 @@ const userSchema = mongoose.Schema({
   },
 });
 
-// methods ======================
-// generating a hash
-// userSchema.methods.generateHash = function (password) {
-//   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-// };
 userSchema.pre('save', function (next) {
   const user = this;
   if (this.isModified('password') || this.isNew) {
@@ -40,7 +35,6 @@ userSchema.pre('save', function (next) {
   }
 });
 
-// checking if password is valid
 userSchema.methods.comparePassword = function (candidatePassword, cb) {
   bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
     if (err) { return cb(err); }
