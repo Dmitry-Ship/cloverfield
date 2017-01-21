@@ -22,7 +22,7 @@ export const login = data => (dispatch) => {
       cookie.save('user', res.data.user, { path: '/' });
       window.location.href = '/';
     })
-    .catch(err => dispatch(loginFailure(err.response.data)));
+    .catch(err => dispatch(loginFailure(err)));
 };
 
 const signUpSuccess = user => ({

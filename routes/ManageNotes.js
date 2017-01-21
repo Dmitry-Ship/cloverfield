@@ -4,42 +4,44 @@ const router = express.Router();
 const Note = require('../models/Note');
 
 router.get('/', (req, res) => {
-  Note.find({ user: JSON.parse(req.cookies.user)._id })
+  Note.find({ user: req.user._id })
     .exec((err, notes) => {
-      if (err) {
-        res.send('error occured');
-      }
-      res.send(notes);
+      if (err) res.send(err);
+      else res.send(notes);
     });
 });
 
 router.post('/', (req, res) => {
+  const { title, content, color, user } = req.body;
   const newNote = new Note({
-    title: req.body.title,
-    content: req.body.content,
-    color: req.body.color,
-    user: JSON.parse(req.cookies.user)._id,
+    title,
+    content,
+    color,
+    user: user._id,
   });
+
   newNote.save((err, data) => {
-    if (err) {
-      res.send('error adding note');
-    } else {
-      Note.findById(data._id).populate('user').exec((err, note) => {
-        if (err) res.send('error adding note');
+    if (err) { return res.send(err); }
+
+    return Note.findById(data._id)
+      .populate('user')
+      .exec((findErr, note) => {
+        if (findErr) res.send(findErr);
         else res.status(200).send(note);
       });
-    }
   });
 });
 
 router.delete('/:id', (req, res) => {
-  Note.remove({ _id: req.params.id },
-    (err) => {
-      if (err) {
-        res.send('error deleting');
-      }
-      res.send(req.params.id);
-    });
+  Note.findOneAndRemove({
+    $and: [
+      { _id: req.params.id },
+      { user: req.user._id },
+    ],
+  }, (err) => {
+    if (err) res.send(err);
+    else res.send(req.params.id);
+  });
 });
 
 router.put('/:id/tags', (req, res) => {
@@ -53,15 +55,16 @@ router.put('/:id/tags', (req, res) => {
   }
 
   Note.findOneAndUpdate({
-    _id: req.params.id,
+    $and: [
+      { _id: req.params.id },
+      { user: req.user._id },
+    ],
   },
     option,
     { new: true, upsert: true }, // OMG!!!
     (err, note) => {
-      if (err) {
-        res.send('error updating');
-      }
-      res.send(note);
+      if (err) res.send(err);
+      else res.send(note);
     });
 });
 
@@ -69,15 +72,16 @@ router.put('/:id', (req, res) => {
   const type = Object.keys(req.body);
   const option = { [type]: req.body[type] };
   Note.findOneAndUpdate({
-    _id: req.params.id,
+    $and: [
+      { _id: req.params.id },
+      { user: req.user._id },
+    ],
   },
     option,
     { new: true, upsert: true }, // OMG!!!
     (err, note) => {
-      if (err) {
-        res.send('error updating');
-      }
-      res.send(note);
+      if (err) res.send(err);
+      else res.send(note);
     });
 });
 

@@ -1,6 +1,7 @@
 import axios from 'axios';
-
 import * as types from './actionTypes';
+
+import token from '../../helpers/token';
 
 const url = '/notes';
 
@@ -16,7 +17,7 @@ const fetchNotesFailure = error => ({
 
 export const fetchNotes = () => (dispatch) => {
   dispatch({ type: types.FETCH_NOTES });
-  axios.get(url)
+  axios.get(url, token)
     .then(res => dispatch(fetchNotesSuccess(res.data)))
     .catch(err => dispatch(fetchNotesFailure(err)));
 };
@@ -33,7 +34,7 @@ const createNoteFailure = error => ({
 
 export const createNote = note => (dispatch) => {
   dispatch({ type: types.CREATE_NOTE });
-  axios.post(url, note)
+  axios.post(url, note, token)
     .then(res => dispatch(createNoteSuccess(res.data)))
     .catch(err => dispatch(createNoteFailure(err)));
 };
@@ -51,7 +52,7 @@ const editNoteFailure = error => ({
 
 export const editNote = (prop, color, id) => (dispatch) => {
   dispatch({ type: types.EDIT_NOTE });
-  axios.put(`${url}/${id}`, { [prop]: color })
+  axios.put(`${url}/${id}`, { [prop]: color }, token)
     .then(res => dispatch(editNoteSuccess(res.data, prop)))
     .catch(err => dispatch(editNoteFailure(err)));
 };
@@ -69,7 +70,7 @@ const editTagsFailure = error => ({
 
 export const editTags = (prop, color, id) => (dispatch) => {
   dispatch({ type: types.EDIT_TAGS });
-  axios.put(`${url}/${id}/tags`, { [prop]: color })
+  axios.put(`${url}/${id}/tags`, { [prop]: color }, token)
     .then(res => dispatch(editTagsSuccess(res.data, 'tags')))
     .catch(err => dispatch(editTagsFailure(err)));
 };
@@ -86,7 +87,7 @@ const deleteNoteFailure = error => ({
 
 export const deleteNote = id => (dispatch) => {
   dispatch({ type: types.DELETE_NOTE });
-  axios.delete(`${url}/${id}`)
+  axios.delete(`${url}/${id}`, token)
     .then(res => dispatch(deleteNoteSuccess(res.data)))
     .catch(err => dispatch(deleteNoteFailure(err)));
 };

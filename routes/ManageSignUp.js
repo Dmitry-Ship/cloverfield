@@ -1,13 +1,12 @@
 const express = require('express');
+const generateToken = require('../helpers/generateToken');
 
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const config = require('../config/main');
+
 const User = require('../models/User');
 
 router.post('/', (req, res, next) => {
-  const { email } = req.body;
-  const { password } = req.body;
+  const { email, password } = req.body;
 
   if (!email) {
     return res.status(422).send('You must enter an email address.');
@@ -17,24 +16,19 @@ router.post('/', (req, res, next) => {
     return res.status(422).send('You must enter a password.');
   }
 
-  User.findOne({ email: email }, (err, user) => {
+  return User.findOne({ email }, (err, user) => {
     if (err) { return next(err); }
     if (user) {
       return res.status(422).send('That email address is already in use.');
     }
-    const newUser = new User({
-      email: email,
-      password: password,
-    });
+    const newUser = new User({ email, password });
 
-    newUser.save((err, user) => {
-      if (err) { return next(err); }
+    return newUser.save((saveErr, result) => {
+      if (saveErr) { return next(saveErr); }
 
-      const token = jwt.sign(user, config.secret, {
-        expiresIn: 10080,
-      });
+      const token = generateToken(result);
 
-      res.json({ token: `JWT ${token}`, user: user });
+      return res.json({ token: `JWT ${token}`, user: result });
     });
   });
 });

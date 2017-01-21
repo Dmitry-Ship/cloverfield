@@ -20,7 +20,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     { label: 'Main', iconName: 'home', to: '/' },
     { label: 'About', iconName: 'info_outline', to: '/about' },
     { label: 'Fetch User', iconName: 'warning', func: dispatchProps.fetchUser, to: '#' },
-    { label: 'LogOut', iconName: 'exit_to_app', func: dispatchProps.onClick, to: '#' },
+    { label: 'LogOut', iconName: 'exit_to_app', func: dispatchProps.onClick, to: '/' },
   ] : [
     { label: 'Fetch User', iconName: 'warning', func: dispatchProps.fetchUser, to: '#' },
     { label: 'Login', iconName: 'perm_identity', to: '/login' },

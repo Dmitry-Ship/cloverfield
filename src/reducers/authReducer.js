@@ -8,14 +8,14 @@ const initialState = {
 };
 
 const authReducer = (state = initialState, action) => {
-  const { type, error, user } = action;
+  const { type, error } = action;
   switch (type) {
     case types.LOG_IN:
     case types.SIGN_UP:
       return { ...state, loggingIn: true };
     case types.LOG_IN_SUCCESS:
     case types.SIGN_UP_SUCCESS:
-      return { ...state, loggingIn: false, isLoggedIn: true, user };
+      return { ...state, loggingIn: false, isLoggedIn: true };
     case types.LOG_IN_FAILURE:
     case types.SIGN_UP_FAILURE:
       return { ...state, loggingIn: false, error };

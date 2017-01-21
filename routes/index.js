@@ -5,11 +5,30 @@ const manageLogin = require('./ManageLogin');
 const manageSignUp = require('./ManageSignUp');
 const manageUser = require('./ManageUser');
 
-const requireAuth = passport.authenticate('jwt', { session: false });
-const requireLogin = passport.authenticate('local', { session: false });
+const requireAuth = (req, res, next) => {
+  passport.authenticate('jwt', { session: false }, (err, user) => {
+    if (err) { return next(err); }
+    if (!user) { return res.status(400).send('Not Authorized'); }
+
+    req.user = user;
+    return next();
+  })(req, res, next);
+};
+
+const requireLogin = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) { return next(err); }
+    if (!user) { return res.status(400).send(info.message); }
+
+    return req.logIn(user, { session: false }, (err) => {
+      if (err) { return next(err); }
+      return next();
+    });
+  })(req, res, next);
+};
 
 module.exports = (app) => {
-  app.use('/notes', manageNotes);
+  app.use('/notes', requireAuth, manageNotes);
   app.use('/user', requireAuth, manageUser);
   app.use('/login', requireLogin, manageLogin);
   app.use('/signup', manageSignUp);

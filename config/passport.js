@@ -5,19 +5,16 @@ const LocalStrategy = require('passport-local');
 const User = require('../models/User');
 const config = require('./main');
 
+
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeader(),
   secretOrKey: config.secret,
 }, (jwtPayload, done) => {
-  User.findById(jwtPayload._doc._id, (err, user) => {
-    if (err) {
-      return done(err, false);
-    }
-    if (user) {
-      done(null, user);
-    } else {
-      done(null, false);
-    }
+  User.findById(jwtPayload._id, (err, user) => {
+    if (err) { return done(err, false); }
+    if (user) { return done(null, user); }
+
+    return done(null, false);
   });
 }));
 
@@ -26,14 +23,14 @@ passport.use(new LocalStrategy({
   usernameField: 'email',
 },
   (email, password, done) => {
-    User.findOne({ email: email }, (err, user) => {
+    User.findOne({ email }, (err, user) => {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, 'Incorrect email.');
+        return done(null, false, { message: 'Incorrect email.' });
       }
-      user.comparePassword(password, (err, isMatch) => {
-        if (err) { return done(err); }
-        if (!isMatch) { return done(null, false, 'Wrong password'); }
+      return user.comparePassword(password, (compareErr, isMatch) => {
+        if (compareErr) { return done(compareErr); }
+        if (!isMatch) { return done(null, false, { message: 'Incorrect password.' }); }
 
         return done(null, user);
       });
