@@ -1,5 +1,19 @@
 const express = require('express');
 
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
+  }
+});
+
+const upload = multer({ storage });
+
 const router = express.Router();
 const Note = require('../models/Note');
 
@@ -11,18 +25,17 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-  const { title, content, color, user } = req.body;
+router.post('/', upload.single('avatar'), (req, res) => {
+  const { title, content, color } = req.body;
   const newNote = new Note({
     title,
     content,
     color,
-    user: user._id,
+    user: req.user._id,
   });
 
   newNote.save((err, data) => {
     if (err) { return res.send(err); }
-
     return Note.findById(data._id)
       .populate('user')
       .exec((findErr, note) => {

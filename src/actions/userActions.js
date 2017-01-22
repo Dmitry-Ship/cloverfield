@@ -17,5 +17,5 @@ export const fetchUser = () => (dispatch) => {
   dispatch({ type: types.FETCH_USER });
   axios.get('/user', token)
     .then(res => dispatch(fetchUserSuccess(res.data)))
-    .catch(err => dispatch(fetchUserFailure(err)));
+    .catch(err => dispatch(fetchUserFailure(err.response.data)));
 };

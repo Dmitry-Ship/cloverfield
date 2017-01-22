@@ -5,6 +5,7 @@ const userSchema = mongoose.Schema({
   username: String,
   email: String,
   password: String,
+  userpic: String,
   date: {
     type: Date,
     default: Date.now,

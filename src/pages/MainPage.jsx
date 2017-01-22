@@ -6,10 +6,10 @@ import Page from '../components/basic/Page';
 import CreationFormContainer from '../containers/CreationFormContainer';
 import NotesListContainer from '../containers/NotesListContainer';
 
-const MainPage = () => (
+const MainPage = ({ params }) => (
   <Page className={page}>
     <CreationFormContainer />
-    <NotesListContainer />
+    <NotesListContainer params={params} />
   </Page>
 );
 

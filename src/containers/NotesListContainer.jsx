@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-
+import React, { Component, PropTypes } from 'react';
 import NotesList from '../components/NotesList';
 
 import { fetchNotes } from '../actions/noteActions';
@@ -13,4 +13,22 @@ const mapDispatchToProps = dispatch => ({
   fetchNotes: () => dispatch(fetchNotes()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotesList);
+class NotesListContainer extends Component {
+  componentDidMount() {
+    this.props.fetchNotes();
+  }
+
+  render() {
+    return (
+      <NotesList params={this.props.params} allNotes={this.props.allNotes} />
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotesListContainer);
+
+NotesListContainer.propTypes = {
+  fetchNotes: PropTypes.func.isRequired,
+  params: PropTypes.object,
+  allNotes: PropTypes.arrayOf(PropTypes.object),
+};

@@ -26,7 +26,7 @@ passport.use(new LocalStrategy({
     User.findOne({ email }, (err, user) => {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, { message: 'Incorrect email.' });
+        return done(null, false, { message: 'User with this email not found.' });
       }
       return user.comparePassword(password, (compareErr, isMatch) => {
         if (compareErr) { return done(compareErr); }

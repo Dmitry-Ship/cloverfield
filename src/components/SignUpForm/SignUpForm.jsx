@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import TextField from '../basic/TextField';
 import FileUploader from '../basic/FileUploader';
@@ -50,22 +50,24 @@ export default class SignUpForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const { firstName, lastName, email, password, confirmPassword, userpic } = this.state;
 
-    const firstName = this.state.firstName;
-    const lastName = this.state.lastName;
-    const email = this.state.email;
-    const password = this.state.password;
-    const confirmPassword = this.state.confirmPassword;
-    const file = this.state.userpic;
-    const accountInfo = {
-            // username: `${firstName} ${lastName}`,
-            email,
-            password,
-            // userpic: file.name
-          };
+    // const firstName = this.state.firstName;
+    // const lastName = this.state.lastName;
+    // const email = this.state.email;
+    // const password = this.state.password;
+    // const confirmPassword = this.state.confirmPassword;
+    // const file = this.state.userpic;
+
+    const formData = new FormData();
+
+    formData.append('username', `${firstName} ${lastName}`);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('avatar', userpic);
 
     if (password === confirmPassword && password !== '' && confirmPassword !== '') {
-      this.props.onSubmit(accountInfo);
+      this.props.onSubmit(formData);
     } else {
       alert('passwords don`t match');
     }
@@ -93,7 +95,7 @@ export default class SignUpForm extends Component {
           type="text"
           placeholder="Last Name"
           onChange={this.handleLastNameChange}
-          required
+          // required
         />
 
         <TextField
@@ -123,3 +125,7 @@ export default class SignUpForm extends Component {
     );
   }
 }
+
+SignUpForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

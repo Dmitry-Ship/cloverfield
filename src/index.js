@@ -41,6 +41,7 @@ render((
     <Router history={hashHistory}>
       <Route path="/" component={MainLayout} >
         <IndexRoute component={MainPage} onEnter={isNotLoggedIn} />
+        <Route path="tags/:tagText" component={MainPage} onEnter={isNotLoggedIn} />
         <Route path="about" component={AboutPage} onEnter={isNotLoggedIn} />
         <Route path="login" component={LoginPage} onEnter={isLoggedIn} />
         <Route path="signup" component={SignUpPage} onEnter={isLoggedIn} />

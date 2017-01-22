@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Textarea from 'react-textarea-autosize';
 
 import {
+  uploader,
   form,
   title,
   content,
@@ -16,6 +17,7 @@ import Form from '../basic/Form';
 import Button from '../basic/Button';
 import Row from '../basic/Row';
 import Icon from '../basic/Icon';
+import FileUploader from '../basic/FileUploader';
 
 export default class CreationForm extends Component {
   constructor(props) {
@@ -25,6 +27,7 @@ export default class CreationForm extends Component {
       titleText: '',
       contentText: '',
       color: 'white',
+      image: '',
     };
     this.handleFocus = this.handleFocus.bind(this);
     this.handleClickOut = this.handleClickOut.bind(this);
@@ -32,6 +35,7 @@ export default class CreationForm extends Component {
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleContentChange = this.handleContentChange.bind(this);
     this.setColor = this.setColor.bind(this);
+    this.handleImage = this.handleImage.bind(this);
   }
 
   componentDidMount() {
@@ -61,16 +65,29 @@ export default class CreationForm extends Component {
       title: this.state.titleText,
       content: this.state.contentText,
       color: this.state.color,
+      image: this.state.image,
     };
-
-    this.props.onSubmit(data);
+    const formData = new FormData();
+    formData.append('title', this.state.titleText);
+    formData.append('content', this.state.contentText);
+    formData.append('color', this.state.color);
+    formData.append('avatar', this.state.image, this.state.image.name);
+    // this.props.uploadImage(formData)
+    this.props.onSubmit(formData);
 
     this.setState({
       titleText: '',
       contentText: '',
       className: form,
       color: 'white',
+      image: '',
     });
+  }
+
+  handleImage(e) {
+    const newImage = e.target.files[0];
+
+    this.setState({ image: newImage });
   }
 
   setColor(value) {
@@ -106,6 +123,7 @@ export default class CreationForm extends Component {
         ref={c => this.theForm = c}
       >
         <Form
+          enctype="multipart/form-data"
           className={`${className} ${color}`}
           onSubmit={this.create}
         >
@@ -124,9 +142,18 @@ export default class CreationForm extends Component {
             placeholder={contentPlaceholder}
           />
 
-          <div className={submition}>
+          <div className={submition} >
             <Row className={attachments} auto={false} >
-              <Icon className={attachments__icon} name="image" />
+              <label htmlFor="CHECK">
+                <Icon className={attachments__icon} name="image" />
+              </label>
+
+              <FileUploader
+                id="CHECK"
+                className={uploader}
+                fileType="image/*"
+                onChange={this.handleImage}
+              />
 
               <ColorMenu
                 color={color}
