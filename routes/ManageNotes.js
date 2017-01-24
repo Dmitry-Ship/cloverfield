@@ -1,5 +1,5 @@
 const express = require('express');
-
+const Note = require('../models/Note');
 const multer = require('multer');
 const path = require('path');
 
@@ -13,9 +13,8 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-
 const router = express.Router();
-const Note = require('../models/Note');
+
 
 router.get('/', (req, res) => {
   Note.find({ user: req.user._id })

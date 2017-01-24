@@ -1,4 +1,3 @@
-const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -48,7 +47,7 @@ module.exports = {
           'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss',
           'stylus?sourceMap'
         ],
-        exclude: /node_modules|lib/
+        exclude: /node_modules/
       }
     ]
   },

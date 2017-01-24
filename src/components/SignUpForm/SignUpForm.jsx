@@ -51,14 +51,6 @@ export default class SignUpForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { firstName, lastName, email, password, confirmPassword, userpic } = this.state;
-
-    // const firstName = this.state.firstName;
-    // const lastName = this.state.lastName;
-    // const email = this.state.email;
-    // const password = this.state.password;
-    // const confirmPassword = this.state.confirmPassword;
-    // const file = this.state.userpic;
-
     const formData = new FormData();
 
     formData.append('username', `${firstName} ${lastName}`);

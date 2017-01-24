@@ -152,7 +152,14 @@ export default class CreationForm extends Component {
                 id="CHECK"
                 className={uploader}
                 fileType="image/*"
-                onChange={this.handleImage}
+                onChange={(e) => {
+                  console.log('file sent');
+                  const file = e.target.files[0];
+                  const formData = new FormData();
+                  formData.append('avatar', file, file.name);
+                  this.props.uploadImage(formData);
+                }}
+                // onChange={this.handleImage}
               />
 
               <ColorMenu
@@ -170,6 +177,7 @@ export default class CreationForm extends Component {
             />
           </div>
         </Form>
+
       </div>
     );
   }

@@ -10,11 +10,10 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
+const routes = require('./routes');
 
 const db = mongoose.connection;
 const compiler = webpack(webpackConfig);
-const router = require('./routes');
-
 const app = express();
 
 mongoose.connect('mongodb://localhost/test');
@@ -22,11 +21,10 @@ db.on('error', err => console.log('connection error', err));
 db.once('open', () => console.log('connected to Data Base'));
 
 app.use(webpackDevMiddleware(compiler, {
-  publicPath: '/',
+  publicPath: webpackConfig.output.publicPath,
   stats: { colors: true },
 }));
 app.use(webpackHotMiddleware(compiler));
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 
-router(app);
+app.use(routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

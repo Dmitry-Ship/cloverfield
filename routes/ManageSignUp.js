@@ -1,10 +1,12 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const generateToken = require('../helpers/generateToken');
+const User = require('../models/User');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './uploads/');
+    cb(null, 'public/');
   },
   filename: (req, file, cb) => {
     cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
@@ -13,8 +15,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 const router = express.Router();
-const generateToken = require('../helpers/generateToken');
-const User = require('../models/User');
 
 router.post('/', upload.single('avatar'), (req, res, next) => {
   const { email, password, username } = req.body;

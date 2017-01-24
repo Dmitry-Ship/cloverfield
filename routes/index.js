@@ -1,10 +1,15 @@
 const passportService = require('../config/passport'); // why does this work????
+const express = require('express');
 const passport = require('passport');
 const manageNotes = require('./ManageNotes');
 const manageLogin = require('./ManageLogin');
 const manageSignUp = require('./ManageSignUp');
 const manageUser = require('./ManageUser');
 const manageImages = require('./ManageImages');
+
+const path = require('path');
+
+const router = express.Router();
 
 const requireAuth = (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (err, user) => {
@@ -27,10 +32,13 @@ const requireLogin = (req, res, next) => {
   })(req, res, next);
 };
 
-module.exports = (app) => {
-  app.use('/notes', requireAuth, manageNotes);
-  app.use('/user', requireAuth, manageUser);
-  app.use('/image', manageImages);
-  app.use('/login', requireLogin, manageLogin);
-  app.use('/signup', manageSignUp);
-};
+const indexFile = path.join(__dirname, '../index.html');
+
+router.get('/', (req, res) => res.sendFile(indexFile));
+router.use('/notes', requireAuth, manageNotes);
+router.use('/user', requireAuth, manageUser);
+router.use('/image', requireAuth, manageImages);
+router.use('/login', requireLogin, manageLogin);
+router.use('/signup', manageSignUp);
+
+module.exports = router;
