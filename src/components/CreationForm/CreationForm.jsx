@@ -13,6 +13,7 @@ import {
   unfolded } from './CreationForm.styl';
 
 import ColorMenu from '../ColorMenu';
+import TagArea from '../TagArea';
 import Form from '../basic/Form';
 import Button from '../basic/Button';
 import Row from '../basic/Row';
@@ -27,7 +28,8 @@ export default class CreationForm extends Component {
       titleText: '',
       contentText: '',
       color: 'white',
-      image: '',
+      image: {},
+      tags: [],
     };
     this.handleFocus = this.handleFocus.bind(this);
     this.handleClickOut = this.handleClickOut.bind(this);
@@ -36,6 +38,8 @@ export default class CreationForm extends Component {
     this.handleContentChange = this.handleContentChange.bind(this);
     this.setColor = this.setColor.bind(this);
     this.handleImage = this.handleImage.bind(this);
+    this.handleAddTag = this.handleAddTag.bind(this);
+    this.handleDeleteTag = this.handleDeleteTag.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +48,56 @@ export default class CreationForm extends Component {
 
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleClickOut);
+  }
+
+
+  setColor(value) {
+    this.setState({ color: value });
+  }
+
+  handleImage(e) {
+    const newImage = e.target.files[0];
+
+    this.setState({ image: newImage });
+  }
+
+  create(e) {
+    e.preventDefault();
+    const { titleText, contentText, color, tags, image } = this.state;
+
+    const formData = new FormData();
+    formData.append('title', titleText);
+    formData.append('content', contentText);
+    formData.append('color', color);
+    formData.append('tags', JSON.stringify(tags));
+    formData.append('note-image', image, image.name);
+    this.props.onSubmit(formData);
+
+    this.setState({
+      titleText: '',
+      contentText: '',
+      className: form,
+      color: 'white',
+      image: {},
+      tags: [],
+    });
+  }
+
+  handleAddTag(newTag) {
+    const oldTags = this.state.tags;
+
+    oldTags.push(newTag);
+
+    this.setState({ tags: oldTags });
+  }
+
+  handleDeleteTag(tag) {
+    const oldTags = this.state.tags;
+    const i = oldTags.indexOf(tag);
+
+    oldTags.splice(i, 1);
+
+    this.setState({ tags: oldTags });
   }
 
   handleContentChange(e) {
@@ -56,42 +110,6 @@ export default class CreationForm extends Component {
                              newContent;
 
     this.setState({ contentText: validatedContent });
-  }
-
-  create(e) {
-    e.preventDefault();
-
-    const data = {
-      title: this.state.titleText,
-      content: this.state.contentText,
-      color: this.state.color,
-      image: this.state.image,
-    };
-    const formData = new FormData();
-    formData.append('title', this.state.titleText);
-    formData.append('content', this.state.contentText);
-    formData.append('color', this.state.color);
-    formData.append('avatar', this.state.image, this.state.image.name);
-    // this.props.uploadImage(formData)
-    this.props.onSubmit(formData);
-
-    this.setState({
-      titleText: '',
-      contentText: '',
-      className: form,
-      color: 'white',
-      image: '',
-    });
-  }
-
-  handleImage(e) {
-    const newImage = e.target.files[0];
-
-    this.setState({ image: newImage });
-  }
-
-  setColor(value) {
-    this.setState({ color: value });
   }
 
   handleTitleChange(e) {
@@ -142,6 +160,12 @@ export default class CreationForm extends Component {
             placeholder={contentPlaceholder}
           />
 
+          <TagArea
+            onAddTag={value => this.handleAddTag(value)}
+            onDeleteTag={value => this.handleDeleteTag(value)}
+            tags={this.state.tags}
+          />
+
           <div className={submition} >
             <Row className={attachments} auto={false} >
               <label htmlFor="CHECK">
@@ -152,14 +176,7 @@ export default class CreationForm extends Component {
                 id="CHECK"
                 className={uploader}
                 fileType="image/*"
-                onChange={(e) => {
-                  console.log('file sent');
-                  const file = e.target.files[0];
-                  const formData = new FormData();
-                  formData.append('avatar', file, file.name);
-                  this.props.uploadImage(formData);
-                }}
-                // onChange={this.handleImage}
+                onChange={this.handleImage}
               />
 
               <ColorMenu

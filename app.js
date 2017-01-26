@@ -11,13 +11,14 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
 const routes = require('./routes');
+const config = require('./config/main');
 
 const db = mongoose.connection;
 const compiler = webpack(webpackConfig);
 const app = express();
 
-mongoose.connect('mongodb://localhost/test');
-db.on('error', err => console.log('connection error', err));
+mongoose.connect(config.database);
+db.on('error', err => console.log('cannot connect to Data Base', err));
 db.once('open', () => console.log('connected to Data Base'));
 
 app.use(webpackDevMiddleware(compiler, {
@@ -31,7 +32,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
-
 app.use(routes);
 
 // catch 404 and forward to error handler
@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -16,5 +16,5 @@ const MainLayout = ({ children }) => (
 export default MainLayout;
 
 MainLayout.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.element,
 };

@@ -1,78 +1,78 @@
 const webpack = require('webpack');
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const postcsseEasyImport = require('postcss-easy-import');
+const postcssNormalize = require('postcss-normalize');
+const postcssUtilities = require('postcss-utilities');
+const postcssCssnext = require('postcss-cssnext');
+const postcssShort = require('postcss-short');
+const precss = require('precss');
+const lost = require('lost');
+const rupture = require('rupture');
+const nib = require('nib');
 
 module.exports = {
   entry: [
+    'webpack/hot/dev-server',
     'webpack-hot-middleware/client?reload=true',
-    './src'
+    './src',
   ],
   output: {
-    path: __dirname,
+    path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   resolve: {
     modulesDirectories: ['node_modules', './src'],
-    extensions: ['', '.js', '.jsx', 'css', 'styl']
+    extensions: ['', '.js', '.jsx', 'css', 'styl'],
   },
   module: {
     loaders: [
       {
-        test: /.js?$/,
-        loader: 'babel',
+        test: /.(js|jsx)?$/,
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react', 'stage-2']
-        }
-      },
-      {
-        test: /\.jsx?$/,
         loader: 'babel',
-        exclude: /node_modules/,
         query: {
-          presets: ['es2015', 'react', 'stage-2']
-        }
+          presets: ['es2015', 'react', 'stage-2'],
+        },
       },
       {
         test: /\.css$/,
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract(
           'style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss'
-        )
+        ),
       },
       {
         test: /\.styl$/,
         loaders: [
           'style?sourceMap',
           'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss',
-          'stylus?sourceMap'
+          'stylus?sourceMap',
         ],
-        exclude: /node_modules/
-      }
+        exclude: /node_modules/,
+      },
     ]
   },
   postcss: [
-    require('postcss-easy-import'),
-    require('postcss-normalize'),
-    require('postcss-utilities'),
-    require('postcss-cssnext'),
-    require('postcss-short'),
-    require('precss'),
-    require('lost')
+    postcsseEasyImport,
+    postcssNormalize,
+    postcssUtilities,
+    postcssCssnext,
+    postcssShort,
+    precss,
+    lost,
   ],
   stylus: {
-    use: [require('rupture')(), require('nib')()],
-    import: ['~rupture/rupture/index.styl', '~nib/lib/nib/index.styl']
+    use: [rupture(), nib()],
+    import: ['~rupture/rupture/index.styl', '~nib/lib/nib/index.styl'],
   },
   plugins: [
     new ExtractTextPlugin('styles.css', {
-      allChunks: true
+      allChunks: true,
     }),
-    // Webpack 1.0
-    new webpack.optimize.OccurenceOrderPlugin(),
-    // Webpack 2.0 fixed this mispelling
-    // new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ]
-}
+    new webpack.NoErrorsPlugin(),
+  ],
+};

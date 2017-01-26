@@ -2,9 +2,11 @@
   "name": "cloverfield",
   "version": "1.0.0",
   "description": "some webpack experiments",
-  "main": "app.js",
+  "main": "bin/www",
   "scripts": {
-    "start": "nodemon bin/www",
+    "start": "npm run build && node bin/www",
+    "build": "webpack",
+    "dev": "nodemon --ignore src",
     "start-webpack-server": "webpack-dev-server --hot --inline --colors --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

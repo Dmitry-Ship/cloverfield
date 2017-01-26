@@ -1,7 +1,7 @@
 import cookie from 'react-cookie';
 
-const token = {
+const token = () => ({
   headers: { Authorization: cookie.load('token') },
-};
+});
 
 export default token;

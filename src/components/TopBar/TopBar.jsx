@@ -8,14 +8,13 @@ import Heading from '../basic/Heading';
 import ProfileContainer from '../../containers/ProfileContainer';
 
 const TopBar = ({ appName, navBarItems, isLoggedIn }) => (
-  <Row align={'space-between'} className={topBar} >
+  <Row align="space-between" className={topBar} >
     <Heading size={2}>
-      <Link className={logo} to="/#/" >{appName}</Link>
+      <Link className={logo} to="/" >{appName}</Link>
     </Heading>
-
     <NavBar items={navBarItems}>
       {/* <SideMenuContainer  /> */}
-      {isLoggedIn ? <ProfileContainer /> : null}
+      {isLoggedIn && <ProfileContainer />}
     </NavBar>
   </Row>
 );
@@ -26,5 +25,4 @@ TopBar.propTypes = {
   appName: PropTypes.string.isRequired,
   navBarItems: PropTypes.arrayOf(PropTypes.object),
   isLoggedIn: PropTypes.bool.isRequired,
-
 };

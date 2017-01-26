@@ -19,41 +19,42 @@ const Note = ({
   onSetColor,
   onUpdateTitle,
   onUpdateContent }) => (
-  <Card className={`${styles.note} ${styles[note.color]}`}>
-    <div className={styles.content}>
-      <FancyInput
-        text={note.title}
-        onBlur={val => onUpdateTitle(val, note._id)}
-        maxLength={24}
-      />
-      <FancyInput
-        text={note.content}
-        onBlur={val => onUpdateContent(val, note._id)}
-        maxLength={1000}
-      />
-      <TagArea
-        onDeleteTag={tag => onDeleteTag(tag, note._id)}
-        tags={note.tags}
-        onAddTag={tag => onAddTag(tag, note._id)}
-      />
-      {children}
-    </div>
-    <Row align="space-between" className={styles.actions}>
-      <ColorMenu
-        className={styles.actions__icon}
-        color={note.color}
-        onSetColor={col => onSetColor(col, note._id)}
-      />
-      <Icon
-        className={styles.actions__icon}
-        name="delete"
-        onClick={() => onDelete(note._id)}
-      />
-      <Icon
-        className={styles.actions__icon} name="more_vert"
-      />
-    </Row>
-  </Card>
+    <Card className={`${styles.note} ${styles[note.color]}`}>
+      <div className={styles.content}>
+        {note.image && <img className={styles.image} src={note.image} alt="note-mage" />}
+        <FancyInput
+          text={note.title}
+          onBlur={val => onUpdateTitle(val, note._id)}
+          maxLength={24}
+        />
+        <FancyInput
+          text={note.content}
+          onBlur={val => onUpdateContent(val, note._id)}
+          maxLength={1000}
+        />
+        <TagArea
+          onDeleteTag={tag => onDeleteTag(tag, note._id)}
+          tags={note.tags}
+          onAddTag={tag => onAddTag(tag, note._id)}
+        />
+        {children}
+      </div>
+      <Row align="space-between" className={styles.actions}>
+        <ColorMenu
+          className={styles.actions__icon}
+          color={note.color}
+          onSetColor={col => onSetColor(col, note._id)}
+        />
+        <Icon
+          className={styles.actions__icon}
+          name="delete"
+          onClick={() => onDelete(note._id)}
+        />
+        <Icon
+          className={styles.actions__icon} name="more_vert"
+        />
+      </Row>
+    </Card>
 );
 
 export default Note;
@@ -72,5 +73,5 @@ Note.propTypes = {
     color: PropTypes.string,
     tags: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
-  children: PropTypes.any,
+  children: PropTypes.element,
 };

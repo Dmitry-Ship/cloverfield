@@ -17,8 +17,7 @@ const uploadImageFailure = error => ({
 
 export const uploadImage = image => (dispatch) => {
   dispatch({ type: types.UPLOAD_IMAGE });
-  console.log(image);
-  axios.post(url, image, token)
+  axios.post(url, image, token())
     .then(res => dispatch(uploadImageSuccess(res.data)))
     .catch(err => dispatch(uploadImageFailure(err.response.data)));
 };

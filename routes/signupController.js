@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const generateToken = require('../helpers/generateToken');
+const handleError = require('../helpers/handleError');
 const User = require('../models/User');
 
 const storage = multer.diskStorage({
@@ -10,37 +11,42 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-  }
+  },
 });
 
 const upload = multer({ storage });
 const router = express.Router();
 
-router.post('/', upload.single('avatar'), (req, res, next) => {
+router.post('/', upload.single('avatar'), (req, res) => {
   const { email, password, username } = req.body;
   const { file } = req;
 
   if (!email) {
-    return res.status(422).send('You must enter an email address.');
+    return handleError(res, 'You must enter an email address.', 422);
   }
 
   if (!password) {
-    return res.status(422).send('You must enter a password.');
+    return handleError(res, 'You must enter a password.', 422);
   }
 
   return User.findOne({ email }, (err, user) => {
-    if (err) { return next(err); }
+    if (err) { return handleError(res, err); }
     if (user) {
-      return res.status(422).send('That email address is already in use.');
+      return handleError(res, 'That email address is already in use.', 422);
     }
-    const newUser = new User({ email, password, username, userpic: file.filename });
+    const newUser = new User({
+      email,
+      password,
+      username,
+      userpic: file.filename,
+    });
 
     return newUser.save((saveErr, result) => {
-      if (saveErr) { return next(saveErr); }
+      if (saveErr) { return handleError(res, saveErr, 400); }
 
       const token = generateToken(result);
 
-      return res.json({ token: `JWT ${token}`, user: result });
+      return res.json({ token: `JWT ${token}` });
     });
   });
 });

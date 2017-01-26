@@ -4,7 +4,7 @@ import {
   tagArea,
   input,
   input__field,
-  input__suggestions} from './TagArea.styl';
+  input__suggestions } from './TagArea.styl';
 
 import PopUpMenu from '../basic/PopUpMenu';
 import Tag from '../basic/Tag';
@@ -18,6 +18,12 @@ export default class TagArea extends Component {
     this.setTag = this.setTag.bind(this);
   }
 
+  setTag(e) {
+    const value = e.target.innerHTML;
+
+    this.props.onSetTag(value);
+  }
+
   emitChange(e) {
     const curKey = e.which;
     const value = e.target.innerHTML;
@@ -28,7 +34,7 @@ export default class TagArea extends Component {
       this.props.onDeleteTag(removed);
     }
     if (curKey === 32 || curKey === 13) {
-      e.preventDefault()
+      e.preventDefault();
       if (value === '' || value === ' ') return;
 
       const content = e.target.innerHTML.trim();
@@ -37,12 +43,6 @@ export default class TagArea extends Component {
 
       e.target.innerHTML = '';
     }
-  }
-
-  setTag(e) {
-    const value = e.target.innerHTML;
-
-    this.props.onSetTag(value);
   }
 
   handleBlur(e) {
@@ -71,7 +71,8 @@ export default class TagArea extends Component {
             contentEditable
             onKeyDown={this.emitChange}
             onBlur={this.handleBlur}
-            className={input__field}>
+            className={input__field}
+          >
           </div>
 
           <PopUpMenu
@@ -89,5 +90,5 @@ TagArea.propTypes = {
   onDeleteTag: PropTypes.func.isRequired,
   // onSetTag: PropTypes.func.isRequired,
   // allTags: PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  // tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
 };
