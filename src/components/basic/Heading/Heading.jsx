@@ -9,6 +9,7 @@ export default Heading;
 
 Heading.defaultProps = {
   size: 1,
+  className: '',
 };
 
 Heading.propTypes = {

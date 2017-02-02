@@ -5,11 +5,11 @@ import { item, item__link, popupMenu, list } from './PopUpMenu.styl';
 import List from '../List';
 
 const PopUpMenu = ({ items, className, children }) => {
-  const customRender = ({ func, href, text }, i) => (
+  const customRender = ({ func, to, label }, i) => (
     <li className={item} key={i} onMouseDown={func}>
-      {href
-        ? <Link className={item__link} to={href}>{text}</Link>
-        : text}
+      {to
+        ? <Link className={item__link} to={to}>{label}</Link>
+        : label}
     </li>
   );
 

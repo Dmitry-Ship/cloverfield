@@ -34,5 +34,5 @@ export default NotesList;
 NotesList.propTypes = {
   allNotes: PropTypes.arrayOf(React.PropTypes.object).isRequired,
   params: PropTypes.object,
-  loading: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
 };

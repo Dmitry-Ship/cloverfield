@@ -2,7 +2,7 @@ import React from 'react';
 
 import { page, message } from './NotFound.styl';
 
-import Page from '../components/basic/Page';
+import Page from '../basic/Page';
 
 const NotFound = () => (
   <Page className={page}>

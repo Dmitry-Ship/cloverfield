@@ -6,26 +6,61 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpack = require('webpack');
-const webpackConfig = require('./webpack.config');
 const routes = require('./routes');
 const config = require('./config/main');
 
 const db = mongoose.connection;
-const compiler = webpack(webpackConfig);
 const app = express();
 
+const isDeveloping = process.env.NODE_ENV !== 'production';
+
 mongoose.connect(config.database);
+
 db.on('error', err => console.log('cannot connect to Data Base', err));
 db.once('open', () => console.log('connected to Data Base'));
+console.log(process.env.NODE_ENV);
+if (isDeveloping) {
+  const webpack = require('webpack');
+  const webpackMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const webpackConfig = require('./webpack.config.js');
 
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: webpackConfig.output.publicPath,
-  stats: { colors: true },
-}));
-app.use(webpackHotMiddleware(compiler));
+  const compiler = webpack(webpackConfig);
+
+  const middleware = webpackMiddleware(compiler, {
+    publicPath: webpackConfig.output.publicPath,
+    // contentBase: 'src',
+    stats: {
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false,
+    },
+  });
+
+  app.use(middleware);
+  app.use(webpackHotMiddleware(compiler));
+
+  // new WebpackDevServer(webpack(webpackConfig), {
+  //   contentBase: './src',
+  //   publicPath: webpackConfig.output.publicPath,
+  //   hot: true,
+  //   historyApiFallback: true,
+  //   proxy: {
+  //     '*': 'http://localhost:3000',
+  //   },
+  //   stats: {
+  //     colors: true,
+  //     timings: true,
+  //   },
+  // }).listen(8080, 'localhost', (err, result) => {
+  //   if (err) { return console.log(err); }
+  //   return console.log('listening at 8080');
+  // });
+}
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,6 +68,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(routes);
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

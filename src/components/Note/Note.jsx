@@ -1,12 +1,18 @@
 import React, { PropTypes } from 'react';
 
-import styles from './Note.styl';
+import styles, {
+  image,
+  contentEditable,
+  content,
+  actions,
+  actions__icon,
+} from './Note.styl';
 
 import Row from '../basic/Row';
 import Icon from '../basic/Icon';
 import Card from '../basic/Card';
 import ColorMenu from '../ColorMenu';
-import FancyInput from '../FancyInput';
+import ContentEditable from '../basic/ContentEditable';
 
 import TagArea from '../TagArea';
 
@@ -20,15 +26,17 @@ const Note = ({
   onUpdateTitle,
   onUpdateContent }) => (
     <Card className={`${styles.note} ${styles[note.color]}`}>
-      <div className={styles.content}>
-        {note.image && <img className={styles.image} src={note.image} alt="note-mage" />}
-        <FancyInput
+      <div className={content}>
+        {note.image && <img className={image} src={`/${note.image}`} alt="note-mage" />}
+        <ContentEditable
           text={note.title}
+          className={contentEditable}
           onBlur={val => onUpdateTitle(val, note._id)}
           maxLength={24}
         />
-        <FancyInput
+        <ContentEditable
           text={note.content}
+          className={contentEditable}
           onBlur={val => onUpdateContent(val, note._id)}
           maxLength={1000}
         />
@@ -39,19 +47,19 @@ const Note = ({
         />
         {children}
       </div>
-      <Row align="space-between" className={styles.actions}>
+      <Row align="space-between" className={actions}>
         <ColorMenu
-          className={styles.actions__icon}
+          className={actions__icon}
           color={note.color}
           onSetColor={col => onSetColor(col, note._id)}
         />
         <Icon
-          className={styles.actions__icon}
+          className={actions__icon}
           name="delete"
           onClick={() => onDelete(note._id)}
         />
         <Icon
-          className={styles.actions__icon} name="more_vert"
+          className={actions__icon} name="more_vert"
         />
       </Row>
     </Card>

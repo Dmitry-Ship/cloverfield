@@ -9,10 +9,17 @@ const Form = ({ action,
     action={action}
     className={className}
     onSubmit={onSubmit}
-    onChange={onChange} >{children}</form>
-)
+    onChange={onChange}
+  >
+    {children}
+  </form>
+);
 
 export default Form;
+
+Form.defaultProps = {
+  className: '',
+};
 
 Form.propTypes = {
   className: PropTypes.string,
@@ -20,4 +27,4 @@ Form.propTypes = {
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   children: PropTypes.any,
-}
+};

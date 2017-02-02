@@ -4,6 +4,8 @@ import TextField from '../basic/TextField';
 import Form from '../basic/Form';
 import Button from '../basic/Button';
 
+import { input } from './LoginForm.styl';
+
 export default class LoginForm extends Component {
   constructor() {
     super();
@@ -16,12 +18,12 @@ export default class LoginForm extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
+  handleEmailChange(value) {
+    this.setState({ email: value });
   }
 
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
+  handlePasswordChange(value) {
+    this.setState({ password: value });
   }
 
   handleSubmit(e) {
@@ -33,16 +35,22 @@ export default class LoginForm extends Component {
   }
 
   render() {
+    const { email, password } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
         <TextField
           type="email"
+          value={email}
+          name="email"
+          className={input}
           placeholder="Email"
           onChange={this.handleEmailChange}
           required
         />
         <TextField
           type="password"
+          value={password}
+          className={input}
           placeholder="Password"
           onChange={this.handlePasswordChange}
           required

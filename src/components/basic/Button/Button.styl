@@ -1,4 +1,7 @@
-@import '../../../styles/index.styl'
+@value colors "../../../styles/colors.styl";
+@value secondary from colors;
+@value secondary--light from colors;
+@value secondary--dark from colors;
 
 .button
   border none
@@ -9,22 +12,22 @@
 
 .primary
   composes button
-  background color__secondary
+  background secondary
   color white
   &:hover
-    background color__secondary--light
+    background secondary--light
   &:active
-    background color__secondary--dark
+    background secondary--dark
 
 .secondary
   composes button
   background transparent
-  border 3px solid color__secondary
-  color color__secondary
+  border 3px solid secondary
+  color secondary
   &:hover
-    border 3px solid color__secondary--light
-    color color__secondary--light
+    border 3px solid secondary--light
+    color secondary--light
   &:active
-    border 3px solid color__secondary--dark
-    color color__secondary--dark
+    border 3px solid secondary--dark
+    color secondary--dark
     background transparent

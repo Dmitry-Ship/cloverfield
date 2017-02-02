@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import Textarea from 'react-textarea-autosize';
 
-import {
+import styles, {
   uploader,
   form,
   title,
   content,
+  tagArea,
   wrapper,
   submition,
   attachments,
@@ -19,6 +20,7 @@ import Button from '../basic/Button';
 import Row from '../basic/Row';
 import Icon from '../basic/Icon';
 import FileUploader from '../basic/FileUploader';
+import ContentEditable from '../basic/ContentEditable';
 
 export default class CreationForm extends Component {
   constructor(props) {
@@ -142,7 +144,7 @@ export default class CreationForm extends Component {
       >
         <Form
           enctype="multipart/form-data"
-          className={`${className} ${color}`}
+          className={`${className} ${styles[color]}`}
           onSubmit={this.create}
         >
           <Textarea
@@ -161,8 +163,9 @@ export default class CreationForm extends Component {
           />
 
           <TagArea
-            onAddTag={value => this.handleAddTag(value)}
-            onDeleteTag={value => this.handleDeleteTag(value)}
+            className={tagArea}
+            onAddTag={this.handleAddTag}
+            onDeleteTag={this.handleDeleteTag}
             tags={this.state.tags}
           />
 
@@ -188,7 +191,7 @@ export default class CreationForm extends Component {
               <Icon className={attachments__icon} name="more_vert" />
             </Row>
             <Button
-              kind="secondary"
+              kind="primary"
               type="submit"
               label="Done"
             />

@@ -1,12 +1,16 @@
-@import '../../../styles/index.styl'
+@value colors "../../../styles/colors.styl";
+@value primary--light from colors;
+@value primary--dark from colors;
 
 .textField
   size 100% 45px
-  margin-bottom 30px
   padding 0 15px
-  border none 3px solid color__primary--dark
-  background color__primary--light
+  border none
+  border-left 3px solid primary--dark
+  border-right 3px solid primary--dark
+  background primary
   transition all 300ms ease-in-out
   &:focus
     background white
-    border none 3px solid black
+    border-left 3px solid black
+    border-right 3px solid black

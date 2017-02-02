@@ -1,4 +1,12 @@
-@import '../../styles/index.styl'
+@value colors "../../styles/colors.styl";
+@value flat_wet_asphalt from colors;
+@value note_green from colors;
+@value note_red from colors;
+@value note_yellow from colors;
+@value note_blue from colors;
+@value note_grey from colors;
+@value note_orange from colors;
+@value note_teal from colors;
 
 .wrapper
   width 400px
@@ -16,6 +24,8 @@
 .unfolded
   composes form
   .title
+    display block
+  .tagArea
     display block
   .submition
     display flex
@@ -38,6 +48,9 @@
 .content
   composes field
   display block
+
+.tagArea
+  display none
 
 .submition
   z-index 0
@@ -62,19 +75,19 @@
     color black
 
 .red
-  background color__red
+  background note_red
 .orange
-  background color__orange
+  background note_orange
 .yellow
-  background color__yellow
+  background note_yellow
 .grey
-  background color__grey
+  background note_grey
 .blue
-  background color__blue
+  background note_blue
 .teal
-  background color__teal
+  background note_teal
 .green
-  background color__green
+  background note_green
 .white
   background white
 

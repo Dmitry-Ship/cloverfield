@@ -1,14 +1,16 @@
-@import '../../../styles/index.styl'
+@value colors "../../../styles/colors.styl";
+@value accent from colors;
 
 .popupMenu
+  display none
+  composes fancy-shadow from 'styles/shadows.styl'
   padding 10px 0
   color black
-  z-index: 2
-  fancy-shadow()
+  z-index 2
 
 .list
-  padding: 0
-  margin: 0
+  padding 0
+  margin 0
 
 .item
   display block
@@ -18,11 +20,11 @@
   border-right 3px solid transparent
   cursor pointer
   &:hover
-    color color__accent
-    border-left: 3px solid color__accent
-    border-right: 3px solid color__accent
+    color accent
+    border-left 3px solid accent
+    border-right 3px solid accent
     .item__link
-      color color__accent
+      color accent
 
 .item__link
   color black

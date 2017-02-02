@@ -1,4 +1,12 @@
-@import '../../styles/index.styl'
+@value colors "../../styles/colors.styl";
+@value flat_wet_asphalt from colors;
+@value note_green from colors;
+@value note_red from colors;
+@value note_yellow from colors;
+@value note_blue from colors;
+@value note_grey from colors;
+@value note_orange from colors;
+@value note_teal from colors;
 
 .note
   font-family Rubik
@@ -22,24 +30,44 @@
   &:hover
     color black
 
+.contentEditable
+  text-align justify
+  margin 0 0 10px 0
+  padding 5px 10px
+  outline none
+  border-radius 5px
+  cursor pointer
+  background rgba(white, 0)
+  &:focus
+    background rgba(white, 0.3)
+    animation out 120ms forwards
+
+@keyframes out
+  0%
+    box-shadow 0 0 0px rgba(black, 0.5)
+  50%
+    box-shadow 0 0 20px rgba(black, 0.15)
+  100%
+    box-shadow 0 0 10px rgba(black, 0.3)
+
 .image
   width calc(100% + 30px)
   height auto
   transform: translate(-15px, -30px);
 
 .red
-  background color__red
+  background note_red
 .orange
-  background color__orange
+  background note_orange
 .yellow
-  background color__yellow
+  background note_yellow
 .grey
-  background color__grey
+  background note_grey
 .blue
-  background color__blue
+  background note_blue
 .teal
-  background color__teal
+  background note_teal
 .green
-  background color__green
+  background note_green
 .white
   background white

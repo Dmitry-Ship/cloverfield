@@ -1,24 +1,22 @@
 import React, { PropTypes } from 'react';
 
-import Icon from '../Icon';
-import { Link } from 'react-router';
-
 const List = ({ children, className, itemRenderer, items }) => (
   <ul className={className}>
     {children}
     {items.map((item, i) => itemRenderer(item, i))}
   </ul>
-)
+);
 
 export default List;
 
 List.defaultProps = {
-  itemRenderer: (item, i) => <li key={i}>{item}</li>
-}
+  itemRenderer: (item, i) => <li key={i}>{item}</li>,
+  className: '',
+};
 
 List.propTypes = {
+  items: PropTypes.array,
   children: PropTypes.any,
   className: PropTypes.string,
   itemRenderer: PropTypes.func,
-
-}
+};

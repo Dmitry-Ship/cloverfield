@@ -5,6 +5,8 @@ import FileUploader from '../basic/FileUploader';
 import Form from '../basic/Form';
 import Button from '../basic/Button';
 
+import { input } from './SignUpForm.styl';
+
 export default class SignUpForm extends Component {
   constructor() {
     super();
@@ -28,24 +30,24 @@ export default class SignUpForm extends Component {
     this.setState({ userpic: e.target.files[0] });
   }
 
-  handleFirstNameChange(e) {
-    this.setState({ firstName: e.target.value });
+  handleFirstNameChange(value) {
+    this.setState({ firstName: value });
   }
 
-  handleLastNameChange(e) {
-    this.setState({ lastName: e.target.value });
+  handleLastNameChange(value) {
+    this.setState({ lastName: value });
   }
 
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
+  handleEmailChange(value) {
+    this.setState({ email: value });
   }
 
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
+  handlePasswordChange(value) {
+    this.setState({ password: value });
   }
 
-  handleConfirmPasswordChange(e) {
-    this.setState({ confirmPassword: e.target.value });
+  handleConfirmPasswordChange(value) {
+    this.setState({ confirmPassword: value });
   }
 
   handleSubmit(e) {
@@ -66,12 +68,18 @@ export default class SignUpForm extends Component {
   }
 
   render() {
+    const { firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
 
         <FileUploader
           placeholder="Add a userpic"
           fileType="image/*"
+          className={input}
           onChange={this.handleUserpicChange}
           // required
         />
@@ -79,6 +87,8 @@ export default class SignUpForm extends Component {
         <TextField
           type="text"
           placeholder="First Name"
+          value={firstName}
+          className={input}
           onChange={this.handleFirstNameChange}
           // required
         />
@@ -86,6 +96,8 @@ export default class SignUpForm extends Component {
         <TextField
           type="text"
           placeholder="Last Name"
+          value={lastName}
+          className={input}
           onChange={this.handleLastNameChange}
           // required
         />
@@ -93,6 +105,8 @@ export default class SignUpForm extends Component {
         <TextField
           type="email"
           placeholder="Email"
+          value={email}
+          className={input}
           onChange={this.handleEmailChange}
           required
         />
@@ -100,6 +114,8 @@ export default class SignUpForm extends Component {
         <TextField
           type="password"
           placeholder="Password"
+          value={password}
+          className={input}
           onChange={this.handlePasswordChange}
           required
         />
@@ -107,6 +123,8 @@ export default class SignUpForm extends Component {
         <TextField
           type="text"
           placeholder="Confirm Password"
+          value={confirmPassword}
+          className={input}
           onChange={this.handleConfirmPasswordChange}
           required
         />

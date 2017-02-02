@@ -1,34 +1,52 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-export default class ContentEditable extends Component {
-  constructor(){
-    super();
-  }
+import { contentEditable } from './ContentEditable.styl';
 
-  render() {
-    const {
-      isDisabled,
-      children,
-      onChange,
-      className } = this.props;
-    return (
-      <span
-        className={className}
-        contentEditable={!isDisabled}
-        onBlur={this.handleBlur}
-        onChange={onChange}>
-        {children}
-      </span>
-    )
-  }
-}
+const ContentEditable = ({
+  text,
+  maxLength,
+  onBlur,
+  className,
+  onKeyDown,
+  isDisabled }) => {
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const plainText = e.clipboardData.getData('text/plain');
+    document.execCommand('inserttext', false, plainText);
+  };
+
+  const handleBlur = (e) => {
+    onBlur(e.target.innerHTML);
+
+    // e.target.innerHTML = '';
+  };
+
+  return (
+    <div
+      className={`${contentEditable} ${className}`}
+      contentEditable={!isDisabled}
+      onPaste={handlePaste}
+      onKeyDown={e => onKeyDown(e)}
+      onBlur={handleBlur}
+      dangerouslySetInnerHTML={{ __html: text }}
+    />
+  );
+};
+
+export default ContentEditable;
+
 ContentEditable.defaultProps = {
-  isDisabled: false
-}
+  maxLength: 100,
+  className: '',
+  onKeyDown: val => val,
+  isDisabled: false,
+};
 
 ContentEditable.propTypes = {
-  className: PropTypes.string,
-  onChange: PropTypes.func,
+  text: PropTypes.string,
+  maxLength: PropTypes.number,
   onBlur: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  className: PropTypes.string,
   isDisabled: PropTypes.bool,
-}
+};

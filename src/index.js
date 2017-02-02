@@ -3,14 +3,14 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import './styles/index.styl';
+// import './styles/index.styl'; // do i even need this?
 
-import MainPage from './pages/MainPage';
-import AboutPage from './pages/AboutPage';
-import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
-import NotFound from './pages/NotFound';
-import MainLayout from './layouts/MainLayout';
+import MainPage from './components/pages/MainPage';
+import AboutPage from './components/pages/AboutPage';
+import LoginPage from './components/pages/LoginPage';
+import SignUpPage from './components/pages/SignUpPage';
+import NotFound from './components/pages/NotFound';
+import MainLayout from './components/layouts/MainLayout';
 
 import configureStore from './store/configureStore';
 

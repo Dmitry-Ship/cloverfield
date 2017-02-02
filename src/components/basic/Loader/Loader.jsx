@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 
 import styles from './Loader.styl';
 
-const Loader = ({ type }) => (
-  <div className={styles.wrapper} >
+const Loader = ({ type, className }) => (
+  <div className={`${styles.wrapper} ${className}`} >
     <div className={styles[type]}>
       <span className={styles.dot} />
       <span className={styles.dot} />
@@ -15,9 +15,11 @@ const Loader = ({ type }) => (
 export default Loader;
 
 Loader.defaultProps = {
-  type: 'spinny'
-}
+  type: 'spinny',
+  className: '',
+};
 
 Loader.propTypes = {
-  type: PropTypes.string
-}
+  type: PropTypes.string,
+  className: PropTypes.string,
+};

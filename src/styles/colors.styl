@@ -1,45 +1,43 @@
-color__primary = #e1e8f0
-color__primary--light = lighten(color__primary, 20%)
-color__primary--dark = darken(color__primary, 20%)
+@value primary #e1e8f0;
+@value primary--light color(primary tint(15%));
+@value primary--dark color(primary shade(15%));
+@value secondary #9068be;
+@value secondary--light color(secondary tint(15%));
+@value secondary--dark color(secondary shade(15%));
+@value accent #21A8A3;
+@value accent--light color(accent tint(15%));
+@value accent--dark color(accent shade(15%));
 
-color__secondary = #9068be
-color__secondary--light = lighten(color__secondary, 20%)
-color__secondary--dark = darken(color__secondary, 20%)
+@value bg #dcdede;
+@value icon color(bg shade(70%));
 
-color__accent = #21A8A3
-color__accent--light = lighten(color__accent, 20%)
-color__accent--dark = darken(color__accent, 20%)
+@value bg--dark color(bg shade(25%));
 
-color__bg = #dcdede
-color__icon = darken(color__bg, 70%)
+@value note_red #e57373;
+@value note_orange #FF8A65;
+@value note_yellow #FFD54F;
+@value note_grey #90A4AE;
+@value note_blue #4FC3F7;
+@value note_teal #4DB6AC;
+@value note_green #81C784;
 
-color__bg--dark = darken(color__bg, 25%)
-
-color__red = #e57373
-color__orange = #FF8A65
-color__yellow = #FFD54F
-color__grey = #90A4AE
-color__blue = #4FC3F7
-color__teal = #4DB6AC
-color__green = #81C784
-
-flat_turquoise = #1abc9c
-flat_emerald = #2ecc71
-flat_peter_river = #3a9bdc
-flat_amethyst = #9b59b6
-flat_wet_asphalt = #34495e
-flat_green_sea = #16a085
-flat_nephrist = #27ae60
-flat_belize_hole = #2980b9
-flat_wisteria = #8e44ad
-flat_midnight_blue = #2c3e50
-flat_sun_flower = #f1c40f
-flat_carrot = #e67e22
-flat_alizarin = #e74c3c
-flat_clouds = #ecf0f1
-flat_concrete = #95a5a6
-flat_orange = #f39c12
-flat_pumpkin = #d35400
-flat_pomegranate = #c0392b
-flat_silver = #bdc3c7
-flat_asbestos = #7f8c8d
+@value flat_turquoise #1abc9c;
+@value flat_emerald #2ecc71;
+@value flat_peter_river #3a9bdc;
+@value flat_amethyst #9b59b6;
+@value flat_wet_asphalt #34495e;
+@value flat_green_sea #16a085;
+@value flat_nephrist #27ae60;
+@value flat_belize_hole #2980b9;
+@value flat_wisteria #8e44ad;
+@value flat_midnight_blue #2c3e50;
+@value flat_sun_flower #f1c40f;
+@value flat_carrot #e67e22;
+@value flat_alizarin #e74c3c;
+@value flat_clouds #ecf0f1;
+@value flat_concrete #95a5a6;
+@value flat_orange #f39c12;
+@value flat_pumpkin #d35400;
+@value flat_pomegranate #c0392b;
+@value flat_silver #bdc3c7;
+@value flat_asbestos #7f8c8d;

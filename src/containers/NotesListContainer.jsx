@@ -10,7 +10,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchNotes: () => dispatch(fetchNotes()),
+  fetchNotes: () => dispatch((fetchNotes)()),
 });
 
 class NotesListContainer extends Component {
@@ -19,8 +19,13 @@ class NotesListContainer extends Component {
   }
 
   render() {
+    const { params, loading, allNotes } = this.props;
     return (
-      <NotesList params={this.props.params} allNotes={this.props.allNotes} />
+      <NotesList
+        params={params}
+        loading={loading}
+        allNotes={allNotes}
+      />
     );
   }
 }
@@ -31,4 +36,5 @@ NotesListContainer.propTypes = {
   fetchNotes: PropTypes.func.isRequired,
   params: PropTypes.object,
   allNotes: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool.isRequired,
 };

@@ -6,14 +6,15 @@ import { avatar, image } from './Avatar.styl';
 
 const Avatar = ({ src, className }) => (
   <Link className={avatar} to="#">
-    <img className={`${image} ${className}`} src={src} alt="" />
+    <img className={`${image} ${className}`} src={`/${src}`} alt="" />
   </Link>
 );
 
 export default Avatar;
 
 Avatar.defaultProps = {
-  src: '/noUserPic.png',
+  src: 'noUserPic.png',
+  className: '',
 };
 
 Avatar.propTypes = {

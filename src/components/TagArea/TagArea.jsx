@@ -6,9 +6,9 @@ import {
   input__field,
   input__suggestions } from './TagArea.styl';
 
+import ContentEditable from '../basic/ContentEditable';
 import PopUpMenu from '../basic/PopUpMenu';
 import Tag from '../basic/Tag';
-
 
 export default class TagArea extends Component {
   constructor() {
@@ -45,35 +45,29 @@ export default class TagArea extends Component {
     }
   }
 
-  handleBlur(e) {
-    const value = e.target.innerHTML;
-
+  handleBlur(value) {
     if (value === '' || value === ' ') return;
 
     this.props.onAddTag(value);
-
-    e.target.innerHTML = '';
   }
 
   render() {
-    const { tags, allTags, onDeleteTag } = this.props;
+    const { tags, allTags, onDeleteTag, className } = this.props;
     // const suggTags = allTags.map(tag => tag.name);
     // const list = []
     // for (let i = 0; i < suggTags.length; i++) {
     //   list.push({text: suggTags[i], func: this.setTag })
     // }
     return (
-      <div className={tagArea}>
+      <div className={`${tagArea} ${className}`}>
         {tags.map((tag, i) => <Tag tagText={tag} key={i} onDeleteTag={onDeleteTag} />)}
 
         <div className={input}>
-          <div
-            contentEditable
+          <ContentEditable
             onKeyDown={this.emitChange}
-            onBlur={this.handleBlur}
+            onBlur={e => this.handleBlur(e)}
             className={input__field}
-          >
-          </div>
+          />
 
           <PopUpMenu
             className={input__suggestions}
@@ -88,6 +82,7 @@ export default class TagArea extends Component {
 TagArea.propTypes = {
   onAddTag: PropTypes.func.isRequired,
   onDeleteTag: PropTypes.func.isRequired,
+  className: PropTypes.string,
   // onSetTag: PropTypes.func.isRequired,
   // allTags: PropTypes.arrayOf(React.PropTypes.object).isRequired,
   tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,

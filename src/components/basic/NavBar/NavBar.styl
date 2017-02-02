@@ -1,16 +1,11 @@
-@import '../../../styles/index.styl'
-
 .link
-  color color__icon
+  composes navBarItem from 'styles/navBarItems.styl'
   text-align center
   min-width 55px
   display block
   height 55px
   line-height 55px
   padding 0px 10px
-  &:hover
-    color color__accent
-    border-bottom 3px solid color__accent
 
 .icon
   vertical-align middle

@@ -1,4 +1,14 @@
-@import '../../styles/index.styl'
+
+@import "../../styles/mixins.styl"
+@value colors "../../styles/colors.styl";
+@value flat_wet_asphalt from colors;
+@value note_green from colors;
+@value note_red from colors;
+@value note_yellow from colors;
+@value note_blue from colors;
+@value note_grey from colors;
+@value note_orange from colors;
+@value note_teal from colors;
 
 .colorMenu
   position relative
@@ -34,26 +44,26 @@
   left 50%
 
 .red
-  composes: circle
-  background color__red
+  composes circle
+  background note_red
 .orange
-  composes: circle
-  background color__orange
+  composes circle
+  background note_orange
 .yellow
-  composes: circle
-  background color__yellow
+  composes circle
+  background note_yellow
 .grey
-  composes: circle
-  background color__grey
+  composes circle
+  background note_grey
 .blue
-  composes: circle
-  background color__blue
+  composes circle
+  background note_blue
 .teal
-  composes: circle
-  background color__teal
+  composes circle
+  background note_teal
 .green
-  composes: circle
-  background color__green
+  composes circle
+  background note_green
 .white
-  composes: circle
+  composes circle
   background white

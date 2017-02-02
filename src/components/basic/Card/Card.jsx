@@ -8,6 +8,10 @@ const Card = ({ onClick, className, children }) => (
 
 export default Card;
 
+Card.defaultProps = {
+  className: '',
+};
+
 Card.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
