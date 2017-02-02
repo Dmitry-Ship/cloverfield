@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postcssNormalize = require('postcss-normalize');
 const postcssCssnext = require('postcss-cssnext');
 const values = require('postcss-modules-values');
@@ -20,64 +19,75 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    modulesDirectories: ['node_modules', './src'],
-    extensions: ['', '.js', '.jsx', 'css', 'styl'],
+    modules: [
+      path.join(__dirname, 'node_modules'),
+      path.join(__dirname, 'src')
+    ],
+    extensions: ['.js', '.jsx', 'css', 'styl'],
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.(js|jsx)?$/,
-        loaders: ['babel'],
+        use: 'babel-loader',
         exclude: /node_modules/,
       },
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css?modules&importLoaders=1&localIdentName=[hash:base64:5]',
-          'postcsss'
-        ),
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              module: true,
+              importLoaders: 1,
+              localIdentName: '[hash:base64:5]',
+            },
+          },
+          'postcsss-loader'
+        ],
       },
       {
         test: /\.styl$/,
-        // loader: ExtractTextPlugin.extract(
-        //   'style',
-        //   'stylus',
-        //   'css?modules&importLoaders=1&localIdentName=[hash:base64:5]',
-        //   'postcss'
-        //
-        // ),
-        loaders: [
-          'style?sourceMap',
-          'css?modules&importLoaders=1&localIdentName=[hash:base64:5]',
-          'postcss',
-          'stylus?sourceMap',
+        use: [
+          'style-loader?sourceMap',
+          {
+            loader: 'css-loader',
+            options: {
+              module: true,
+              importLoaders: 1,
+              localIdentName: '[hash:base64:5]',
+            },
+          },
+          'postcss-loader',
+          'stylus-loader?sourceMap',
         ],
         exclude: /node_modules/,
       },
     ]
   },
-  postcss: [
-    postcssNormalize,
-    postcssCssnext,
-    values,
-    lost,
-    colorFunction,
-  ],
-  stylus: {
-    use: [rupture(), nib()],
-    import: ['~rupture/rupture/index.styl', '~nib/lib/nib/index.styl'],
-  },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          postcssNormalize,
+          postcssCssnext,
+          values,
+          lost,
+          colorFunction,
+        ],
+        stylus: {
+          use: [rupture(), nib()],
+          import: ['~rupture/rupture/index.styl', '~nib/lib/nib/index.styl'],
+        },
+      },
+    }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
     }),
-    new ExtractTextPlugin('styles.css'),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };

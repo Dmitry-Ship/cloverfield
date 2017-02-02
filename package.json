@@ -5,7 +5,7 @@
   "main": "bin/www",
   "scripts": {
     "start": "set NODE_ENV=production&&npm run build && node bin/www",
-    "build": "webpack --config ./webpack.production.config.js --propgress --colors",
+    "build": "webpack --colors --progress --config webpack.production.config.js",
     "dev": "./node_modules/.bin/nodemon --ignore ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -75,7 +75,7 @@
     "redux-thunk": "^2.1.0",
     "rupture": "^0.6.2",
     "stylus": "^0.54.5",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^1.16.3"
   }
 }
