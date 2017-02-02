@@ -20,49 +20,71 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    modulesDirectories: ['node_modules', './src'],
-    extensions: ['', '.js', '.jsx', 'css', 'styl', 'scss'],
+    modules: [
+      path.resolve(__dirname, 'node_modules'),
+      path.resolve(__dirname, 'src')
+    ],
+    extensions: ['.js', '.jsx', 'css', 'styl', 'scss'],
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.(js|jsx)?$/,
-        loaders: ['react-hot', 'babel'],
+        use: ['react-hot-loader', 'babel-loader'],
         exclude: /node_modules/,
       },
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loaders: [
-          'style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss'
-        ]
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              module: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
+          },
+          'postcss-loader'
+        ],
       },
       {
         test: /\.styl$/,
-        loaders: [
-          'style?sourceMap',
-          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss',
-          'stylus?sourceMap',
+        use: [
+          'style-loader?sourceMap',
+          {
+            loader: 'css-loader',
+            options: {
+              module: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
+          },
+          'postcss-loader',
+          'stylus-loader',
         ],
         exclude: /node_modules/,
       },
-    ]
-  },
-  postcss: [
-    postcssNormalize,
-    postcssCssnext,
-    values,
-    lost,
-    colorFunction,
-  ],
-  stylus: {
-    use: [rupture(), nib()],
-    import: ['~rupture/rupture/index.styl', '~nib/lib/nib/index.styl'],
+    ],
   },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          postcssNormalize,
+          postcssCssnext,
+          values,
+          lost,
+          colorFunction,
+        ],
+        stylus: {
+          use: [rupture(), nib()],
+          import: ['~rupture/rupture/index.styl', '~nib/lib/nib/index.styl'],
+        },
+      },
+    }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };
