@@ -24,7 +24,7 @@ const NotesList = ({ params, loading, allNotes }) => {
       {loading
         ? <Loader type="triple-dots" />
         : <Masonry options={masonryOptions} style={style}>
-          {notesToShow.map((note, i) => <NoteContainer note={note} key={i} />)}
+          {notesToShow.map(note => <NoteContainer note={note} key={note._id} />)}
         </Masonry>}
     </section>
   );

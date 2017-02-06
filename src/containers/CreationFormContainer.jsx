@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 
 import CreationForm from '../components/CreationForm';
 import { createNote } from '../actions/noteActions';
-
 import { uploadImage } from '../actions/imageActions';
 
 const mapDispatchToProps = dispatch => ({

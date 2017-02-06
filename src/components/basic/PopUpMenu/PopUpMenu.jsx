@@ -1,35 +1,29 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import { item, item__link, popupMenu, list } from './PopUpMenu.styl';
 
-import List from '../List';
+import styles, { menuItem, item__link } from './PopUpMenu.styl';
 
-const PopUpMenu = ({ items, className, children }) => {
-  const customRender = ({ func, to, label }, i) => (
-    <li className={item} key={i} onMouseDown={func}>
-      {to
-        ? <Link className={item__link} to={to}>{label}</Link>
-        : label}
-    </li>
-  );
+import MenuItem from '../MenuItem';
 
-  return (
-    <div className={`${popupMenu} ${className}`} >
-      {children}
-      {items && <List className={list} items={items} itemRenderer={customRender} />}
-    </div>
-  );
-};
+const PopUpMenu = ({ items, className, children, position }) => (
+  <div className={`${styles[position]} ${className}`} >
+    {children}
+    {items && items.map(item => (
+      <MenuItem key={item.label} item={item} className={menuItem} />
+    ))}
+  </div>
+);
 
 export default PopUpMenu;
 
 PopUpMenu.defaultProps = {
   className: '',
+  position: 'top',
 };
 
 PopUpMenu.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
-  children: PropTypes.element,
+  children: PropTypes.any,
   className: PropTypes.string,
+  position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
 
 };

@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
 import { layout, main } from './MainLayout.styl';
-
 import TopBarContainer from '../../containers/TopBarContainer';
 
 const MainLayout = ({ children }) => (
@@ -14,6 +13,10 @@ const MainLayout = ({ children }) => (
 );
 
 export default MainLayout;
+
+MainLayout.defaultProps = {
+  children: null,
+};
 
 MainLayout.propTypes = {
   children: PropTypes.element,

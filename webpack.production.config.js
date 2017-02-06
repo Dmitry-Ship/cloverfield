@@ -1,21 +1,36 @@
 const webpack = require('webpack');
 const path = require('path');
-const postcssNormalize = require('postcss-normalize');
+const postcssImport = require('postcss-import');
 const postcssCssnext = require('postcss-cssnext');
 const values = require('postcss-modules-values');
 const colorFunction = require('postcss-color-function');
 const lost = require('lost');
 const rupture = require('rupture');
 const nib = require('nib');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: [
-    './src/index',
-  ],
+  entry: {
+    app: './src/index',
+    vendor: [
+      'react',
+      'react-router',
+      'react-redux',
+      'redux',
+      'redux-thunk',
+      'axios',
+      'react-dom',
+      'react-cookie',
+      'react-masonry-component',
+      'react-textarea-autosize',
+      'redux-logger',
+      'react-hot-loader',
+    ],
+  },
   output: {
     path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     publicPath: '/',
   },
   resolve: {
@@ -50,6 +65,10 @@ module.exports = {
       },
       {
         test: /\.styl$/,
+        // use: ExtractTextPlugin.extract({
+        //   fallbackLoader: 'style-loader',
+        //   loader: ['css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]', 'postcss-loader', 'stylus-loader']
+        // }),
         use: [
           'style-loader?sourceMap',
           {
@@ -65,13 +84,13 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
-    ]
+    ],
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [
-          postcssNormalize,
+          postcssImport,
           postcssCssnext,
           values,
           lost,
@@ -89,5 +108,12 @@ module.exports = {
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+    }),
+    // new ExtractTextPlugin({
+    //   filename: 'style.css',
+    //   allChunks: true,
+    // })
   ],
 };

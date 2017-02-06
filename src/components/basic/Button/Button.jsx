@@ -4,25 +4,27 @@ import styles from './Button.styl';
 
 import Icon from '../Icon';
 
-const Button = ({ type,
-                  label,
-                  onClick,
-                  className,
-                  kind,
-                  name,
-                  disabled,
-                  children }) => (
-  <button
-    type={type}
-    onClick={onClick}
-    disabled={disabled}
-    className={`${styles[kind]} ${className}`}
-  >
-    <div>
-      <span>{label}</span>
-      {name && <Icon name={name} />}
-    </div>
-  </button>
+const Button = ({
+  type,
+  label,
+  onClick,
+  className,
+  kind,
+  iconName,
+  disabled,
+  children }) => (
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={`${styles[kind]} ${className}`}
+    >
+      <div>
+        <span>{label}</span>
+        {children}
+        {iconName && <Icon name={iconName} />}
+      </div>
+    </button>
 );
 
 export default Button;
@@ -30,15 +32,21 @@ export default Button;
 Button.defaultProps = {
   kind: 'primary',
   className: '',
+  type: 'button',
+  disabled: false,
+  children: null,
+  iconName: null,
+  label: 'Submit',
+  onClick: null,
 };
 
 Button.propTypes = {
   className: PropTypes.string,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.oneOf(['submit', 'button', 'reset']),
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.element,
-  name: PropTypes.string,
+  iconName: PropTypes.string,
   kind: PropTypes.oneOf(['primary', 'secondary']),
 };

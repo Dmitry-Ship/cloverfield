@@ -5,6 +5,7 @@ import styles, {
   uploader,
   form,
   title,
+  button,
   content,
   tagArea,
   wrapper,
@@ -16,7 +17,6 @@ import styles, {
 import ColorMenu from '../ColorMenu';
 import TagArea from '../TagArea';
 import Form from '../basic/Form';
-import Button from '../basic/Button';
 import Row from '../basic/Row';
 import Icon from '../basic/Icon';
 import FileUploader from '../basic/FileUploader';
@@ -144,6 +144,7 @@ export default class CreationForm extends Component {
       >
         <Form
           enctype="multipart/form-data"
+          buttonClass={button}
           className={`${className} ${styles[color]}`}
           onSubmit={this.create}
         >
@@ -190,11 +191,6 @@ export default class CreationForm extends Component {
 
               <Icon className={attachments__icon} name="more_vert" />
             </Row>
-            <Button
-              kind="primary"
-              type="submit"
-              label="Done"
-            />
           </div>
         </Form>
 

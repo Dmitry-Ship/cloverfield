@@ -1,39 +1,53 @@
-@import '../../../styles/index.styl'
+@value colors "../../../styles/colors.styl";
+@value accent from colors;
 
-.side-menu
-  fixed top 55px right 100%
-  background color__accent
+
+.wrapper
+  display: none;
+  +tablet()
+    display: block;
+
+.icon
+  display none
+  cursor pointer
+  +tablet()
+    display: block;
+    position absolute
+    top 50%
+    left 30px
+    transform: translate(-50%, -50%);
+
+.sideMenu
+  position: fixed;
+  top 55px
+  right 100%
+  background accent
   width 100%
   height calc(100vh - 55px)
   z-index 1
   font-size 1.8rem
   transition all 300ms ease-in-out
   text-align left
+  // display table
   display none
   +tablet()
     display table
-  &--shown
-    fixed top 55px right 0px
 
-.side-menu__content
+.shown
+  composes sideMenu
+  right 0%
+
+.content
   padding: 0px
+  width: 500px
   display table-cell
   vertical-align middle
 
-.side-menu__item
+.menuItem
   display block
   padding 25px
   white-space nowrap
   color white
   &:hover
     background white
-    color color__accent
-    .side-menu__item__link
-      color color__accent
-
-.side-menu__item__link
-  color white
-
-.side-menu__item__icon
-  vertical-align middle
-  margin 0 40px 0 15px
+    color accent

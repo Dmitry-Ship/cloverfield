@@ -1,26 +1,28 @@
 import React, { PropTypes } from 'react';
 
-import { fileUploader } from './FileUploader.styl';
+import { fileUploader, labelView } from './FileUploader.styl';
 
 const FileUploader = ({
     name,
     id,
-    placeholder,
     required,
     onChange,
     label,
     fileType,
     className }) => (
-  <input
-    id={id}
-    type="file"
-    className={`${fileUploader} ${className}`}
-    name={name}
-    placeholder={placeholder}
-    required={required}
-    onChange={onChange}
-    accept={fileType}
-  />
+
+      <label className={`${labelView} ${className}`} htmlFor={id}>
+        {label}
+        <input
+          id={id}
+          type="file"
+          className={fileUploader}
+          name={name}
+          required={required}
+          onChange={onChange}
+          accept={fileType}
+        />
+      </label>
 );
 
 export default FileUploader;
@@ -30,15 +32,20 @@ export default FileUploader;
 // }
 FileUploader.defaultProps = {
   className: '',
+  fileType: 'image/*',
+  name: 'image',
+  label: '',
+  required: false,
 };
+
 
 FileUploader.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
-  placeholder: PropTypes.string,
   label: PropTypes.string,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   inputRenderer: PropTypes.func,
+  fileType: PropTypes.string,
 };

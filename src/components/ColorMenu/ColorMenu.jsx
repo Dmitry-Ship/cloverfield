@@ -5,7 +5,7 @@ import styles from './ColorMenu.styl';
 import PopUpMenu from '../basic/PopUpMenu';
 import Icon from '../basic/Icon';
 
-const ColorMenu = ({ color, onSetColor, className }) => {
+const ColorMenu = ({ color, onSetColor, className, position }) => {
   const colors = ['white', 'red', 'orange', 'yellow', 'grey', 'blue', 'teal', 'green'];
 
   const circles = colors.map((item, i) => {
@@ -24,7 +24,7 @@ const ColorMenu = ({ color, onSetColor, className }) => {
       className={`${styles.colorMenu} ${className}`}
       name="palette"
     >
-      <PopUpMenu className={styles.popupMenu} >
+      <PopUpMenu position={position} className={styles.popupMenu} >
         <div className={styles.palette}>
           {circles}
         </div>
@@ -37,10 +37,13 @@ export default ColorMenu;
 
 ColorMenu.defaultProps = {
   color: 'white',
+  className: '',
+  position: 'top',
 };
 
 ColorMenu.propTypes = {
   color: PropTypes.string.isRequired,
   onSetColor: PropTypes.func.isRequired,
   className: PropTypes.string,
+  position: PropTypes.oneOf(['top', 'buttom', 'left', 'right']),
 };

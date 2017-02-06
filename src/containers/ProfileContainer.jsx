@@ -16,12 +16,8 @@ const mapDispatchToProps = dispatch => ({
 const mergeProps = (stateProps, dispatchProps, ownProps) => ({
   ...ownProps,
   items: [
-    {
-      label: 'LogOut',
-      // iconName: 'exit_to_app',
-      func: dispatchProps.onClick,
-      to: '/login',
-    },
+    { label: 'Settings', iconName: 'settings', to: '/settings' },
+    { label: 'LogOut', iconName: 'exit_to_app', func: dispatchProps.onClick, to: '/login' },
   ],
   user: stateProps.user,
   fetchUser: dispatchProps.fetchUser,
@@ -33,11 +29,11 @@ class ProfileContainer extends Component {
   }
 
   render() {
+    const { user, items } = this.props;
     return (
       <div>
-        <Profile user={this.props.user} items={this.props.items} />
+        <Profile user={user} items={items} />
       </div>
-
     );
   }
 }
@@ -46,5 +42,6 @@ export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ProfileC
 
 ProfileContainer.propTypes = {
   fetchUser: PropTypes.func.isRequired,
-  user: PropTypes.object,
+  user: PropTypes.object.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object),
 };

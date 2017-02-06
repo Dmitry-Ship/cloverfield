@@ -1,13 +1,18 @@
 circle($size)
-  size $size $size
+  width $size
+  height $size
   border-radius 50%
 
 abs-center()
-  absolute top 50% left 50%
+  position absolute
+  top 50%
+  left 50%
   transform translate(-50%, -50%)
 
 abs-center-margin($px)
-  absolute top 50% left 50%
+  position absolute
+  top 50%
+  left 50%
   transform translateX(-50%)
   margin-top -1*$px
 

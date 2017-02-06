@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-// import './styles/index.styl'; // do i even need this?
+import './styles/index.styl'; // do i even need this?
 
 import MainPage from './components/pages/MainPage';
 import AboutPage from './components/pages/AboutPage';

@@ -3,13 +3,12 @@ import React, { PropTypes } from 'react';
 import { media, figure, body, title } from './MediaObject.styl';
 
 import Icon from '../Icon';
-import Heading from '../Heading';
 
 const MediaObject = ({ className, mediaClass, contentClass, name, titleText, children }) => (
   <div className={`${media} ${className}`}>
     <Icon name={name} className={`${figure} ${mediaClass}`} />
     <div className={`${body} ${contentClass}`}>
-      <Heading size={3} className={title}>{titleText}</Heading>
+      <h3 className={title}>{titleText}</h3>
       {children}
     </div>
   </div>
@@ -20,6 +19,7 @@ export default MediaObject;
 MediaObject.defaultProps = {
   name: 'face',
   className: '',
+  mediaClass: '',
   contentClass: '',
 };
 

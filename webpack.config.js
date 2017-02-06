@@ -1,22 +1,37 @@
 const webpack = require('webpack');
 const path = require('path');
 const values = require('postcss-modules-values');
-const postcssNormalize = require('postcss-normalize');
 const postcssCssnext = require('postcss-cssnext');
+const postcssImport = require('postcss-import');
 const colorFunction = require('postcss-color-function');
 const lost = require('lost');
 const rupture = require('rupture');
-const nib = require('nib');
 
 module.exports = {
   devtool: 'source-map',
-  entry: [
-    './src/index',
-    'webpack-hot-middleware/client',
-  ],
+  entry: {
+    app: [
+      './src/index',
+      'webpack-hot-middleware/client',
+    ],
+    vendor: [
+      'react',
+      'react-router',
+      'react-redux',
+      'redux',
+      'redux-thunk',
+      'axios',
+      'react-dom',
+      'react-cookie',
+      'react-masonry-component',
+      'react-textarea-autosize',
+      'redux-logger',
+      'react-hot-loader',
+    ],
+  },
   output: {
     path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     publicPath: '/',
   },
   resolve: {
@@ -72,19 +87,34 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [
-          postcssNormalize,
+          postcssImport,
           postcssCssnext,
           values,
           lost,
           colorFunction,
         ],
         stylus: {
-          use: [rupture(), nib()],
-          import: ['~rupture/rupture/index.styl', '~nib/lib/nib/index.styl'],
+          use: [rupture()],
+          import: ['~rupture/rupture/index.styl'],
         },
       },
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+       // Specify the common bundle's name.
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    // new HtmlWebpackPlugin({
+    //   template: 'index.html',
+    //   filename: 'index.html',
+    //   inject: 'body',
+    // }),
+    // new webpack.optimize.UglifyJsPlugin(),
+    // new webpack.DefinePlugin({
+    //   'process.env.NODE_ENV': 'production',
+    // }),
+    // new webpack.optimize.AggressiveMergingPlugin(),
   ],
+
 };

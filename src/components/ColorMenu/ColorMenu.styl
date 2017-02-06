@@ -17,7 +17,8 @@
       display block
 
 .palette
-  size 150px auto
+  width 150px
+  height auto
   flex-wrap wrap
   justify-content space-around
   display flex
@@ -25,23 +26,15 @@
 .circle
   circle(28px)
   margin 4px 4px
-  transition all 300ms ease-in-out
   cursor pointer
   &:first-child
-    border grey
+    border-color grey
   &:hover
     border 2px solid flat_wet_asphalt
 
 .chosen
   composes: circle
   border 2px solid black
-
-.popupMenu
-  display none
-  tooltip(white, 10px, bottom)
-  transform translateX(-50%)
-  bottom calc(100% + 10px)
-  left 50%
 
 .red
   composes circle

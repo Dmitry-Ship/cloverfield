@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import TextField from '../basic/TextField';
 import FileUploader from '../basic/FileUploader';
 import Form from '../basic/Form';
-import Button from '../basic/Button';
 
 import { input } from './SignUpForm.styl';
 
@@ -77,8 +76,7 @@ export default class SignUpForm extends Component {
       <Form onSubmit={this.handleSubmit}>
 
         <FileUploader
-          placeholder="Add a userpic"
-          fileType="image/*"
+          label="Select file"
           className={input}
           onChange={this.handleUserpicChange}
           // required
@@ -128,9 +126,6 @@ export default class SignUpForm extends Component {
           onChange={this.handleConfirmPasswordChange}
           required
         />
-
-        <Button type="submit" label="Submit" />
-
       </Form>
     );
   }

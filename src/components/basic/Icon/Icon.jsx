@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Icon = ({ children, name, onClick, className, size }) => {
+const Icon = ({ children, name, className, onClick, size }) => {
   const style = {
     fontSize: size,
   };
@@ -8,7 +8,7 @@ const Icon = ({ children, name, onClick, className, size }) => {
     <i
       style={style}
       onClick={onClick}
-      className={`icon ${className} material-icons`}
+      className={`${className} material-icons`}
     >
       {name}
       {children}
@@ -25,8 +25,8 @@ Icon.defaultProps = {
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
   children: PropTypes.any,
+  onClick: PropTypes.func,
   className: PropTypes.string,
   size: PropTypes.string,
 };

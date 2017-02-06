@@ -1,18 +1,70 @@
 @value colors "../../../styles/colors.styl";
 @value accent from colors;
 
+
+mainColor = white
+pointerSize = 10px
+
 .popupMenu
   display none
-  composes fancy-shadow from 'styles/shadows.styl'
+  composes level-3 from 'styles/shadows.styl'
   padding 10px 0
   color black
   z-index 2
+  position absolute
+  text-align center
+  background mainColor
+  &::after, ::before
+    content ""
+    border pointerSize solid
+    border-color transparent transparent mainColor transparent
+    position absolute
 
-.list
-  padding 0
-  margin 0
+.bottom
+  composes popupMenu
+  transform translateX(-50%)
+  top 'calc(100% + %s)' % pointerSize
+  left 50%
+  &::after, ::before
+    bottom 100%
+    left 50%
+    transform translateX(-50%)
+    border-color transparent transparent mainColor transparent
 
-.item
+.top
+  composes popupMenu
+  transform translateX(-50%)
+  bottom 'calc(100% + %s)' % pointerSize
+  left 50%
+  &::after, ::before
+    top 100%
+    left 50%
+    transform translateX(-50%)
+    border-color mainColor transparent transparent transparent
+
+.right
+  composes popupMenu
+  transform translateY(-50%)
+  left 'calc(100% + %s)' % pointerSize
+  top 50%
+  &::after, ::before
+    top 50%
+    right 100%
+    transform: translateY(-50%)
+    border-color: transparent mainColor transparent transparent
+
+.left
+  composes popupMenu
+  transform translateY(-50%)
+  right 'calc(100% + %s)' % pointerSize
+  top 50%
+  &::after, ::before
+    top 50%
+    left 100%
+    transform: translateY(-50%)
+    border-color: transparent transparent transparent mainColor
+
+.menuItem
   display block
   padding 12px 15px
   white-space nowrap
@@ -26,5 +78,5 @@
     .item__link
       color accent
 
-.item__link
+.menuItem__link
   color black

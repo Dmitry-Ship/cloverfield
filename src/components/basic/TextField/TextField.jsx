@@ -9,7 +9,7 @@ export default class TextField extends Component {
   }
 
   handleChange(e) {
-    this.props.onChange(e.target.value)
+    this.props.onChange(e.target.value);
   }
 
   render() {
@@ -45,6 +45,10 @@ export default class TextField extends Component {
 TextField.defaultProps = {
   className: '',
   type: 'text',
+  name: null,
+  placeholder: 'Placeholder',
+  label: null,
+  required: false,
 };
 
 TextField.propTypes = {

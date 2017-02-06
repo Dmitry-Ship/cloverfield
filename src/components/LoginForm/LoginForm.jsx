@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 import TextField from '../basic/TextField';
 import Form from '../basic/Form';
-import Button from '../basic/Button';
 
 import { input } from './LoginForm.styl';
 
@@ -28,9 +27,9 @@ export default class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const email = this.state.email;
-    const password = this.state.password;
+    const { email, password } = this.state;
     const data = { email, password };
+
     this.props.onSubmit(data);
   }
 
@@ -55,11 +54,11 @@ export default class LoginForm extends Component {
           onChange={this.handlePasswordChange}
           required
         />
-        <Button
-          type="submit"
-          label="Submit"
-        />
       </Form>
     );
   }
 }
+
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

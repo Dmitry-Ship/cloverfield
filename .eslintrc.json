@@ -1,17 +1,24 @@
 {
-    "extends": "airbnb",
-    "installedESLint": true,
-    "plugins": [
-        "react",
-        "jsx-a11y",
-        "import"
-    ],
-    "rules": {
-      "linebreak-style": 0,
-      "no-underscore-dangle": 0
-    },
-      "env": {
-      "browser": true,
-      "node": true
+  "extends": "airbnb",
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "jsx": true
     }
+  },
+  "rules": {
+    "linebreak-style": 0,
+    "no-underscore-dangle": 0
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
 }

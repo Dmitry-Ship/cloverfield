@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 import { page } from './MainPage.styl';
 
@@ -23,6 +23,14 @@ export default class MainPage extends Component {
         <CreationFormContainer />
         <NotesListContainer params={params} />
       </Page>
-    )
+    );
   }
 }
+
+// MainPage.defaultProps = {
+//   params: '',
+// };
+//
+// MainPage.propTypes = {
+//   params: PropTypes.string,
+// };

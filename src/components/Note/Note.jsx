@@ -13,7 +13,6 @@ import Icon from '../basic/Icon';
 import Card from '../basic/Card';
 import ColorMenu from '../ColorMenu';
 import ContentEditable from '../basic/ContentEditable';
-
 import TagArea from '../TagArea';
 
 const Note = ({
@@ -26,9 +25,11 @@ const Note = ({
   onUpdateTitle,
   onUpdateContent }) => (
     <Card className={`${styles.note} ${styles[note.color]}`}>
+
       <div className={content}>
         {note.image && <img className={image} src={`/${note.image}`} alt="note-mage" />}
         <ContentEditable
+          style={{ position: 'relative' }}
           text={note.title}
           className={contentEditable}
           onBlur={val => onUpdateTitle(val, note._id)}

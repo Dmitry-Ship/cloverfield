@@ -15,7 +15,7 @@ router.use('/notes', isLoggedIn, notesController);
 router.use('/user', isLoggedIn, userController);
 router.use('/image', isLoggedIn, imagesController);
 router.get('*', (req, res) => res.sendFile(indexFile));
-router.use('/login', checkUser, loginController);
+router.use('/login', loginController);
 router.use('/signup', signupController);
 
 module.exports = router;

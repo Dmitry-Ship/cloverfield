@@ -1,38 +1,43 @@
 @import "../../../styles/index.styl"
 @value colors "../../../styles/colors.styl";
 @value accent from colors;
-
+@value bg from colors;
 .wrapper
   abs-center()
 
-.loader, .spinny, .bouncy, .clock, .pulse, .triple-dots
+.loadingText
+  color accent
+  text-align: center;
+
+.loader
+  background-color: bg
   margin auto
   circle(100px)
-  background color__bg
   position relative
   &:before, &:after
     circle(100px)
     content ''
     display block
 
-.spinny:after
-  // composes loader
-  absolute top -4px left -4px
-  border 4px solid transparent
-  border-top-color accent
-  border-bottom-color accent
-  animation spinny 1s linear infinite
+.spinny
+  composes loader
+  &:after
+    absolute top -4px left -4px
+    border 4px solid transparent
+    border-top-color accent
+    border-bottom-color accent
+    animation spinny 1s linear infinite
 
 @keyframes spinny
   0%
     transform rotate(0deg) scale(1)
   50%
-    transform rotate(180deg) scale(1.2)
+    transform rotate(180deg) scale(1.5)
   100%
     transform rotate(360deg) scale(1)
 
 .bouncy
-  // composes loader
+  composes loader
   animation spin 2s linear infinite
   &:before, &:after
     height 20px
@@ -58,7 +63,7 @@
 
 
 .clock
-  // composes loader
+  composes loader
   background none
   border 4px solid #eee
   &::after
@@ -79,12 +84,12 @@
 
 
 .pulse
-  // composes loader
+  composes loader
   &:before, &:after
     absolute top 50% left 50%
     margin-left -50px
     margin-top -50px
-    background $color__action
+    background accent
   &:before
     animation pulse .5s linear infinite
   &:after
@@ -99,27 +104,30 @@
     opacity 0
 
 .triple-dots
-  // composes loader
-  height 0px
-  width 0px
-  position relative
+  composes loader
+  background: transparent
   .dot
     display block
     circle(20px)
     background accent
     position absolute
-    top 0px
+    top 50%
     &:nth-child(1)
-      left -40px
+      transform: translateX(-50%);
       animation bounce .3s ease-in-out infinite
     &:nth-child(2)
+      left: 50%
+      transform: translateX(-50%);
       animation bounce .3s ease-in-out 0.1s infinite
     &:nth-child(3)
-      left 40px
+      left: 100%
+      transform: translateX(-50%);
       animation bounce .3s ease-in-out 0.2s infinite
 
 @keyframes bounce
   0%
-    transform translateY(0px)
+    top 0%
   50%
-    transform translateY(-30px)
+    top 50%
+  100%
+    top 0%

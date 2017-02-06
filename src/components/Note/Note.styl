@@ -10,14 +10,18 @@
 
 .note
   font-family Rubik
+  composes dynamic from 'styles/shadows.styl'
   line-height 20px
   width 250px
   background white
   margin-bottom 30px
   padding 30px 15px 15px 15px
-  transition background 300ms ease-in-out
+  // transition all 300ms ease-in-out
   +tablet()
+    width 50%
+  +below(550px)
     width 100%
+
   &:hover
     .actions__icon
       opacity 1
@@ -31,6 +35,7 @@
     color black
 
 .contentEditable
+  composes dynamic-input from 'styles/shadows.styl'
   text-align justify
   margin 0 0 10px 0
   padding 5px 10px
@@ -38,17 +43,12 @@
   border-radius 5px
   cursor pointer
   background rgba(white, 0)
+  transition: background 100ms ease-in-out
+  &:hover
+    background rgba(white, 0.2)
   &:focus
     background rgba(white, 0.3)
-    animation out 120ms forwards
 
-@keyframes out
-  0%
-    box-shadow 0 0 0px rgba(black, 0.5)
-  50%
-    box-shadow 0 0 20px rgba(black, 0.15)
-  100%
-    box-shadow 0 0 10px rgba(black, 0.3)
 
 .image
   width calc(100% + 30px)

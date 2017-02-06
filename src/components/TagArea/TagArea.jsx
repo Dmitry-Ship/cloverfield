@@ -58,6 +58,12 @@ export default class TagArea extends Component {
     // for (let i = 0; i < suggTags.length; i++) {
     //   list.push({text: suggTags[i], func: this.setTag })
     // }
+    const list = [
+      { label: 'one', func: () => console.log('HI') },
+      { label: 'two', func: () => console.log('HI') },
+      { label: 'three', func: () => console.log('HI') },
+      { label: 'four', func: () => console.log('HI') },
+    ]
     return (
       <div className={`${tagArea} ${className}`}>
         {tags.map((tag, i) => <Tag tagText={tag} key={i} onDeleteTag={onDeleteTag} />)}
@@ -71,7 +77,8 @@ export default class TagArea extends Component {
 
           <PopUpMenu
             className={input__suggestions}
-            // items={list}
+            position="bottom"
+            items={list}
           />
         </div>
       </div>
