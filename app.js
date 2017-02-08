@@ -18,7 +18,7 @@ mongoose.connect(config.database);
 
 db.on('error', err => console.log('cannot connect to Data Base', err));
 db.once('open', () => console.log('connected to Data Base'));
-console.log(process.env.NODE_ENV);
+
 if (isDeveloping) {
   const webpack = require('webpack');
   const webpackMiddleware = require('webpack-dev-middleware');

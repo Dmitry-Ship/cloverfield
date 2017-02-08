@@ -10,11 +10,12 @@ const userSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  notes: {
-    type: Array,
-    default: [],
-  },
+  notes: [{
+    type: [mongoose.Schema.ObjectId],
+    ref: 'Note',
+  }],
 });
+
 
 userSchema.pre('save', function (next) {
   const user = this;

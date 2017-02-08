@@ -6,7 +6,6 @@ const signupController = require('./signupController');
 const userController = require('./userController');
 const imagesController = require('./imagesController');
 const isLoggedIn = require('./isLoggedIn');
-const checkUser = require('./checkUser');
 
 const router = express.Router();
 const indexFile = path.join(__dirname, '../index.html');
