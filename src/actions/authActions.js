@@ -8,6 +8,7 @@ const loginSuccess = user => ({
   type: types.LOG_IN_SUCCESS,
   user,
 });
+
 const loginFailure = error => ({
   type: types.LOG_IN_FAILURE,
   error,

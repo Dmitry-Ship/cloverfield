@@ -12,15 +12,15 @@ const authReducer = (state = initialState, action) => {
   switch (type) {
     case types.LOG_IN:
     case types.SIGN_UP:
-      return { ...state, loggingIn: true };
+      return Object.assign({}, state, { loggingIn: true });
     case types.LOG_IN_SUCCESS:
     case types.SIGN_UP_SUCCESS:
-      return { ...state, loggingIn: false, isLoggedIn: true };
+      return Object.assign({}, state, { loggingIn: false, isLoggedIn: true });
     case types.LOG_IN_FAILURE:
     case types.SIGN_UP_FAILURE:
-      return { ...state, loggingIn: false, error };
+      return Object.assign({}, state, { loggingIn: false, error });
     case types.LOG_OUT_SUCCESS:
-      return { ...state, isLoggedIn: false };
+      return Object.assign({}, state, { isLoggedIn: false });
     default: return state;
   }
 };

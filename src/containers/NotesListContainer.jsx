@@ -6,7 +6,7 @@ import { fetchNotes } from '../actions/noteActions';
 
 const mapStateToProps = store => ({
   allNotes: store.noteReducer.notes,
-  loading: store.noteReducer.fetching,
+  isFetching: store.noteReducer.isFetching,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,11 +19,11 @@ class NotesListContainer extends Component {
   }
 
   render() {
-    const { params, loading, allNotes } = this.props;
+    const { params, isFetching, allNotes } = this.props;
     return (
       <NotesList
         params={params}
-        loading={loading}
+        isFetching={isFetching}
         allNotes={allNotes}
       />
     );
@@ -36,5 +36,5 @@ NotesListContainer.propTypes = {
   fetchNotes: PropTypes.func.isRequired,
   params: PropTypes.object,
   allNotes: PropTypes.arrayOf(PropTypes.object),
-  loading: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };

@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
         return res.status(400).send('Incorrect password');
       }
       const token = generateToken(user);
-      return res.status(200).json({ token: `JWT ${token}`, user });
+      return res.status(200).json({ token: `JWT ${token}` });
     });
   });
 });

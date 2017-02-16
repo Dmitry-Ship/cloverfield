@@ -1,0 +1,25 @@
+.wrapper
+
+.singleImage
+  position: relative;
+  // min-width: 50%
+  &:hover
+    > .deleteIcon
+      display: block;
+
+.deleteIcon
+  display: none;
+  background: rgba(black, .4)
+  border-radius: 5px
+  color: rgba(white, .4)
+  cursor: pointer;
+  position: absolute;
+  right 5%
+  top 5%
+  &:hover
+    color white
+
+.image
+  display: block;
+  width: 100%;
+  // height: 100px;

@@ -10,11 +10,11 @@ const userReducer = (state = initialState, action) => {
   const { type, user, error } = action;
   switch (type) {
     case types.FETCH_USER:
-      return { ...state, fetching: true };
+      return Object.assign({}, state, { fetching: true });
     case types.FETCH_USER_SUCCESS:
-      return { ...state, user, fetching: false };
+      return Object.assign({}, state, { user, fetching: false });
     case types.FETCH_USER_FAILURE:
-      return { ...state, fetching: false, error };
+      return Object.assign({}, state, { fetching: false, error });
     default: return state;
   }
 };

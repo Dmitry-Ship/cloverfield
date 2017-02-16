@@ -6,7 +6,7 @@ const path = require('path');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/');
+    cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
@@ -18,68 +18,114 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  Note.find({ user: req.user._id })
+  Note.find({ $and: [{ _user: req.user._id, isDeleted: false }] })
     .exec((err, notes) => {
       if (err) handleError(res, err, 404);
       else res.send(notes);
     });
 });
 
-router.post('/', upload.single('note-image'), (req, res) => {
-  const { user, file } = req;
-  const { title, content, color, tags } = req.body;
-  const image = file ? file.filename : '';
+router.post('/', upload.array('note-image', 5), (req, res) => {
+  const { user, files } = req;
+  const { title, body, color, tags } = req.body;
+  // const images = files.length > 0 ? file.filename : '';
+  const images = [];
+  if (files.length > 0) {
+    for (let i = 0; i < files.length; i++) {
+      images.push(files[i].filename);
+    }
+  }
 
   const newNote = new Note({
     title,
-    content,
+    body,
     color,
     tags: JSON.parse(tags),
-    image,
-    user: user._id,
+    images: images,
+    _user: user._id,
   });
 
   newNote.save((err, data) => {
-    if (err) { return handleError(res, err, 422); }
-    return Note.findById(data._id)
-      .populate('user')
-      .exec((findErr, note) => {
-        if (findErr) handleError(res, findErr, 404);
-        else res.status(200).send(note);
-      });
+    if (err) handleError(res, err, 422);
+    else res.status(200).send(data);
   });
 });
 
 router.delete('/:id', (req, res) => {
-  Note.findOneAndRemove({
+  Note.findOneAndUpdate({
     $and: [
       { _id: req.params.id },
-      { user: req.user._id },
+      { _user: req.user._id },
     ],
-  }, (err) => {
+  }, { isDeleted: true }, (err) => {
     if (err) handleError(res, err, 422);
     else res.send(req.params.id);
   });
 });
 
-router.put('/:id/tags', (req, res) => {
-  const type = Object.keys(req.body);
+router.delete('/:id/tags/:tag', (req, res) => {
+  Note.findOneAndUpdate({
+    $and: [
+      { _id: req.params.id },
+      { _user: req.user._id },
+    ],
+  },
+    { $pull: { tags: req.params.tag } },
+    { new: true, upsert: true },
+    (err, note) => {
+      if (err) handleError(res, err, 422);
+      else res.send(note);
+    });
+});
 
-  let option;
-  if (`${type}` === 'tags') {
-    option = { $push: { tags: req.body[type] } };
-  } else if (`${type}` === 'tagsDel') {
-    option = { $pull: { tags: req.body[type] } };
+router.post('/:id/tags', (req, res) => {
+  Note.findOneAndUpdate({
+    $and: [
+      { _id: req.params.id },
+      { _user: req.user._id },
+    ],
+  },
+    { $addToSet: { tags: req.body.tag } },
+    { new: true, upsert: true },
+    (err, note) => {
+      if (err) handleError(res, err, 422);
+      else res.send(note);
+    });
+});
+
+router.delete('/:id/images/:image', (req, res) => {
+  Note.findOneAndUpdate({
+    $and: [
+      { _id: req.params.id },
+      { _user: req.user._id },
+    ],
+  },
+    { $pull: { images: req.params.image } },
+    { new: true, upsert: true },
+    (err, note) => {
+      if (err) handleError(res, err, 422);
+      else res.send(note);
+    });
+});
+
+/// modify
+router.post('/:id/images', upload.single('note-image'), (req, res) => {
+  const { file } = req;
+
+  if (!file) {
+    return res.status(402).send('connot upload empty file');
   }
+
+  const image = file.filename;
 
   Note.findOneAndUpdate({
     $and: [
       { _id: req.params.id },
-      { user: req.user._id },
+      { _user: req.user._id },
     ],
   },
-    option,
-    { new: true, upsert: true }, // OMG!!!
+    { $addToSet: { images: image } },
+    { new: true, upsert: true },
     (err, note) => {
       if (err) handleError(res, err, 422);
       else res.send(note);
@@ -87,16 +133,14 @@ router.put('/:id/tags', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const type = Object.keys(req.body);
-  const option = { [type]: req.body[type] };
   Note.findOneAndUpdate({
     $and: [
       { _id: req.params.id },
-      { user: req.user._id },
+      { _user: req.user._id },
     ],
   },
-    option,
-    { new: true, upsert: true }, // OMG!!!
+    req.body,
+    { new: true, upsert: true },
     (err, note) => {
       if (err) handleError(res, err, 422);
       else res.send(note);

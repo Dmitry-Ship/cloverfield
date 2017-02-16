@@ -1,17 +1,17 @@
 @value colors "../../../styles/colors.styl";
-@value primary--light from colors;
-@value primary--dark from colors;
+@value secondary from colors;
+@value primary from colors;
 
 .textField
-  width: 100%
-  height: 45px
+  width 100%
+  height 45px
   padding 0 15px
   border none
-  border-left 3px solid primary--dark
-  border-right 3px solid primary--dark
-  background primary
-  transition all 300ms ease-in-out
+  background secondary
+  transition all 150ms ease-in-out
+  &::-webkit-input-placeholder
+    color: white;
   &:focus
-    background white
-    border-left 3px solid black
-    border-right 3px solid black
+    background primary
+    &::-webkit-input-placeholder
+      color: secondary;

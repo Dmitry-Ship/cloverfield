@@ -1,19 +1,19 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import { topBar, logo, navBar } from './TopBar.styl';
+import { topBar, navBar } from './TopBar.styl';
 
 import Row from '../basic/Row';
 import NavBar from '../basic/NavBar';
-import ProfileContainer from '../../containers/ProfileContainer';
-import SideMenuContainer from '../../containers/SideMenuContainer';
+import Logo from '../basic/Logo';
 
-const TopBar = ({ appName, navBarItems, isLoggedIn, onClick }) => (
+import ProfileContainer from '../../containers/ProfileContainer';
+
+const TopBar = ({ appName, navBarItems, isLoggedIn }) => (
   <Row align="space-between" className={topBar} >
-    <SideMenuContainer />
-    <h2>
-      <Link className={logo} to="/" >{appName}</Link>
-    </h2>
-    <NavBar className={navBar} items={navBarItems}>
+    <Logo >
+      {appName}
+    </Logo>
+
+    <NavBar className={navBar} items={navBarItems} >
       {isLoggedIn && <ProfileContainer />}
     </NavBar>
   </Row>
@@ -25,5 +25,4 @@ TopBar.propTypes = {
   appName: PropTypes.string.isRequired,
   navBarItems: PropTypes.arrayOf(PropTypes.object).isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
-  onClick: PropTypes.func,
 };

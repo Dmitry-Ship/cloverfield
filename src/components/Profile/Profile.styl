@@ -1,20 +1,49 @@
-@import '../../styles/index.styl'
+@value colors "../../styles/colors.styl";
+@value secondary from colors;
+@value primary from colors;
 
 .profile
-  composes navBarItem from 'styles/navBarItems.styl'
-  height 55px
   position relative
-  display flex
+  margin: 0 .4rem
   cursor pointer
   &:hover
     .popUpMenu
       display block
 
-.userinfo
-  line-height 55px
-  padding-right 10px
+.item
+  text-align left
+  border-bottom 1px solid primary
+
+.link
   margin 0
+  color secondary
+  display block
+  padding 20px
+  transition color 150ms ease-in-out
+  font-size .9rem
+  &:hover
+    color black
+  +below(600px)
+    padding 40px 20px
+
+.name
+  display block
+  color black
+  margin-bottom 10px
+  +below(600px)
+    margin-bottom 30px
 
 .avatar
-  margin 10px
-  circle(35px)
+  height 30px
+  width 30px
+  border-radius 50%
+
+.popUpMenu
+  width: 200px
+
+  // display block
+  +below(600px)
+    box-shadow none
+    position fixed
+    width 100%
+    top 55px

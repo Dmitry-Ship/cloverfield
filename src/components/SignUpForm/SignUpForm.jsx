@@ -1,40 +1,38 @@
 import React, { Component, PropTypes } from 'react';
 
 import TextField from '../basic/TextField';
-import FileUploader from '../basic/FileUploader';
 import Form from '../basic/Form';
-
+import FormFileUploader from '../basic/FormFileUploader';
 import { input } from './SignUpForm.styl';
 
 export default class SignUpForm extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: '',
-      lastName: '',
+      fullName: '',
+      username: '',
       email: '',
       password: '',
-      confirmPassword: '',
-      userpic: '',
+      userpic: null,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleUserpicChange = this.handleUserpicChange.bind(this);
-    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
-    this.handleLastNameChange = this.handleLastNameChange.bind(this);
+    this.handleFullNameChange = this.handleFullNameChange.bind(this);
+    this.handlUsernameChange = this.handlUsernameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
-  }
-  handleUserpicChange(e) {
-    this.setState({ userpic: e.target.files[0] });
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
-  handleFirstNameChange(value) {
-    this.setState({ firstName: value });
+  handleImageUpload(value) {
+    this.setState({ userpic: value });
   }
 
-  handleLastNameChange(value) {
-    this.setState({ lastName: value });
+  handleFullNameChange(value) {
+    this.setState({ fullName: value });
+  }
+
+  handlUsernameChange(value) {
+    this.setState({ username: value });
   }
 
   handleEmailChange(value) {
@@ -45,59 +43,42 @@ export default class SignUpForm extends Component {
     this.setState({ password: value });
   }
 
-  handleConfirmPasswordChange(value) {
-    this.setState({ confirmPassword: value });
-  }
-
   handleSubmit(e) {
     e.preventDefault();
-    const { firstName, lastName, email, password, confirmPassword, userpic } = this.state;
+    const { fullName, username, email, password, userpic } = this.state;
+
     const formData = new FormData();
 
-    formData.append('username', `${firstName} ${lastName}`);
+    formData.append('fullName', fullName);
+    formData.append('username', username);
     formData.append('email', email);
     formData.append('password', password);
-    formData.append('avatar', userpic);
+    formData.append('avatar', userpic, userpic.name);
 
-    if (password === confirmPassword && password !== '' && confirmPassword !== '') {
-      this.props.onSubmit(formData);
-    } else {
-      alert('passwords don`t match');
-    }
+    this.props.onSubmit(formData);
   }
 
   render() {
-    const { firstName,
-            lastName,
+    const { fullName,
+            username,
             email,
-            password,
-            confirmPassword } = this.state;
+            password } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
 
-        <FileUploader
-          label="Select file"
+        <TextField
+          placeholder="Full Name"
+          value={fullName}
           className={input}
-          onChange={this.handleUserpicChange}
-          // required
+          onChange={this.handleFullNameChange}
         />
 
         <TextField
-          type="text"
-          placeholder="First Name"
-          value={firstName}
+          placeholder="Username"
+          value={username}
           className={input}
-          onChange={this.handleFirstNameChange}
-          // required
-        />
-
-        <TextField
-          type="text"
-          placeholder="Last Name"
-          value={lastName}
-          className={input}
-          onChange={this.handleLastNameChange}
-          // required
+          onChange={this.handlUsernameChange}
+          required
         />
 
         <TextField
@@ -118,14 +99,7 @@ export default class SignUpForm extends Component {
           required
         />
 
-        <TextField
-          type="text"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          className={input}
-          onChange={this.handleConfirmPasswordChange}
-          required
-        />
+        <FormFileUploader className={input} onChange={this.handleImageUpload} />
       </Form>
     );
   }

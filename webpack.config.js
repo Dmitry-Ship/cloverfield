@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const values = require('postcss-modules-values');
-const postcssCssnext = require('postcss-cssnext');
-const postcssImport = require('postcss-import');
 const colorFunction = require('postcss-color-function');
 const lost = require('lost');
 const rupture = require('rupture');
@@ -37,7 +35,7 @@ module.exports = {
   resolve: {
     modules: [
       path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, 'src')
+      path.resolve(__dirname, 'src'),
     ],
     extensions: ['.js', '.jsx', 'css', 'styl', 'scss'],
   },
@@ -61,7 +59,7 @@ module.exports = {
               localIdentName: '[name]__[local]___[hash:base64:5]',
             },
           },
-          'postcss-loader'
+          'postcss-loader',
         ],
       },
       {
@@ -87,8 +85,6 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [
-          postcssImport,
-          postcssCssnext,
           values,
           lost,
           colorFunction,
@@ -101,7 +97,6 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-       // Specify the common bundle's name.
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

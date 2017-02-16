@@ -1,16 +1,27 @@
 import React, { PropTypes } from 'react';
-
-import { userinfo, profile, avatar, popUpMenu } from './Profile.styl';
+import { Link } from 'react-router';
+import { item, profile, avatar, popUpMenu, link, name } from './Profile.styl';
 
 import Avatar from '../basic/Avatar';
 import PopUpMenu from '../basic/PopUpMenu';
 
-const Profile = ({ user, items, className, children }) => (
+const Profile = ({ user, className, onClick, profileRoute, editRoute }) => (
   <div className={`${profile} ${className}`} >
     <Avatar className={avatar} src={user.userpic} />
-    <p className={userinfo} >{user.username}</p>
-    {children}
-    <PopUpMenu className={popUpMenu} items={items} position="bottom" />
+    <PopUpMenu className={popUpMenu} position="bottom" >
+      <div className={item} >
+        <Link to={profileRoute} className={link} >
+          <span className={name} >{user.fullName || user.username}</span>
+          <span>View Profile</span>
+        </Link>
+      </div>
+      <div className={item} >
+        <Link to={editRoute} className={link} >Edit Profile</Link>
+      </div>
+      <div className={item} onClick={onClick} >
+        <p className={link} >Log Out</p>
+      </div>
+    </PopUpMenu>
   </div>
 );
 
@@ -24,6 +35,6 @@ Profile.defaultProps = {
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
   className: PropTypes.string,
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+
   children: PropTypes.any,
 };

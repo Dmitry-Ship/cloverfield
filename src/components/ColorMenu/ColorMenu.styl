@@ -1,5 +1,4 @@
 
-@import "../../styles/mixins.styl"
 @value colors "../../styles/colors.styl";
 @value flat_wet_asphalt from colors;
 @value note_green from colors;
@@ -24,7 +23,9 @@
   display flex
 
 .circle
-  circle(28px)
+  border-radius: 50%
+  width: 28px
+  height: 28px
   margin 4px 4px
   cursor pointer
   &:first-child

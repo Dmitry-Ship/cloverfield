@@ -9,6 +9,7 @@ export default class AboutPage extends Component {
     return (
       <Page className={page}>
         <h1>This is the About Page</h1>
+        <h2>hi</h2>
       </Page>
     );
   }

@@ -1,7 +1,7 @@
 @value colors "../../../styles/colors.styl";
-@value secondary from colors;
-@value secondary--light from colors;
-@value secondary--dark from colors;
+@value accent from colors;
+@value accent--light from colors;
+@value accent--dark from colors;
 
 .button
   border none
@@ -13,22 +13,16 @@
 
 .primary
   composes button
-  background secondary
+  background accent
   color white
   &:hover
-    background secondary--light
-  &:active
-    background secondary--dark
+    background accent--dark
 
 .secondary
   composes button
   background transparent
-  border 3px solid secondary
-  color secondary
+  border 3px solid accent
+  color accent
   &:hover
-    border 3px solid secondary--light
-    color secondary--light
-  &:active
-    border 3px solid secondary--dark
-    color secondary--dark
-    background transparent
+    background: accent
+    color white

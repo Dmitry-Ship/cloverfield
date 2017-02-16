@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import './styles/index.styl'; // do i even need this?
+import './styles/index.styl';
 
 import MainPage from './components/pages/MainPage';
 import AboutPage from './components/pages/AboutPage';
@@ -36,7 +36,7 @@ function isLoggedIn(nextState, replace, next) {
   next();
 }
 
-render((
+render(
   <Provider store={store} >
     <Router history={browserHistory}>
       <Route path="/" component={MainLayout} >
@@ -45,8 +45,8 @@ render((
         <Route path="about" component={AboutPage} onEnter={isNotLoggedIn} />
         <Route path="login" component={LoginPage} onEnter={isLoggedIn} />
         <Route path="signup" component={SignUpPage} onEnter={isLoggedIn} />
+        <Route path="*" component={NotFound} />
       </Route>
-      <Route path="*" component={NotFound} />
     </Router>
   </Provider>
-), document.getElementById('root'));
+, document.getElementById('root'));

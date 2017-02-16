@@ -2,11 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import Textarea from 'react-textarea-autosize';
 
 import styles, {
-  uploader,
   form,
   title,
   button,
-  content,
+  body,
   tagArea,
   wrapper,
   submition,
@@ -19,8 +18,8 @@ import TagArea from '../TagArea';
 import Form from '../basic/Form';
 import Row from '../basic/Row';
 import Icon from '../basic/Icon';
-import FileUploader from '../basic/FileUploader';
-import ContentEditable from '../basic/ContentEditable';
+import NoteFileUploader from '../NoteFileUploader';
+import AttachedImages from '../basic/AttachedImages';
 
 export default class CreationForm extends Component {
   constructor(props) {
@@ -28,20 +27,22 @@ export default class CreationForm extends Component {
     this.state = {
       className: form,
       titleText: '',
-      contentText: '',
+      bodyText: '',
       color: 'white',
-      image: {},
+      previews: [],
+      imageFiles: [],
       tags: [],
     };
     this.handleFocus = this.handleFocus.bind(this);
     this.handleClickOut = this.handleClickOut.bind(this);
     this.create = this.create.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleContentChange = this.handleContentChange.bind(this);
+    this.handleBodyChange = this.handleBodyChange.bind(this);
     this.setColor = this.setColor.bind(this);
     this.handleImage = this.handleImage.bind(this);
     this.handleAddTag = this.handleAddTag.bind(this);
     this.handleDeleteTag = this.handleDeleteTag.bind(this);
+    this.deletePreview = this.deletePreview.bind(this);
   }
 
   componentDidMount() {
@@ -52,35 +53,68 @@ export default class CreationForm extends Component {
     document.body.removeEventListener('click', this.handleClickOut);
   }
 
-
   setColor(value) {
     this.setState({ color: value });
   }
 
-  handleImage(e) {
-    const newImage = e.target.files[0];
+  handleImage(file, preview) {
+    const oldFiles = this.state.imageFiles;
 
-    this.setState({ image: newImage });
+    oldFiles.push(file);
+
+    const oldPreviews = this.state.previews;
+
+    oldPreviews.push(preview);
+    this.setState({
+      imageFiles: oldFiles,
+      previews: oldPreviews,
+    });
   }
+
+  deletePreview(file, preview) {
+    const oldFiles = this.state.imageFiles;
+    const i = oldFiles.indexOf(file);
+
+    oldFiles.splice(i, 1);
+
+    const oldPreviews = this.state.imageFiles;
+    const j = oldPreviews.indexOf(preview);
+
+    oldPreviews.splice(j, 1);
+
+    this.setState({
+      imageFiles: oldFiles,
+      previews: oldPreviews,
+    });
+  }
+
 
   create(e) {
     e.preventDefault();
-    const { titleText, contentText, color, tags, image } = this.state;
+
+    const { titleText, bodyText, color, tags, imageFiles } = this.state;
 
     const formData = new FormData();
     formData.append('title', titleText);
-    formData.append('content', contentText);
+    formData.append('body', bodyText);
     formData.append('color', color);
     formData.append('tags', JSON.stringify(tags));
-    formData.append('note-image', image, image.name);
+
+    if (imageFiles.length > 0) {
+      for (let i = 0; i < imageFiles.length; i++) {
+        formData.append('note-image', imageFiles[i], imageFiles[i].name);
+      }
+    }
+
     this.props.onSubmit(formData);
 
     this.setState({
       titleText: '',
-      contentText: '',
+      bodyText: '',
       className: form,
       color: 'white',
-      image: {},
+      previews: [],
+      imageFiles: [],
       tags: [],
     });
   }
@@ -102,16 +136,10 @@ export default class CreationForm extends Component {
     this.setState({ tags: oldTags });
   }
 
-  handleContentChange(e) {
-    const newContent = e.target.value;
+  handleBodyChange(e) {
+    const newBody = e.target.value;
 
-    if (content.length > this.props.maxLength) return;
-
-    const validatedContent = this.props.validation ?
-                             this.props.validation(content) :
-                             newContent;
-
-    this.setState({ contentText: validatedContent });
+    this.setState({ bodyText: newBody });
   }
 
   handleTitleChange(e) {
@@ -131,15 +159,12 @@ export default class CreationForm extends Component {
   }
 
   render() {
-    const {
-      titlePlaceholder,
-      contentPlaceholder,
-      maxLength } = this.props;
-    const { contentText, titleText, className, color } = this.state;
-
+    const { titlePlaceholder, bodyPlaceholder } = this.props;
+    const { bodyText, titleText, className, color, previews } = this.state;
     return (
       <div
-        className={wrapper} onClick={this.handleFocus}
+        className={wrapper}
+        onClick={this.handleFocus}
         ref={c => this.theForm = c}
       >
         <Form
@@ -148,6 +173,17 @@ export default class CreationForm extends Component {
           className={`${className} ${styles[color]}`}
           onSubmit={this.create}
         >
+          {previews && <AttachedImages
+            onDelete={this.deletePreview}
+            images={previews}
+          />}
+
+          {/* <ContentEditableTest
+            className={title}
+            onChange={this.handleTitleChange}
+            html={titleText}
+            placeholder={titlePlaceholder}
+          /> */}
           <Textarea
             className={title}
             onChange={this.handleTitleChange}
@@ -156,11 +192,10 @@ export default class CreationForm extends Component {
           />
 
           <Textarea
-            className={content}
-            onChange={this.handleContentChange}
-            value={contentText}
-            maxLength={maxLength}
-            placeholder={contentPlaceholder}
+            className={body}
+            onChange={this.handleBodyChange}
+            value={bodyText}
+            placeholder={bodyPlaceholder}
           />
 
           <TagArea
@@ -172,13 +207,9 @@ export default class CreationForm extends Component {
 
           <div className={submition} >
             <Row className={attachments} auto={false} >
-              <label htmlFor="CHECK">
-                <Icon className={attachments__icon} name="image" />
-              </label>
-
-              <FileUploader
+              <NoteFileUploader
                 id="CHECK"
-                className={uploader}
+                className={attachments__icon}
                 fileType="image/*"
                 onChange={this.handleImage}
               />
@@ -188,12 +219,10 @@ export default class CreationForm extends Component {
                 onSetColor={this.setColor}
                 className={attachments__icon}
               />
-
               <Icon className={attachments__icon} name="more_vert" />
             </Row>
           </div>
         </Form>
-
       </div>
     );
   }
@@ -202,13 +231,11 @@ export default class CreationForm extends Component {
 CreationForm.defaultProps = {
   color: 'white',
   titlePlaceholder: 'Title',
-  contentPlaceholder: 'Content',
+  bodyPlaceholder: 'Content',
 };
 
 CreationForm.propTypes = {
   titlePlaceholder: PropTypes.string,
-  contentPlaceholder: PropTypes.string,
-  maxLength: PropTypes.number,
+  bodyPlaceholder: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
-  validation: PropTypes.func,
 };

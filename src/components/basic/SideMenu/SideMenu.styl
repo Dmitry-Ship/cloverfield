@@ -1,6 +1,6 @@
 @value colors "../../../styles/colors.styl";
+@value secondary from colors;
 @value accent from colors;
-
 
 .wrapper
   display: none;
@@ -21,7 +21,7 @@
   position: fixed;
   top 55px
   right 100%
-  background accent
+  background secondary
   width 100%
   height calc(100vh - 55px)
   z-index 1
@@ -47,7 +47,7 @@
   display block
   padding 25px
   white-space nowrap
-  color white
+  color accent
   &:hover
-    background white
-    color accent
+    background accent
+    color secondary

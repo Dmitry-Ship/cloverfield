@@ -6,21 +6,13 @@ import Profile from '../components/Profile';
 
 const mapStateToProps = store => ({
   user: store.userReducer.user,
+  profileRoute: '/profile',
+  editRoute: '/editprofile',
 });
 
 const mapDispatchToProps = dispatch => ({
   onClick: () => dispatch(logout()),
   fetchUser: () => dispatch(fetchUser()),
-});
-
-const mergeProps = (stateProps, dispatchProps, ownProps) => ({
-  ...ownProps,
-  items: [
-    { label: 'Settings', iconName: 'settings', to: '/settings' },
-    { label: 'LogOut', iconName: 'exit_to_app', func: dispatchProps.onClick, to: '/login' },
-  ],
-  user: stateProps.user,
-  fetchUser: dispatchProps.fetchUser,
 });
 
 class ProfileContainer extends Component {
@@ -29,16 +21,14 @@ class ProfileContainer extends Component {
   }
 
   render() {
-    const { user, items } = this.props;
+    const { user, items, onClick, profileRoute, editRoute } = this.props;
     return (
-      <div>
-        <Profile user={user} items={items} />
-      </div>
+      <Profile user={user} onClick={onClick} profileRoute={profileRoute} editRoute={editRoute} />
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ProfileContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
 
 ProfileContainer.propTypes = {
   fetchUser: PropTypes.func.isRequired,

@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 import styles, {
   image,
   contentEditable,
-  content,
+  body,
   actions,
   actions__icon,
 } from './Note.styl';
@@ -14,6 +14,8 @@ import Card from '../basic/Card';
 import ColorMenu from '../ColorMenu';
 import ContentEditable from '../basic/ContentEditable';
 import TagArea from '../TagArea';
+import AttachedImages from '../basic/AttachedImages';
+import NoteFileUploader from '../NoteFileUploader';
 
 const Note = ({
   note,
@@ -21,30 +23,42 @@ const Note = ({
   children,
   onAddTag,
   onDeleteTag,
+  onDeleteImage,
+  onAddImage,
   onSetColor,
   onUpdateTitle,
-  onUpdateContent }) => (
+  onUpdateBody }) => {
+  const handleImage = (file) => {
+    const formData = new FormData();
+
+    formData.append('note-image', file, file.filename);
+
+    return onAddImage(formData);
+  };
+
+  return (
     <Card className={`${styles.note} ${styles[note.color]}`}>
 
-      <div className={content}>
-        {note.image && <img className={image} src={`/${note.image}`} alt="note-mage" />}
+      <div className={body}>
+        {note.images.length > 0 && <AttachedImages
+          onDelete={onDeleteImage} images={note.images} className={image}
+        />}
         <ContentEditable
-          style={{ position: 'relative' }}
           text={note.title}
           className={contentEditable}
-          onBlur={val => onUpdateTitle(val, note._id)}
+          onBlur={onUpdateTitle}
           maxLength={24}
         />
         <ContentEditable
-          text={note.content}
+          text={note.body}
           className={contentEditable}
-          onBlur={val => onUpdateContent(val, note._id)}
+          onBlur={onUpdateBody}
           maxLength={1000}
         />
         <TagArea
-          onDeleteTag={tag => onDeleteTag(tag, note._id)}
+          onDeleteTag={onDeleteTag}
           tags={note.tags}
-          onAddTag={tag => onAddTag(tag, note._id)}
+          onAddTag={onAddTag}
         />
         {children}
       </div>
@@ -52,19 +66,23 @@ const Note = ({
         <ColorMenu
           className={actions__icon}
           color={note.color}
-          onSetColor={col => onSetColor(col, note._id)}
+          onSetColor={onSetColor}
         />
+
+        <NoteFileUploader id={note._id} className={actions__icon} onChange={handleImage} />
+
         <Icon
           className={actions__icon}
           name="delete"
-          onClick={() => onDelete(note._id)}
+          onClick={onDelete}
         />
         <Icon
           className={actions__icon} name="more_vert"
         />
       </Row>
     </Card>
-);
+  );
+};
 
 export default Note;
 
@@ -72,15 +90,18 @@ Note.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onSetColor: PropTypes.func.isRequired,
   onUpdateTitle: PropTypes.func.isRequired,
-  onUpdateContent: PropTypes.func.isRequired,
+  onUpdateBody: PropTypes.func.isRequired,
   onAddTag: PropTypes.func.isRequired,
   onDeleteTag: PropTypes.func.isRequired,
+  onDeleteImage: PropTypes.func.isRequired,
+  onAddImage: PropTypes.func.isRequired,
   note: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     title: PropTypes.string,
-    content: PropTypes.string,
+    body: PropTypes.string,
     color: PropTypes.string,
     tags: PropTypes.arrayOf(PropTypes.string),
+    images: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   children: PropTypes.element,
 };

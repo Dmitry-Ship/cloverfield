@@ -18,7 +18,7 @@ const upload = multer({ storage });
 const router = express.Router();
 
 router.post('/', upload.single('avatar'), (req, res) => {
-  const { email, password, username } = req.body;
+  const { email, password, username, fullName } = req.body;
   const { file } = req;
 
   if (!email) {
@@ -38,6 +38,7 @@ router.post('/', upload.single('avatar'), (req, res) => {
       email,
       password,
       username,
+      fullName,
       userpic: file.filename,
     });
 

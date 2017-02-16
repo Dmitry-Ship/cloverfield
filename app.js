@@ -29,7 +29,6 @@ if (isDeveloping) {
 
   const middleware = webpackMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    // contentBase: 'src',
     stats: {
       colors: true,
       hash: false,
@@ -42,23 +41,6 @@ if (isDeveloping) {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-
-  // new WebpackDevServer(webpack(webpackConfig), {
-  //   contentBase: './src',
-  //   publicPath: webpackConfig.output.publicPath,
-  //   hot: true,
-  //   historyApiFallback: true,
-  //   proxy: {
-  //     '*': 'http://localhost:3000',
-  //   },
-  //   stats: {
-  //     colors: true,
-  //     timings: true,
-  //   },
-  // }).listen(8080, 'localhost', (err, result) => {
-  //   if (err) { return console.log(err); }
-  //   return console.log('listening at 8080');
-  // });
 }
 
 app.use(logger('dev'));
@@ -66,25 +48,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 app.use(passport.initialize());
 app.use(routes);
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+const port = process.env.PORT || 3000;
 
-// error handler
-app.use((err, req, res) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  // res.render('error');
-});
-
-module.exports = app;
+app.listen(port, () => console.log(`listening at port ${port}`))
+// module.exports = app;

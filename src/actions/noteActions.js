@@ -50,30 +50,83 @@ const editNoteFailure = error => ({
   error,
 });
 
-export const editNote = (prop, color, id) => (dispatch) => {
+export const editNote = (prop, value, id) => (dispatch) => {
   dispatch({ type: types.EDIT_NOTE });
-  axios.put(`${url}/${id}`, { [prop]: color }, token())
+  axios.put(`${url}/${id}`, { [prop]: value }, token())
     .then(res => dispatch(editNoteSuccess(res.data, prop)))
     .catch(err => dispatch(editNoteFailure(err.response.data)));
 };
 
-const editTagsSuccess = (updatedNote, prop) => ({
-  type: types.EDIT_TAGS_SUCCESS,
+const addTagSuccess = updatedNote => ({
+  type: types.ADD_TAG_SUCCESS,
   updatedNote,
-  prop,
 });
 
-const editTagsFailure = error => ({
-  type: types.EDIT_TAGS_FAILURE,
+const addTagFailure = error => ({
+  type: types.ADD_TAG_FAILURE,
   error,
 });
 
-export const editTags = (prop, color, id) => (dispatch) => {
-  dispatch({ type: types.EDIT_TAGS });
-  axios.put(`${url}/${id}/tags`, { [prop]: color }, token())
-    .then(res => dispatch(editTagsSuccess(res.data, 'tags')))
-    .catch(err => dispatch(editTagsFailure(err.response.data)));
+export const addTag = (tag, id) => (dispatch) => {
+  dispatch({ type: types.ADD_TAG });
+  axios.post(`${url}/${id}/tags`, { tag }, token())
+    .then(res => dispatch(addTagSuccess(res.data)))
+    .catch(err => dispatch(addTagFailure(err.response.data)));
 };
+
+const deleteTagSuccess = updatedNote => ({
+  type: types.DELETE_TAG_SUCCESS,
+  updatedNote,
+});
+
+const deleteTagFailure = error => ({
+  type: types.DELETE_TAG_FAILURE,
+  error,
+});
+
+export const deleteTag = (tag, id) => (dispatch) => {
+  dispatch({ type: types.DELETE_TAG });
+  axios.delete(`${url}/${id}/tags/${tag}`, token())
+    .then(res => dispatch(deleteTagSuccess(res.data, 'tags')))
+    .catch(err => dispatch(deleteTagFailure(err.response.data)));
+};
+
+
+const addImageSuccess = updatedNote => ({
+  type: types.ADD_IMAGE_SUCCESS,
+  updatedNote,
+});
+
+const addImageFailure = error => ({
+  type: types.ADD_IMAGE_FAILURE,
+  error,
+});
+
+export const addImage = (image, id) => (dispatch) => {
+  console.log(id);
+  dispatch({ type: types.ADD_IMAGE });
+  axios.post(`${url}/${id}/images`, image, token())
+    .then(res => dispatch(addImageSuccess(res.data)))
+    .catch(err => dispatch(addImageFailure(err.response.data)));
+};
+
+const deleteImageSuccess = updatedNote => ({
+  type: types.DELETE_IMAGE_SUCCESS,
+  updatedNote,
+});
+
+const deleteImageFailure = error => ({
+  type: types.DELETE_IMAGE_FAILURE,
+  error,
+});
+
+export const deleteImage = (image, id) => (dispatch) => {
+  dispatch({ type: types.DELETE_IMAGE });
+  axios.delete(`${url}/${id}/images/${image}`, token())
+    .then(res => dispatch(deleteImageSuccess(res.data)))
+    .catch(err => dispatch(deleteImageFailure(err.response.data)));
+};
+
 
 const deleteNoteSuccess = id => ({
   type: types.DELETE_NOTE_SUCCESS,

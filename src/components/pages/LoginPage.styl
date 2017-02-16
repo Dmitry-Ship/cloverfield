@@ -1,3 +1,17 @@
+@value colors "../../styles/colors.styl";
+@value tertiary from colors;
+
 .card
   composes signForm from 'styles/forms.styl'
-  
+  margin-top: 150px
+  margin-bottom: 50px
+  // +below(600px)
+  //   width: 100%
+  //   margin: 0
+  //   height: 100vh
+
+.heading
+  text-align: center;
+  color: tertiary
+  font-weight: lighter;
+  margin: 0 0 60px 0

@@ -1,5 +1,6 @@
 @value colors "../../../styles/colors.styl";
 @value accent from colors;
+@value secondary from colors;
 
 
 mainColor = white
@@ -8,7 +9,6 @@ pointerSize = 10px
 .popupMenu
   display none
   composes level-3 from 'styles/shadows.styl'
-  padding 10px 0
   color black
   z-index 2
   position absolute
@@ -17,7 +17,6 @@ pointerSize = 10px
   &::after, ::before
     content ""
     border pointerSize solid
-    border-color transparent transparent mainColor transparent
     position absolute
 
 .bottom
@@ -63,20 +62,3 @@ pointerSize = 10px
     left 100%
     transform: translateY(-50%)
     border-color: transparent transparent transparent mainColor
-
-.menuItem
-  display block
-  padding 12px 15px
-  white-space nowrap
-  border-left 3px solid transparent
-  border-right 3px solid transparent
-  cursor pointer
-  &:hover
-    color accent
-    border-left 3px solid accent
-    border-right 3px solid accent
-    .item__link
-      color accent
-
-.menuItem__link
-  color black

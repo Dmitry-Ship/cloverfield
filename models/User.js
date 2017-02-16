@@ -2,20 +2,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = mongoose.Schema({
-  username: String,
-  email: String,
-  password: String,
+  username: { type: String, required: true },
+  fullName: String,
+  email: { type: String, required: true },
+  password: { type: String, required: true },
   userpic: String,
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-  notes: [{
-    type: [mongoose.Schema.ObjectId],
-    ref: 'Note',
-  }],
+  createdAt: { type: Date, default: Date.now },
+  isDeleted: { type: Boolean, default: false },
 });
-
 
 userSchema.pre('save', function (next) {
   const user = this;

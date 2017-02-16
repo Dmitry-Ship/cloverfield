@@ -1,12 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
-const postcssImport = require('postcss-import');
-const postcssCssnext = require('postcss-cssnext');
 const values = require('postcss-modules-values');
 const colorFunction = require('postcss-color-function');
 const lost = require('lost');
 const rupture = require('rupture');
-const nib = require('nib');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -90,15 +87,13 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [
-          postcssImport,
-          postcssCssnext,
           values,
           lost,
           colorFunction,
         ],
         stylus: {
-          use: [rupture(), nib()],
-          import: ['~rupture/rupture/index.styl', '~nib/lib/nib/index.styl'],
+          use: [rupture()],
+          import: ['~rupture/rupture/index.styl'],
         },
       },
     }),

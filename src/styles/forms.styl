@@ -1,9 +1,10 @@
 @value colors "./colors.styl";
-@value accent from colors;
+@value secondary from colors;
 
 .signForm {
-  background: accent;
+  background: white;
   margin: auto;
   width: 600px;
-  padding: 50px;
+  padding: 80px;
+  composes: level-1 from './shadows.styl';
 }

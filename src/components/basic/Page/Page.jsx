@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { page } from './Page.styl';
 
 const Page = ({ className, children }) => (
-  <div className={`${page} ${className}`} >
+  <div className={`${className} ${page}`} >
     {children}
   </div>
 );
