@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 router.post('/', upload.array('note-image', 5), (req, res) => {
   const { user, files } = req;
   const { title, body, color, tags } = req.body;
-  // const images = files.length > 0 ? file.filename : '';
+
   const images = [];
   if (files.length > 0) {
     for (let i = 0; i < files.length; i++) {
@@ -41,7 +41,7 @@ router.post('/', upload.array('note-image', 5), (req, res) => {
     body,
     color,
     tags: JSON.parse(tags),
-    images: images,
+    images,
     _user: user._id,
   });
 

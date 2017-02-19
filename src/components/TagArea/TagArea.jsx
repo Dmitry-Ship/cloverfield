@@ -75,6 +75,13 @@ export default class TagArea extends Component {
             className={input__field}
           />
 
+          {/* <input
+            onKeyDown={this.emitChange}
+            onBlur={e => this.handleBlur(e)}
+            className={input__field}
+            type="text"
+          /> */}
+
           <PopUpMenu
             className={input__suggestions}
             position="bottom"

@@ -4,13 +4,14 @@ const values = require('postcss-modules-values');
 const colorFunction = require('postcss-color-function');
 const lost = require('lost');
 const rupture = require('rupture');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   entry: {
     app: [
-      './src/index',
       'webpack-hot-middleware/client',
+      './src/index',
     ],
     vendor: [
       'react',
@@ -37,7 +38,7 @@ module.exports = {
       path.resolve(__dirname, 'node_modules'),
       path.resolve(__dirname, 'src'),
     ],
-    extensions: ['.js', '.jsx', 'css', 'styl', 'scss'],
+    extensions: ['.js', '.jsx', 'css', 'styl'],
   },
   module: {
     rules: [
@@ -45,22 +46,6 @@ module.exports = {
         test: /.(js|jsx)?$/,
         use: ['react-hot-loader', 'babel-loader'],
         exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              module: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-            },
-          },
-          'postcss-loader',
-        ],
       },
       {
         test: /\.styl$/,
@@ -78,6 +63,10 @@ module.exports = {
           'stylus-loader',
         ],
         exclude: /node_modules/,
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader',
       },
     ],
   },
@@ -100,16 +89,9 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    // new HtmlWebpackPlugin({
-    //   template: 'index.html',
-    //   filename: 'index.html',
-    //   inject: 'body',
-    // }),
-    // new webpack.optimize.UglifyJsPlugin(),
-    // new webpack.DefinePlugin({
-    //   'process.env.NODE_ENV': 'production',
-    // }),
-    // new webpack.optimize.AggressiveMergingPlugin(),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: './index.html',
+    }),
   ],
-
 };

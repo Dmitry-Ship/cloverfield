@@ -1,90 +1,137 @@
 import React, { PropTypes, Component } from 'react';
+import Textarea from 'react-textarea-autosize';
 
 import styles, {
   image,
-  contentEditable,
-  body,
+  input,
+  content,
   actions,
-  actions__icon,
-} from './Note.styl';
+  icon } from './Note.styl';
 
-import Row from '../basic/Row';
+import NoteActions from '../NoteActions';
 import Icon from '../basic/Icon';
 import Card from '../basic/Card';
-import ColorMenu from '../ColorMenu';
-import ContentEditable from '../basic/ContentEditable';
 import TagArea from '../TagArea';
 import AttachedImages from '../basic/AttachedImages';
-import NoteFileUploader from '../NoteFileUploader';
 
-const Note = ({
-  note,
-  onDelete,
-  children,
-  onAddTag,
-  onDeleteTag,
-  onDeleteImage,
-  onAddImage,
-  onSetColor,
-  onUpdateTitle,
-  onUpdateBody }) => {
-  const handleImage = (file) => {
+export default class Note extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: this.props.note.title,
+      body: this.props.note.body,
+    };
+    this.handleImage = this.handleImage.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.handleTitleBlur = this.handleTitleBlur.bind(this);
+    this.handleBodyBlur = this.handleBodyBlur.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+  }
+
+  handleImage(file) {
     const formData = new FormData();
 
     formData.append('note-image', file, file.filename);
 
-    return onAddImage(formData);
-  };
+    return this.props.onAddImage(formData);
+  }
 
-  return (
-    <Card className={`${styles.note} ${styles[note.color]}`}>
+  handleTitleChange(e) {
+    const value = e.target.value;
+    if (value.length >= 50) return;
 
-      <div className={body}>
-        {note.images.length > 0 && <AttachedImages
-          onDelete={onDeleteImage} images={note.images} className={image}
-        />}
-        <ContentEditable
-          text={note.title}
-          className={contentEditable}
-          onBlur={onUpdateTitle}
-          maxLength={24}
-        />
-        <ContentEditable
-          text={note.body}
-          className={contentEditable}
-          onBlur={onUpdateBody}
-          maxLength={1000}
-        />
-        <TagArea
-          onDeleteTag={onDeleteTag}
-          tags={note.tags}
-          onAddTag={onAddTag}
-        />
-        {children}
-      </div>
-      <Row align="space-between" className={actions}>
-        <ColorMenu
-          className={actions__icon}
+    this.setState({ title: value });
+  }
+
+  handleBodyChange(e) {
+    const value = e.target.value;
+    if (value.length >= 500) return;
+
+    this.setState({ body: value });
+  }
+
+  handleTitleBlur() {
+    const value = this.state.title.trim();
+    this.props.onUpdateTitle(value);
+    this.setState({ title: value });
+  }
+
+  handleBodyBlur() {
+    const value = this.state.body.trim();
+    this.props.onUpdateBody(value);
+    this.setState({ body: value });
+  }
+
+  handleFocus(e) {
+    const fieldName = e.target.name;
+
+    this.setState({
+      [fieldName]: this.props.note[fieldName],
+    });
+  }
+
+  render() {
+    const {
+      note,
+      onDelete,
+      onAddTag,
+      onDeleteTag,
+      onDeleteImage,
+      onSetColor } = this.props;
+    const { title, body } = this.state;
+    return (
+      <Card className={`${styles.note} ${styles[note.color]}`}>
+
+        <div className={content}>
+          <AttachedImages
+            onDelete={onDeleteImage}
+            images={note.images}
+            className={image}
+          />
+
+          <Textarea
+            value={title}
+            name="title"
+            className={input}
+            onChange={this.handleTitleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleTitleBlur}
+          />
+
+          <Textarea
+            value={body}
+            name="body"
+            className={input}
+            onChange={this.handleBodyChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBodyBlur}
+          />
+
+          <TagArea
+            onDeleteTag={onDeleteTag}
+            tags={note.tags}
+            onAddTag={onAddTag}
+          />
+        </div>
+
+        <NoteActions
+          className={actions}
           color={note.color}
           onSetColor={onSetColor}
-        />
-
-        <NoteFileUploader id={note._id} className={actions__icon} onChange={handleImage} />
-
-        <Icon
-          className={actions__icon}
-          name="delete"
-          onClick={onDelete}
-        />
-        <Icon
-          className={actions__icon} name="more_vert"
-        />
-      </Row>
-    </Card>
-  );
-};
-
-export default Note;
+          onChange={this.handleImage}
+          id={note._id}
+        >
+          <Icon
+            className={icon}
+            name="delete"
+            onClick={onDelete}
+          />
+        </NoteActions>
+      </Card>
+    );
+  }
+}
 
 Note.propTypes = {
   onDelete: PropTypes.func.isRequired,
@@ -103,5 +150,4 @@ Note.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.string),
     images: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
-  children: PropTypes.element,
 };

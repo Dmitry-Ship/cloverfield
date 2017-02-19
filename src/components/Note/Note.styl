@@ -23,18 +23,21 @@
     width 100%
 
   &:hover
-    .actions__icon
+    .actions
       opacity 1
 
-.actions__icon
-  cursor pointer
-  color rgba(black, 0.3)
+.actions
   opacity 0
   transition all 150ms ease-in-out
+
+
+.icon
+  cursor pointer
+  color rgba(black, 0.3)
   &:hover
     color black
 
-.contentEditable
+.input
   composes dynamic-input from 'styles/shadows.styl'
   text-align justify
   margin 0 0 10px 0
@@ -44,10 +47,16 @@
   cursor pointer
   background rgba(white, 0)
   transition: background 100ms ease-in-out
+  border: 1px solid transparent
+  resize none
+  overflow: hidden;
+  width: 100%
   &:hover
     background rgba(white, 0.2)
+    border: 1px solid rgba(black, 0.1)
   &:focus
     background rgba(white, 0.3)
+    cursor: auto;
 
 
 .image

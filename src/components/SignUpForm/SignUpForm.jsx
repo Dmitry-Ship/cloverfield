@@ -14,6 +14,7 @@ export default class SignUpForm extends Component {
       email: '',
       password: '',
       userpic: null,
+      errors: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFullNameChange = this.handleFullNameChange.bind(this);
@@ -21,6 +22,10 @@ export default class SignUpForm extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.errors });
   }
 
   handleImageUpload(value) {
@@ -32,19 +37,29 @@ export default class SignUpForm extends Component {
   }
 
   handlUsernameChange(value) {
-    this.setState({ username: value });
+    const errors = Object.assign({}, this.state.errors, { username: '' });
+    this.setState({ username: value, errors });
   }
 
   handleEmailChange(value) {
-    this.setState({ email: value });
+    const errors = Object.assign({}, this.state.errors, { email: '' });
+    this.setState({ email: value, errors });
   }
 
   handlePasswordChange(value) {
-    this.setState({ password: value });
+    const errors = Object.assign({}, this.state.errors, { password: '' });
+    this.setState({ password: value, errors });
   }
 
   handleSubmit(e) {
     e.preventDefault();
+
+    const { isValid, errors } = this.props.validation(this.state);
+
+    if (!isValid) {
+      return this.setState({ errors });
+    }
+
     const { fullName, username, email, password, userpic } = this.state;
 
     const formData = new FormData();
@@ -53,7 +68,9 @@ export default class SignUpForm extends Component {
     formData.append('username', username);
     formData.append('email', email);
     formData.append('password', password);
-    formData.append('avatar', userpic, userpic.name);
+    if (userpic) {
+      formData.append('avatar', userpic, userpic.name);
+    }
 
     this.props.onSubmit(formData);
   }
@@ -62,7 +79,8 @@ export default class SignUpForm extends Component {
     const { fullName,
             username,
             email,
-            password } = this.state;
+            password,
+            errors } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
 
@@ -78,7 +96,8 @@ export default class SignUpForm extends Component {
           value={username}
           className={input}
           onChange={this.handlUsernameChange}
-          required
+          error={errors.username}
+          // required
         />
 
         <TextField
@@ -87,7 +106,8 @@ export default class SignUpForm extends Component {
           value={email}
           className={input}
           onChange={this.handleEmailChange}
-          required
+          error={errors.email}
+          // required
         />
 
         <TextField
@@ -96,7 +116,8 @@ export default class SignUpForm extends Component {
           value={password}
           className={input}
           onChange={this.handlePasswordChange}
-          required
+          error={errors.password}
+          // required
         />
 
         <FormFileUploader className={input} onChange={this.handleImageUpload} />

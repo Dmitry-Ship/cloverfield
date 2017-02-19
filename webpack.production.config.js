@@ -5,6 +5,7 @@ const colorFunction = require('postcss-color-function');
 const lost = require('lost');
 const rupture = require('rupture');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -61,24 +62,28 @@ module.exports = {
         ],
       },
       {
+        test: /\.html$/,
+        loader: 'html-loader',
+      },
+      {
         test: /\.styl$/,
-        // use: ExtractTextPlugin.extract({
-        //   fallbackLoader: 'style-loader',
-        //   loader: ['css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]', 'postcss-loader', 'stylus-loader']
-        // }),
-        use: [
-          'style-loader?sourceMap',
-          {
-            loader: 'css-loader',
-            options: {
-              module: true,
-              importLoaders: 1,
-              localIdentName: '[hash:base64:5]',
-            },
-          },
-          'postcss-loader',
-          'stylus-loader?sourceMap',
-        ],
+        use: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: ['css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]', 'postcss-loader', 'stylus-loader']
+        }),
+        // use: [
+        //   'style-loader?sourceMap',
+        //   {
+        //     loader: 'css-loader',
+        //     options: {
+        //       module: true,
+        //       importLoaders: 1,
+        //       localIdentName: '[hash:base64:5]',
+        //     },
+        //   },
+        //   'postcss-loader',
+        //   'stylus-loader?sourceMap',
+        // ],
         exclude: /node_modules/,
       },
     ],
@@ -106,9 +111,13 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
     }),
-    // new ExtractTextPlugin({
-    //   filename: 'style.css',
-    //   allChunks: true,
-    // })
+    new ExtractTextPlugin({
+      filename: 'style.css',
+      allChunks: true,
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: './index.html',
+    }),
   ],
 };

@@ -9,9 +9,7 @@ import ProfileContainer from '../../containers/ProfileContainer';
 
 const TopBar = ({ appName, navBarItems, isLoggedIn }) => (
   <Row align="space-between" className={topBar} >
-    <Logo >
-      {appName}
-    </Logo>
+    <Logo>{appName}</Logo>
 
     <NavBar className={navBar} items={navBarItems} >
       {isLoggedIn && <ProfileContainer />}

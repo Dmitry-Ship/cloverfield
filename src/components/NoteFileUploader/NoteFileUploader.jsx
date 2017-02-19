@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 import Icon from '../basic/Icon';
 
+import { icon, label } from './NoteFileUploader.styl';
+
 export default class NoteFileUploader extends Component {
   constructor() {
     super();
@@ -46,8 +48,8 @@ export default class NoteFileUploader extends Component {
         className } = this.props;
     return (
       <div>
-        <label className={className} htmlFor={id} >
-          <Icon name="image" />
+        <label className={`${className} ${label}`} htmlFor={id} >
+          <Icon className={icon} name="image" />
         </label>
         <input
           id={id}

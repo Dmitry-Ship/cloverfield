@@ -4,6 +4,7 @@ const path = require('path');
 const generateToken = require('../helpers/generateToken');
 const handleError = require('../helpers/handleError');
 const User = require('../models/User');
+const validateInput = require('../helpers/validations/signup');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -18,21 +19,20 @@ const upload = multer({ storage });
 const router = express.Router();
 
 router.post('/', upload.single('avatar'), (req, res) => {
+  const { isValid, errors } = validateInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).send(errors);
+  }
+
   const { email, password, username, fullName } = req.body;
   const { file } = req;
 
-  if (!email) {
-    return handleError(res, 'You must enter an email address.', 422);
-  }
-
-  if (!password) {
-    return handleError(res, 'You must enter a password.', 422);
-  }
 
   return User.findOne({ email }, (err, user) => {
     if (err) { return handleError(res, err); }
     if (user) {
-      return handleError(res, 'That email address is already in use.', 422);
+      return handleError(res, { email: 'That email address is already in use.' }, 422);
     }
     const newUser = new User({
       email,

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { textField } from './TextField.styl';
+import { textField, errorMessage } from './TextField.styl';
 
 export default class TextField extends Component {
   constructor() {
@@ -19,15 +19,16 @@ export default class TextField extends Component {
       placeholder,
       required,
       onFocus,
+      error,
       value,
       onBlur,
       label,
       className } = this.props;
     return (
-      <div>
+      <div className={className}>
         {label && <label >{label}</label>}
         <input
-          className={`${textField} ${className}`}
+          className={textField}
           type={type}
           value={value}
           name={name}
@@ -37,6 +38,7 @@ export default class TextField extends Component {
           onBlur={onBlur}
           onChange={this.handleChange}
         />
+        <p className={errorMessage}>{error}</p>
       </div>
     );
   }
@@ -49,6 +51,7 @@ TextField.defaultProps = {
   placeholder: 'Placeholder',
   label: null,
   required: false,
+  error: null,
 };
 
 TextField.propTypes = {
@@ -62,4 +65,5 @@ TextField.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   required: PropTypes.bool,
+  error: PropTypes.string,
 };

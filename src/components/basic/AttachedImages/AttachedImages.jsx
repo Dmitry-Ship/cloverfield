@@ -4,10 +4,10 @@ import { deleteIcon, singleImage, image, wrapper } from './AttachedImages.styl';
 
 import Icon from '../Icon';
 
-const AttachedImages = ({ images, onDelete }) => (
+const AttachedImages = ({ images, onDelete, className }) => (
   <div className={wrapper}>
     {images.map(item => (
-      <div key={item} className={singleImage} >
+      <div key={item} className={`${singleImage} ${className}`} >
         <Icon name="close" className={deleteIcon} onClick={() => onDelete(item)} />
         <img className={image} src={item} alt="" />
       </div>

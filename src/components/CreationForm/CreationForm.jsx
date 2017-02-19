@@ -9,16 +9,12 @@ import styles, {
   tagArea,
   wrapper,
   submition,
-  attachments,
-  attachments__icon,
   unfolded } from './CreationForm.styl';
 
-import ColorMenu from '../ColorMenu';
+import NoteActions from '../NoteActions';
+
 import TagArea from '../TagArea';
 import Form from '../basic/Form';
-import Row from '../basic/Row';
-import Icon from '../basic/Icon';
-import NoteFileUploader from '../NoteFileUploader';
 import AttachedImages from '../basic/AttachedImages';
 
 export default class CreationForm extends Component {
@@ -95,8 +91,8 @@ export default class CreationForm extends Component {
     const { titleText, bodyText, color, tags, imageFiles } = this.state;
 
     const formData = new FormData();
-    formData.append('title', titleText);
-    formData.append('body', bodyText);
+    formData.append('title', titleText.trim());
+    formData.append('body', bodyText.trim());
     formData.append('color', color);
     formData.append('tags', JSON.stringify(tags));
 
@@ -137,17 +133,11 @@ export default class CreationForm extends Component {
   }
 
   handleBodyChange(e) {
-    const newBody = e.target.value;
-
-    this.setState({ bodyText: newBody });
+    this.setState({ bodyText: e.target.value });
   }
 
   handleTitleChange(e) {
-    const newTitle = e.target.value;
-
-    if (newTitle.length > 100) return;
-
-    this.setState({ titleText: newTitle });
+    this.setState({ titleText: e.target.value });
   }
 
   handleFocus() {
@@ -178,12 +168,6 @@ export default class CreationForm extends Component {
             images={previews}
           />}
 
-          {/* <ContentEditableTest
-            className={title}
-            onChange={this.handleTitleChange}
-            html={titleText}
-            placeholder={titlePlaceholder}
-          /> */}
           <Textarea
             className={title}
             onChange={this.handleTitleChange}
@@ -206,21 +190,12 @@ export default class CreationForm extends Component {
           />
 
           <div className={submition} >
-            <Row className={attachments} auto={false} >
-              <NoteFileUploader
-                id="CHECK"
-                className={attachments__icon}
-                fileType="image/*"
-                onChange={this.handleImage}
-              />
-
-              <ColorMenu
-                color={color}
-                onSetColor={this.setColor}
-                className={attachments__icon}
-              />
-              <Icon className={attachments__icon} name="more_vert" />
-            </Row>
+            <NoteActions
+              color={color}
+              onSetColor={this.setColor}
+              onChange={this.handleImage}
+              id="CHECK"
+            />
           </div>
         </Form>
       </div>

@@ -5,7 +5,7 @@ const mapStateToProps = store => ({
   appName: 'My App',
   isLoggedIn: store.authReducer.isLoggedIn,
   navBarItems: store.authReducer.isLoggedIn ? [
-    { label: 'Main', iconName: 'home', to: '/' },
+    { label: 'Home', iconName: 'home', to: '/' },
     { label: 'About', iconName: 'info_outline', to: '/about' },
   ] : [
     { label: 'Login', iconName: 'perm_identity', to: '/login' },

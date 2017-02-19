@@ -11,18 +11,25 @@ export default class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
+      errors: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.errors });
+  }
+
   handleEmailChange(value) {
-    this.setState({ email: value });
+    const errors = Object.assign({}, this.state.errors, { email: '' });
+    this.setState({ email: value, errors });
   }
 
   handlePasswordChange(value) {
-    this.setState({ password: value });
+    const errors = Object.assign({}, this.state.errors, { password: '' });
+    this.setState({ password: value, errors });
   }
 
   handleSubmit(e) {
@@ -30,11 +37,18 @@ export default class LoginForm extends Component {
     const { email, password } = this.state;
     const data = { email, password };
 
+    const { isValid, errors } = this.props.validation(this.state);
+
+    if (!isValid) {
+      return this.setState({ errors });
+    }
+
     this.props.onSubmit(data);
   }
 
   render() {
     const { email, password } = this.state;
+    const { errors } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
         <TextField
@@ -42,17 +56,19 @@ export default class LoginForm extends Component {
           value={email}
           name="email"
           className={input}
+          error={errors.email}
           placeholder="Email"
           onChange={this.handleEmailChange}
-          required
+          // required
         />
         <TextField
           type="password"
           value={password}
+          error={errors.password}
           className={input}
           placeholder="Password"
           onChange={this.handlePasswordChange}
-          required
+          // required
         />
       </Form>
     );

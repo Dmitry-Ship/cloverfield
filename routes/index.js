@@ -8,7 +8,7 @@ const imagesController = require('./imagesController');
 const isLoggedIn = require('./isLoggedIn');
 
 const router = express.Router();
-const indexFile = path.join(__dirname, '../index.html');
+const indexFile = path.join(__dirname, '../public/index.html');
 
 router.use('/notes', isLoggedIn, notesController);
 router.use('/user', isLoggedIn, userController);
