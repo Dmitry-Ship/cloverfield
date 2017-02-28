@@ -8,26 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: {
-    app: [
-      'webpack-hot-middleware/client',
-      './src/index',
-    ],
-    vendor: [
-      'react',
-      'react-router',
-      'react-redux',
-      'redux',
-      'redux-thunk',
-      'axios',
-      'react-dom',
-      'react-cookie',
-      'react-masonry-component',
-      'react-textarea-autosize',
-      'redux-logger',
-      'react-hot-loader',
-    ],
-  },
+  entry: ['webpack-hot-middleware/client', './src'],
   output: {
     path: path.join(__dirname, 'public'),
     filename: '[name].bundle.js',
@@ -83,9 +64,6 @@ module.exports = {
           import: ['~rupture/rupture/index.styl'],
         },
       },
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

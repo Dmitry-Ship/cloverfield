@@ -1,11 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
 import { fetchUser } from '../actions/userActions';
 import Profile from '../components/Profile';
+import { getUser } from '../reducers/userReducer';
 
 const mapStateToProps = store => ({
-  user: store.userReducer.user,
+  user: getUser(store),
   profileRoute: '/profile',
   editRoute: '/editprofile',
 });
@@ -21,17 +22,10 @@ class ProfileContainer extends Component {
   }
 
   render() {
-    const { user, items, onClick, profileRoute, editRoute } = this.props;
     return (
-      <Profile user={user} onClick={onClick} profileRoute={profileRoute} editRoute={editRoute} />
+      <Profile {...this.props} />
     );
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
-
-ProfileContainer.propTypes = {
-  fetchUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  items: PropTypes.arrayOf(PropTypes.object),
-};

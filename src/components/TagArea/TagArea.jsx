@@ -4,9 +4,9 @@ import {
   tagArea,
   input,
   input__field,
-  input__suggestions } from './TagArea.styl';
+  suggestions,
+  suggestion } from './TagArea.styl';
 
-import ContentEditable from '../basic/ContentEditable';
 import PopUpMenu from '../basic/PopUpMenu';
 import Tag from '../basic/Tag';
 
@@ -16,12 +16,19 @@ export default class TagArea extends Component {
     this.emitChange = this.emitChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.setTag = this.setTag.bind(this);
+    this.handlePaste = this.handlePaste.bind(this);
   }
 
   setTag(e) {
     const value = e.target.innerHTML;
 
     this.props.onSetTag(value);
+  }
+
+  handlePaste(e) {
+    e.preventDefault();
+    const plainText = e.clipboardData.getData('text/plain');
+    document.execCommand('inserttext', false, plainText);
   }
 
   emitChange(e) {
@@ -45,48 +52,34 @@ export default class TagArea extends Component {
     }
   }
 
-  handleBlur(value) {
-    if (value === '' || value === ' ') return;
+  handleBlur(e) {
+    if (e.target.innerHTML === '' || e.target.innerHTML === ' ') return;
 
-    this.props.onAddTag(value);
+    this.props.onAddTag(e.target.innerHTML);
+
+    e.target.innerHTML = '';
   }
 
   render() {
     const { tags, allTags, onDeleteTag, className } = this.props;
-    // const suggTags = allTags.map(tag => tag.name);
-    // const list = []
-    // for (let i = 0; i < suggTags.length; i++) {
-    //   list.push({text: suggTags[i], func: this.setTag })
-    // }
-    const list = [
-      { label: 'one', func: () => console.log('HI') },
-      { label: 'two', func: () => console.log('HI') },
-      { label: 'three', func: () => console.log('HI') },
-      { label: 'four', func: () => console.log('HI') },
-    ]
+
     return (
       <div className={`${tagArea} ${className}`}>
-        {tags.map((tag, i) => <Tag tagText={tag} key={i} onDeleteTag={onDeleteTag} />)}
+        {tags.map(tag => <Tag tagText={tag} key={tag} onDeleteTag={onDeleteTag} />)}
 
         <div className={input}>
-          <ContentEditable
-            onKeyDown={this.emitChange}
-            onBlur={e => this.handleBlur(e)}
+          <div
+            contentEditable
             className={input__field}
+            onKeyDown={this.emitChange}
+            onBlur={this.handleBlur}
+            onPaste={this.handlePaste}
           />
 
-          {/* <input
-            onKeyDown={this.emitChange}
-            onBlur={e => this.handleBlur(e)}
-            className={input__field}
-            type="text"
-          /> */}
-
-          <PopUpMenu
-            className={input__suggestions}
-            position="bottom"
-            items={list}
-          />
+          <PopUpMenu className={suggestions} position="bottom" >
+            {allTags.map(tag =>
+              <span onMouseDown={this.setTag} key={tag} className={suggestion} >{tag}</span>)}
+          </PopUpMenu>
         </div>
       </div>
     );
@@ -97,7 +90,7 @@ TagArea.propTypes = {
   onAddTag: PropTypes.func.isRequired,
   onDeleteTag: PropTypes.func.isRequired,
   className: PropTypes.string,
-  // onSetTag: PropTypes.func.isRequired,
-  // allTags: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  onSetTag: PropTypes.func.isRequired,
+  allTags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
   tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
 };

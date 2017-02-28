@@ -182,12 +182,12 @@ export default class CreationForm extends Component {
             placeholder={bodyPlaceholder}
           />
 
-          <TagArea
+          {/* <TagArea
             className={tagArea}
             onAddTag={this.handleAddTag}
             onDeleteTag={this.handleDeleteTag}
             tags={this.state.tags}
-          />
+          /> */}
 
           <div className={submition} >
             <NoteActions

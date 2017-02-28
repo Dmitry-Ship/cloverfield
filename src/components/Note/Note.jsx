@@ -80,6 +80,7 @@ export default class Note extends Component {
       onDeleteImage,
       onSetColor } = this.props;
     const { title, body } = this.state;
+
     return (
       <Card className={`${styles.note} ${styles[note.color]}`}>
 
@@ -111,6 +112,8 @@ export default class Note extends Component {
           <TagArea
             onDeleteTag={onDeleteTag}
             tags={note.tags}
+            onSetTag={this.props.onSetTag}
+            allTags={this.props.allTags}
             onAddTag={onAddTag}
           />
         </div>
@@ -139,6 +142,7 @@ Note.propTypes = {
   onUpdateTitle: PropTypes.func.isRequired,
   onUpdateBody: PropTypes.func.isRequired,
   onAddTag: PropTypes.func.isRequired,
+  onSetTag: PropTypes.func.isRequired,
   onDeleteTag: PropTypes.func.isRequired,
   onDeleteImage: PropTypes.func.isRequired,
   onAddImage: PropTypes.func.isRequired,

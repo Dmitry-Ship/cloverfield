@@ -1,3 +1,6 @@
+@value colors "../../styles/colors.styl";
+@value accent from colors;
+
 .tagArea
   margin-bottom: 10px
   padding-top 5px
@@ -7,10 +10,7 @@
 .input
   position relative
   margin 0 5px 5px 0
-
-
   display inline-block
-
 
 .input__field
   padding 5px
@@ -19,8 +19,16 @@
   outline none
   background transparent
   &:focus
-    + .input__suggestions
+    + .suggestions
       display block
 
-.input__suggestions
-  display none
+.suggestion
+  display: block;
+  min-width: 75px
+  text-align: center;
+  padding: 10px 0
+  cursor: pointer;
+  &:hover
+    border-left: 3px solid accent
+    border-right: 3px solid accent
+    color: accent

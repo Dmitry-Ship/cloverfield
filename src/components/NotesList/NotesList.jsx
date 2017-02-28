@@ -3,9 +3,7 @@ import Masonry from 'react-masonry-component';
 
 import NoteContainer from '../../containers/NoteContainer';
 
-import Loader from '../basic/Loader';
-
-const NotesList = ({ params, isFetching, allNotes }) => {
+const NotesList = ({ notes }) => {
   const masonryOptions = {
     transitionDuration: 300,
     gutter: 30,
@@ -16,23 +14,14 @@ const NotesList = ({ params, isFetching, allNotes }) => {
     margin: 'auto',
   };
 
-  const filteredNotes = allNotes.filter(note => note.tags.includes(params.tagText));
-  const notesToShow = filteredNotes.length > 0 ? filteredNotes : allNotes;
-
   return (
-    <section className="notes">
-      {isFetching
-        ? <Loader type="triple-dots" />
-        : <Masonry options={masonryOptions} style={style}>
-          {notesToShow.map(note => <NoteContainer note={note} key={note._id} />)}
-        </Masonry>}
-    </section>
+    <Masonry options={masonryOptions} style={style}>
+      {notes.map(note => <NoteContainer note={note} key={note._id} />)}
+    </Masonry>
   );
 };
 export default NotesList;
 
 NotesList.propTypes = {
-  allNotes: PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  params: PropTypes.object,
-  isFetching: PropTypes.bool.isRequired,
+  notes: PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };

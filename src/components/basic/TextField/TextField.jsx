@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { textField, errorMessage } from './TextField.styl';
+import { wrapper, textField, errorMessage } from './TextField.styl';
 
 export default class TextField extends Component {
   constructor() {
@@ -25,7 +25,7 @@ export default class TextField extends Component {
       label,
       className } = this.props;
     return (
-      <div className={className}>
+      <div className={`${wrapper} ${className}`}>
         {label && <label >{label}</label>}
         <input
           className={textField}

@@ -9,7 +9,7 @@ const AttachedImages = ({ images, onDelete, className }) => (
     {images.map(item => (
       <div key={item} className={`${singleImage} ${className}`} >
         <Icon name="close" className={deleteIcon} onClick={() => onDelete(item)} />
-        <img className={image} src={item} alt="" />
+        <img className={image} src={`/${item}`} alt="" />
       </div>
     ))}
   </div>

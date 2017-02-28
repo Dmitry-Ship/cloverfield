@@ -13,6 +13,7 @@ router.post('/', (req, res) => {
   }
   const { email, password } = req.body;
 
+
   User.findOne({ email }, (err, user) => {
     if (err) { return res.send(err); }
     if (!user) {

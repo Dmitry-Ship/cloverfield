@@ -264,7 +264,6 @@ textarea {
   }
 }
 ._2W50P {
-  background: #fff;
   transition: background 150ms ease-in-out;
 }
 ._2W50P:before {
@@ -291,6 +290,7 @@ textarea {
   display: block;
 }
 .YBOwR {
+  background: transparent;
   line-height: 30px;
   width: 100%;
   border: none;

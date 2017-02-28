@@ -2,10 +2,11 @@ import { connect } from 'react-redux';
 import { login } from '../actions/authActions';
 import LoginForm from '../components/LoginForm';
 import validation from '../../helpers/validations/login';
+import { getErrorMessage, getIsLoggedIn } from '../reducers/authReducer';
 
 const mapStateToProps = store => ({
-  errors: store.authReducer.error,
-  isLoggingIn: store.authReducer.isLoggingIn,
+  errors: getErrorMessage(store),
+  isLoggingIn: getIsLoggedIn(store),
   validation,
 });
 

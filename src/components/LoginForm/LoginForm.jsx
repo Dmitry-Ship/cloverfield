@@ -49,6 +49,7 @@ export default class LoginForm extends Component {
   render() {
     const { email, password } = this.state;
     const { errors } = this.state;
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <TextField

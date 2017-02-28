@@ -1,28 +1,49 @@
 import cookie from 'react-cookie';
+import { combineReducers } from 'redux';
 import * as types from '../actions/actionTypes';
 
-const initialState = {
-  isLoggingIn: false,
-  isLoggedIn: cookie.load('token') ? true : false,
-  error: {},
-};
-
-const authReducer = (state = initialState, action) => {
-  const { type, error } = action;
-  switch (type) {
+const isLoggingIn = (state = false, action) => {
+  switch (action.type) {
     case types.LOG_IN:
     case types.SIGN_UP:
-      return Object.assign({}, state, { isLoggingIn: true });
+      return true;
     case types.LOG_IN_SUCCESS:
     case types.SIGN_UP_SUCCESS:
-      return Object.assign({}, state, { isLoggingIn: false, isLoggedIn: true });
+      return false;
     case types.LOG_IN_FAILURE:
     case types.SIGN_UP_FAILURE:
-      return Object.assign({}, state, { isLoggingIn: false, error });
-    case types.LOG_OUT_SUCCESS:
-      return Object.assign({}, state, { isLoggedIn: false });
+      return false;
     default: return state;
   }
 };
 
-export default authReducer;
+
+const isLoggedIn = (state = !!cookie.load('token'), action) => {
+  switch (action.type) {
+    case types.LOG_IN_SUCCESS:
+    case types.SIGN_UP_SUCCESS:
+      return true;
+    case types.LOG_OUT_SUCCESS:
+      return false;
+    default: return state;
+  }
+};
+
+const errorMessage = (state = {}, action) => {
+  switch (action.type) {
+    case types.LOG_IN_FAILURE:
+    case types.SIGN_UP_FAILURE:
+      return action.error;
+    case types.LOG_IN_SUCCESS:
+    case types.SIGN_UP_SUCCESS:
+    case types.LOG_IN:
+    case types.SIGN_UP:
+      return {};
+    default: return state;
+  }
+};
+
+export const getErrorMessage = state => state.authReducer.errorMessage;
+export const getIsLoggedIn = state => state.authReducer.isLoggedIn;
+
+export default combineReducers({ errorMessage, isLoggedIn, isLoggingIn });

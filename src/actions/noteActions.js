@@ -103,7 +103,6 @@ const addImageFailure = error => ({
 });
 
 export const addImage = (image, id) => (dispatch) => {
-  console.log(id);
   dispatch({ type: types.ADD_IMAGE });
   axios.post(`${url}/${id}/images`, image, token())
     .then(res => dispatch(addImageSuccess(res.data)))
@@ -126,7 +125,6 @@ export const deleteImage = (image, id) => (dispatch) => {
     .then(res => dispatch(deleteImageSuccess(res.data)))
     .catch(err => dispatch(deleteImageFailure(err.response.data)));
 };
-
 
 const deleteNoteSuccess = id => ({
   type: types.DELETE_NOTE_SUCCESS,
