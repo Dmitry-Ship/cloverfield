@@ -23,6 +23,7 @@ router.get('/', (req, res) => {
       if (err) handleError(res, err, 404);
       else res.send(notes);
     });
+  // handleError(res, 'Something went wrong', 400);
 });
 
 router.post('/', upload.array('note-image', 5), (req, res) => {

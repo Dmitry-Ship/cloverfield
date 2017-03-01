@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { link, icon, active, text, content } from './NavBar.styl';
+import { link, icon, active, text, content } from './NavBar.scss';
 import Icon from '../Icon';
 
 const NavBar = ({ items, children, className }) => {

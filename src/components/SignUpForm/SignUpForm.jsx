@@ -120,7 +120,12 @@ export default class SignUpForm extends Component {
           // required
         />
 
-        <FormFileUploader className={input} onChange={this.handleImageUpload} />
+
+        <FormFileUploader
+          text="Upload a photo of yourself to get started."
+          className={input}
+          onChange={this.handleImageUpload}
+        />
       </Form>
     );
   }

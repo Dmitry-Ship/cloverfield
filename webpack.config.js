@@ -19,7 +19,7 @@ module.exports = {
       path.resolve(__dirname, 'node_modules'),
       path.resolve(__dirname, 'src'),
     ],
-    extensions: ['.js', '.jsx', 'css', 'styl'],
+    extensions: ['.js', '.jsx', 'css', 'styl', 'scss'],
   },
   module: {
     rules: [
@@ -42,6 +42,23 @@ module.exports = {
           },
           'postcss-loader',
           'stylus-loader',
+        ],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader?sourceMap',
+          {
+            loader: 'css-loader',
+            options: {
+              module: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
+          },
+          'postcss-loader',
+          'sass-loader',
         ],
         exclude: /node_modules/,
       },

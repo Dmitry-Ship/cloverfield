@@ -1,4 +1,5 @@
 @value colors "../../../styles/colors.styl";
+@value tertiary from colors;
 @value secondary from colors;
 @value primary from colors;
 
@@ -23,3 +24,9 @@
 
 .wrapper
   position: relative;
+
+.topLabel
+  position: absolute;
+  bottom: 100%
+  color tertiary
+  margin: 5px 0 0 0

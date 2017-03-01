@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import NotesList from '../components/NotesList';
 import Loader from '../components/basic/Loader';
 import { fetchNotes } from '../actions/noteActions';
-import { getVisibleNotes, getIsFetching } from '../reducers/noteReducer';
+import { getVisibleNotes, getIsFetching, getErrorMessage } from '../reducers/noteReducer';
 
 const mapStateToProps = (store, ownProps) => ({
   notes: getVisibleNotes(store, ownProps.params.tagText),
   isFetching: getIsFetching(store),
+  errorMessage: getErrorMessage(store),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,10 +21,21 @@ class NotesListContainer extends Component {
   }
 
   render() {
-    const { notes, isFetching } = this.props;
-    if (isFetching) {
+    const { notes, isFetching, errorMessage } = this.props;
+    if (isFetching && notes.length === 0) {
       return (<Loader type="triple-dots" />);
     }
+
+    if (errorMessage) {
+      const style = {
+        textAlign: 'center',
+        opacity: '0.3',
+        color: 'red',
+        marginTop: '120px',
+      };
+      return (<h1 style={style} >Unable to load notes. {errorMessage}</h1>);
+    }
+
     if (notes.length === 0) {
       const style = {
         textAlign: 'center',

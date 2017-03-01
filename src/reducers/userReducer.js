@@ -27,5 +27,6 @@ const userReducer = (state = initialState, action) => {
 };
 
 export const getUser = state => state.userReducer.user;
+export const getErrorMessage = state => state.userReducer.errorMessage;
 
 export default userReducer;

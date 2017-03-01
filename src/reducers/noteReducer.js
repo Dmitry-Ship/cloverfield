@@ -113,8 +113,25 @@ export const getAllTags = (state) => {
   return uniq(newArr);
 };
 
-export const getIsFetching = state => state.noteReducer.isFetching;
+export const getTagsSuggestions = (state, ownTags) => {
+  const allTags = getAllTags(state);
+  const suggestions = allTags.filter((tag) => {
+    return !ownTags.includes(tag);
+  });
+  return suggestions;
+};
 
+
+export const getAllImages = (state) => {
+  const allTheNotes = getAllNotes(state);
+  const tagsArr = allTheNotes.map(note => note.images);
+  const newArr = [].concat(...tagsArr);
+
+  return newArr;
+};
+
+export const getIsFetching = state => state.noteReducer.isFetching;
+export const getErrorMessage = state => state.noteReducer.errorMessage;
 export const getVisibleNotes = (state, tagText) => {
   const allTheNotes = getAllNotes(state);
 

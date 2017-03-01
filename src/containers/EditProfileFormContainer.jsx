@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { editProfile, fetchUser } from '../actions/userActions';
 import EditProfileForm from '../components/EditProfileForm';
 import validation from '../../helpers/validations/signup';
-import { getUser } from '../reducers/userReducer';
+import { getUser, getErrorMessage } from '../reducers/userReducer';
 
 const mapStateToProps = store => ({
   user: getUser(store),
+  errors: getErrorMessage(store),
   validation,
 });
 

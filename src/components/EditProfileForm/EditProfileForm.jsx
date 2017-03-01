@@ -25,15 +25,13 @@ export default class EditProfileForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // this.setState({
-    //   errors: nextProps.errors
-    // });
     this.setState({
       fullName: nextProps.user.fullName,
       username: nextProps.user.username,
       email: nextProps.user.email,
       password: nextProps.user.password,
       userpic: nextProps.user.userpic,
+      errors: nextProps.errors || {},
     });
   }
 
@@ -79,7 +77,6 @@ export default class EditProfileForm extends Component {
     // formData.append('password', password);
     if (userpic) {
       formData.append('avatar', userpic, userpic.name);
-      // formData.append('userpic', userpic.name);
     }
 
     this.props.onSubmit(formData);
@@ -93,10 +90,15 @@ export default class EditProfileForm extends Component {
             errors } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
-        <FormFileUploader preview={this.state.userpic} className={input} onChange={this.handleImageUpload} />
+        <FormFileUploader
+          preview={this.state.userpic}
+          className={input}
+          onChange={this.handleImageUpload}
+        />
 
         <TextField
           placeholder="Full Name"
+          label="Full Name"
           value={fullName}
           className={input}
           onChange={this.handleFullNameChange}
@@ -104,6 +106,7 @@ export default class EditProfileForm extends Component {
 
         <TextField
           placeholder="Username"
+          label="Username"
           value={username}
           className={input}
           onChange={this.handlUsernameChange}
@@ -114,6 +117,7 @@ export default class EditProfileForm extends Component {
         <TextField
           type="email"
           placeholder="Email"
+          label="Email"
           value={email}
           className={input}
           onChange={this.handleEmailChange}
@@ -124,6 +128,7 @@ export default class EditProfileForm extends Component {
         <TextField
           type="password"
           placeholder="New Password"
+          label="New Password"
           value={password}
           className={input}
           onChange={this.handlePasswordChange}

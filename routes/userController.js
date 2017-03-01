@@ -33,14 +33,14 @@ router.put('/', upload.single('avatar'), (req, res) => {
     return res.status(400).send(errors);
   }
   const { file } = req;
-  let editedUser = req.body;
-  if (file) {
-    editedUser = Object.assign({}, req.body, { userpic: req.file.filename });
-  }
-  // console.log(req.body);
 
-  // const { email, password, username, fullName } = req.body;
-  // const { file } = req;
+  let editedUser = req.body;
+
+  if (file) {
+    editedUser = Object.assign({}, req.body,
+      { userpic: req.file.filename });
+  }
+
   User.findOneAndUpdate({ _id: req.user._id },
     editedUser,
     { new: true, upsert: true },
