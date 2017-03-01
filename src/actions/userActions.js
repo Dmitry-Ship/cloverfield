@@ -19,3 +19,20 @@ export const fetchUser = () => (dispatch) => {
     .then(res => dispatch(fetchUserSuccess(res.data)))
     .catch(err => dispatch(fetchUserFailure(err.response.data)));
 };
+
+const editProfileSuccess = user => ({
+  type: types.EDIT_PROFILE_SUCCESS,
+  user,
+});
+
+const editProfileFailure = error => ({
+  type: types.EDIT_PROFILE_FAILURE,
+  error,
+});
+
+export const editProfile = data => (dispatch) => {
+  dispatch({ type: types.EDIT_PROFILE });
+  axios.put('/user', data, token())
+    .then(res => dispatch(editProfileSuccess(res.data)))
+    .catch(err => dispatch(editProfileFailure(err.response.data)));
+};

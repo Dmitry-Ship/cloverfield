@@ -9,6 +9,8 @@ import MainPage from './components/pages/MainPage';
 import AboutPage from './components/pages/AboutPage';
 import LoginPage from './components/pages/LoginPage';
 import SignUpPage from './components/pages/SignUpPage';
+import EditProfilePage from './components/pages/EditProfilePage';
+
 import NotFound from './components/pages/NotFound';
 import MainLayout from './components/layouts/MainLayout';
 
@@ -40,6 +42,7 @@ const Root = ({ store }) => {
           <IndexRoute component={MainPage} onEnter={isNotLoggedIn} />
           <Route path="tags/:tagText" component={MainPage} onEnter={isNotLoggedIn} />
           <Route path="about" component={AboutPage} onEnter={isNotLoggedIn} />
+          <Route path="editprofile" component={EditProfilePage} onEnter={isNotLoggedIn} />
           <Route path="login" component={LoginPage} onEnter={isLoggedIn} />
           <Route path="signup" component={SignUpPage} onEnter={isLoggedIn} />
           <Route path="*" component={NotFound} />

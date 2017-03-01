@@ -3,8 +3,8 @@ import React, { Component, PropTypes } from 'react';
 import { defaultLabel, heading, image, button } from './FormFileUploader.styl';
 
 export default class FormFileUploader extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       fileName: null,
       preview: null,
@@ -44,7 +44,7 @@ export default class FormFileUploader extends Component {
         <label className={defaultLabel} htmlFor={id} >
           <div
             className={image}
-            style={{ backgroundImage: `url(${this.state.preview})` }}
+            style={{ backgroundImage: `url(${this.state.preview || this.props.preview})` }}
           />
           <div className={button}>Upload</div>
         </label>

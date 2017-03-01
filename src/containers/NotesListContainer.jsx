@@ -20,20 +20,21 @@ class NotesListContainer extends Component {
   }
 
   render() {
-    if (this.props.isFetching) {
+    const { notes, isFetching } = this.props;
+    if (isFetching) {
       return (<Loader type="triple-dots" />);
     }
-    if (this.props.notes.length === 0) {
+    if (notes.length === 0) {
       const style = {
         textAlign: 'center',
         opacity: '0.3',
-        marginTop: '120px'
-      }
+        marginTop: '120px',
+      };
       return (<h1 style={style} >You don`t have any notes</h1>);
     }
 
     return (
-      <NotesList notes={this.props.notes} />
+      <NotesList notes={notes} />
     );
   }
 }

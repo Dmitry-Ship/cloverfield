@@ -15,6 +15,13 @@ const userReducer = (state = initialState, action) => {
       return Object.assign({}, state, { user, isFetching: false, errorMessage: null });
     case types.FETCH_USER_FAILURE:
       return Object.assign({}, state, { isFetching: false, errorMessage: error });
+
+    case types.EDIT_PROFILE:
+      return state;
+    case types.EDIT_PROFILE_SUCCESS:
+      return Object.assign({}, state, { user });
+    case types.EDIT_PROFILE_FAILURE:
+      return Object.assign({}, state, { errorMessage: error });
     default: return state;
   }
 };
