@@ -4,7 +4,7 @@ import {
   tagArea,
   input,
   input__field,
-  suggestions,
+  suggestionsMenu,
   suggestion } from './TagArea.styl';
 
 import PopUpMenu from '../basic/PopUpMenu';
@@ -61,7 +61,7 @@ export default class TagArea extends Component {
   }
 
   render() {
-    const { tags, allTags, onDeleteTag, className } = this.props;
+    const { tags, suggestions, onDeleteTag, className } = this.props;
 
     return (
       <div className={`${tagArea} ${className}`}>
@@ -76,8 +76,8 @@ export default class TagArea extends Component {
             onPaste={this.handlePaste}
           />
 
-          <PopUpMenu className={suggestions} position="bottom" >
-            {allTags.map(tag =>
+          <PopUpMenu className={suggestionsMenu} position="bottom" >
+            {suggestions.map(tag =>
               <span onMouseDown={this.setTag} key={tag} className={suggestion} >{tag}</span>)}
           </PopUpMenu>
         </div>
@@ -91,6 +91,6 @@ TagArea.propTypes = {
   onDeleteTag: PropTypes.func.isRequired,
   className: PropTypes.string,
   onSetTag: PropTypes.func.isRequired,
-  allTags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  suggestions: PropTypes.arrayOf(React.PropTypes.string).isRequired,
   tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
 };

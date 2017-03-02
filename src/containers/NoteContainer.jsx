@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Note from '../components/Note';
 
-import { getAllTags, getTagsSuggestions } from '../reducers/noteReducer';
+import { getTagsSuggestions } from '../reducers/noteReducer';
 
 import {
   editNote,
@@ -13,8 +13,7 @@ import {
   deleteNote } from '../actions/noteActions';
 
 const mapStateToProps = (store, ownProps) => ({
-  // allTags: getAllTags(store),
-  allTags: getTagsSuggestions(store, ownProps.note.tags)
+  tagsSuggestions: getTagsSuggestions(store, ownProps.note.tags),
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

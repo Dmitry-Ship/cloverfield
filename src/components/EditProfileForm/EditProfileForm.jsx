@@ -14,6 +14,7 @@ export default class EditProfileForm extends Component {
       email: '',
       password: '',
       userpic: null,
+      preview: '',
       errors: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +23,7 @@ export default class EditProfileForm extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.handleImageDelete = this.handleImageDelete.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,12 +33,17 @@ export default class EditProfileForm extends Component {
       email: nextProps.user.email,
       password: nextProps.user.password,
       userpic: nextProps.user.userpic,
+      preview: nextProps.user.userpic,
       errors: nextProps.errors || {},
     });
   }
 
-  handleImageUpload(value) {
-    this.setState({ userpic: value });
+  handleImageUpload(value, secondValue) {
+    this.setState({ userpic: value, preview: secondValue });
+  }
+
+  handleImageDelete() {
+    this.setState({ userpic: null, preview: '' });
   }
 
   handleFullNameChange(value) {
@@ -79,6 +86,10 @@ export default class EditProfileForm extends Component {
       formData.append('avatar', userpic, userpic.name);
     }
 
+    if (!userpic) {
+      formData.append('userpic', '');
+    }
+
     this.props.onSubmit(formData);
   }
 
@@ -91,7 +102,9 @@ export default class EditProfileForm extends Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormFileUploader
-          preview={this.state.userpic}
+          preview={this.state.preview}
+          onDeleteImage={this.handleImageDelete}
+          id="EditProfileUploader"
           className={input}
           onChange={this.handleImageUpload}
         />
@@ -142,4 +155,5 @@ export default class EditProfileForm extends Component {
 
 EditProfileForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  validation: PropTypes.func.isRequired,
 };

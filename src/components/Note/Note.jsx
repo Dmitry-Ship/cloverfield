@@ -113,7 +113,7 @@ export default class Note extends Component {
             onDeleteTag={onDeleteTag}
             tags={note.tags}
             onSetTag={this.props.onSetTag}
-            allTags={this.props.allTags}
+            suggestions={this.props.tagsSuggestions}
             onAddTag={onAddTag}
           />
         </div>

@@ -11,7 +11,6 @@ export default class SignUpPage extends Component {
   render() {
     return (
       <Page className={page}>
-
         <Card className={card} >
           <h1 className={heading} >Create new account</h1>
           <SignUpFormContainer />

@@ -149,7 +149,7 @@ export default class CreationForm extends Component {
   }
 
   render() {
-    const { titlePlaceholder, bodyPlaceholder } = this.props;
+    const { titlePlaceholder, bodyPlaceholder, tagsSuggestions } = this.props;
     const { bodyText, titleText, className, color, previews } = this.state;
     return (
       <div
@@ -165,7 +165,7 @@ export default class CreationForm extends Component {
         >
           {previews && <AttachedImages
             onDelete={this.deletePreview}
-            images={previews}
+            previews={previews}
           />}
 
           <Textarea
@@ -182,12 +182,14 @@ export default class CreationForm extends Component {
             placeholder={bodyPlaceholder}
           />
 
-          {/* <TagArea
+          <TagArea
             className={tagArea}
             onAddTag={this.handleAddTag}
             onDeleteTag={this.handleDeleteTag}
+            onSetTag={this.handleAddTag}
+            suggestions={tagsSuggestions(this.state.tags)}
             tags={this.state.tags}
-          /> */}
+          />
 
           <div className={submition} >
             <NoteActions
@@ -210,6 +212,7 @@ CreationForm.defaultProps = {
 };
 
 CreationForm.propTypes = {
+  // tagsSuggestions: PropTypes.string,
   titlePlaceholder: PropTypes.string,
   bodyPlaceholder: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,

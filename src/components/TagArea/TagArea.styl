@@ -7,6 +7,14 @@
   text-align left
   font-size 0.8rem
 
+  &:hover
+    .input__field
+      cursor: pointer
+      background: rgba(0,0,0,0.1)
+      &::after
+        content: "add tag"
+        color: white
+
 .input
   position relative
   margin 0 5px 5px 0
@@ -15,12 +23,15 @@
 .input__field
   padding 5px
   width: 10px
-  min-width 50px
+  min-width 60px
   outline none
   background transparent
   &:focus
-    + .suggestions
+    + .suggestionsMenu
       display block
+    &::after
+      display: none
+
 
 .suggestion
   display: block;

@@ -113,7 +113,7 @@ export const getAllTags = (state) => {
   return uniq(newArr);
 };
 
-export const getTagsSuggestions = (state, ownTags) => {
+export const getTagsSuggestions = (state, ownTags = '') => {
   const allTags = getAllTags(state);
   const suggestions = allTags.filter((tag) => {
     return !ownTags.includes(tag);

@@ -14,6 +14,7 @@ export default class SignUpForm extends Component {
       email: '',
       password: '',
       userpic: null,
+      preview: '',
       errors: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,14 +23,19 @@ export default class SignUpForm extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.handleImageDelete = this.handleImageDelete.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleImageUpload(value) {
-    this.setState({ userpic: value });
+  handleImageUpload(value, secondValue) {
+    this.setState({ userpic: value, preview: secondValue });
+  }
+
+  handleImageDelete() {
+    this.setState({ userpic: null, preview: '' });
   }
 
   handleFullNameChange(value) {
@@ -80,6 +86,7 @@ export default class SignUpForm extends Component {
             username,
             email,
             password,
+            preview,
             errors } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -124,6 +131,8 @@ export default class SignUpForm extends Component {
         <FormFileUploader
           text="Upload a photo of yourself to get started."
           className={input}
+          preview={preview}
+          onDeleteImage={this.handleImageDelete}
           onChange={this.handleImageUpload}
         />
       </Form>
@@ -133,4 +142,5 @@ export default class SignUpForm extends Component {
 
 SignUpForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  validation: PropTypes.func.isRequired,
 };

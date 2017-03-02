@@ -11,6 +11,7 @@ const mapStateToProps = (store, ownProps) => ({
   errorMessage: getErrorMessage(store),
 });
 
+
 const mapDispatchToProps = dispatch => ({
   fetchNotes: () => dispatch((fetchNotes)()),
 });
