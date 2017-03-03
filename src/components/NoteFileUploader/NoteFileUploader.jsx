@@ -1,69 +1,54 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 import Icon from '../basic/Icon';
 
 import { icon, label } from './NoteFileUploader.scss';
 
-export default class NoteFileUploader extends Component {
-  constructor() {
-    super();
-    this.state = {
-      fileName: null,
-      preview: null,
-    };
-    this.handleUpload = this.handleUpload.bind(this);
-    this.deletePreview = this.deletePreview.bind(this);
-  }
-
-  handleUpload(e) {
-    const theImage = e.target.files[0];
-    const reader = new FileReader();
-
-    const setSrc = (event) => {
-      this.setState({
-        preview: event.target.result,
-        fileName: theImage.name,
-      });
-      this.props.onChange(theImage, event.target.result);
-    };
-
-    reader.onload = setSrc;
-
-    reader.readAsDataURL(e.target.files[0]);
-  }
-
-  deletePreview() {
-    this.setState({
-      preview: null,
-      fileName: null,
-    });
-  }
-
-  render() {
-    const {
+const NoteFileUploader = ({
         name,
         id,
         required,
+        onChange,
         fileType,
-        className } = this.props;
-    return (
-      <div>
-        <label className={`${className} ${label}`} htmlFor={id} >
-          <Icon className={icon} name="image" />
-        </label>
-        <input
-          id={id}
-          type="file"
-          style={{ display: 'none' }}
-          name={name}
-          required={required}
-          onChange={this.handleUpload}
-          accept={fileType}
-        />
-      </div>
-    );
-  }
-}
+        className }) => {
+  const handleUpload = (e) => {
+    const files = e.target.files;
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+
+      const setSrc = (event, file) => {
+        onChange({
+          preview: event.target.result,
+          file,
+        });
+      };
+
+      reader.onload = ev => setSrc(ev, files[i]);
+
+      reader.readAsDataURL(files[i]);
+    }
+  };
+
+  return (
+    <div>
+      <label className={`${className} ${label}`} htmlFor={id} >
+        <Icon className={icon} name="image" />
+      </label>
+      <input
+        id={id}
+        type="file"
+        style={{ display: 'none' }}
+        multiple
+        name={name}
+        required={required}
+        onChange={handleUpload}
+        accept={fileType}
+      />
+    </div>
+  );
+};
+
+export default NoteFileUploader;
 
 NoteFileUploader.defaultProps = {
   className: '',
@@ -72,7 +57,6 @@ NoteFileUploader.defaultProps = {
   required: false,
   customLabel: null,
 };
-
 
 NoteFileUploader.propTypes = {
   className: PropTypes.string,

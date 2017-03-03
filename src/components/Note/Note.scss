@@ -11,8 +11,10 @@
   background: white;
   margin-bottom: 30px;
   padding: 30px 15px 15px 15px;
-  &:hover .actions {
-    opacity: 1;
+  &:hover {
+    .actions {
+      opacity: 1;
+    }
   }
   @media mobile {
     width: 100%;

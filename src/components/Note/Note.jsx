@@ -29,7 +29,7 @@ export default class Note extends Component {
     this.handleFocus = this.handleFocus.bind(this);
   }
 
-  handleImage(file) {
+  handleImage({ file }) {
     const formData = new FormData();
 
     formData.append('note-image', file, file.filename);

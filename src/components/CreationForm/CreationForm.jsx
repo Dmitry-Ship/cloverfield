@@ -53,30 +53,28 @@ export default class CreationForm extends Component {
     this.setState({ color: value });
   }
 
-  handleImage(file, preview) {
+  handleImage({ file, preview }) {
     const oldFiles = this.state.imageFiles;
-
-    oldFiles.push(file);
-
     const oldPreviews = this.state.previews;
 
+    oldFiles.push(file);
     oldPreviews.push(preview);
+
     this.setState({
       imageFiles: oldFiles,
       previews: oldPreviews,
     });
   }
 
-  deletePreview(file, preview) {
+  deletePreview(preview) {
+    const oldPreviews = this.state.previews;
+    const i = oldPreviews.indexOf(preview);
+
+    oldPreviews.splice(i, 1);
+
     const oldFiles = this.state.imageFiles;
-    const i = oldFiles.indexOf(file);
-
+    
     oldFiles.splice(i, 1);
-
-    const oldPreviews = this.state.imageFiles;
-    const j = oldPreviews.indexOf(preview);
-
-    oldPreviews.splice(j, 1);
 
     this.setState({
       imageFiles: oldFiles,
@@ -212,7 +210,7 @@ CreationForm.defaultProps = {
 };
 
 CreationForm.propTypes = {
-  // tagsSuggestions: PropTypes.string,
+  tagsSuggestions: PropTypes.func,
   titlePlaceholder: PropTypes.string,
   bodyPlaceholder: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,

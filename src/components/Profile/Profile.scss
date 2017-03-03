@@ -7,9 +7,6 @@
   position: relative;
   margin: 0 .4rem;
   cursor: pointer;
-  &:hover .popUpMenu {
-    display: block;
-  }
 }
 
 .item {
@@ -49,6 +46,7 @@
 
 .popUpMenu {
   width: 200px;
+  display: block;
   @media mobile {
     box-shadow: none;
     position: fixed;
