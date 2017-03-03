@@ -1,0 +1,12 @@
+@value colors: "../../styles/colors.scss";
+@value primary from colors;
+
+.layout {
+  background: primary;
+}
+
+.main {
+  padding-top: 55px;
+  min-height: 100vh;
+}
+

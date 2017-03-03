@@ -9,7 +9,7 @@ import styles, {
   tagArea,
   wrapper,
   submition,
-  unfolded } from './CreationForm.styl';
+  unfolded } from './CreationForm.scss';
 
 import NoteActions from '../NoteActions';
 

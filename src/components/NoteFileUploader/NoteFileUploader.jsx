@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import Icon from '../basic/Icon';
 
-import { icon, label } from './NoteFileUploader.styl';
+import { icon, label } from './NoteFileUploader.scss';
 
 export default class NoteFileUploader extends Component {
   constructor() {

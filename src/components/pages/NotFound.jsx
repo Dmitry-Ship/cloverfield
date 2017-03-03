@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { page, message } from './NotFound.styl';
+import { page, message } from './NotFound.scss';
 
 import Page from '../basic/Page';
 

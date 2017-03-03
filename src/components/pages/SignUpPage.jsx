@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { page, card, heading } from './SignUpPage.styl';
+import { page, card, heading } from './SignUpPage.scss';
 
 import Page from '../basic/Page';
 import SignUpFormContainer from '../../containers/SignUpFormContainer';

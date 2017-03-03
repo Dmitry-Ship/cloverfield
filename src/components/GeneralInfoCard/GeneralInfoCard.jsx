@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { card, field } from './GeneralInfoCard.styl';
+import { card, field } from './GeneralInfoCard.scss';
 import Card from '../basic/Card';
 
 const GeneralInfoCard = ({ tags, notes, images, className }) => (

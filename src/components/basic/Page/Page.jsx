@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { page } from './Page.styl';
+import { page } from './Page.scss';
 
 const Page = ({ className, children }) => (
   <div className={`${className} ${page}`} >

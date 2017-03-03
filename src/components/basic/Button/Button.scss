@@ -1,0 +1,33 @@
+@value colors: "../../../styles/colors.scss";
+@value accent, accent--light, accent--dark from colors;
+
+.button {
+  border: none;
+  width: 85px;
+  height: 45px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+
+.primary {
+  composes: button;
+  background: accent;
+  color: white;
+  &:hover {
+    background: accent--dark;
+  }
+}
+
+
+.secondary {
+  composes: button;
+  background: transparent;
+  border: 3px solid accent;
+  color: accent;
+  &:hover {
+    background: accent;
+    color: white;
+  }
+}

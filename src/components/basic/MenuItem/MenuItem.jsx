@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Icon from '../Icon';
 
-import { link, icon } from './MenuItem.styl';
+import { link, icon } from './MenuItem.scss';
 
 const MenuItem = ({ item, className }) => (
   <Link className={`${link} ${className}`} onClick={item.func} to={item.to}>

@@ -1,0 +1,58 @@
+@value colors: "../../styles/colors.scss";
+@value secondary, primary from colors;
+@value breakPoints: "../../styles/breakPoints.scss";
+@value mobile from breakPoints;
+
+.profile {
+  position: relative;
+  margin: 0 .4rem;
+  cursor: pointer;
+  &:hover .popUpMenu {
+    display: block;
+  }
+}
+
+.item {
+  text-align: left;
+  border-bottom: 1px solid primary;
+}
+
+.link {
+  margin: 0;
+  color: secondary;
+  display: block;
+  padding: 20px;
+  transition: color 150ms ease-in-out;
+  font-size: .9rem;
+  &:hover {
+    color: black;
+  }
+  @media mobile {
+    padding: 40px 20px;
+  }
+}
+
+.name {
+  display: block;
+  color: black;
+  margin-bottom: 10px;
+  @media mobile {
+    margin-bottom: 30px;
+  }
+}
+
+.avatar {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.popUpMenu {
+  width: 200px;
+  @media mobile {
+    box-shadow: none;
+    position: fixed;
+    width: 100%;
+    top: 55px;
+  }
+}

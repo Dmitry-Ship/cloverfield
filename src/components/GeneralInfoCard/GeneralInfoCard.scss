@@ -1,0 +1,12 @@
+.card {
+  composes: inofCard from 'styles/cards.scss';
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.field {
+  display: block;
+}

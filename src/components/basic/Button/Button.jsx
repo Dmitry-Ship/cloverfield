@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './Button.styl';
+import styles from './Button.scss';
 
 import Icon from '../Icon';
 

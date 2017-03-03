@@ -3,7 +3,6 @@ const path = require('path');
 const values = require('postcss-modules-values');
 const colorFunction = require('postcss-color-function');
 const lost = require('lost');
-const rupture = require('rupture');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -36,7 +35,7 @@ module.exports = {
       path.join(__dirname, 'node_modules'),
       path.join(__dirname, 'src')
     ],
-    extensions: ['.js', '.jsx', 'css', 'styl'],
+    extensions: ['.js', '.jsx', 'css', 'scss'],
   },
   module: {
     rules: [
@@ -46,44 +45,15 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              module: true,
-              importLoaders: 1,
-              localIdentName: '[hash:base64:5]',
-            },
-          },
-          'postcsss-loader'
-        ],
-      },
-      {
         test: /\.html$/,
         loader: 'html-loader',
       },
       {
-        test: /\.styl$/,
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: ['css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]', 'postcss-loader', 'stylus-loader']
+          loader: ['css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]', 'postcss-loader', 'sass-loader'],
         }),
-        // use: [
-        //   'style-loader?sourceMap',
-        //   {
-        //     loader: 'css-loader',
-        //     options: {
-        //       module: true,
-        //       importLoaders: 1,
-        //       localIdentName: '[hash:base64:5]',
-        //     },
-        //   },
-        //   'postcss-loader',
-        //   'stylus-loader?sourceMap',
-        // ],
         exclude: /node_modules/,
       },
     ],
@@ -96,10 +66,6 @@ module.exports = {
           lost,
           colorFunction,
         ],
-        stylus: {
-          use: [rupture()],
-          import: ['~rupture/rupture/index.styl'],
-        },
       },
     }),
     new webpack.optimize.UglifyJsPlugin(),

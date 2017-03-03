@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './Loader.styl';
+import styles from './Loader.scss';
 
 const Loader = ({ type, className, text }) => (
   <div className={`${styles.wrapper} ${className}`} >

@@ -5,7 +5,7 @@ import {
   input,
   input__field,
   suggestionsMenu,
-  suggestion } from './TagArea.styl';
+  suggestion } from './TagArea.scss';
 
 import PopUpMenu from '../basic/PopUpMenu';
 import Tag from '../basic/Tag';

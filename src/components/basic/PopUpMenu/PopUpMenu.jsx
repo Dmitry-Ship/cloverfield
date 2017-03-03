@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './PopUpMenu.styl';
+import styles from './PopUpMenu.scss';
 
 
 const PopUpMenu = ({ className, children, position }) => (

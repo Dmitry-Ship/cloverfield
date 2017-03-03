@@ -6,7 +6,7 @@ import styles, {
   input,
   content,
   actions,
-  icon } from './Note.styl';
+  icon } from './Note.scss';
 
 import NoteActions from '../NoteActions';
 import Icon from '../basic/Icon';

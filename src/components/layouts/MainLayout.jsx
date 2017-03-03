@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { layout, main } from './MainLayout.styl';
+import { layout, main } from './MainLayout.scss';
 import TopBarContainer from '../../containers/TopBarContainer';
 
 const MainLayout = ({ children }) => (

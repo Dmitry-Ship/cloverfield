@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { media, figure, body, title } from './MediaObject.styl';
+import { media, figure, body, title } from './MediaObject.scss';
 
 import Icon from '../Icon';
 

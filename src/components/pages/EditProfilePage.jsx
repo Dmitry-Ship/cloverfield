@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { page, card, heading } from './EditProfilePage.styl';
+import { page, card, heading } from './EditProfilePage.scss';
 
 import Page from '../basic/Page';
 import Card from '../basic/Card';

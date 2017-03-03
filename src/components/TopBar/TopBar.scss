@@ -1,11 +1,15 @@
+@value breakPoints: "../../styles/breakPoints.scss";
+@value mobile from breakPoints;
+
 .topBar {
   background: white;
-  composes: level-1 from 'styles/shadows.styl';
+  composes: level-1 from 'styles/shadows.scss';
   padding: 0 10%;
   position: fixed;
   width: 100%;
   height: 56px;
   z-index: 2;
-//   +below(600px)
-//     padding: 0 5%
+  @media mobile {
+    padding: 0 5%;
+  }
 }

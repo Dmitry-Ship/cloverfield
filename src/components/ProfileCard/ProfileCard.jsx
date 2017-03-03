@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { card, avatar } from './ProfileCard.styl';
+import { card, avatar } from './ProfileCard.scss';
 import Card from '../basic/Card';
 import Avatar from '../basic/Avatar';
 

@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 import TextField from '../basic/TextField';
 import Form from '../basic/Form';
 
-import { input } from './LoginForm.styl';
+import { input } from './LoginForm.scss';
 
 export default class LoginForm extends Component {
   constructor() {

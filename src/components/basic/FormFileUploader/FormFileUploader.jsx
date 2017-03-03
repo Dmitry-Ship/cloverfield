@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import Icon from '../Icon';
 
-import { defaultLabel, heading, image, button, deleteIcon } from './FormFileUploader.styl';
+import { defaultLabel, heading, image, button, deleteIcon } from './FormFileUploader.scss';
 
 const FormFileUploader = ({
       name,

@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 
 import Textarea from 'react-textarea-autosize';
 
-import { input, mask } from './NoteInput.styl';
+import { input, mask } from './NoteInput.scss';
 
 
 export default class NoteInput extends Component {

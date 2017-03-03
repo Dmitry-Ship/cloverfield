@@ -1,0 +1,48 @@
+@value colors: "../../../styles/colors.scss";
+@value secondary, tertiary, accent from colors;
+
+.defaultLabel {
+  cursor: pointer;
+  width: 150px;
+  height: 180px;
+  text-align: center;
+  position: relative;
+  color: grey;
+  background: secondary;
+  display: block;
+  margin: auto;
+}
+
+.heading {
+  text-align: center;
+  color: tertiary;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+}
+
+.deleteIcon {
+  background: rgba(black, .4);
+  border-radius: 5px;
+  color: rgba(white, .4);
+  cursor: pointer;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  &:hover {
+    color: white;
+  }
+}
+
+
+.button {
+  background: accent;
+  height: 45px;
+  line-height: 45px;
+  color: white;
+}
+

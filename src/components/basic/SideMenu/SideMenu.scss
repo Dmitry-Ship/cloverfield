@@ -1,0 +1,63 @@
+@value colors: "../../../styles/colors.scss";
+@value secondary, accent from colors;
+@value breakPoints: "../../../styles/breakPoints.scss";
+@value mobile from breakPoints;
+
+.wrapper {
+  display: none;
+  @media mobile {
+    display: block;
+  }
+}
+
+.icon {
+  display: none;
+  cursor: pointer;
+  @media mobile {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.sideMenu {
+  position: fixed;
+  top: 55px;
+  right: 100%;
+  background: secondary;
+  width: 100%;
+  height: calc(100vh - 55px);
+  z-index: 1;
+  font-size: 1.8rem;
+  transition: all 300ms ease-in-out;
+  text-align: left;
+  display: none;
+  @media mobile {
+    display: table;
+  }
+}
+
+.shown {
+  composes: sideMenu;
+  right: 0%;
+}
+
+.content {
+  padding: 0px;
+  width: 500px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.menuItem {
+  display: block;
+  padding: 25px;
+  white-space: nowrap;
+  color: accent;
+  &:hover {
+    background: accent;
+    color: secondary;
+  }
+}

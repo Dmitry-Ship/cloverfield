@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { wrapper, textField, errorMessage, topLabel } from './TextField.styl';
+import { wrapper, textField, errorMessage, topLabel } from './TextField.scss';
 
 export default class TextField extends Component {
   constructor() {

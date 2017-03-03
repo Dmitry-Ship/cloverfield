@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { page, card, heading } from './LoginPage.styl';
+import { page, card, heading } from './LoginPage.scss';
 
 import Page from '../basic/Page';
 import Card from '../basic/Card';

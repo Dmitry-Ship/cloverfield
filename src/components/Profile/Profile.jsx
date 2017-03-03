@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { item, profile, avatar, popUpMenu, link, name } from './Profile.styl';
+import { item, profile, avatar, popUpMenu, link, name } from './Profile.scss';
 
 import Avatar from '../basic/Avatar';
 import PopUpMenu from '../basic/PopUpMenu';

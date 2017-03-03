@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { deleteIcon, singleImage, image, wrapper } from './AttachedImages.styl';
+import { deleteIcon, singleImage, image, wrapper } from './AttachedImages.scss';
 
 import Icon from '../Icon';
 

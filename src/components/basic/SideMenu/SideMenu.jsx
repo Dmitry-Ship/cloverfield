@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { shown, sideMenu, content, menuItem, icon, wrapper } from './SideMenu.styl';
+import { shown, sideMenu, content, menuItem, icon, wrapper } from './SideMenu.scss';
 
 import MenuItem from '../MenuItem';
 import Icon from '../Icon';

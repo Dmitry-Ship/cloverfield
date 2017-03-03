@@ -1,6 +1,8 @@
-@value colors "../../../styles/colors.styl";
-@value secondary from colors;
-@value tertiary from colors;
+@value colors: "../../../styles/colors.scss";
+@value secondary, tertiary from colors;
+
+@value breakPoints: "../../../styles/breakPoints.scss";
+@value mobile from breakPoints;
 
 .link {
   color: secondary;
@@ -12,12 +14,10 @@
   }
 }
 
-
 .active {
   composes: link;
   color: tertiary;
 }
-
 
 .icon {
   vertical-align: middle;
@@ -27,10 +27,10 @@
 .text {
   margin: 0 .4em;
   vertical-align: middle;
-//   +tablet()
-//     display: none;
+  @media mobile {
+    display: none;
+  }
 }
-
 
 .content {
   margin: 0 .4rem;

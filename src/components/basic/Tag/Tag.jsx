@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { tag, link, icon } from './Tag.styl';
+import { tag, link, icon } from './Tag.scss';
 
 const Tag = ({ tagText, onDeleteTag }) => (
   <div className={tag}>

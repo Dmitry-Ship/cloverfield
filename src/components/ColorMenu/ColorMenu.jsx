@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from './ColorMenu.styl';
+import styles from './ColorMenu.scss';
 
 import PopUpMenu from '../basic/PopUpMenu';
 import Icon from '../basic/Icon';

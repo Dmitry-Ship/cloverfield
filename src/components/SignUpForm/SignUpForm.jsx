@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import TextField from '../basic/TextField';
 import Form from '../basic/Form';
 import FormFileUploader from '../basic/FormFileUploader';
-import { input } from './SignUpForm.styl';
+import { input } from './SignUpForm.scss';
 
 export default class SignUpForm extends Component {
   constructor() {

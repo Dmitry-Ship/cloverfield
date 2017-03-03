@@ -1,0 +1,8 @@
+.icon {
+  cursor: pointer;
+  color: rgba(black, 0.3);
+  transition: all 150ms ease-in-out;
+  &:hover {
+    color: black;
+  }
+}

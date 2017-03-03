@@ -1,0 +1,106 @@
+@value colors: "../../styles/colors.scss";
+@value flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
+@value breakPoints: "../../styles/breakPoints.scss";
+@value mobile from breakPoints;
+
+.wrapper {
+  width: 400px;
+  margin: 85px auto 30px auto;
+  @media mobile {
+    width: 100%;
+  }
+}
+
+.form {
+  composes: level-1 from 'styles/shadows.scss';
+  lost-utility: clearfix;
+  transition: background 150ms ease-in-out;
+}
+
+.unfolded {
+  composes: form;
+  .title {
+    display: block;
+  }
+  .tagArea {
+    display: block;
+  }
+  .submition {
+    display: block;
+  }
+  .button {
+    display: block;
+  }
+}
+
+.field {
+  line-height: 30px;
+  width: 100%;
+  border: none;
+  font-size: 1.3rem;
+  padding: 15px;
+  word-wrap: break-word;
+  resize: none;
+  overflow: hidden;
+}
+
+.title {
+  composes: field;
+  display: none;
+}
+
+.body {
+  composes: field;
+}
+
+.tagArea {
+  display: none;
+}
+
+.submition {
+  z-index: 0;
+  width: 50%;
+  display: none;
+  float: left;
+  justify-content: space-between;
+  background: transparent;
+  line-height: 30px;
+  transition: all 150ms ease-in-out;
+}
+
+.button {
+  display: none;
+  float: right;
+}
+
+.red {
+  background: note_red;
+}
+
+.orange {
+  background: note_orange;
+}
+
+.yellow {
+  background: note_yellow;
+}
+
+.grey {
+  background: note_grey;
+}
+
+.blue {
+  background: note_blue;
+}
+
+.teal {
+  background: note_teal;
+}
+
+.green {
+  background: note_green;
+}
+
+.white {
+  background: white;
+}
