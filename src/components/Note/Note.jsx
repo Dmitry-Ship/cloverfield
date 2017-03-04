@@ -4,6 +4,7 @@ import Textarea from 'react-textarea-autosize';
 import styles, {
   image,
   input,
+  titleInput,
   content,
   actions,
   icon } from './Note.scss';
@@ -77,6 +78,7 @@ export default class Note extends Component {
       onDelete,
       onAddTag,
       onDeleteTag,
+      expandImage,
       onDeleteImage,
       onSetColor } = this.props;
     const { title, body } = this.state;
@@ -86,6 +88,7 @@ export default class Note extends Component {
 
         <div className={content}>
           <AttachedImages
+            expandImage={expandImage}
             onDelete={onDeleteImage}
             images={note.images}
             className={image}
@@ -94,7 +97,7 @@ export default class Note extends Component {
           <Textarea
             value={title}
             name="title"
-            className={input}
+            className={titleInput}
             onChange={this.handleTitleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleTitleBlur}
@@ -146,6 +149,7 @@ Note.propTypes = {
   onDeleteTag: PropTypes.func.isRequired,
   onDeleteImage: PropTypes.func.isRequired,
   onAddImage: PropTypes.func.isRequired,
+  expandImage: PropTypes.func.isRequired,
   note: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     title: PropTypes.string,

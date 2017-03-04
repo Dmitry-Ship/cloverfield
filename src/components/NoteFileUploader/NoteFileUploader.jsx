@@ -13,6 +13,7 @@ const NoteFileUploader = ({
         className }) => {
   const handleUpload = (e) => {
     const files = e.target.files;
+
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
 

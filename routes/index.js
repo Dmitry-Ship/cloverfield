@@ -8,12 +8,10 @@ const imagesController = require('./imagesController');
 const isLoggedIn = require('./isLoggedIn');
 
 const router = express.Router();
-const indexFile = path.join(__dirname, '../index.html');
 
 router.use('/notes', isLoggedIn, notesController);
 router.use('/user', isLoggedIn, userController);
 router.use('/image', isLoggedIn, imagesController);
-// router.get('*', (req, res) => res.sendFile(indexFile));
 router.use('/login', loginController);
 router.use('/signup', signupController);
 

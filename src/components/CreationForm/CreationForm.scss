@@ -8,6 +8,7 @@
   margin: 85px auto 30px auto;
   @media mobile {
     width: 100%;
+    margin-top: 40px;
   }
 }
 
@@ -42,10 +43,15 @@
   word-wrap: break-word;
   resize: none;
   overflow: hidden;
+  background: transparent;
+  &::-webkit-input-placeholder {
+    color: rgba(black, .3);
+  }
 }
 
 .title {
   composes: field;
+  font-weight: bold;
   display: none;
 }
 

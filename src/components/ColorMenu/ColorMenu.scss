@@ -72,5 +72,6 @@
 
 .white {
   composes: circle;
+  border: 2px solid grey;
   background: white;
 }

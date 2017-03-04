@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import Note from '../components/Note';
+import { expandImage } from '../actions/UIActions';
 
 import { getTagsSuggestions } from '../reducers/noteReducer';
 
@@ -26,6 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onAddImage: image => dispatch(addImage(image, ownProps.note._id)),
   onDeleteImage: image => dispatch(deleteImage(image, ownProps.note._id)),
   onDelete: () => dispatch(deleteNote(ownProps.note._id)),
+  expandImage: image => dispatch(expandImage(image)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Note);

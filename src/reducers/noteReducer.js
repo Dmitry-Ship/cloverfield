@@ -136,9 +136,9 @@ export const getVisibleNotes = (state, tagText) => {
   const allTheNotes = getAllNotes(state);
 
   if (!tagText) {
-    return allTheNotes;
+    return allTheNotes.reverse();
   }
-  return allTheNotes.filter(note => note.tags.includes(tagText));
+  return allTheNotes.filter(note => note.tags.includes(tagText)).reverse();
 };
 
 export default combineReducers({ isFetching, errorMessage, byId, allIds });

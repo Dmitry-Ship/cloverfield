@@ -162,8 +162,9 @@ export default class CreationForm extends Component {
           onSubmit={this.create}
         >
           {previews && <AttachedImages
+            expandImage={this.props.expandImage}
             onDelete={this.deletePreview}
-            previews={previews}
+            images={previews}
           />}
 
           <Textarea
@@ -206,7 +207,7 @@ export default class CreationForm extends Component {
 CreationForm.defaultProps = {
   color: 'white',
   titlePlaceholder: 'Title',
-  bodyPlaceholder: 'Content',
+  bodyPlaceholder: 'Take a note',
 };
 
 CreationForm.propTypes = {

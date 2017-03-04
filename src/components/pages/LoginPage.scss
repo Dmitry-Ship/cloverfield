@@ -5,6 +5,7 @@
   composes: signForm from 'styles/cards.scss';
   margin-top: 150px;
   margin-bottom: 50px;
+  background: rgba(white, 0.6);
 }
 
 .heading {
@@ -12,4 +13,11 @@
   color: tertiary;
   font-weight: lighter;
   margin: 0 0 60px 0;
+}
+
+.page {
+  background-image: url('/robot.gif');
+  background-size: cover;
+  height: calc(100vh - 55px);
+  background-position: center;
 }

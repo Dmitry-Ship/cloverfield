@@ -11,7 +11,6 @@ import LoginPage from './components/pages/LoginPage';
 import SignUpPage from './components/pages/SignUpPage';
 import EditProfilePage from './components/pages/EditProfilePage';
 import ViewProfilePage from './components/pages/ViewProfilePage';
-
 import NotFound from './components/pages/NotFound';
 import MainLayout from './components/layouts/MainLayout';
 

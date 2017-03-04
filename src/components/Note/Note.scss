@@ -58,6 +58,11 @@
   }
 }
 
+.titleInput {
+  composes: input;
+  font-weight: bold;
+}
+
 .image {
   width: calc(100% + 30px);
   height: auto;

@@ -1,5 +1,5 @@
 .card {
-  composes: inofCard from 'styles/cards.scss';
+  composes: infoCard from 'styles/cards.scss';
   display: flex;
   justify-content: space-between;
   text-align: center;

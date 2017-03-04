@@ -3,7 +3,7 @@ import TopBar from '../components/TopBar';
 import { getIsLoggedIn } from '../reducers/authReducer';
 
 const mapStateToProps = store => ({
-  appName: 'My App',
+  appName: 'Cloverfield',
   isLoggedIn: getIsLoggedIn(store),
   navBarItems: getIsLoggedIn(store) ? [
     { label: 'Home', iconName: 'home', to: '/' },
