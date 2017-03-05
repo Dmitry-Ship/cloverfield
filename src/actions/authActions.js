@@ -4,9 +4,9 @@ import { browserHistory } from 'react-router';
 
 import * as types from './actionTypes';
 
-const loginSuccess = user => ({
+const loginSuccess = token => ({
   type: types.LOG_IN_SUCCESS,
-  user,
+  token,
 });
 
 const loginFailure = error => ({
@@ -14,9 +14,9 @@ const loginFailure = error => ({
   error,
 });
 
-export const login = data => (dispatch) => {
+export const login = creds => (dispatch) => {
   dispatch({ type: types.LOG_IN });
-  axios.post('/login', data)
+  axios.post('/api/login', creds)
     .then((res) => {
       cookie.save('token', res.data.token, { path: '/' });
       dispatch(loginSuccess(res.data));
@@ -25,18 +25,18 @@ export const login = data => (dispatch) => {
     .catch(err => dispatch(loginFailure(err.response.data)));
 };
 
-const signUpSuccess = user => ({
+const signUpSuccess = token => ({
   type: types.SIGN_UP_SUCCESS,
-  user,
+  token,
 });
 const signUpFailure = error => ({
   type: types.SIGN_UP_FAILURE,
   error,
 });
 
-export const signUp = data => (dispatch) => {
+export const signUp = creds => (dispatch) => {
   dispatch({ type: types.SIGN_UP });
-  axios.post('/signup', data)
+  axios.post('/api/signup', creds)
     .then((res) => {
       cookie.save('token', res.data.token, { path: '/' });
       dispatch(signUpSuccess(res.data));

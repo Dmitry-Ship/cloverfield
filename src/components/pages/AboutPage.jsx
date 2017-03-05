@@ -9,18 +9,20 @@ export default class AboutPage extends Component {
     return (
       <Page >
         <Card className={card}>
-          <img className={icon} src="/nodejs-icon.svg" alt="" />
-          <img className={icon} src="/react.svg" alt="" />
-          <img className={icon} src="/sass-1.svg" alt="" />
-          <img className={icon} src="/github-icon-1.svg" alt="" />
-          <img className={icon} src="/webpack.svg" alt="" />
-          <img className={icon} src="/redux.svg" alt="" />
-          <img className={icon} src="/mongodb.svg" alt="" />
-          <img className={icon} src="/express-109.svg" alt="" />
-          <img className={icon} src="/npm.svg" alt="" />
-          <img className={icon} src="/es6.svg" alt="" />
-          <img className={icon} src="/babel-10.svg" alt="" />
-          <img className={icon} src="/css-modules-logo.png" alt="" />
+          <img className={icon} src="/logos/nodejs-icon.svg" alt="" />
+          <img className={icon} src="/logos/react.svg" alt="" />
+          <img className={icon} src="/logos/sass-1.svg" alt="" />
+          <img className={icon} src="/logos/github-icon-1.svg" alt="" />
+          <img className={icon} src="/logos/webpack.svg" alt="" />
+          <img className={icon} src="/logos/redux.svg" alt="" />
+          <img className={icon} src="/logos/mongodb.svg" alt="" />
+          <img className={icon} src="/logos/express-109.svg" alt="" />
+          <img className={icon} src="/logos/npm.svg" alt="" />
+          <img className={icon} src="/logos/es6.svg" alt="" />
+          <img className={icon} src="/logos/babel-10.svg" alt="" />
+          <img className={icon} src="/logos/css-modules-logo.png" alt="" />
+          <img className={icon} src="/logos/postcss.svg" alt="" />
+          
         </Card>
       </Page>
     );

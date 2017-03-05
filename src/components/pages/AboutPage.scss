@@ -1,5 +1,5 @@
 .card {
-  composes: signForm from 'styles/cards.scss';
+  composes: infoCard from 'styles/cards.scss';
   padding: 80px;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -9,6 +9,5 @@
 
 .icon {
   margin: 30px;
-//   display: block; 
   width: 100px;
 }

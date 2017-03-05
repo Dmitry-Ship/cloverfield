@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const notesController = require('./notesController');
 const loginController = require('./loginController');
 const signupController = require('./signupController');
@@ -9,10 +8,10 @@ const isLoggedIn = require('./isLoggedIn');
 
 const router = express.Router();
 
-router.use('/notes', isLoggedIn, notesController);
-router.use('/user', isLoggedIn, userController);
-router.use('/image', isLoggedIn, imagesController);
-router.use('/login', loginController);
-router.use('/signup', signupController);
+router.use('/api/notes', isLoggedIn, notesController);
+router.use('/api/user', isLoggedIn, userController);
+router.use('/api/image', isLoggedIn, imagesController);
+router.use('/api/login', loginController);
+router.use('/api/signup', signupController);
 
 module.exports = router;

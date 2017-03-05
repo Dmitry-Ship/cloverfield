@@ -2,7 +2,7 @@
 @value tertiary from colors;
 
 .card {
-  composes: signForm from 'styles/cards.scss';
+  composes: formCard from 'styles/cards.scss';
   margin-top: 50px;
   margin-bottom: 50px;
 }

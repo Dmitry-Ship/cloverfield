@@ -20,10 +20,7 @@ const ColorMenu = ({ color, onSetColor, className, position }) => {
   });
 
   return (
-    <Icon
-      className={`${styles.colorMenu} ${className}`}
-      name="palette"
-    >
+    <Icon className={`${styles.colorMenu} ${className}`} name="palette" >
       <PopUpMenu position={position} className={styles.popupMenu} >
         <div className={styles.palette}>
           {circles}

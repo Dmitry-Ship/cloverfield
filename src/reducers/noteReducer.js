@@ -1,38 +1,6 @@
 import { combineReducers } from 'redux';
 import * as types from '../actions/actionTypes';
 
-// const allNotes = (state = [], action) => {
-//   const { type, newNote, updatedNote, notes, id } = action;
-//   switch (type) {
-//     case types.FETCH_NOTES_SUCCESS:
-//       return notes;
-//     case types.CREATE_NOTE_SUCCESS:
-//       return [...state, newNote];
-//     case types.DELETE_NOTE_SUCCESS:
-//       return state.filter(item => item._id !== id);
-//     case types.ADD_TAG:
-//     case types.DELETE_TAG:
-//     case types.ADD_IMAGE:
-//     case types.DELETE_IMAGE:
-//     case types.EDIT_NOTE:
-//     case types.CREATE_NOTE:
-//     case types.DELETE_NOTE:
-//       return state;
-//     case types.ADD_TAG_SUCCESS:
-//     case types.DELETE_TAG_SUCCESS:
-//     case types.ADD_IMAGE_SUCCESS:
-//     case types.DELETE_IMAGE_SUCCESS:
-//     case types.EDIT_NOTE_SUCCESS:
-//       return state.map((note) => {
-//         if (note._id === updatedNote._id) {
-//           return Object.assign({}, note, updatedNote);
-//         }
-//         return note;
-//       });
-//     default: return state;
-//   }
-// };
-
 const byId = (state = {}, action) => {
   const { type, updatedNote, newNote, id, notes } = action;
   switch (type) {

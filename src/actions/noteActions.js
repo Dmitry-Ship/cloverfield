@@ -3,7 +3,7 @@ import * as types from './actionTypes';
 
 import token from '../../helpers/token';
 
-const url = '/notes';
+const url = '/api/notes';
 
 const fetchNotesSuccess = notes => ({
   type: types.FETCH_NOTES_SUCCESS,

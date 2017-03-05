@@ -38,18 +38,8 @@ const FormFileUploader = ({
         {text}
       </h2>
       <label className={defaultLabel} htmlFor={id} >
-        <div
-          className={image}
-          style={{
-            backgroundImage: `url(${preview})`,
-            position: 'relative',
-          }}
-        >
-          {!!preview && <Icon
-            name="close"
-            className={deleteIcon}
-            onClick={handleClick}
-          />}
+        <div className={image} style={{ backgroundImage: `url(${preview})`, position: 'relative' }}>
+          {!!preview && <Icon name="close" className={deleteIcon} onClick={handleClick} />}
         </div>
 
         <div className={button}>Upload</div>

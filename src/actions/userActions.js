@@ -15,7 +15,7 @@ const fetchUserFailure = error => ({
 
 export const fetchUser = () => (dispatch) => {
   dispatch({ type: types.FETCH_USER });
-  axios.get('/user', token())
+  axios.get('/api/user', token())
     .then(res => dispatch(fetchUserSuccess(res.data)))
     .catch(err => dispatch(fetchUserFailure(err.response.data)));
 };
@@ -32,7 +32,7 @@ const editProfileFailure = error => ({
 
 export const editProfile = data => (dispatch) => {
   dispatch({ type: types.EDIT_PROFILE });
-  axios.put('/user', data, token())
+  axios.put('/api/user', data, token())
     .then(res => dispatch(editProfileSuccess(res.data)))
     .catch(err => dispatch(editProfileFailure(err.response.data)));
 };
