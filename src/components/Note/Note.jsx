@@ -54,6 +54,7 @@ export default class Note extends Component {
 
   handleTitleBlur() {
     const value = this.state.title.trim();
+
     this.props.onUpdateTitle(value);
     this.setState({ title: value });
   }

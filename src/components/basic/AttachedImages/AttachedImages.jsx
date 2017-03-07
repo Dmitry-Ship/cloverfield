@@ -13,12 +13,13 @@ const AttachedImages = ({ images, onDelete, className, expandImage }) => {
     return `/${s}`;
   };
 
+
   return (
     <div className={wrapper}>
       {images && images.map(item => (
-        <div key={item} className={`${singleImage} ${className}`} onClick={() => expandImage(item)} >
+        <div key={item} className={`${singleImage} ${className}`} >
           <Icon name="close" className={deleteIcon} onClick={() => onDelete(item)} />
-          <img className={image} src={isDataURL(item)} alt="" />
+          <img className={image} src={isDataURL(item)} alt="" onClick={() => expandImage(item)} />
         </div>
       ))}
     </div>
@@ -36,5 +37,6 @@ AttachedImages.defaultProps = {
 AttachedImages.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string),
   onDelete: PropTypes.func.isRequired,
+  expandImage: PropTypes.func.isRequired,
   className: PropTypes.string,
 };

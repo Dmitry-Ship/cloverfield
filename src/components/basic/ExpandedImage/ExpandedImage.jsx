@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-import { wrapper, zoomed } from './ExpandedImage.scss';
+import { wrapper, zoomed, closeIcon } from './ExpandedImage.scss';
+import Icon from '../Icon';
 
 export default class ExpandedImage extends Component {
   constructor() {
@@ -29,6 +30,8 @@ export default class ExpandedImage extends Component {
     return (
       <div className={wrapper} >
         <img className={zoomed} src={image} alt="" ref={node => (this.wrapperRef = node)} />
+        <Icon name="exit_to_app" className={closeIcon} />
+
       </div>
     );
   }

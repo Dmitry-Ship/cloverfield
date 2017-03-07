@@ -1,5 +1,4 @@
 import axios from 'axios';
-import cookie from 'react-cookie';
 import { browserHistory } from 'react-router';
 
 import * as types from './actionTypes';
@@ -18,7 +17,7 @@ export const login = creds => (dispatch) => {
   dispatch({ type: types.LOG_IN });
   axios.post('/api/login', creds)
     .then((res) => {
-      cookie.save('token', res.data.token, { path: '/' });
+      document.cookie = `token=${res.data.token}; path=/`;
       dispatch(loginSuccess(res.data));
       browserHistory.push('/');
     })
@@ -38,7 +37,7 @@ export const signUp = creds => (dispatch) => {
   dispatch({ type: types.SIGN_UP });
   axios.post('/api/signup', creds)
     .then((res) => {
-      cookie.save('token', res.data.token, { path: '/' });
+      document.cookie = `token=${res.data.token}; path=/`;
       dispatch(signUpSuccess(res.data));
       browserHistory.push('/');
     })
@@ -47,6 +46,6 @@ export const signUp = creds => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   dispatch({ type: types.LOG_OUT_SUCCESS });
-  cookie.remove('token', { path: '/' });
+  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   browserHistory.push('/login');
 };

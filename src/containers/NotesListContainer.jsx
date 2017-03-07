@@ -43,7 +43,7 @@ class NotesListContainer extends Component {
         opacity: '0.3',
         marginTop: '120px',
       };
-      return (<h1 style={style} >You don`t have any notes</h1>);
+      return (<h2 style={style} >You don`t have any notes</h2>);
     }
 
     return (

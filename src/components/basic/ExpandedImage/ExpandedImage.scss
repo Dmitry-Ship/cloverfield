@@ -21,3 +21,18 @@
   max-height: 90%;
   composes: level-3 from 'styles/shadows.scss';
 }
+
+.closeIcon {
+  background: rgba(black, .4);
+  border-radius: 5px;
+  padding: 10px;
+  color: rgba(white, .4);
+  cursor: pointer;
+  position: fixed;
+  // z-index: 2;
+  right: 5%;
+  top: 5%;
+  &:hover {
+    color: white;
+  }
+}

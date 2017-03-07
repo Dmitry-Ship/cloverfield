@@ -1,12 +1,5 @@
-// import cookie from 'react-cookie';
-//
-// const token = () => ({
-//   headers: { Authorization: cookie.load('token') },
-// });
-//
-// export default token;
-const cookie = require('react-cookie');
+import getCookie from './getCookie';
 
 module.exports = () => ({
-  headers: { Authorization: cookie.load('token') },
+  headers: { Authorization: getCookie('token') },
 });
