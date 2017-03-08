@@ -7,7 +7,7 @@
     "start": "set NODE_ENV=production&&npm run build && node app.js",
     "build": "webpack --colors --progress --config webpack.config.production.js",
     "dev": "./node_modules/.bin/nodemon --ignore ./src",
-    "test": "mocha --watch  --compilers js:babel-core/register \"./src/**/*.test.js\""
+    "test": "mocha --watch  --compilers js:babel-core/register,js:./helpers/setup.js \"./src/**/*.test.js\""
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "babel-preset-react": "^6.16.0",
     "chai": "^3.5.0",
     "css-loader": "^0.26.1",
+    "css-modules-require-hook": "^4.0.5",
     "debug": "^2.2.0",
     "enzyme": "^2.7.1",
     "eslint": "^3.15.0",

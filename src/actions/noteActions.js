@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 
-import token from '../../helpers/token';
+import setAuthHeader from '../../helpers/setAuthHeader';
 
 const url = '/api/notes';
 
@@ -17,7 +17,7 @@ const fetchNotesFailure = error => ({
 
 export const fetchNotes = () => (dispatch) => {
   dispatch({ type: types.FETCH_NOTES });
-  axios.get(url, token())
+  axios.get(url, setAuthHeader())
     .then(res => dispatch(fetchNotesSuccess(res.data)))
     .catch(err => dispatch(fetchNotesFailure(err.response.data)));
 };
@@ -34,7 +34,7 @@ const createNoteFailure = error => ({
 
 export const createNote = note => (dispatch) => {
   dispatch({ type: types.CREATE_NOTE });
-  axios.post(url, note, token())
+  axios.post(url, note, setAuthHeader())
     .then(res => dispatch(createNoteSuccess(res.data)))
     .catch(err => dispatch(createNoteFailure(err.response.data)));
 };
@@ -52,7 +52,7 @@ const editNoteFailure = error => ({
 
 export const editNote = (prop, value, id) => (dispatch) => {
   dispatch({ type: types.EDIT_NOTE });
-  axios.put(`${url}/${id}`, { [prop]: value }, token())
+  axios.put(`${url}/${id}`, { [prop]: value }, setAuthHeader())
     .then(res => dispatch(editNoteSuccess(res.data, prop)))
     .catch(err => dispatch(editNoteFailure(err.response.data)));
 };
@@ -69,7 +69,7 @@ const addTagFailure = error => ({
 
 export const addTag = (tag, id) => (dispatch) => {
   dispatch({ type: types.ADD_TAG });
-  axios.post(`${url}/${id}/tags`, { tag }, token())
+  axios.post(`${url}/${id}/tags`, { tag }, setAuthHeader())
     .then(res => dispatch(addTagSuccess(res.data)))
     .catch(err => dispatch(addTagFailure(err.response.data)));
 };
@@ -86,7 +86,7 @@ const deleteTagFailure = error => ({
 
 export const deleteTag = (tag, id) => (dispatch) => {
   dispatch({ type: types.DELETE_TAG });
-  axios.delete(`${url}/${id}/tags/${tag}`, token())
+  axios.delete(`${url}/${id}/tags/${tag}`, setAuthHeader())
     .then(res => dispatch(deleteTagSuccess(res.data, 'tags')))
     .catch(err => dispatch(deleteTagFailure(err.response.data)));
 };
@@ -104,7 +104,7 @@ const addImageFailure = error => ({
 
 export const addImage = (image, id) => (dispatch) => {
   dispatch({ type: types.ADD_IMAGE });
-  axios.post(`${url}/${id}/images`, image, token())
+  axios.post(`${url}/${id}/images`, image, setAuthHeader())
     .then(res => dispatch(addImageSuccess(res.data)))
     .catch(err => dispatch(addImageFailure(err.response.data)));
 };
@@ -121,7 +121,7 @@ const deleteImageFailure = error => ({
 
 export const deleteImage = (image, id) => (dispatch) => {
   dispatch({ type: types.DELETE_IMAGE });
-  axios.delete(`${url}/${id}/images/${image}`, token())
+  axios.delete(`${url}/${id}/images/${image}`, setAuthHeader())
     .then(res => dispatch(deleteImageSuccess(res.data)))
     .catch(err => dispatch(deleteImageFailure(err.response.data)));
 };
@@ -138,7 +138,7 @@ const deleteNoteFailure = error => ({
 
 export const deleteNote = id => (dispatch) => {
   dispatch({ type: types.DELETE_NOTE });
-  axios.delete(`${url}/${id}`, token())
+  axios.delete(`${url}/${id}`, setAuthHeader())
     .then(res => dispatch(deleteNoteSuccess(res.data)))
     .catch(err => dispatch(deleteNoteFailure(err.response.data)));
 };

@@ -13,10 +13,11 @@ import EditProfilePage from './components/pages/EditProfilePage';
 import ViewProfilePage from './components/pages/ViewProfilePage';
 import NotFound from './components/pages/NotFound';
 import MainLayout from './components/layouts/MainLayout';
+import { getIsLoggedIn } from './reducers/authReducer';
 
 const Root = ({ store }) => {
   function isNotLoggedIn(nextState, replace, next) {
-    if (!store.getState().authReducer.isLoggedIn) {
+    if (!getIsLoggedIn(store.getState())) {
       replace({
         pathname: '/login',
         state: { nextPathname: nextState.location.pathname },
@@ -26,7 +27,7 @@ const Root = ({ store }) => {
   }
 
   function isLoggedIn(nextState, replace, next) {
-    if (store.getState().authReducer.isLoggedIn) {
+    if (getIsLoggedIn(store.getState())) {
       replace({
         pathname: '/',
         state: { nextPathname: nextState.location.pathname },

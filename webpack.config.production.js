@@ -18,7 +18,6 @@ module.exports = {
       'redux-thunk',
       'axios',
       'react-dom',
-      'react-cookie',
       'react-masonry-component',
       'react-textarea-autosize',
       'redux-logger',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { describe, it } from 'mocha';
 import chai from 'chai';
 import { Link } from 'react-router';
 import Avatar from './Avatar';
@@ -7,7 +8,7 @@ import Avatar from './Avatar';
 const expect = chai.expect;
 
 describe('<Avatar />', () => {
-  it('renders Link as a wrapper', () => {
+  it('renders <Link /> component as a wrapper', () => {
     const wrapper = shallow(<Avatar />);
     expect(wrapper.find(Link)).to.have.length(1);
   });

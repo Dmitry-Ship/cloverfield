@@ -14,13 +14,13 @@ const TopBar = ({ appName, navBarItems, isLoggedIn }) => {
     alignItems: 'center',
   };
   return (
-    <div style={style} className={topBar} >
+    <header style={style} className={topBar} >
       <Logo>{appName}</Logo>
 
       <NavBar className={navBar} items={navBarItems} >
         {isLoggedIn && <ProfileContainer />}
       </NavBar>
-    </div>
+    </header>
   );
 };
 

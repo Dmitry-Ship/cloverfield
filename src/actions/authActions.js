@@ -17,7 +17,7 @@ export const login = creds => (dispatch) => {
   dispatch({ type: types.LOG_IN });
   axios.post('/api/login', creds)
     .then((res) => {
-      document.cookie = `token=${res.data.token}; path=/`;
+      localStorage.setItem('token', res.data.token);
       dispatch(loginSuccess(res.data));
       browserHistory.push('/');
     })
@@ -37,7 +37,7 @@ export const signUp = creds => (dispatch) => {
   dispatch({ type: types.SIGN_UP });
   axios.post('/api/signup', creds)
     .then((res) => {
-      document.cookie = `token=${res.data.token}; path=/`;
+      localStorage.setItem('token', res.data.token);
       dispatch(signUpSuccess(res.data));
       browserHistory.push('/');
     })
@@ -46,6 +46,6 @@ export const signUp = creds => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   dispatch({ type: types.LOG_OUT_SUCCESS });
-  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  localStorage.removeItem('token');
   browserHistory.push('/login');
 };

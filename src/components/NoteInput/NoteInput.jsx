@@ -30,7 +30,7 @@ export default class NoteInput extends Component {
   }
 
   render() {
-    const { initialValue, value, onChange, onBlur, className } = this.props;
+    const { initialValue, value, onChange, className } = this.props;
     const { editing } = this.state;
     return (
       <div>

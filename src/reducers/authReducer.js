@@ -1,7 +1,5 @@
 import { combineReducers } from 'redux';
 
-import getCookie from '../../helpers/getCookie';
-
 import * as types from '../actions/actionTypes';
 
 const isLoggingIn = (state = false, action) => {
@@ -19,7 +17,7 @@ const isLoggingIn = (state = false, action) => {
   }
 };
 
-const isLoggedIn = (state = !!getCookie('token'), action) => {
+const isLoggedIn = (state = !!localStorage.getItem('token'), action) => {
   switch (action.type) {
     case types.LOG_IN_SUCCESS:
     case types.SIGN_UP_SUCCESS:

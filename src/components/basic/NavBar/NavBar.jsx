@@ -13,7 +13,7 @@ const NavBar = ({ items, children, className }) => {
   };
 
   return (
-    <div style={style} className={className} >
+    <nav style={style} className={className} >
       {items.map(item => (
         <Link
           activeClassName={active}
@@ -30,7 +30,7 @@ const NavBar = ({ items, children, className }) => {
         </Link>
       ))}
       {children}
-    </div>
+    </nav>
   );
 };
 
