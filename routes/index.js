@@ -4,14 +4,14 @@ const loginController = require('./loginController');
 const signupController = require('./signupController');
 const userController = require('./userController');
 const imagesController = require('./imagesController');
-const isLoggedIn = require('./isLoggedIn');
+const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router();
 
-router.use('/api/notes', isLoggedIn, notesController);
-router.use('/api/user', isLoggedIn, userController);
-router.use('/api/image', isLoggedIn, imagesController);
-router.use('/api/login', loginController);
-router.use('/api/signup', signupController);
+router.use('/api/notes', requireAuth, notesController);
+router.use('/api/user', requireAuth, userController);
+router.use('/api/image', requireAuth, imagesController);
+router.use('/login', loginController);
+router.use('/signup', signupController);
 
 module.exports = router;

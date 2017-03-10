@@ -47,7 +47,7 @@ router.post('/', upload.single('avatar'), (req, res) => {
 
       const token = generateToken(result);
 
-      return res.json({ token: `JWT ${token}` });
+      return res.json({ token: `Bearer ${token}` });
     });
   });
 });

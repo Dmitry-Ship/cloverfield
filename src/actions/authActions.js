@@ -15,7 +15,7 @@ const loginFailure = error => ({
 
 export const login = creds => (dispatch) => {
   dispatch({ type: types.LOG_IN });
-  axios.post('/api/login', creds)
+  axios.post('/login', creds)
     .then((res) => {
       localStorage.setItem('token', res.data.token);
       dispatch(loginSuccess(res.data));
@@ -35,7 +35,7 @@ const signUpFailure = error => ({
 
 export const signUp = creds => (dispatch) => {
   dispatch({ type: types.SIGN_UP });
-  axios.post('/api/signup', creds)
+  axios.post('/signup', creds)
     .then((res) => {
       localStorage.setItem('token', res.data.token);
       dispatch(signUpSuccess(res.data));

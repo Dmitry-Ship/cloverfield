@@ -1,10 +1,8 @@
 const express = require('express');
-// const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const passport = require('passport');
 const routes = require('./routes');
 const config = require('./config/main');
 const frontEndMiddleware = require('./middleware/frontEndMiddleware');
@@ -19,7 +17,6 @@ db.once('open', () => console.log('connected to Data Base'));
 
 app.use(logger('dev'));
 app.use(cookieParser());
-app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(routes);
