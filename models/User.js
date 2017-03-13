@@ -8,23 +8,26 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   userpic: String,
   createdAt: { type: Date, default: Date.now },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   isDeleted: { type: Boolean, default: false },
 });
 
 userSchema.pre('save', function (next) {
+  if (!this.isModified('password')) { return next(); }
+
   const user = this;
-  if (this.isModified('password') || this.isNew) {
-    bcrypt.genSalt(10, (err, salt) => {
+
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) { return next(err); }
+    return bcrypt.hash(user.password, salt, null, (err, hash) => {
       if (err) { return next(err); }
-      return bcrypt.hash(user.password, salt, null, (err, hash) => {
-        if (err) { return next(err); }
-        user.password = hash;
-        return next();
-      });
+
+      user.password = hash;
+
+      return next();
     });
-  } else {
-    return next();
-  }
+  });
 });
 
 userSchema.methods.comparePassword = function (candidatePassword, cb) {

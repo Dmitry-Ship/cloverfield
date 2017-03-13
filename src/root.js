@@ -9,6 +9,8 @@ import MainPage from './components/pages/MainPage';
 import AboutPage from './components/pages/AboutPage';
 import LoginPage from './components/pages/LoginPage';
 import SignUpPage from './components/pages/SignUpPage';
+import ForgotPasswordPage from './components/pages/ForgotPasswordPage';
+import ResetPasswordPage from './components/pages/ResetPasswordPage';
 import EditProfilePage from './components/pages/EditProfilePage';
 import ViewProfilePage from './components/pages/ViewProfilePage';
 import NotFound from './components/pages/NotFound';
@@ -47,6 +49,8 @@ const Root = ({ store }) => {
           <Route path="editprofile" component={EditProfilePage} onEnter={isNotLoggedIn} />
           <Route path="login" component={LoginPage} onEnter={isLoggedIn} />
           <Route path="signup" component={SignUpPage} onEnter={isLoggedIn} />
+          <Route path="forgotpassword" component={ForgotPasswordPage} onEnter={isLoggedIn} />
+          <Route path="reset/:token" component={ResetPasswordPage} onEnter={isLoggedIn} />
           <Route path="*" component={NotFound} />
         </Route>
       </Router>

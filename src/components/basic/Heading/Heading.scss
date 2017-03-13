@@ -1,0 +1,9 @@
+@value colors: "../../../styles/colors.scss";
+@value tertiary from colors;
+
+.heading {
+  text-align: center;
+  color: tertiary;
+  font-weight: lighter;
+  // margin: 0 0 60px 0;
+}

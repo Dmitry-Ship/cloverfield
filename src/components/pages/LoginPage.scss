@@ -8,16 +8,16 @@
   background: rgba(white, 0.6);
 }
 
-.heading {
-  text-align: center;
-  color: tertiary;
-  font-weight: lighter;
-  margin: 0 0 60px 0;
-}
-
 .page {
   background-image: url('/gifs/robot.gif');
   background-size: cover;
   height: calc(100vh - 55px);
   background-position: center;
+}
+
+.link {
+  margin-top: 75px;
+  display: block;
+  text-align: center;
+  color: tertiary;
 }

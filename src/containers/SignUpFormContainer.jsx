@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { signUp } from '../actions/authActions';
-import SignUpForm from '../components/SignUpForm';
+import SignUpForm from '../components/forms/SignUpForm';
 import validation from '../../helpers/validations/signup';
 import { getErrorMessage, getIsLoggedIn } from '../reducers/authReducer';
 

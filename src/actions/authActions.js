@@ -49,3 +49,58 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem('token');
   browserHistory.push('/login');
 };
+
+const requestTokenSuccess = () => ({
+  type: types.REQUEST_TOKEN_SUCCESS,
+});
+
+const requestTokenFailure = error => ({
+  type: types.REQUEST_TOKEN_FAILURE,
+  error,
+});
+
+export const requestToken = creds => (dispatch) => {
+  dispatch({ type: types.REQUEST_TOKEN });
+  axios.post('/forgotpassword', creds)
+    .then((res) => {
+      dispatch(requestTokenSuccess(res.data));
+    })
+    .catch(err => dispatch(requestTokenFailure(err.response.data)));
+};
+
+const resetPasswordSuccess = () => ({
+  type: types.RESET_PASSWORD_SUCCESS,
+});
+
+const resetPasswordFailure = error => ({
+  type: types.RESET_PASSWORD_FAILURE,
+  error,
+});
+
+export const resetPassword = (creds, token) => (dispatch) => {
+  dispatch({ type: types.RESET_PASSWORD });
+  axios.put(`/resetpassword/${token}`, creds)
+    .then((res) => {
+      dispatch(resetPasswordSuccess(res.data));
+    })
+    .catch(err => dispatch(resetPasswordFailure(err.response.data)));
+};
+
+
+const verifyTokenSuccess = () => ({
+  type: types.VERIFY_TOKEN_SUCCESS,
+});
+
+const verifyTokenFailure = error => ({
+  type: types.VERIFY_TOKEN_FAILURE,
+  error,
+});
+
+export const verifyToken = token => (dispatch) => {
+  dispatch({ type: types.VERIFY_TOKEN });
+  axios.get(`/resetpassword/${token}`)
+    .then((res) => {
+      dispatch(verifyTokenSuccess(res.data));
+    })
+    .catch(err => dispatch(verifyTokenFailure(err.response.data)));
+};
