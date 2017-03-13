@@ -7,12 +7,9 @@ import Icon from '../Icon';
 const AttachedImages = ({ images, onDelete, className, expandImage }) => {
   const isDataURL = (s) => {
     const regex = /^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i;
-    if (s.match(regex)) {
-      return s;
-    }
+    if (s.match(regex)) { return s; }
     return `/${s}`;
   };
-
 
   return (
     <div className={wrapper}>

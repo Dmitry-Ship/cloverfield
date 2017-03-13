@@ -36,3 +36,21 @@ export const editProfile = data => (dispatch) => {
     .then(res => dispatch(editProfileSuccess(res.data)))
     .catch(err => dispatch(editProfileFailure(err.response.data)));
 };
+
+
+const changePasswordSuccess = user => ({
+  type: types.CHANGE_PASSWORD_SUCCESS,
+  user,
+});
+
+const changePasswordFailure = error => ({
+  type: types.CHANGE_PASSWORD_FAILURE,
+  error,
+});
+
+export const changePassword = data => (dispatch) => {
+  dispatch({ type: types.CHANGE_PASSWORD });
+  axios.put('/api/user/password', data, setAuthHeader())
+    .then(res => dispatch(changePasswordSuccess(res.data)))
+    .catch(err => dispatch(changePasswordFailure(err.response.data)));
+};

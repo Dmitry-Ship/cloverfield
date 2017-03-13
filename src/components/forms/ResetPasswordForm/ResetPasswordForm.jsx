@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 
 import TextField from '../../basic/TextField';
-import Form from '../../basic/Form';
+import Button from '../../basic/Button';
 
 import { input } from './ResetPasswordForm.scss';
 
@@ -52,7 +52,7 @@ export default class ResetPasswordForm extends Component {
     const { errors } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <TextField
           type="password"
           value={password}
@@ -72,7 +72,8 @@ export default class ResetPasswordForm extends Component {
           onChange={this.handleConfirmPasswordChange}
           // required
         />
-      </Form>
+        <Button label="Set" />
+      </form>
     );
   }
 }

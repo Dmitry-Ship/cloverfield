@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import TextField from '../../basic/TextField';
-import Form from '../../basic/Form';
+import Button from '../../basic/Button';
 import FormFileUploader from '../../basic/FormFileUploader';
 import { input } from './SignUpForm.scss';
 
@@ -89,7 +89,7 @@ export default class SignUpForm extends Component {
             preview,
             errors } = this.state;
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
 
         <TextField
           placeholder="Full Name"
@@ -135,7 +135,9 @@ export default class SignUpForm extends Component {
           onDeleteImage={this.handleImageDelete}
           onChange={this.handleImageUpload}
         />
-      </Form>
+
+        <Button label="Signup" />
+      </form>
     );
   }
 }

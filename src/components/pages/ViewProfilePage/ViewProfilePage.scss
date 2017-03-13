@@ -1,0 +1,4 @@
+.page:before, .page:after{
+    content: ' ';
+    display: table;
+}

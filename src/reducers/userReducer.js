@@ -3,7 +3,7 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   isFetching: false,
   user: {},
-  errorMessage: null,
+  errorMessage: {},
 };
 
 const userReducer = (state = initialState, action) => {
@@ -12,15 +12,16 @@ const userReducer = (state = initialState, action) => {
     case types.FETCH_USER:
       return Object.assign({}, state, { isFetching: true });
     case types.FETCH_USER_SUCCESS:
-      return Object.assign({}, state, { user, isFetching: false, errorMessage: null });
+      return Object.assign({}, state, { user, isFetching: false, errorMessage: {} });
     case types.FETCH_USER_FAILURE:
       return Object.assign({}, state, { isFetching: false, errorMessage: error });
-
     case types.EDIT_PROFILE:
+    case types.CHANGE_PASSWORD:
       return state;
     case types.EDIT_PROFILE_SUCCESS:
       return Object.assign({}, state, { user });
     case types.EDIT_PROFILE_FAILURE:
+    case types.CHANGE_PASSWORD_FAILURE:
       return Object.assign({}, state, { errorMessage: error });
     default: return state;
   }

@@ -14,7 +14,7 @@ import styles, {
 import NoteActions from '../NoteActions';
 
 import TagArea from '../TagArea';
-import Form from '../basic/Form';
+import Button from '../basic/Button';
 import AttachedImages from '../basic/AttachedImages';
 
 export default class CreationForm extends Component {
@@ -155,9 +155,8 @@ export default class CreationForm extends Component {
         onClick={this.handleFocus}
         ref={c => this.theForm = c}
       >
-        <Form
-          enctype="multipart/form-data"
-          buttonClass={button}
+        <form
+          encType="multipart/form-data"
           className={`${className} ${styles[color]}`}
           onSubmit={this.create}
         >
@@ -198,7 +197,8 @@ export default class CreationForm extends Component {
               id="CHECK"
             />
           </div>
-        </Form>
+          <Button className={button} kind="secondary" label="Done" />
+        </form>
       </div>
     );
   }

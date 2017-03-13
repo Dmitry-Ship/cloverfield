@@ -4,6 +4,7 @@ const path = require('path');
 const User = require('../models/User');
 const handleError = require('../helpers/handleError');
 const validateInput = require('../helpers/validations/signup');
+const validatePasswords = require('../helpers/validations/changePassword');
 
 const router = express.Router();
 
@@ -39,6 +40,29 @@ router.put('/', upload.single('avatar'), (req, res) => {
       if (err) handleError(res, err, 422);
       else res.send(user);
     });
+});
+
+
+router.put('/password', (req, res) => {
+  const { isValid, errors } = validatePasswords(req.body);
+
+  if (!isValid) { return res.status(400).send(errors); }
+
+  return User.findOne({ _id: req.user._id }, (err, user) => {
+    if (err) { return res.send(err); }
+    return user.comparePassword(req.body.oldPassword, (compareErr, isMatch) => {
+      if (compareErr) { return res.send(compareErr); }
+      if (!isMatch) {
+        return res.status(400).send({ oldPassword: 'Incorrect password' });
+      }
+      user.password = req.body.newPassword;
+
+      user.save((err) => {
+        if (err) { return res.status(500).json({ error: 'something went wrong' }); }
+        res.send(user);
+      });
+    });
+  });
 });
 
 module.exports = router;

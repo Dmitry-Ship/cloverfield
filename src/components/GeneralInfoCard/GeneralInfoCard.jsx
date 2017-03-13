@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react';
 
 import { card, field } from './GeneralInfoCard.scss';
-import Card from '../basic/Card';
 
 const GeneralInfoCard = ({ tags, notes, images, className }) => (
-  <Card className={`${card} ${className}`} >
+  <div className={`${card} ${className}`} >
     <h2 className={field} >📝Notes: {notes}</h2>
     <h2 className={field} >🖼️Images: {images}</h2>
     <h2 className={field} >🏷️Tags: {tags}</h2>
-  </Card>
+  </div>
 );
 
 export default GeneralInfoCard;

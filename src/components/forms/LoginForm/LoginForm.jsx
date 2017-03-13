@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 
 import TextField from '../../basic/TextField';
-import Form from '../../basic/Form';
+import Button from '../../basic/Button';
 
 import { input } from './LoginForm.scss';
 
@@ -51,7 +51,7 @@ export default class LoginForm extends Component {
     const { errors } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <TextField
           type="email"
           value={email}
@@ -71,7 +71,8 @@ export default class LoginForm extends Component {
           onChange={this.handlePasswordChange}
           // required
         />
-      </Form>
+        <Button label="Login" />
+      </form>
     );
   }
 }

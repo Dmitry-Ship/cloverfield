@@ -11,7 +11,6 @@ import styles, {
 
 import NoteActions from '../NoteActions';
 import Icon from '../basic/Icon';
-import Card from '../basic/Card';
 import TagArea from '../TagArea';
 import AttachedImages from '../basic/AttachedImages';
 
@@ -85,7 +84,7 @@ export default class Note extends Component {
     const { title, body } = this.state;
 
     return (
-      <Card className={`${styles.note} ${styles[note.color]}`}>
+      <div className={`${styles.note} ${styles[note.color]}`}>
 
         <div className={content}>
           <AttachedImages
@@ -135,7 +134,7 @@ export default class Note extends Component {
             onClick={onDelete}
           />
         </NoteActions>
-      </Card>
+      </div>
     );
   }
 }

@@ -13,7 +13,7 @@ import ForgotPasswordPage from './components/pages/ForgotPasswordPage';
 import ResetPasswordPage from './components/pages/ResetPasswordPage';
 import EditProfilePage from './components/pages/EditProfilePage';
 import ViewProfilePage from './components/pages/ViewProfilePage';
-import NotFound from './components/pages/NotFound';
+import NotFound from './components/pages/NotFoundPage';
 import MainLayout from './components/layouts/MainLayout';
 import { getIsLoggedIn } from './reducers/authReducer';
 
@@ -49,7 +49,7 @@ const Root = ({ store }) => {
           <Route path="editprofile" component={EditProfilePage} onEnter={isNotLoggedIn} />
           <Route path="login" component={LoginPage} onEnter={isLoggedIn} />
           <Route path="signup" component={SignUpPage} onEnter={isLoggedIn} />
-          <Route path="forgotpassword" component={ForgotPasswordPage} onEnter={isLoggedIn} />
+          <Route path="forgotpassword" component={ForgotPasswordPage} />
           <Route path="reset/:token" component={ResetPasswordPage} onEnter={isLoggedIn} />
           <Route path="*" component={NotFound} />
         </Route>

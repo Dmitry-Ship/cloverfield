@@ -1,5 +1,5 @@
 @value colors: "../../../styles/colors.scss";
-@value secondary, tertiary, accent from colors;
+@value secondary, tertiary, accent, accent--dark from colors;
 
 .defaultLabel {
   cursor: pointer;
@@ -44,5 +44,9 @@
   height: 45px;
   line-height: 45px;
   color: white;
+  transition: 300ms ease-in-out;
+  &:hover {
+    background: accent--dark;
+  }
 }
 

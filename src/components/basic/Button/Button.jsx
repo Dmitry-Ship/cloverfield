@@ -32,7 +32,7 @@ export default Button;
 Button.defaultProps = {
   kind: 'primary',
   className: '',
-  type: 'button',
+  type: 'submit',
   disabled: false,
   children: null,
   iconName: null,

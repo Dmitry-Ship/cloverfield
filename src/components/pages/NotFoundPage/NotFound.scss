@@ -1,0 +1,21 @@
+.page {
+  background: white;
+  &:before, &:after{
+    content: ' ';
+    display: table;
+  }
+}
+
+.message {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 2rem;
+}
+
+.material-icons {
+  font-size: 90px;
+}
