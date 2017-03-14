@@ -11,7 +11,7 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: note => dispatch(createNote(note)),
-  expandImage: image => dispatch(expandImage(image)),
+  expandImage: (image, i) => dispatch(expandImage(image, i)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreationForm);

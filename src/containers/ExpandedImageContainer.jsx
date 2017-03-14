@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ExpandedImage from '../components/basic/ExpandedImage';
-import { getImage } from '../reducers/UIReducer';
-import { hideImage } from '../actions/UIActions';
+import { getImage, getIsLast, getIsFirst } from '../reducers/UIReducer';
+import { hideImage, nextImage, previousImage } from '../actions/UIActions';
 
 const mapStateToProps = store => ({
   image: getImage(store),
+  isLast: getIsLast(store),
+  isFirst: getIsFirst(store),
 });
 
 const mapDispatchToProps = dispatch => ({
   hideImage: () => dispatch(hideImage()),
+  nextImage: () => dispatch(nextImage()),
+  previousImage: () => dispatch(previousImage()),
 });
 
 class ExpandedImageContainer extends Component {

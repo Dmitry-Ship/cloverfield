@@ -1,36 +1,53 @@
 import React, { Component, PropTypes } from 'react';
 
-import { wrapper, zoomed, closeIcon } from './ExpandedImage.scss';
+import { wrapper, zoomed, closeIcon, fileName, next, previous, sliderIcon } from './ExpandedImage.scss';
 import Icon from '../Icon';
 
 export default class ExpandedImage extends Component {
   constructor() {
     super();
-    this.state = {
-      isShown: false,
-    };
-    this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.handleClickOnBackground = this.handleClickOnBackground.bind(this);
+    this.handleClickOnNext = this.handleClickOnNext.bind(this);
+    this.handleClickOnPrevious = this.handleClickOnPrevious.bind(this);
+    this.handleClickOnImage = this.handleClickOnImage.bind(this); 
   }
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
+  handleClickOnBackground() {
+    this.props.hideImage();
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
+  handleClickOnNext(e) {
+    e.stopPropagation();
+    this.props.nextImage();
   }
 
-  handleClickOutside(event) {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.props.hideImage();
-    }
+  handleClickOnPrevious(e) {
+    e.stopPropagation();
+    this.props.previousImage();
   }
+
+  handleClickOnImage(e) {
+    e.stopPropagation();
+  }
+
   render() {
     const { image } = this.props;
     return (
-      <div className={wrapper} >
-        <img className={zoomed} src={image} alt="" ref={node => (this.wrapperRef = node)} />
+      <div className={wrapper} onClick={this.handleClickOnBackground} >
+        {/*{this.props.isLast && <p className={fileName} >loll{this.props.isLast}</p>}*/}
+        <img className={zoomed} src={image} alt="" onClick={this.handleClickOnImage} />
         <Icon name="exit_to_app" className={closeIcon} />
+
+        {!this.props.isLast &&
+          <div className={next} onClick={this.handleClickOnNext} >
+            <Icon name="navigate_next" className={sliderIcon} />
+          </div>}
+
+        {!this.props.isFirst &&
+          <div className={previous} onClick={this.handleClickOnPrevious} >
+            <Icon name="navigate_before" className={sliderIcon} />
+          </div>}
+
 
       </div>
     );
@@ -40,5 +57,6 @@ export default class ExpandedImage extends Component {
 ExpandedImage.propTypes = {
   hideImage: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
+  isLast: PropTypes.bool.isRequired,
 };
 
