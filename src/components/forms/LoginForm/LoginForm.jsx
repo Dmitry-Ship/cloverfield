@@ -22,14 +22,14 @@ export default class LoginForm extends Component {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleEmailChange(value) {
+  handleEmailChange(e) {
     const errors = Object.assign({}, this.state.errors, { email: '' });
-    this.setState({ email: value, errors });
+    this.setState({ email: e.target.value, errors });
   }
 
-  handlePasswordChange(value) {
+  handlePasswordChange(e) {
     const errors = Object.assign({}, this.state.errors, { password: '' });
-    this.setState({ password: value, errors });
+    this.setState({ password: e.target.value, errors });
   }
 
   handleSubmit(e) {

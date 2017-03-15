@@ -44,18 +44,18 @@ export default class EditProfileForm extends Component {
     this.setState({ userpic: null, preview: '' });
   }
 
-  handleFullNameChange(value) {
-    this.setState({ fullName: value });
+  handleFullNameChange(e) {
+    this.setState({ fullName: e.target.value });
   }
 
-  handlUsernameChange(value) {
+  handlUsernameChange(e) {
     const errors = Object.assign({}, this.state.errors, { username: '' });
-    this.setState({ username: value, errors });
+    this.setState({ username: e.target.value, errors });
   }
 
-  handleEmailChange(value) {
+  handleEmailChange(e) {
     const errors = Object.assign({}, this.state.errors, { email: '' });
-    this.setState({ email: value, errors });
+    this.setState({ email: e.target.value, errors });
   }
 
   handleSubmit(e) {

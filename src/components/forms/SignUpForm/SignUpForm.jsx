@@ -30,31 +30,31 @@ export default class SignUpForm extends Component {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleImageUpload(value, secondValue) {
-    this.setState({ userpic: value, preview: secondValue });
+  handleImageUpload(e, secondValue) {
+    this.setState({ userpic: e.target.value, preview: secondValue });
   }
 
   handleImageDelete() {
     this.setState({ userpic: null, preview: '' });
   }
 
-  handleFullNameChange(value) {
-    this.setState({ fullName: value });
+  handleFullNameChange(e) {
+    this.setState({ fullName: e.target.value });
   }
 
-  handlUsernameChange(value) {
+  handlUsernameChange(e) {
     const errors = Object.assign({}, this.state.errors, { username: '' });
-    this.setState({ username: value, errors });
+    this.setState({ username: e.target.value, errors });
   }
 
-  handleEmailChange(value) {
+  handleEmailChange(e) {
     const errors = Object.assign({}, this.state.errors, { email: '' });
-    this.setState({ email: value, errors });
+    this.setState({ email: e.target.value, errors });
   }
 
-  handlePasswordChange(value) {
+  handlePasswordChange(e) {
     const errors = Object.assign({}, this.state.errors, { password: '' });
-    this.setState({ password: value, errors });
+    this.setState({ password: e.target.value, errors });
   }
 
   handleSubmit(e) {

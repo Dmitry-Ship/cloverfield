@@ -5,12 +5,12 @@ import { wrapper, textField, errorMessage, topLabel } from './TextField.scss';
 export default class TextField extends Component {
   constructor() {
     super();
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
-    this.props.onChange(e.target.value);
-  }
+  // handleChange(e) {
+  //   this.props.onChange(e.target.value);
+  // }
 
   render() {
     const {
@@ -36,7 +36,7 @@ export default class TextField extends Component {
           required={required}
           onFocus={onFocus}
           onBlur={onBlur}
-          onChange={this.handleChange}
+          onChange={this.props.onChange}
         />
         <p className={errorMessage}>{error}</p>
       </div>

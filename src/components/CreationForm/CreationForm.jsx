@@ -54,31 +54,23 @@ export default class CreationForm extends Component {
   }
 
   handleImage({ file, preview }) {
-    const oldFiles = this.state.imageFiles;
-    const oldPreviews = this.state.previews;
-
-    oldFiles.push(file);
-    oldPreviews.push(preview);
+    const { imageFiles, previews } = this.state;
 
     this.setState({
-      imageFiles: oldFiles,
-      previews: oldPreviews,
+      imageFiles: [...imageFiles, file],
+      previews: [...previews, preview],
     });
   }
 
   deletePreview(preview) {
-    const oldPreviews = this.state.previews;
-    const i = oldPreviews.indexOf(preview);
-
-    oldPreviews.splice(i, 1);
-
-    const oldFiles = this.state.imageFiles;
+    const { previews } = this.state;
+    const { imageFiles } = this.state;
     
-    oldFiles.splice(i, 1);
+    const i = previews.indexOf(preview);
 
     this.setState({
-      imageFiles: oldFiles,
-      previews: oldPreviews,
+      imageFiles: imageFiles.filter((im, j) => j !== i),
+      previews: previews.filter(p => p !== preview),
     });
   }
 
@@ -114,20 +106,15 @@ export default class CreationForm extends Component {
   }
 
   handleAddTag(newTag) {
-    const oldTags = this.state.tags;
+    const { tags } = this.state;
 
-    oldTags.push(newTag);
-
-    this.setState({ tags: oldTags });
+    this.setState({ tags: [...tags, newTag] });
   }
 
   handleDeleteTag(tag) {
-    const oldTags = this.state.tags;
-    const i = oldTags.indexOf(tag);
+    const { tags } = this.state;
 
-    oldTags.splice(i, 1);
-
-    this.setState({ tags: oldTags });
+    this.setState({ tags: tags.filter(t => t !== tag) });
   }
 
   handleBodyChange(e) {
@@ -215,4 +202,5 @@ CreationForm.propTypes = {
   titlePlaceholder: PropTypes.string,
   bodyPlaceholder: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
+  expandImage: PropTypes.func.isRequired,
 };

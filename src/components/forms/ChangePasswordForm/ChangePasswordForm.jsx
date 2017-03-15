@@ -28,14 +28,14 @@ export default class ChangePasswordForm extends Component {
     }
   }
 
-  handleOldPasswordChange(value) {
+  handleOldPasswordChange(e) {
     const errors = Object.assign({}, this.state.errors, { oldPassword: '' });
-    this.setState({ oldPassword: value, errors });
+    this.setState({ oldPassword: e.target.value, errors });
   }
 
-  handleNewPasswordChange(value) {
+  handleNewPasswordChange(e) {
     const errors = Object.assign({}, this.state.errors, { newPassword: '' });
-    this.setState({ newPassword: value, errors });
+    this.setState({ newPassword: e.target.value, errors });
   }
 
   handleSubmit(e) {
