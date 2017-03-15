@@ -129,7 +129,7 @@ export default class EditProfileForm extends Component {
           // required
         />
 
-        <Button label="edit" />
+        <Button isLoading={this.props.isLoading} label="edit" />
       </form>
     );
   }

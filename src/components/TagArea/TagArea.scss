@@ -10,7 +10,7 @@
     cursor: pointer;
     background: rgba(0,0,0,0.1);
     &::after {
-      content: "add tag";
+      content: "+ tag";
       color: white;
     }
   }
@@ -25,7 +25,7 @@
 .input__field {
   padding: 5px;
   width: 10px;
-  min-width: 60px;
+  min-width: 50px;
   outline: none;
   background: transparent;
   &:focus {

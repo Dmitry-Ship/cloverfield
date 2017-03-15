@@ -10,6 +10,7 @@ const Button = ({
   onClick,
   className,
   kind,
+  isLoading,
   iconName,
   disabled,
   children }) => (
@@ -20,7 +21,7 @@ const Button = ({
       className={`${styles[kind]} ${className}`}
     >
       <div>
-        <span>{label}</span>
+        {isLoading ? <Icon name="access_time" /> : <span>{label}</span>}
         {children}
         {iconName && <Icon name={iconName} />}
       </div>

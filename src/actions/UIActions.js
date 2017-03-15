@@ -10,10 +10,10 @@ export const hideImage = () => ({
   type: types.HIDE_IMAGE_SUCCESS,
 });
 
-export const nextImage = () => ({
+export const showNextImage = () => ({
   type: types.NEXT_IMAGE_SUCCESS,
 });
 
-export const previousImage = () => ({
+export const showPreviousImage = () => ({
   type: types.PREVIOUS_IMAGE_SUCCESS,
 });

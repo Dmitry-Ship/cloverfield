@@ -47,8 +47,8 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
-    const { errors } = this.state;
+    const { email, password, errors } = this.state;
+    const { isLoggingIn } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -71,7 +71,7 @@ export default class LoginForm extends Component {
           onChange={this.handlePasswordChange}
           // required
         />
-        <Button label="Login" />
+        <Button isLoading={isLoggingIn} label="Login" />
       </form>
     );
   }

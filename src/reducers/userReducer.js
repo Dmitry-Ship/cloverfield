@@ -5,6 +5,7 @@ const initialState = {
   user: {},
   errorMessage: {},
   isPasswordChanged: false,
+  getIsLoading: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -18,14 +19,14 @@ const userReducer = (state = initialState, action) => {
       return Object.assign({}, state, { isFetching: false, errorMessage: error });
     case types.EDIT_PROFILE:
     case types.CHANGE_PASSWORD:
-      return state;
+      return Object.assign({}, state, { isLoading: true });
     case types.EDIT_PROFILE_SUCCESS:
-      return Object.assign({}, state, { user });
+      return Object.assign({}, state, { user, isLoading: false });
     case types.CHANGE_PASSWORD_SUCCESS:
-      return Object.assign({}, state, { isPasswordChanged: true });
+      return Object.assign({}, state, { isPasswordChanged: true, isLoading: false });
     case types.EDIT_PROFILE_FAILURE:
     case types.CHANGE_PASSWORD_FAILURE:
-      return Object.assign({}, state, { errorMessage: error });
+      return Object.assign({}, state, { errorMessage: error, isLoading: false });
     default: return state;
   }
 };
@@ -33,5 +34,6 @@ const userReducer = (state = initialState, action) => {
 export const getUser = state => state.userReducer.user;
 export const getErrorMessage = state => state.userReducer.errorMessage;
 export const getIsPasswordChanged = state => state.userReducer.isPasswordChanged;
+export const getIsLoading = state => state.userReducer.isLoading;
 
 export default userReducer;

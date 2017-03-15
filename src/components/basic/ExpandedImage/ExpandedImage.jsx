@@ -1,62 +1,43 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-import { wrapper, zoomed, closeIcon, fileName, next, previous, sliderIcon } from './ExpandedImage.scss';
+import { wrapper, image, closeIcon, next, previous, sliderIcon } from './ExpandedImage.scss';
 import Icon from '../Icon';
 
-export default class ExpandedImage extends Component {
-  constructor() {
-    super();
-    this.handleClickOnBackground = this.handleClickOnBackground.bind(this);
-    this.handleClickOnNext = this.handleClickOnNext.bind(this);
-    this.handleClickOnPrevious = this.handleClickOnPrevious.bind(this);
-    this.handleClickOnImage = this.handleClickOnImage.bind(this); 
-  }
+const ExpandedImage = ({
+  currentImage,
+  showNextImage,
+  showPreviousImage,
+  hideImage,
+  isFirst,
+  isLast }) => {
+  const stop = e => e.stopPropagation();
 
-  handleClickOnBackground() {
-    this.props.hideImage();
-  }
+  return (
+    <div className={wrapper} onClick={hideImage} >
+      <img className={image} src={currentImage} alt="" onClick={stop} />
+      <Icon name="exit_to_app" className={closeIcon} />
 
-  handleClickOnNext(e) {
-    e.stopPropagation();
-    this.props.nextImage();
-  }
+      {!isLast &&
+        <div className={next} onClick={e => { stop(e); showNextImage(); }} >
+          <Icon name="navigate_next" className={sliderIcon} />
+        </div>}
 
-  handleClickOnPrevious(e) {
-    e.stopPropagation();
-    this.props.previousImage();
-  }
+      {!isFirst &&
+        <div className={previous} onClick={e => { stop(e); showPreviousImage(); }} >
+          <Icon name="navigate_before" className={sliderIcon} />
+        </div>}
+    </div>
+  );
+};
 
-  handleClickOnImage(e) {
-    e.stopPropagation();
-  }
-
-  render() {
-    const { image } = this.props;
-    return (
-      <div className={wrapper} onClick={this.handleClickOnBackground} >
-        {/*{this.props.isLast && <p className={fileName} >loll{this.props.isLast}</p>}*/}
-        <img className={zoomed} src={image} alt="" onClick={this.handleClickOnImage} />
-        <Icon name="exit_to_app" className={closeIcon} />
-
-        {!this.props.isLast &&
-          <div className={next} onClick={this.handleClickOnNext} >
-            <Icon name="navigate_next" className={sliderIcon} />
-          </div>}
-
-        {!this.props.isFirst &&
-          <div className={previous} onClick={this.handleClickOnPrevious} >
-            <Icon name="navigate_before" className={sliderIcon} />
-          </div>}
-
-
-      </div>
-    );
-  }
-}
+export default ExpandedImage;
 
 ExpandedImage.propTypes = {
   hideImage: PropTypes.func.isRequired,
-  image: PropTypes.string.isRequired,
+  currentImage: PropTypes.string.isRequired,
+  showNextImage: PropTypes.func.isRequired,
+  showPreviousImage: PropTypes.func.isRequired,
   isLast: PropTypes.bool.isRequired,
+  isFirst: PropTypes.bool.isRequired,
 };
 

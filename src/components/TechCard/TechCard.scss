@@ -1,0 +1,11 @@
+.card {
+  composes: infoCard from 'styles/cards.scss';
+  padding: 80px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.logo {
+  margin: 30px;
+  width: 100px;
+}

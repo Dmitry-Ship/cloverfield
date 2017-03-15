@@ -15,7 +15,7 @@ const image = (state = { images: [], index: 0 }, action) => {
   }
 };
 
-export const getImage = store => store.UIReducer.image.images[store.UIReducer.image.index];
+export const getCurrentImage = store => store.UIReducer.image.images[store.UIReducer.image.index];
 export const getIsLast = store => store.UIReducer.image.images.length === store.UIReducer.image.index+1;
 export const getIsFirst = store => store.UIReducer.image.index === 0;
 
