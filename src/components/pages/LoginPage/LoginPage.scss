@@ -9,7 +9,7 @@
 }
 
 .page {
-  background-image: url('/gifs/robot.gif');
+  background-image: url('./gifs/robot.gif');
   background-size: cover;
   height: calc(100vh - 55px);
   background-position: center;
@@ -18,8 +18,6 @@
     display: table;
   }
 }
-
-
 
 .link {
   margin-top: 75px;

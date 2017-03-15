@@ -15,6 +15,9 @@
     .actions {
       opacity: 1;
     }
+    .input::-webkit-input-placeholder {
+      color: rgba(black, .4);
+    }
   }
   @media mobile {
     width: 100%;
@@ -47,7 +50,11 @@
   border: 1px solid transparent;
   resize: none;
   overflow: hidden;
+  display: block;
   width: 100%;
+  &::-webkit-input-placeholder {
+    color: rgba(black, 0);
+  }
   &:hover {
     background: rgba(white, 0.2);
     border: 1px solid rgba(black, 0.1);

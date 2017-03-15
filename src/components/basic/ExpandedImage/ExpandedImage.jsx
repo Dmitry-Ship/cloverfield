@@ -1,44 +1,43 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-import { wrapper, zoomed, closeIcon } from './ExpandedImage.scss';
+import { wrapper, image, closeIcon, next, previous, sliderIcon } from './ExpandedImage.scss';
 import Icon from '../Icon';
 
-export default class ExpandedImage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isShown: false,
-    };
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
+const ExpandedImage = ({
+  currentImage,
+  showNextImage,
+  showPreviousImage,
+  hideImage,
+  isFirst,
+  isLast }) => {
+  const stop = e => e.stopPropagation();
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
+  return (
+    <div className={wrapper} onClick={hideImage} >
+      <img className={image} src={currentImage} alt="" onClick={stop} />
+      <Icon name="exit_to_app" className={closeIcon} />
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
+      {!isLast &&
+        <div className={next} onClick={e => { stop(e); showNextImage(); }} >
+          <Icon name="navigate_next" className={sliderIcon} />
+        </div>}
 
-  handleClickOutside(event) {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.props.hideImage();
-    }
-  }
-  render() {
-    const { image } = this.props;
-    return (
-      <div className={wrapper} >
-        <img className={zoomed} src={image} alt="" ref={node => (this.wrapperRef = node)} />
-        <Icon name="exit_to_app" className={closeIcon} />
+      {!isFirst &&
+        <div className={previous} onClick={e => { stop(e); showPreviousImage(); }} >
+          <Icon name="navigate_before" className={sliderIcon} />
+        </div>}
+    </div>
+  );
+};
 
-      </div>
-    );
-  }
-}
+export default ExpandedImage;
 
 ExpandedImage.propTypes = {
   hideImage: PropTypes.func.isRequired,
-  image: PropTypes.string.isRequired,
+  currentImage: PropTypes.string.isRequired,
+  showNextImage: PropTypes.func.isRequired,
+  showPreviousImage: PropTypes.func.isRequired,
+  isLast: PropTypes.bool.isRequired,
+  isFirst: PropTypes.bool.isRequired,
 };
 

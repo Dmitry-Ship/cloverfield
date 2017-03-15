@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const noteSchema = mongoose.Schema({
   title: String,
-  body: { type: String, required: true },
+  body: String,
   images: [String],
   color: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },

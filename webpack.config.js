@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: ['webpack-hot-middleware/client', './src'],
+  entry: ['react-hot-loader/patch', 'webpack-hot-middleware/client', './src'],
   output: {
     path: path.join(__dirname, 'public'),
     filename: '[name].bundle.js',
@@ -23,8 +23,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.(js|jsx)?$/,
-        use: ['react-hot-loader', 'babel-loader'],
+        test: /\.(js|jsx)?$/,
+        use: ['babel-loader'],
         exclude: /node_modules/,
       },
       {
@@ -47,6 +47,11 @@ module.exports = {
       {
         test: /\.html$/,
         loader: 'html-loader',
+      },
+
+      {
+        test: /\.(png|svg|gif)?$/,
+        loader: 'url-loader?limit=10000',
       },
     ],
   },

@@ -13,10 +13,10 @@ const AttachedImages = ({ images, onDelete, className, expandImage }) => {
 
   return (
     <div className={wrapper}>
-      {images && images.map(item => (
+      {images && images.map((item, i) => (
         <div key={item} className={`${singleImage} ${className}`} >
           <Icon name="close" className={deleteIcon} onClick={() => onDelete(item)} />
-          <img className={image} src={isDataURL(item)} alt="" onClick={() => expandImage(item)} />
+          <img className={image} src={isDataURL(item)} alt="" onClick={() => expandImage(images, i)} />
         </div>
       ))}
     </div>

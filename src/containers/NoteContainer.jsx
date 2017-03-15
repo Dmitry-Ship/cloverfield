@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onAddImage: image => dispatch(addImage(image, ownProps.note._id)),
   onDeleteImage: image => dispatch(deleteImage(image, ownProps.note._id)),
   onDelete: () => dispatch(deleteNote(ownProps.note._id)),
-  expandImage: image => dispatch(expandImage(image)),
+  expandImage: (image, i) => dispatch(expandImage(image, i)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Note);

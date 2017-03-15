@@ -96,6 +96,7 @@ export default class Note extends Component {
 
           <Textarea
             value={title}
+            placeholder="Title"
             name="title"
             className={titleInput}
             onChange={this.handleTitleChange}
@@ -106,6 +107,7 @@ export default class Note extends Component {
           <Textarea
             value={body}
             name="body"
+            placeholder="Content"
             className={input}
             onChange={this.handleBodyChange}
             onFocus={this.handleFocus}

@@ -57,6 +57,7 @@ export const editNote = (prop, value, id) => (dispatch) => {
     .catch(err => dispatch(editNoteFailure(err.response.data)));
 };
 
+
 const addTagSuccess = updatedNote => ({
   type: types.ADD_TAG_SUCCESS,
   updatedNote,

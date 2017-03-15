@@ -22,14 +22,14 @@ export default class LoginForm extends Component {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleEmailChange(value) {
+  handleEmailChange(e) {
     const errors = Object.assign({}, this.state.errors, { email: '' });
-    this.setState({ email: value, errors });
+    this.setState({ email: e.target.value, errors });
   }
 
-  handlePasswordChange(value) {
+  handlePasswordChange(e) {
     const errors = Object.assign({}, this.state.errors, { password: '' });
-    this.setState({ password: value, errors });
+    this.setState({ password: e.target.value, errors });
   }
 
   handleSubmit(e) {
@@ -47,8 +47,8 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
-    const { errors } = this.state;
+    const { email, password, errors } = this.state;
+    const { isLoggingIn } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -71,7 +71,7 @@ export default class LoginForm extends Component {
           onChange={this.handlePasswordChange}
           // required
         />
-        <Button label="Login" />
+        <Button isLoading={isLoggingIn} label="Login" />
       </form>
     );
   }

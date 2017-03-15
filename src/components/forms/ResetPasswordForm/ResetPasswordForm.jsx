@@ -22,14 +22,14 @@ export default class ResetPasswordForm extends Component {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleConfirmPasswordChange(value) {
+  handleConfirmPasswordChange(e) {
     const errors = Object.assign({}, this.state.errors, { confirmPassword: '' });
-    this.setState({ confirmPassword: value, errors });
+    this.setState({ confirmPassword: e.target.value, errors });
   }
 
-  handlePasswordChange(value) {
+  handlePasswordChange(e) {
     const errors = Object.assign({}, this.state.errors, { password: '' });
-    this.setState({ password: value, errors });
+    this.setState({ password: e.target.value, errors });
   }
 
 
