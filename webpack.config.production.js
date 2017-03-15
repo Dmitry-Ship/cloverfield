@@ -25,7 +25,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'build'),
     filename: '[name].bundle.js',
     publicPath: '/',
   },
@@ -45,15 +45,19 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'html-loader',
+        use: 'html-loader',
       },
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
+          fallback: 'style-loader',
           loader: ['css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]', 'postcss-loader', 'sass-loader'],
         }),
         exclude: /node_modules/,
+      },
+      {
+        test: /\.(png|svg|gif)?$/,
+        use: 'url-loader?limit=10000',
       },
     ],
   },

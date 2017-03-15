@@ -58,12 +58,10 @@ export default class Profile extends Component {
 }
 
 Profile.defaultProps = {
-  className: '',
-  children: null,
+  className: null,
 };
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
   className: PropTypes.string,
-  children: PropTypes.any,
 };

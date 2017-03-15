@@ -17,23 +17,14 @@ import Babel from './logos/babel-10.svg';
 import CSSModules from './logos/css-modules-logo.png';
 import PostCSS from './logos/postcss.svg';
 
-const TechCard = () => (
+const TechCard = () => {
+  const techs = [Nodejs, ReactLogo, Sass, Git, Webpack, Redux, MongoDB, Express, NPM, ES6, Babel, CSSModules, PostCSS];
+  return (
     <div className={card}>
       <Heading>Here is the list of technologies I was using during writing this app</Heading>
-      <img className={logo} src={Nodejs} alt="" />
-      <img className={logo} src={ReactLogo} alt="" />
-      <img className={logo} src={Sass} alt="" />
-      <img className={logo} src={Git} alt="" />
-      <img className={logo} src={Webpack} alt="" />
-      <img className={logo} src={Redux} alt="" />
-      <img className={logo} src={MongoDB} alt="" />
-      <img className={logo} src={Express} alt="" />
-      <img className={logo} src={NPM} alt="" />
-      <img className={logo} src={ES6} alt="" />
-      <img className={logo} src={Babel} alt="" />
-      <img className={logo} src={CSSModules} alt="" />
-      <img className={logo} src={PostCSS} alt="" />
+      {techs.map((item, i) => <img className={logo} key={i} src={item} alt="" />)}
     </div>
-);
+  );
+};
 
 export default TechCard;

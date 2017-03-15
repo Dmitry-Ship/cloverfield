@@ -44,6 +44,7 @@ module.exports = (app) => {
   } else {
     app.use(express.static(path.join(__dirname, '../public')));
     app.use(express.static(path.join(__dirname, '../uploads')));
-    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../public/index.html')));
+    app.use(express.static(path.join(__dirname, '../build')));
+    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../build/index.html')));
   }
 };

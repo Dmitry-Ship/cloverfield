@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
-import { topBar, navBar } from './TopBar.scss';
+import { topBar } from './TopBar.scss';
 
 import NavBar from '../basic/NavBar';
 import Logo from '../basic/Logo';
 
 import ProfileContainer from '../../containers/ProfileContainer';
 
-const TopBar = ({ appName, navBarItems, isLoggedIn }) => {
+const TopBar = ({ navBarItems, isLoggedIn }) => {
   const style = {
     display: 'flex',
     flexWrap: 'nowrap',
@@ -15,9 +15,9 @@ const TopBar = ({ appName, navBarItems, isLoggedIn }) => {
   };
   return (
     <header style={style} className={topBar} >
-      <Logo>{appName}</Logo>
+      <Logo />
 
-      <NavBar className={navBar} items={navBarItems} >
+      <NavBar items={navBarItems} >
         {isLoggedIn && <ProfileContainer />}
       </NavBar>
     </header>
@@ -27,7 +27,6 @@ const TopBar = ({ appName, navBarItems, isLoggedIn }) => {
 export default TopBar;
 
 TopBar.propTypes = {
-  appName: PropTypes.string.isRequired,
   navBarItems: PropTypes.arrayOf(PropTypes.object).isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
 };

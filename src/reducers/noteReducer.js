@@ -103,9 +103,8 @@ export const getErrorMessage = state => state.noteReducer.errorMessage;
 export const getVisibleNotes = (state, tagText) => {
   const allTheNotes = getAllNotes(state);
 
-  if (!tagText) {
-    return allTheNotes.reverse();
-  }
+  if (!tagText) { return allTheNotes.reverse(); }
+
   return allTheNotes.filter(note => note.tags.includes(tagText)).reverse();
 };
 

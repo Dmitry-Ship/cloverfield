@@ -9,7 +9,7 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: ['react-hot-loader/patch', 'webpack-hot-middleware/client', './src'],
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'build'),
     filename: '[name].bundle.js',
     publicPath: '/',
   },
@@ -46,12 +46,11 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'html-loader',
+        use: 'html-loader',
       },
-
       {
         test: /\.(png|svg|gif)?$/,
-        loader: 'url-loader?limit=10000',
+        use: 'url-loader?limit=10000',
       },
     ],
   },
