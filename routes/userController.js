@@ -19,10 +19,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get('/', (req, res) => {
-  User.findById(req.user._id, (err, user) => {
-    if (err) handleError(res, err, 404);
-    else res.status(200).json(user);
-  });
+  User.findById(req.user._id)
+    .then(user => res.status(200).json(user))
+    .catch(err => handleError(res, err, 404));
 });
 
 
@@ -35,11 +34,9 @@ router.put('/', upload.single('avatar'), (req, res) => {
 
   User.findOneAndUpdate({ _id: req.user._id },
     req.body,
-    { new: true, upsert: true },
-    (err, user) => {
-      if (err) handleError(res, err, 422);
-      else res.send(user);
-    });
+    { new: true, upsert: true })
+    .then(user => res.send(user))
+    .catch(err => handleError(res, err, 422));
 });
 
 
@@ -48,21 +45,21 @@ router.put('/password', (req, res) => {
 
   if (!isValid) { return res.status(400).send(errors); }
 
-  return User.findOne({ _id: req.user._id }, (err, user) => {
-    if (err) { return res.send(err); }
-    return user.comparePassword(req.body.oldPassword, (compareErr, isMatch) => {
-      if (compareErr) { return res.send(compareErr); }
-      if (!isMatch) {
-        return res.status(400).send({ oldPassword: 'Incorrect password' });
-      }
-      user.password = req.body.newPassword;
+  return User.findById(req.user._id)
+    .then((user) => {
+      user.comparePassword(req.body.oldPassword, (compareErr, isMatch) => {
+        if (compareErr) { return res.send(compareErr); }
+        if (!isMatch) {
+          return res.status(400).send({ oldPassword: 'Incorrect password' });
+        }
+        user.password = req.body.newPassword;
 
-      user.save((err) => {
-        if (err) { return res.status(500).json({ error: 'something went wrong' }); }
-        res.send(user);
+        return user.save();
       });
-    });
-  });
+    })
+    .then(newUser => res.send(newUser))
+    .catch(err => res.send(err));
+
 });
 
 module.exports = router;

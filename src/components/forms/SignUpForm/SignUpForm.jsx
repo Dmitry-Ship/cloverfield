@@ -30,8 +30,8 @@ export default class SignUpForm extends Component {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleImageUpload(e, secondValue) {
-    this.setState({ userpic: e.target.value, preview: secondValue });
+  handleImageUpload(value, secondValue) {
+    this.setState({ userpic: value, preview: secondValue });
   }
 
   handleImageDelete() {

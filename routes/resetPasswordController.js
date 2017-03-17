@@ -10,13 +10,14 @@ router.get('/:token', (req, res) => {
       { resetPasswordToken: req.params.token },
       { resetPasswordExpires: { $gt: Date.now() } },
     ],
-  }, (err, user) => {
-    if (err) { return res.send(err); }
-    if (!user) {
-      return res.status(400).send('Token expired or is invalid');
-    }
-    res.end();
-  });
+  })
+    .then((user) => {
+      if (!user) {
+        return res.status(400).send('Token expired or is invalid');
+      }
+      res.end();
+    })
+    .catch(err => res.send(err));
 });
 
 router.put('/:token', (req, res) => {
@@ -32,9 +33,8 @@ router.put('/:token', (req, res) => {
       { resetPasswordToken: req.params.token },
       { resetPasswordExpires: { $gt: Date.now() } },
     ],
-  },
-  (err, user) => {
-    if (err) { return res.send(err); }
+  })
+  .then((user) => {
     if (!user) {
       return res.status(400).send('Token expired or is invalid');
     }
@@ -43,11 +43,11 @@ router.put('/:token', (req, res) => {
     user.resetPasswordExpires = undefined;
     user.resetPasswordToken = undefined;
 
-    user.save((err) => {
-      if (err) { return res.status(500).json({ error: 'something went wrong' }); }
-      res.end();
-    });
-  });
+    user.save()
+      .then(res.end())
+      .catch(err => res.status(500).json({ error: 'something went wrong' }))
+  })
+  .catch(err => res.send(err));
 });
 
 module.exports = router;

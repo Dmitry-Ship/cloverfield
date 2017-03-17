@@ -16,14 +16,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 const router = express.Router();
 
-
 router.get('/', (req, res) => {
   Note.find({ $and: [{ _user: req.user._id, isDeleted: false }] })
-    .exec((err, notes) => {
-      if (err) handleError(res, err, 404);
-      else res.send(notes);
-    });
-  // handleError(res, 'Something went wrong', 400);
+    .exec()
+    .then(notes => res.send(notes))
+    .catch(err => handleError(res, err, 404));
 });
 
 router.post('/', upload.array('note-image', 5), (req, res) => {
@@ -46,10 +43,9 @@ router.post('/', upload.array('note-image', 5), (req, res) => {
     _user: user._id,
   });
 
-  newNote.save((err, data) => {
-    if (err) handleError(res, err, 422);
-    else res.status(200).send(data);
-  });
+  newNote.save()
+    .then(data => res.status(200).send(data))
+    .catch(err => handleError(res, err, 422));
 });
 
 router.delete('/:id', (req, res) => {
@@ -58,10 +54,9 @@ router.delete('/:id', (req, res) => {
       { _id: req.params.id },
       { _user: req.user._id },
     ],
-  }, { isDeleted: true }, (err) => {
-    if (err) handleError(res, err, 422);
-    else res.send(req.params.id);
-  });
+  }, { isDeleted: true })
+    .then(() => res.send(req.params.id))
+    .catch(err => handleError(res, err, 422));
 });
 
 router.delete('/:id/tags/:tag', (req, res) => {
@@ -72,11 +67,9 @@ router.delete('/:id/tags/:tag', (req, res) => {
     ],
   },
     { $pull: { tags: req.params.tag } },
-    { new: true, upsert: true },
-    (err, note) => {
-      if (err) handleError(res, err, 422);
-      else res.send(note);
-    });
+    { new: true, upsert: true })
+    .then(note => res.send(note))
+    .catch(err => handleError(res, err, 422));
 });
 
 router.post('/:id/tags', (req, res) => {
@@ -87,11 +80,9 @@ router.post('/:id/tags', (req, res) => {
     ],
   },
     { $addToSet: { tags: req.body.tag } },
-    { new: true, upsert: true },
-    (err, note) => {
-      if (err) handleError(res, err, 422);
-      else res.send(note);
-    });
+    { new: true, upsert: true })
+    .then(note => res.send(note))
+    .catch(err => handleError(res, err, 422));
 });
 
 router.delete('/:id/images/:image', (req, res) => {
@@ -102,14 +93,12 @@ router.delete('/:id/images/:image', (req, res) => {
     ],
   },
     { $pull: { images: req.params.image } },
-    { new: true, upsert: true },
-    (err, note) => {
-      if (err) handleError(res, err, 422);
-      else res.send(note);
-    });
+    { new: true, upsert: true })
+    .then(note => res.send(note))
+    .catch(err => handleError(res, err, 422));
 });
 
-/// modify
+// modify
 router.post('/:id/images', upload.single('note-image'), (req, res) => {
   const { file } = req;
 
@@ -126,11 +115,9 @@ router.post('/:id/images', upload.single('note-image'), (req, res) => {
     ],
   },
     { $addToSet: { images: image } },
-    { new: true, upsert: true },
-    (err, note) => {
-      if (err) handleError(res, err, 422);
-      else res.send(note);
-    });
+    { new: true, upsert: true })
+    .then(note => res.send(note))
+    .catch(err => handleError(res, err, 422));
 });
 
 router.put('/:id', (req, res) => {
@@ -141,11 +128,9 @@ router.put('/:id', (req, res) => {
     ],
   },
     req.body,
-    { new: true, upsert: true },
-    (err, note) => {
-      if (err) handleError(res, err, 422);
-      else res.send(note);
-    });
+    { new: true, upsert: true })
+    .then(note => res.send(note))
+    .catch(err => handleError(res, err, 422));
 });
 
 module.exports = router;

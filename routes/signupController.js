@@ -21,35 +21,32 @@ const router = express.Router();
 router.post('/', upload.single('avatar'), (req, res) => {
   const { isValid, errors } = validateInput(req.body);
 
-  if (!isValid) {
-    return res.status(400).send(errors);
-  }
+  if (!isValid) { return res.status(400).send(errors); }
 
   const { email, password, username, fullName } = req.body;
   const { file } = req;
 
+  User.findOne({ email })
+    .then((user) => {
+      if (user) {
+        return handleError(res, { email: 'That email address is already in use.' }, 422);
+      }
+      const newUser = new User({
+        email,
+        password,
+        username,
+        fullName,
+        userpic: file.filename,
+      });
 
-  return User.findOne({ email }, (err, user) => {
-    if (err) { return handleError(res, err); }
-    if (user) {
-      return handleError(res, { email: 'That email address is already in use.' }, 422);
-    }
-    const newUser = new User({
-      email,
-      password,
-      username,
-      fullName,
-      userpic: file.filename,
-    });
-
-    return newUser.save((saveErr, result) => {
-      if (saveErr) { return handleError(res, saveErr, 400); }
-
+      return newUser.save();
+    })
+    .then((result) => {
       const token = generateToken(result);
 
       return res.json({ token: `Bearer ${token}` });
-    });
-  });
+    })
+    .catch(err => handleError(res, err));
 });
 
 module.exports = router;

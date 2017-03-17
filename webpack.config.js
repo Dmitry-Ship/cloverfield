@@ -47,10 +47,12 @@ module.exports = {
       {
         test: /\.html$/,
         use: 'html-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|svg|gif)?$/,
         use: 'url-loader?limit=10000',
+        exclude: /node_modules/,
       },
     ],
   },
