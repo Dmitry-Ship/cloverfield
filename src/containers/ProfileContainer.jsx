@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
 import { fetchUser } from '../actions/userActions';
@@ -11,10 +12,13 @@ const mapStateToProps = store => ({
   editRoute: '/editprofile',
 });
 
-const mapDispatchToProps = dispatch => ({
-  onClick: () => dispatch(logout()),
-  fetchUser: () => dispatch(fetchUser()),
-});
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const { dispatch } = dispatchProps;
+  const { history } = ownProps;
+  return Object.assign({}, stateProps,
+    { onClick: () => dispatch(logout(() => history.push('/login'))),
+      fetchUser: () => dispatch(fetchUser()) });
+};
 
 class ProfileContainer extends Component {
   componentDidMount() {
@@ -28,4 +32,4 @@ class ProfileContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+export default withRouter(connect(mapStateToProps, null, mergeProps)(ProfileContainer));

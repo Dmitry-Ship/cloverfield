@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import noUserPic from './noUserPic.png';
 
@@ -15,6 +15,7 @@ export default Avatar;
 Avatar.defaultProps = {
   fallBack: noUserPic,
   className: '',
+  to: '#',
 };
 
 Avatar.propTypes = {

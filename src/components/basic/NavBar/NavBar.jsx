@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
+
 
 import { link, icon, active, text, content } from './NavBar.scss';
 import Icon from '../Icon';
 
-const NavBar = ({ items, children, className }) => {
+const NavBar = ({ links, children, className }) => {
   const style = {
     display: 'flex',
     flexWrap: 'nowrap',
@@ -14,10 +15,10 @@ const NavBar = ({ items, children, className }) => {
 
   return (
     <nav style={style} className={className} >
-      {items.map(item => (
-        <Link
+      {links.map(item => (
+        <NavLink
+          exact
           activeClassName={active}
-          onlyActiveOnIndex
           className={link}
           to={item.to}
           key={item.label}
@@ -27,7 +28,7 @@ const NavBar = ({ items, children, className }) => {
             {item.label && <span className={text}>{item.label}</span>}
           </div>
 
-        </Link>
+        </NavLink>
       ))}
       {children}
     </nav>
@@ -42,7 +43,7 @@ NavBar.defaultProps = {
 };
 
 NavBar.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  links: PropTypes.arrayOf(PropTypes.object).isRequired,
   children: PropTypes.any,
   className: PropTypes.string,
 };

@@ -15,8 +15,22 @@ const image = (state = { images: [], index: 0 }, action) => {
   }
 };
 
+const modal = (state = { isOpen: false, content: null }, action) => {
+  switch (action.type) {
+    case types.OPEN_MODAL_SUCCESS:
+      return Object.assign({}, { isOpen: true, content: action.content });
+    case types.CLOSE_MODAL_SUCCESS:
+      return Object.assign({}, { isOpen: false, content: null });
+    default: return state;
+  }
+}
+
 export const getCurrentImage = store => store.UIReducer.image.images[store.UIReducer.image.index];
 export const getIsLast = store => store.UIReducer.image.images.length === store.UIReducer.image.index+1;
 export const getIsFirst = store => store.UIReducer.image.index === 0;
+export const getIsOpen = store => store.UIReducer.modal.isOpen;
+export const getContent = store => store.UIReducer.modal.content;
 
-export default combineReducers({ image });
+
+
+export default combineReducers({ image, modal });

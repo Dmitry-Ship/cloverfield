@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import React, { Component } from 'react';
 import NotesList from '../components/NotesList';
 import Loader from '../components/basic/Loader';
@@ -6,7 +7,7 @@ import { fetchNotes } from '../actions/noteActions';
 import { getVisibleNotes, getIsFetching, getErrorMessage } from '../reducers/noteReducer';
 
 const mapStateToProps = (store, ownProps) => ({
-  notes: getVisibleNotes(store, ownProps.params.tagText),
+  notes: getVisibleNotes(store, ownProps.match.params.tagText),
   isFetching: getIsFetching(store),
   errorMessage: getErrorMessage(store),
 });
@@ -52,4 +53,5 @@ class NotesListContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotesListContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NotesListContainer));
+

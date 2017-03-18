@@ -17,3 +17,13 @@ export const showNextImage = () => ({
 export const showPreviousImage = () => ({
   type: types.PREVIOUS_IMAGE_SUCCESS,
 });
+
+export const openModal = content => ({
+  type: types.OPEN_MODAL_SUCCESS,
+  content,
+});
+
+export const closeModal = () => ({
+  type: types.CLOSE_MODAL_SUCCESS,
+});
+

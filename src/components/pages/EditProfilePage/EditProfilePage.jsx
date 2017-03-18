@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { page, card, link } from './EditProfilePage.scss';
 
 import Heading from '../../basic/Heading';
@@ -16,7 +16,7 @@ const EditProfilePage = () => (
     <div className={card} >
       <Heading>Change password</Heading>
       <ChangePasswordFormContainer />
-      <Link to="forgotpassword" className={link} ><h3>Forgot your password?</h3></Link>
+      <Link to="/forgotpassword" className={link} ><h3>Forgot your password?</h3></Link>
     </div>
   </div>
 );
