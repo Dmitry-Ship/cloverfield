@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { login } from '../actions/authActions';
-import LoginForm from '../components/forms/LoginForm';
+import LoginCard from '../components/LoginCard';
 import validation from '../../helpers/validations/login';
 import { getErrorMessage, getIsLoggingIn } from '../reducers/authReducer';
 
@@ -18,4 +18,4 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     { onSubmit: data => dispatch(login(data, () => history.push('/'))) });
 };
 
-export default withRouter(connect(mapStateToProps, null, mergeProps)(LoginForm));
+export default withRouter(connect(mapStateToProps, null, mergeProps)(LoginCard));

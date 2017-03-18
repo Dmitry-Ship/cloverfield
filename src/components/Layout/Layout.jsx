@@ -18,5 +18,5 @@ Layout.defaultProps = {
 };
 
 Layout.propTypes = {
-  // children: PropTypes.element,
+  children: PropTypes.any,
 };

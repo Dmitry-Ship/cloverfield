@@ -25,6 +25,13 @@ import TopBar from './components/TopBar';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import PublicRoute from './components/routes/PublicRoute';
 
+import Button from './components/basic/Button';
+import LoginCardContainer from './containers/LoginCardContainer';
+
+
+
+import ModalContainer from './containers/ModalContainer';
+import { openModal } from './actions/UIActions';
 const mapStateToProps = store => ({
   isLoggedIn: getIsLoggedIn(store),
   isLoggingIn: getIsLoggingIn(store),
@@ -38,10 +45,17 @@ const mapStateToProps = store => ({
   ],
 });
 
-const App = ({ isLoggedIn, isLoggingIn, links }) => (
+const mapDispatchToProps = dispatch => ({
+  openModal: content => dispatch(openModal(content)),
+});
+
+
+const Routes = ({ isLoggedIn, isLoggingIn, links, openModal }) => (
   <Router>
     <Layout >
       <TopBar isLoggedIn={isLoggedIn} links={links} />
+      <Button onClick={() => openModal(<LoginCardContainer />)}  label="Open" />
+      <ModalContainer />
       <Switch>
         <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
@@ -58,11 +72,11 @@ const App = ({ isLoggedIn, isLoggingIn, links }) => (
   </Router>
 );
 
-const AppContainer = connect(mapStateToProps)(App);
+const RoutesContainer = connect(mapStateToProps, mapDispatchToProps)(Routes);
 
 const Root = ({ store }) => (
   <Provider store={store} >
-    <AppContainer />
+    <RoutesContainer />
   </Provider>
 );
 
