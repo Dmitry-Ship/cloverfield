@@ -13,7 +13,6 @@ import { getIsLoggedIn, getIsLoggingIn } from './reducers/authReducer';
 import MainPage from './components/pages/MainPage';
 import AboutPage from './components/pages/AboutPage';
 import LoginPage from './components/pages/LoginPage';
-import SignUpPage from './components/pages/SignUpPage';
 import ForgotPasswordPage from './components/pages/ForgotPasswordPage';
 import ResetPasswordPage from './components/pages/ResetPasswordPage';
 import EditProfilePage from './components/pages/EditProfilePage';
@@ -27,6 +26,8 @@ import PublicRoute from './components/routes/PublicRoute';
 
 import Button from './components/basic/Button';
 import LoginCardContainer from './containers/LoginCardContainer';
+import SignUpCardContainer from './containers/SignUpCardContainer';
+
 
 
 
@@ -41,7 +42,6 @@ const mapStateToProps = store => ({
     { label: 'Empty', iconName: 'not_interested', to: '/empty' },
   ] : [
     { label: 'Login', iconName: 'perm_identity', to: '/login' },
-    { label: 'SignUp', iconName: 'person', to: '/signup' },
   ],
 });
 
@@ -54,7 +54,9 @@ const Routes = ({ isLoggedIn, isLoggingIn, links, openModal }) => (
   <Router>
     <Layout >
       <TopBar isLoggedIn={isLoggedIn} links={links} />
-      <Button onClick={() => openModal(<LoginCardContainer />)}  label="Open" />
+      <Button onClick={() => openModal(<LoginCardContainer />)}  label="Login" />
+      <Button onClick={() => openModal(<SignUpCardContainer />)}  label="Sign Up" />
+      
       <ModalContainer />
       <Switch>
         <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
@@ -65,7 +67,6 @@ const Routes = ({ isLoggedIn, isLoggingIn, links, openModal }) => (
         <Route path="/forgotpassword" component={ForgotPasswordPage} />
         <Route path="/reset/:token" component={ResetPasswordPage} />
         <PublicRoute path="/login" component={LoginPage} isLoggedIn={isLoggedIn} />
-        <PublicRoute path="/signup" component={SignUpPage} isLoggedIn={isLoggedIn} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
