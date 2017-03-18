@@ -1,27 +1,59 @@
 @value colors: "../../../styles/colors.scss";
-@value tertiary from colors;
-
-.card {
-  composes: formCard from 'styles/cards.scss';
-  margin-top: 150px;
-  margin-bottom: 50px;
-  background: rgba(white, 0.6);
-}
+@value note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
 
 .page {
-  background-image: url('./gifs/robot.gif');
+  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url('./gifs/robot.gif');
   background-size: cover;
   height: calc(100vh - 55px);
-  background-position: center;
+  background-position: 30% 40%;
   &:before, &:after{
     content: ' ';
     display: table;
   }
 }
 
-.link {
-  margin-top: 75px;
-  display: block;
+.heroTitle {
   text-align: center;
-  color: tertiary;
+  margin-top: 160px;
+  color: white;
+  font-family: Amatic SC;
+  font-size: 5rem;
+
+}
+
+.heroSub {
+  text-align: center;
+  margin-bottom: 70px;
+  color: white;
+  font-size: 2rem;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  width: 125px;
+  height: 200px;
+  margin: auto;
+  padding: 20px;
+  composes: level-2 from 'styles/shadows.scss';
+  animation: colorchange 1s infinite alternate;
+}
+
+
+@keyframes colorchange{
+  0%   {background: note_red;}
+  12.5%  {background: note_orange;}
+  25%  {background: note_yellow;}
+  50%  {background: note_green;}
+  62.5% {background: note_grey;}
+  75% {background: note_teal;}
+  100% {background: note_blue;}
+  
+}
+
+.noteText {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: auto;
+  display: block
 }

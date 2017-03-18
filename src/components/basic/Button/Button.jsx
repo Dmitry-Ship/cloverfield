@@ -12,13 +12,14 @@ const Button = ({
   kind,
   isLoading,
   iconName,
+  size,
   disabled,
   children }) => (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${styles[kind]} ${className}`}
+      className={`${styles[kind]} ${styles[size]} ${className}`}
     >
       <div>
         {isLoading ? <Icon name="access_time" /> : <span>{label}</span>}
@@ -39,6 +40,7 @@ Button.defaultProps = {
   iconName: null,
   label: 'Submit',
   onClick: null,
+  size: 'normal',
 };
 
 Button.propTypes = {
@@ -50,4 +52,6 @@ Button.propTypes = {
   children: PropTypes.element,
   iconName: PropTypes.string,
   kind: PropTypes.oneOf(['primary', 'secondary']),
+  size: PropTypes.oneOf(['normal', 'small']),
+  
 };

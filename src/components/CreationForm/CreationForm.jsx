@@ -4,11 +4,11 @@ import Textarea from 'react-textarea-autosize';
 import styles, {
   form,
   title,
-  button,
   body,
   tagArea,
   wrapper,
   submition,
+  noteActions,
   unfolded } from './CreationForm.scss';
 
 import NoteActions from '../NoteActions';
@@ -179,12 +179,15 @@ export default class CreationForm extends Component {
           <div className={submition} >
             <NoteActions
               color={color}
+              className={noteActions}
               onSetColor={this.setColor}
               onChange={this.handleImage}
               id="CHECK"
-            />
+            >
+            
+              <Button kind="secondary" label="Done" />
+            </NoteActions>
           </div>
-          <Button className={button} kind="secondary" label="Done" />
         </form>
       </div>
     );

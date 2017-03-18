@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 import TextField from '../../basic/TextField';
 import Button from '../../basic/Button';
 
-import { input } from './ForgotPasswordForm.scss';
+import { input, button } from './ForgotPasswordForm.scss';
 
 export default class ForgotPasswordForm extends Component {
   constructor() {
@@ -55,7 +55,7 @@ export default class ForgotPasswordForm extends Component {
           onChange={this.handleEmailChange}
           // required*/}
         />
-        <Button label="Send" />
+        <Button className={button} label="Send" />
       </form>
     );
   }

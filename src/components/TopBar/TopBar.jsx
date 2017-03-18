@@ -20,11 +20,13 @@ const TopBar = (props) => {
 
       <div style={style} >
 
+        <Button kind="secondary" size="small" className={button} label="Search" />
         {props.isLoggedIn ?
           <ProfileContainer /> :
           <div>
-            <Button className={button} label="Login" onClick={props.openLoginModal} />
-            <Button className={button} kind="secondary" label="Join" onClick={props.openSignUpModal} />
+            
+            <Button size="small" className={button} label="Login" onClick={props.openLoginModal} />
+            <Button size="small" className={button} kind="secondary" label="Join" onClick={props.openSignUpModal} />
           </div>}
 
       </div>

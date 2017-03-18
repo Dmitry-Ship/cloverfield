@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 import TextField from '../../basic/TextField';
 import Button from '../../basic/Button';
 
-import { input } from './LoginForm.scss';
+import { input, button } from './LoginForm.scss';
 
 export default class LoginForm extends Component {
   constructor() {
@@ -71,7 +71,7 @@ export default class LoginForm extends Component {
           onChange={this.handlePasswordChange}
           // required
         />
-        <Button isLoading={isLoggingIn} label="Login" />
+        <Button className={button} isLoading={isLoggingIn} label="Login" />
       </form>
     );
   }

@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 import TextField from '../../basic/TextField';
 import Button from '../../basic/Button';
 
-import { input } from './ChangePasswordForm.scss';
+import { input, button } from './ChangePasswordForm.scss';
 
 export default class ChangePasswordForm extends Component {
   constructor() {
@@ -75,7 +75,7 @@ export default class ChangePasswordForm extends Component {
           onChange={this.handleNewPasswordChange}
           // required
         />
-        <Button label="Change" />
+        <Button className={button} label="Change" />
       </form>
     );
   }

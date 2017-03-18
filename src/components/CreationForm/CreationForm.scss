@@ -65,19 +65,13 @@
 }
 
 .submition {
-  z-index: 0;
-  width: 50%;
-  display: none;
-  float: left;
-  justify-content: space-between;
-  background: transparent;
-  line-height: 30px;
-  transition: all 150ms ease-in-out;
+  display: none; 
 }
 
-.button {
+.noteActions {
   display: none;
-  float: right;
+  line-height: 30px;
+  margin-bottom: 20px;
 }
 
 .red {

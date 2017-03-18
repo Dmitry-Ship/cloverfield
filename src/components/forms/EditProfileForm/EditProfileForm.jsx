@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import TextField from '../../basic/TextField';
 import Button from '../../basic/Button';
 import FormFileUploader from '../../basic/FormFileUploader';
-import { input } from './EditProfileForm.scss';
+import { input, button } from './EditProfileForm.scss';
 
 export default class EditProfileForm extends Component {
   constructor(props) {
@@ -129,7 +129,7 @@ export default class EditProfileForm extends Component {
           // required
         />
 
-        <Button isLoading={this.props.isLoading} label="edit" />
+        <Button className={button} isLoading={this.props.isLoading} label="edit" />
       </form>
     );
   }
