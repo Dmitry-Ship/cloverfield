@@ -36,7 +36,7 @@ router.post('/', upload.single('avatar'), (req, res) => {
         password,
         username,
         fullName,
-        userpic: file.filename,
+        userpic: file ? file.filename : undefined,
       });
 
       return newUser.save();

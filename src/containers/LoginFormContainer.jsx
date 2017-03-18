@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { login } from '../actions/authActions';
 import LoginForm from '../components/forms/LoginForm';
 import validation from '../../helpers/validations/login';
@@ -10,8 +11,11 @@ const mapStateToProps = store => ({
   validation,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onSubmit: data => dispatch(login(data)),
-});
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const { dispatch } = dispatchProps;
+  const { history } = ownProps;
+  return Object.assign({}, stateProps,
+    { onSubmit: data => dispatch(login(data, () => history.push('/'))) });
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default withRouter(connect(mapStateToProps, null, mergeProps)(LoginForm));

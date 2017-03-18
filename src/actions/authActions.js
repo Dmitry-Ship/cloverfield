@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
-
 import * as types from './actionTypes';
 
 const loginSuccess = token => ({
@@ -13,13 +11,13 @@ const loginFailure = error => ({
   error,
 });
 
-export const login = creds => (dispatch) => {
+export const login = (creds, cb) => (dispatch) => {
   dispatch({ type: types.LOG_IN });
   axios.post('/login', creds)
     .then((res) => {
       localStorage.setItem('token', res.data.token);
       dispatch(loginSuccess(res.data));
-      browserHistory.push('/');
+      cb();
     })
     .catch(err => dispatch(loginFailure(err.response.data)));
 };
@@ -33,21 +31,21 @@ const signUpFailure = error => ({
   error,
 });
 
-export const signUp = creds => (dispatch) => {
+export const signUp = (creds, cb) => (dispatch) => {
   dispatch({ type: types.SIGN_UP });
   axios.post('/signup', creds)
     .then((res) => {
       localStorage.setItem('token', res.data.token);
       dispatch(signUpSuccess(res.data));
-      browserHistory.push('/');
+      cb();
     })
     .catch(err => dispatch(signUpFailure(err.response.data)));
 };
 
-export const logout = () => (dispatch) => {
+export const logout = cb => (dispatch) => {
   dispatch({ type: types.LOG_OUT_SUCCESS });
   localStorage.removeItem('token');
-  browserHistory.push('/login');
+  cb();
 };
 
 const requestTokenSuccess = () => ({

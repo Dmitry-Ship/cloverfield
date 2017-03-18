@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { item, profile, avatar, popUpMenu, link, name } from './Profile.scss';
 
 import Avatar from '../basic/Avatar';
@@ -52,7 +52,7 @@ export default class Profile extends Component {
           <p className={link} >Log Out</p>
         </div>
       </PopUpMenu>
-    </div>     
+    </div>
     )
   }
 }
