@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import TextField from '../../basic/TextField';
 import Button from '../../basic/Button';
 import FormFileUploader from '../../basic/FormFileUploader';
-import { input } from './SignUpForm.scss';
+import { input, button } from './SignUpForm.scss';
 
 export default class SignUpForm extends Component {
   constructor() {
@@ -136,7 +136,7 @@ export default class SignUpForm extends Component {
           onChange={this.handleImageUpload}
         />
 
-        <Button label="Signup" />
+        <Button className={button} label="Signup" />
       </form>
     );
   }
