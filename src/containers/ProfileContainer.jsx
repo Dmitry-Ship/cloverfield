@@ -16,7 +16,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { dispatch } = dispatchProps;
   const { history } = ownProps;
   return Object.assign({}, stateProps,
-    { onClick: () => dispatch(logout(() => history.push('/login'))),
+    { onClick: () => dispatch(logout(() => history.push('/welcome'))),
       fetchUser: () => dispatch(fetchUser()) });
 };
 

@@ -12,14 +12,12 @@ import { getIsLoggedIn, getIsLoggingIn } from './reducers/authReducer';
 
 import MainPage from './components/pages/MainPage';
 import AboutPage from './components/pages/AboutPage';
-import LoginPage from './components/pages/LoginPage';
-import ForgotPasswordPage from './components/pages/ForgotPasswordPage';
+import WelcomePage from './components/pages/WelcomePage';
 import ResetPasswordPage from './components/pages/ResetPasswordPage';
 import EditProfilePage from './components/pages/EditProfilePage';
 import ViewProfilePage from './components/pages/ViewProfilePage';
 import NotFound from './components/pages/NotFoundPage';
 import Layout from './components/Layout';
-import TopBar from './components/TopBar';
 
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import PublicRoute from './components/routes/PublicRoute';
@@ -27,7 +25,7 @@ import PublicRoute from './components/routes/PublicRoute';
 import Button from './components/basic/Button';
 import LoginCardContainer from './containers/LoginCardContainer';
 import SignUpCardContainer from './containers/SignUpCardContainer';
-
+import TopBarContainer from './containers/TopBarContainer';
 
 
 
@@ -36,13 +34,6 @@ import { openModal } from './actions/UIActions';
 const mapStateToProps = store => ({
   isLoggedIn: getIsLoggedIn(store),
   isLoggingIn: getIsLoggingIn(store),
-  links: getIsLoggedIn(store) ? [
-    { label: 'Home', iconName: 'home', to: '/' },
-    { label: 'About', iconName: 'info_outline', to: '/about' },
-    { label: 'Empty', iconName: 'not_interested', to: '/empty' },
-  ] : [
-    { label: 'Login', iconName: 'perm_identity', to: '/login' },
-  ],
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -53,20 +44,17 @@ const mapDispatchToProps = dispatch => ({
 const Routes = ({ isLoggedIn, isLoggingIn, links, openModal }) => (
   <Router>
     <Layout >
-      <TopBar isLoggedIn={isLoggedIn} links={links} />
-      <Button onClick={() => openModal(<LoginCardContainer />)}  label="Login" />
-      <Button onClick={() => openModal(<SignUpCardContainer />)}  label="Sign Up" />
+      <TopBarContainer />
       
       <ModalContainer />
       <Switch>
         <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
-        <ProtectedRoute path="/about" component={AboutPage} isLoggedIn={isLoggedIn} />
+        <Route path="/about" component={AboutPage} />
         <ProtectedRoute path="/profile" component={ViewProfilePage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/editprofile" component={EditProfilePage} isLoggedIn={isLoggedIn} />
-        <Route path="/forgotpassword" component={ForgotPasswordPage} />
         <Route path="/reset/:token" component={ResetPasswordPage} />
-        <PublicRoute path="/login" component={LoginPage} isLoggedIn={isLoggedIn} />
+        <PublicRoute path="/welcome" component={WelcomePage} isLoggedIn={isLoggedIn} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

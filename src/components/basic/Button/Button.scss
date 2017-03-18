@@ -8,6 +8,8 @@
   font-size: 1rem;
   cursor: pointer;
   transition: 300ms ease-in-out;
+  border-radius: 50px;
+  // height: 32px;
 }
 
 
@@ -24,7 +26,7 @@
 .secondary {
   composes: button;
   background: transparent;
-  border: 3px solid accent;
+  border: 2px solid accent;
   color: accent;
   &:hover {
     background: accent;

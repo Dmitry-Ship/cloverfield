@@ -17,6 +17,7 @@ export const login = (creds, cb) => (dispatch) => {
     .then((res) => {
       localStorage.setItem('token', res.data.token);
       dispatch(loginSuccess(res.data));
+      dispatch({ type: types.CLOSE_MODAL_SUCCESS });
       cb();
     })
     .catch(err => dispatch(loginFailure(err.response.data)));
@@ -37,6 +38,7 @@ export const signUp = (creds, cb) => (dispatch) => {
     .then((res) => {
       localStorage.setItem('token', res.data.token);
       dispatch(signUpSuccess(res.data));
+      dispatch({ type: types.CLOSE_MODAL_SUCCESS });
       cb();
     })
     .catch(err => dispatch(signUpFailure(err.response.data)));

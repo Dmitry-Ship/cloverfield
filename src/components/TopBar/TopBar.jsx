@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
-import { topBar } from './TopBar.scss';
+import { topBar, logo, button } from './TopBar.scss';
 import NavBar from '../basic/NavBar';
 import Logo from '../basic/Logo';
+import Button from '../basic/Button';
 
 import ProfileContainer from '../../containers/ProfileContainer';
 
@@ -14,10 +15,19 @@ const TopBar = (props) => {
   };
   return (
     <header style={style} className={topBar} >
-      <Logo />
-      <NavBar links={props.links} >
-        {props.isLoggedIn && <ProfileContainer />}
-      </NavBar>
+      <NavBar links={props.links} />
+      <Logo className={logo} />
+
+      <div style={style} >
+
+        {props.isLoggedIn ?
+          <ProfileContainer /> :
+          <div>
+            <Button className={button} label="Login" onClick={props.openLoginModal} />
+            <Button className={button} kind="secondary" label="Join" onClick={props.openSignUpModal} />
+          </div>}
+
+      </div>
 
     </header>
   );
