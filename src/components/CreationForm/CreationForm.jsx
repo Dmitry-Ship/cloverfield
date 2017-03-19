@@ -22,12 +22,12 @@ export default class CreationForm extends Component {
     super(props);
     this.state = {
       className: form,
-      titleText: '',
+      titleText: props.query ? props.query : '',
       bodyText: '',
-      color: 'white',
+      color: props.color ? props.color : 'white',
       previews: [],
       imageFiles: [],
-      tags: [],
+      tags: props.tag ? [props.tag] : [],
     };
     this.handleFocus = this.handleFocus.bind(this);
     this.handleClickOut = this.handleClickOut.bind(this);
@@ -41,8 +41,16 @@ export default class CreationForm extends Component {
     this.deletePreview = this.deletePreview.bind(this);
   }
 
+
   componentDidMount() {
     document.body.addEventListener('click', this.handleClickOut);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ tags: nextProps.tag ? [nextProps.tag] : [] });
+    nextProps.color && this.setState({ color: nextProps.color });
+    nextProps.query && this.setState({ titleText: nextProps.query });
+    
   }
 
   componentWillUnmount() {

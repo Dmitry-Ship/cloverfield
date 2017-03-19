@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import Button from '../basic/Button';
-import styles, { button, icon, input, iconWrapper } from './Search.scss';
+import styles, { button, icon, input, iconWrapper, wrapper } from './Search.scss';
 import Icon from '../basic/Icon';
 
 class Search extends Component {
@@ -14,24 +13,29 @@ class Search extends Component {
     };
     this.toggleSearch = this.toggleSearch.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleColorSet = this.handleColorSet.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
-  handleColorSet() {
+  handleFilter() {
     this.props.onChange('');
     this.setState({ query: '' });
+    this.props.history.push('/');
   }
 
   toggleSearch() {
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState({ isOpen: !this.state.isOpen, query: '' });
     this.props.onChange('');
+    this.props.history.push('/');
+    
   }
 
   handleSearch(e) {
     const value = e.target.value;
     this.setState({ query: value });
+    this.props.history.push('/');
     this.props.onChange(value);
   }
+
   render() {
     const { match } = this.props;
     const style = {
@@ -49,7 +53,7 @@ class Search extends Component {
     const circles = colors.map((item) => {
       const chosen = item === 'white' ? styles.chosen : '';
       return (
-        <Link onClick={this.handleColorSet} key={item} to={`/colors/${item}`} >
+        <Link onClick={this.handleFilter} key={item} to={`/colors/${item}`} >
           <span className={`${styles[item]} ${chosen}`} />
         </Link>
       );
@@ -57,20 +61,26 @@ class Search extends Component {
 
     return (
       <div style={style} >
-        {this.state.isOpen ?
-          <input onChange={this.handleSearch} value={this.state.query} className={input} type="text" placeholder="Search for..." /> :
-          <Button kind="secondary" size="small" className={button} onClick={this.toggleSearch} >Search</Button>}
 
-        <div style={{ display: this.state.isOpen ? 'flex' : 'none' }} >
-          <Link to="/images/all" >
+        <div style={{ display: this.state.isOpen ? 'flex' : 'none' }} className={wrapper} >
+          <input
+            onChange={this.handleSearch}
+            value={this.state.query}
+            className={input}
+            type="text"
+            placeholder="Search for..."
+          />
+          <Link to="/images/all" onClick={this.handleFilter} >
             <div className={iconWrapper} >
               <Icon name="image" className={icon} />
             </div>
           </Link>
           {circles}
-          <Button kind="secondary" size="small" className={button} onClick={this.toggleSearch} >Cancel</Button>
         </div>
 
+        {!this.state.isOpen ?
+          <Button kind="secondary" size="small" className={button} onClick={this.toggleSearch} >Search</Button> :
+          <Button kind="secondary" size="small" className={button} onClick={this.toggleSearch} >Cancel</Button>}
 
       </div>
     );

@@ -79,7 +79,7 @@ const query = (state = '', action) => {
   }
 };
 
-const getAllNotes = state => state.noteReducer.allIds.map(id => state.noteReducer.byId[id]);
+export const getAllNotes = state => state.noteReducer.allIds.map(id => state.noteReducer.byId[id]);
 
 export const getAllTags = (state) => {
   const allTheNotes = getAllNotes(state);
@@ -106,7 +106,7 @@ export const getAllImages = (state) => {
   return newArr;
 };
 
-const getQuery = state => state.noteReducer.query;
+export const getQuery = state => state.noteReducer.query;
 export const getIsFetching = state => state.noteReducer.isFetching;
 export const getErrorMessage = state => state.noteReducer.errorMessage;
 export const getVisibleNotes = (state, tagText, color, images) => {

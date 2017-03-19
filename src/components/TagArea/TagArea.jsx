@@ -76,10 +76,10 @@ export default class TagArea extends Component {
             onPaste={this.handlePaste}
           />
 
-          <PopUpMenu className={suggestionsMenu} position="bottom" >
+          {suggestions.length > 0 && <PopUpMenu className={suggestionsMenu} position="bottom" >
             {suggestions.map(tag =>
               <span onMouseDown={this.setTag} key={tag} className={suggestion} >{tag}</span>)}
-          </PopUpMenu>
+          </PopUpMenu>}
         </div>
       </div>
     );

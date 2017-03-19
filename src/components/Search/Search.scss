@@ -38,6 +38,22 @@
   line-height: 32px;
 }
 
+.wrapper {
+  animation: appear 300ms forwards;
+}
+
+@keyframes appear {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
 .circle {
   border-radius: 50%;
   display: block;

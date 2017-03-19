@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { page, card, link } from './EditProfilePage.scss';
+import { page, card } from './EditProfilePage.scss';
 
 import Heading from '../../basic/Heading';
 
 import EditProfileFormContainer from '../../../containers/EditProfileFormContainer';
-import ChangePasswordFormContainer from '../../../containers/ChangePasswordFormContainer';
+import ChangePasswordCardContainer from '../../../containers/ChangePasswordCardContainer';
 
 const EditProfilePage = () => (
   <div className={page}>
@@ -13,11 +12,7 @@ const EditProfilePage = () => (
       <Heading>Edit your account</Heading>
       <EditProfileFormContainer />
     </div>
-    <div className={card} >
-      <Heading>Change password</Heading>
-      <ChangePasswordFormContainer />
-      <Link to="/forgotpassword" className={link} ><h3>Forgot your password?</h3></Link>
-    </div>
+    <ChangePasswordCardContainer />
   </div>
 );
 

@@ -6,10 +6,10 @@ import Heading from '../basic/Heading';
 
 import LoginForm from '../../components/forms/LoginForm';
 
-const LoginCard = ({ errors, validation, isLoggingIn, onSubmit, onSignUpClick, onForgotClick }) => (
+const LoginCard = ({ onForgotClick, onSignUpClick, ...rest }) => (
   <div className={card} >
     <Heading>Welcome back</Heading>
-    <LoginForm errors={errors} validation={validation} isLoggingIn={isLoggingIn} onSubmit={onSubmit} />
+    <LoginForm {...rest} />
     <Link to="#" className={link} onClick={onForgotClick} >
       <h3>Forgot your password?</h3>
     </Link>

@@ -6,7 +6,7 @@ import Heading from '../basic/Heading';
 
 import ForgotPasswordForm from '../../components/forms/ForgotPasswordForm';
 
-const ForgotPasswordCard = ({ errors, validation, isTokenSent, onSubmit, onLoginClick }) => (
+const ForgotPasswordCard = ({ isTokenSent, onLoginClick, errors, ...rest }) => (
   <div className={card} >
   {errors.general &&
       <div>
@@ -16,7 +16,7 @@ const ForgotPasswordCard = ({ errors, validation, isTokenSent, onSubmit, onLogin
   {isTokenSent ? <Heading>Alrighty, instructions have been sent, check your inbox!</Heading> :
       <div>
         <Heading>We will send you an email with instructions on how to reset password</Heading>
-        <ForgotPasswordForm erros={errors} validation={validation} onSubmit={onSubmit} />
+        <ForgotPasswordForm errors={errors} {...rest} />
         <Link to="#" className={link} onClick={onLoginClick} ><h3>Nah, I remember it</h3></Link>
 
       </div>}
