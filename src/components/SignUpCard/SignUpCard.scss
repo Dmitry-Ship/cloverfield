@@ -3,9 +3,7 @@
 
 .card {
   composes: formCard from 'styles/cards.scss';
-  // margin-top: 150px;
-  // margin-bottom: 50px;
-  background: rgba(white, 0.6);
+  background: white;
 }
 
 .link {

@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
+import React from 'react';
 import CreationForm from '../components/CreationForm';
 import { createNote } from '../actions/noteActions';
-import { expandImage } from '../actions/UIActions';
+import { openModal } from '../actions/UIActions';
 import { getTagsSuggestions, getQuery } from '../reducers/noteReducer';
+import ExpandedImage from '../components/basic/ExpandedImage';
+
 
 const mapStateToProps = (store, ownProps) => ({
   tagsSuggestions: tags => getTagsSuggestions(store, tags),
@@ -16,7 +18,7 @@ const mapStateToProps = (store, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: note => dispatch(createNote(note)),
-  expandImage: (image, i) => dispatch(expandImage(image, i)),
+  expandImage: (images, i) => dispatch(openModal(<ExpandedImage images={images} index={i} />)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreationForm));
