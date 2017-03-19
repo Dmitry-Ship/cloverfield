@@ -71,7 +71,7 @@ export default class LoginForm extends Component {
           onChange={this.handlePasswordChange}
           // required
         />
-        <Button className={button} isLoading={isLoggingIn} label="Login" />
+        <Button className={button} isLoading={isLoggingIn} >Login</Button>
       </form>
     );
   }

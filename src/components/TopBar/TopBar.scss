@@ -1,6 +1,10 @@
 @value breakPoints: "../../styles/breakPoints.scss";
 @value mobile from breakPoints;
 
+.button {
+  margin: 0 10px;
+}
+
 .topBar {
   background: white;
   composes: level-1 from 'styles/shadows.scss';
@@ -22,6 +26,3 @@
   transform: translate(-50%, -50%);
 }
 
-.button {
-  margin: 0 10px;
-}

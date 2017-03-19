@@ -15,6 +15,7 @@
 .heroTitle {
   text-align: center;
   margin-top: 160px;
+  margin-bottom: 50px;
   color: white;
   font-family: Amatic SC;
   font-size: 5rem;
@@ -23,6 +24,7 @@
 
 .heroSub {
   text-align: center;
+  margin-top: 50px;
   margin-bottom: 70px;
   color: white;
   font-size: 2rem;
@@ -36,7 +38,7 @@
   margin: auto;
   padding: 20px;
   composes: level-2 from 'styles/shadows.scss';
-  animation: colorchange 1s infinite alternate;
+  animation: colorchange 5s infinite alternate;
 }
 
 

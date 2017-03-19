@@ -5,18 +5,15 @@ import {
 } from 'react-router-dom';
 
 
-const PublicRoute = (mainProps) => {
-  const noComponent = Object.assign({}, mainProps, { component: undefined });
-  return (
-    <Route
-      {...noComponent}
-      render={props => (
-        !mainProps.isLoggedIn ?
-          React.createElement(mainProps.component, props) :
-          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-      )}
-    />
-  );
-};
+const PublicRoute = ({ component, isLoggedIn, ...rest }) => (
+  <Route
+    {...rest}
+    render={props => (
+      !isLoggedIn ?
+        React.createElement(component, props) :
+        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+    )}
+  />
+);
 
 export default PublicRoute;

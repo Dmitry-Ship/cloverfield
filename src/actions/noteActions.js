@@ -143,3 +143,8 @@ export const deleteNote = id => (dispatch) => {
     .then(res => dispatch(deleteNoteSuccess(res.data)))
     .catch(err => dispatch(deleteNoteFailure(err.response.data)));
 };
+
+export const search = query => ({
+  type: types.SEARCH_SUCCESS,
+  query,
+});

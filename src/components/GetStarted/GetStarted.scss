@@ -1,8 +1,9 @@
-.button {
-  display: block;
-  // display: inline;
-  margin: 0 80px;
-  // // flex: 1;
-  // position: absolute;
-  // right: 50%;
+.buttonLeft {
+  position: absolute;
+  right: 55%;
+}
+
+.buttonRight {
+  position: absolute;
+  left: 55%;
 }

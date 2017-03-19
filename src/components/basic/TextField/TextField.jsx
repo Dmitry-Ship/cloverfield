@@ -1,48 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 import { wrapper, textField, errorMessage, topLabel } from './TextField.scss';
 
-export default class TextField extends Component {
-  constructor() {
-    super();
-    // this.handleChange = this.handleChange.bind(this);
-  }
+const TextField = ({ label, className, error, ...rest }) => (
+  <div className={`${wrapper} ${className}`}>
+    {label && <label className={topLabel} >{label}</label>}
+    <input className={textField} {...rest} />
+    <p className={errorMessage}>{error}</p>
+  </div>
+);
 
-  // handleChange(e) {
-  //   this.props.onChange(e.target.value);
-  // }
-
-  render() {
-    const {
-      type,
-      name,
-      placeholder,
-      required,
-      onFocus,
-      error,
-      value,
-      onBlur,
-      label,
-      className } = this.props;
-    return (
-      <div className={`${wrapper} ${className}`}>
-        {label && <label className={topLabel} >{label}</label>}
-        <input
-          className={textField}
-          type={type}
-          value={value}
-          name={name}
-          placeholder={placeholder}
-          required={required}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onChange={this.props.onChange}
-        />
-        <p className={errorMessage}>{error}</p>
-      </div>
-    );
-  }
-}
+export default TextField;
 
 TextField.defaultProps = {
   className: '',

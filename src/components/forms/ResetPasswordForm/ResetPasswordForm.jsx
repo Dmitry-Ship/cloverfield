@@ -72,7 +72,7 @@ export default class ResetPasswordForm extends Component {
           onChange={this.handleConfirmPasswordChange}
           // required
         />
-        <Button label="Set" />
+        <Button>Set</Button>
       </form>
     );
   }

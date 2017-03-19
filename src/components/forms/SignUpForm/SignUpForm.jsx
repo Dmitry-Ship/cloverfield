@@ -110,7 +110,7 @@ export default class SignUpForm extends Component {
           // required
         />
 
-        <Button className={button} label="Signup" />
+        <Button className={button} >Sign Up</Button>
       </form>
     );
   }

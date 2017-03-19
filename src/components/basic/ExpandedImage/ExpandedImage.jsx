@@ -12,9 +12,16 @@ const ExpandedImage = ({
   isLast }) => {
   const stop = e => e.stopPropagation();
 
+  const isDataURL = (s) => {
+    const regex = /^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i;
+    if (s.match(regex)) { return s; }
+    return `/${s}`;
+  };
+  
+
   return (
     <div className={wrapper} onClick={hideImage} >
-      <img className={image} src={currentImage} alt="" onClick={stop} />
+      <img className={image} src={isDataURL(currentImage)} alt="" onClick={stop} />
       <Icon name="exit_to_app" className={closeIcon} />
 
       {!isLast &&

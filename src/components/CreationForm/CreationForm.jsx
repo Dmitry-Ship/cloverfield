@@ -185,7 +185,7 @@ export default class CreationForm extends Component {
               id="CHECK"
             >
             
-              <Button kind="secondary" label="Done" />
+              <Button kind="secondary" >Done</Button>
             </NoteActions>
           </div>
         </form>

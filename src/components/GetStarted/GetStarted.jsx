@@ -1,20 +1,21 @@
 import React, { PropTypes } from 'react';
 import Button from '../basic/Button';
 
-import { button } from './GetStarted.scss';
+import { buttonLeft, buttonRight } from './GetStarted.scss';
 
 const GetStarted = props => {
   const style = {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
+    // display: 'flex',
+    // flexWrap: 'nowrap',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // width: '100%',
+    position: 'relative',
   };
   return (
     <div style={style} >
-      <Button className={button} label="Get started for free" onClick={props.openSignUpModal} />
-      <Button className={button} kind="secondary" label="I already have an account" onClick={props.openLoginModal} />
+      <Button className={buttonLeft} onClick={props.openSignUpModal} >Get started for free</Button>
+      <Button className={buttonRight} kind="secondary" onClick={props.openLoginModal} >I already have an account</Button>
     </div>
   );
 };

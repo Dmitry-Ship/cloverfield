@@ -5,15 +5,13 @@ import Icon from '../Icon';
 import { defaultLabel, heading, image, button, deleteIcon } from './FormFileUploader.scss';
 
 const FormFileUploader = ({
-      name,
-      id,
-      text,
-      required,
       preview,
       onChange,
       onDeleteImage,
-      fileType,
-      className }) => {
+      className,
+      text,
+      ...rest,
+    }) => {
   const handleUpload = (e) => {
     const theImage = e.target.files[0];
     const reader = new FileReader();
@@ -37,23 +35,20 @@ const FormFileUploader = ({
       <h2 className={heading} >
         {text}
       </h2>
-      <label className={defaultLabel} htmlFor={id} >
+      <label className={defaultLabel} >
         <div className={image} style={{ backgroundImage: `url(${preview})`, position: 'relative' }}>
           {!!preview && <Icon name="close" className={deleteIcon} onClick={handleClick} />}
         </div>
 
         <div className={button}>Upload</div>
+        <input
+          {...rest}
+          style={{ display: 'none' }}
+          type="file"
+          onChange={handleUpload}
+        />
       </label>
 
-      <input
-        id={id}
-        type="file"
-        style={{ display: 'none' }}
-        name={name}
-        required={required}
-        onChange={handleUpload}
-        accept={fileType}
-      />
     </div>
   );
 };
@@ -63,7 +58,7 @@ export default FormFileUploader;
 FormFileUploader.defaultProps = {
   className: null,
   text: '',
-  fileType: 'image/*',
+  accept: 'image/*',
   id: 'fileUploader',
   name: 'image',
   required: false,
@@ -78,5 +73,5 @@ FormFileUploader.propTypes = {
   onChange: PropTypes.func.isRequired,
   onDeleteImage: PropTypes.func.isRequired,
   required: PropTypes.bool,
-  fileType: PropTypes.string,
+  accept: PropTypes.string,
 };

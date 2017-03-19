@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
-const Icon = ({ children, name, className, onClick }) => (
-  <i onClick={onClick} className={`${className} material-icons`} >
+const Icon = ({ children, name, className, ...rest }) => (
+  <i {...rest} className={`${className} material-icons`} >
     {name}
     {children}
   </i>

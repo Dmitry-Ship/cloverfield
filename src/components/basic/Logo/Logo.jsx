@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { logo } from './Logo.scss';
 
-const Logo = ({ className, to }) => (
-  <Link className={`${logo} ${className}`} to={to} >
+const Logo = ({ className, ...rest }) => (
+  <Link className={`${logo} ${className}`} {...rest} >
     Cloverfield
   </Link>
 );

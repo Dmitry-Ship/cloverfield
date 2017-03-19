@@ -6,8 +6,8 @@ import Loader from '../components/basic/Loader';
 import { fetchNotes } from '../actions/noteActions';
 import { getVisibleNotes, getIsFetching, getErrorMessage } from '../reducers/noteReducer';
 
-const mapStateToProps = (store, ownProps) => ({
-  notes: getVisibleNotes(store, ownProps.match.params.tagText),
+const mapStateToProps = (store, { match }) => ({
+  notes: getVisibleNotes(store, match.params.tagText, match.params.color, match.params.images),
   isFetching: getIsFetching(store),
   errorMessage: getErrorMessage(store),
 });

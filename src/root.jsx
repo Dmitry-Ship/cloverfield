@@ -22,26 +22,15 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import PublicRoute from './components/routes/PublicRoute';
 
-import Button from './components/basic/Button';
-import LoginCardContainer from './containers/LoginCardContainer';
-import SignUpCardContainer from './containers/SignUpCardContainer';
 import TopBarContainer from './containers/TopBarContainer';
-
-
-
 import ModalContainer from './containers/ModalContainer';
-import { openModal } from './actions/UIActions';
+
 const mapStateToProps = store => ({
   isLoggedIn: getIsLoggedIn(store),
   isLoggingIn: getIsLoggingIn(store),
 });
 
-const mapDispatchToProps = dispatch => ({
-  openModal: content => dispatch(openModal(content)),
-});
-
-
-const Routes = ({ isLoggedIn, isLoggingIn, links, openModal }) => (
+const Routes = ({ isLoggedIn, isLoggingIn }) => (
   <Router>
     <Layout >
       <TopBarContainer />
@@ -50,6 +39,8 @@ const Routes = ({ isLoggedIn, isLoggingIn, links, openModal }) => (
       <Switch>
         <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
+        <ProtectedRoute path="/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
+        <ProtectedRoute path="/images/:images" component={MainPage} isLoggedIn={isLoggedIn} /> 
         <Route path="/about" component={AboutPage} />
         <ProtectedRoute path="/profile" component={ViewProfilePage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/editprofile" component={EditProfilePage} isLoggedIn={isLoggedIn} />
@@ -61,7 +52,7 @@ const Routes = ({ isLoggedIn, isLoggingIn, links, openModal }) => (
   </Router>
 );
 
-const RoutesContainer = connect(mapStateToProps, mapDispatchToProps)(Routes);
+const RoutesContainer = connect(mapStateToProps)(Routes);
 
 const Root = ({ store }) => (
   <Provider store={store} >

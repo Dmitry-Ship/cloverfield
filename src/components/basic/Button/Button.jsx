@@ -5,27 +5,16 @@ import styles from './Button.scss';
 import Icon from '../Icon';
 
 const Button = ({
-  type,
-  label,
-  onClick,
   className,
   kind,
   isLoading,
   iconName,
   size,
-  disabled,
-  children }) => (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
-      className={`${styles[kind]} ${styles[size]} ${className}`}
-    >
-      <div>
-        {isLoading ? <Icon name="access_time" /> : <span>{label}</span>}
-        {children}
-        {iconName && <Icon name={iconName} />}
-      </div>
+  children,
+  ...rest }) => (
+    <button {...rest} className={`${styles[kind]} ${styles[size]} ${className}`} >
+      {isLoading ? <Icon name="access_time" /> : <span>{children}</span>}
+      {iconName && <Icon name={iconName} />}
     </button>
 );
 
@@ -36,22 +25,21 @@ Button.defaultProps = {
   className: '',
   type: 'submit',
   disabled: false,
-  children: null,
+  children: 'Submit',
   iconName: null,
-  label: 'Submit',
+  isLoading: false,
   onClick: null,
   size: 'normal',
 };
 
 Button.propTypes = {
   className: PropTypes.string,
-  label: PropTypes.string,
   type: PropTypes.oneOf(['submit', 'button', 'reset']),
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  children: PropTypes.element,
+  children: PropTypes.any,
   iconName: PropTypes.string,
   kind: PropTypes.oneOf(['primary', 'secondary']),
   size: PropTypes.oneOf(['normal', 'small']),
-  
+  isLoading: PropTypes.bool,
 };

@@ -1,0 +1,100 @@
+@value colors: "../../styles/colors.scss";
+@value accent, tertiary, flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
+
+.button {
+  margin: 0 10px;
+}
+
+.input {
+  height: 32px;
+  border: 2px solid accent;
+  border-radius: 50px;
+  padding: 0 10px;
+}
+.iconWrapper {
+  color: accent;
+  border: 2px solid accent;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+  margin: 0px 10px;
+  position: relative;
+  transition: 150ms ease-in-out;
+  text-align: center;
+  &:hover {
+    color: white;
+    background: accent;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  margin: 0px;
+  line-height: 32px;
+}
+
+.circle {
+  border-radius: 50%;
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0px 5px;
+  cursor: pointer;
+  &:first-child {
+    border-color: grey;
+  }
+  &:hover {
+    border: 2px solid flat_wet_asphalt;
+  }
+}
+
+.chosen {
+  composes: circle;
+  border: 2px solid black;
+}
+
+.red {
+  composes: circle;
+  background: note_red;
+}
+
+.orange {
+  composes: circle;
+  background: note_orange;
+}
+
+.yellow {
+  composes: circle;
+  background: note_yellow;
+}
+
+.grey {
+  composes: circle;
+  background: note_grey;
+}
+
+.blue {
+  composes: circle;
+  background: note_blue;
+}
+
+.teal {
+  composes: circle;
+  background: note_teal;
+}
+
+.green {
+  composes: circle;
+  background: note_green;
+}
+
+.white {
+  composes: circle;
+  border: 2px solid grey;
+  background: white;
+}

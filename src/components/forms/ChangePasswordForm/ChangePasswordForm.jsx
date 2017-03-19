@@ -75,7 +75,7 @@ export default class ChangePasswordForm extends Component {
           onChange={this.handleNewPasswordChange}
           // required
         />
-        <Button className={button} label="Change" />
+        <Button className={button} >Change</Button>
       </form>
     );
   }

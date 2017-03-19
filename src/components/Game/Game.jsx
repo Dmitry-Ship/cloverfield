@@ -90,7 +90,7 @@ class Game extends Component {
             placeholder="Enter your guess"
             value={value}
           />
-          {done ? <Button label="Try agian!" onClick={this.refresh} /> : <Button />}
+          {done ? <Button onClick={this.refresh} >Try agian!</Button> : <Button />}
         </form>
       </div>
     );

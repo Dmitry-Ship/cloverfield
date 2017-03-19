@@ -70,6 +70,15 @@ const errorMessage = (state = null, action) => {
   }
 };
 
+
+const query = (state = '', action) => {
+  switch (action.type) {
+    case types.SEARCH_SUCCESS:
+      return action.query;
+    default: return state;
+  }
+};
+
 const getAllNotes = state => state.noteReducer.allIds.map(id => state.noteReducer.byId[id]);
 
 export const getAllTags = (state) => {
@@ -89,7 +98,6 @@ export const getTagsSuggestions = (state, ownTags = '') => {
   return suggestions;
 };
 
-
 export const getAllImages = (state) => {
   const allTheNotes = getAllNotes(state);
   const tagsArr = allTheNotes.map(note => note.images);
@@ -98,14 +106,21 @@ export const getAllImages = (state) => {
   return newArr;
 };
 
+const getQuery = state => state.noteReducer.query;
 export const getIsFetching = state => state.noteReducer.isFetching;
 export const getErrorMessage = state => state.noteReducer.errorMessage;
-export const getVisibleNotes = (state, tagText) => {
+export const getVisibleNotes = (state, tagText, color, images) => {
   const allTheNotes = getAllNotes(state);
 
-  if (!tagText) { return allTheNotes.reverse(); }
+  if (getQuery(state)) { return allTheNotes.filter(note => note.body.includes(getQuery(state))).reverse(); }
 
-  return allTheNotes.filter(note => note.tags.includes(tagText)).reverse();
+  if (tagText) { return allTheNotes.filter(note => note.tags.includes(tagText)).reverse(); }
+
+  if (color) { return allTheNotes.filter(note => note.color === color).reverse(); }
+
+  if (images) { return allTheNotes.filter(note => note.images.length > 0).reverse(); }
+
+  return allTheNotes.reverse();
 };
 
-export default combineReducers({ isFetching, errorMessage, byId, allIds });
+export default combineReducers({ isFetching, errorMessage, byId, allIds, query });
