@@ -6,7 +6,7 @@
   "node": "6.10.1",
   "scripts": {
     "start:dev": "nodemon --ignore ./src",
-    "start": "npm run build && cross-env NODE_ENV=production node server.js",
+    "start": "webpack -p --colors --progress --config webpack.config.production.js && cross-env NODE_ENV=production node server.js",
     "build": "webpack -p --colors --progress --config webpack.config.production.js",
     "test": "jest"
   },
