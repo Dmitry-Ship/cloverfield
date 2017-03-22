@@ -11,7 +11,7 @@
   justify-content: center;
   flex-direction: column;
   background-position: (30%, 50%);
-  min-height: calc(100vh - 55px);
+  min-height: calc(100vh - 56px);
   padding: 3.5rem 0;
   @media mobile {
     padding: 2.75rem 0;
@@ -28,7 +28,7 @@
   font-family: Amatic SC;
   font-size: 5rem;
   @media mobile {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 
