@@ -6,7 +6,7 @@
   "node": "6.10.1",
   "scripts": {
     "start:dev": "nodemon --ignore ./src",
-    "start": "webpack -p --colors --progress --config webpack.config.production.js && cross-env NODE_ENV=production node server.js",
+    "start": "webpack -p --colors --progress --config webpack.config.production.js && node server.js",
     "build": "webpack -p --colors --progress --config webpack.config.production.js",
     "test": "jest"
   },
@@ -42,12 +42,17 @@
     "jest": "^19.0.2",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
+    "postcss-loader": "^1.1.1",
     "react-addons-test-utils": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
+    "sass-loader": "^6.0.2",
     "serve-favicon": "^2.3.0",
     "style-loader": "^0.13.1",
+    "file-loader": "^0.10.1",
+    "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
-    "webpack-hot-middleware": "^2.15.0"
+    "webpack-hot-middleware": "^2.15.0",
+    "url-loader": "^0.5.8"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -57,7 +62,6 @@
     "cross-env": "^3.2.4",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^2.0.0",
-    "file-loader": "^0.10.1",
     "jsonwebtoken": "^7.2.1",
     "lost": "^7.1.1",
     "mongodb": "^2.2.16",
@@ -69,7 +73,6 @@
     "nodemailer-mailgun-transport": "^1.2.4",
     "postcss": "^5.2.14",
     "postcss-color-function": "^3.0.0",
-    "postcss-loader": "^1.1.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.1",
     "react-masonry-component": "^5.0.3",
@@ -78,10 +81,7 @@
     "react-textarea-autosize": "^4.0.5",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
-    "redux-thunk": "^2.1.0",
-    "sass-loader": "^6.0.2",
-    "url-loader": "^0.5.8",
-    "webpack": "^2.2.1"
+    "redux-thunk": "^2.1.0"
   },
   "jest": {
     "moduleNameMapper": {
