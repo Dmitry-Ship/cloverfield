@@ -2,21 +2,18 @@
 @value mobile from breakPoints;
 
 .button {
-  margin: 0 10px;
+  margin: 0 .125rem;
 }
 
 .topBar {
   background: white;
   composes: level-1 from 'styles/shadows.scss';
-  padding: 0 10%;
+  padding: 0 .75rem;
   position: fixed;
   top: 0%;
   width: 100%;
   height: 56px;
   z-index: 2;
-  @media mobile {
-    padding: 0 5%;
-  }
 }
 
 .logo {

@@ -6,20 +6,24 @@
 .page {
   background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url('./gifs/robot.gif');
   background-size: cover;
-  // background-repeat: no repeat;
-  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-position: (30%, 50%);
   min-height: calc(100vh - 55px);
-  padding: 2.75rem 0;
-  &:before, &:after{
-    content: ' ';
-    display: table;
+  padding: 3.5rem 0;
+  @media mobile {
+    padding: 2.75rem 0;
   }
+}
+.wrapper {
+  display: block;
 }
 
 .heroTitle {
   text-align: center;
-  margin-top: 5%;
-  margin-bottom: 50px;
+  margin: 0 0 2.75rem 0;
   color: white;
   font-family: Amatic SC;
   font-size: 5rem;
@@ -30,8 +34,8 @@
 
 .heroSub {
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 2.75rem;
+  margin-bottom: 2.75rem;
   color: white;
   font-size: 2rem;
   @media mobile {
@@ -45,7 +49,7 @@
   flex-direction: column;
   width: 125px;
   height: 200px;
-  margin: auto;
+  margin:  0 auto 3.75rem auto;
   padding: 20px;
   composes: level-2 from 'styles/shadows.scss';
   animation: colorchange 5s infinite alternate;

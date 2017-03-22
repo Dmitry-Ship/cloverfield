@@ -4,7 +4,7 @@
 .wrapper {
   height: 45px;
   position: relative;
-  width: 100%;
+  width: 16rem;
   @media mobile {
     height: 100px;
   }
@@ -12,6 +12,7 @@
 
 
 .buttonLeft {
+  width: 100%;
   position: absolute;
   right: 55%;
   @media mobile {
@@ -22,6 +23,7 @@
 }
 
 .buttonRight {
+  width: 100%;
   position: absolute;
   left: 55%;
   @media mobile {
