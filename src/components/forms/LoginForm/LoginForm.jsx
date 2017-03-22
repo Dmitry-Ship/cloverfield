@@ -55,7 +55,6 @@ export default class LoginForm extends Component {
         <TextField
           type="email"
           value={email}
-          autoFocus
           name="email"
           className={input}
           error={errors.email}

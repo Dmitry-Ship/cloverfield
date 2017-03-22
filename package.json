@@ -6,8 +6,8 @@
   "node": "6.10.1",
   "scripts": {
     "start:dev": "nodemon --ignore ./src",
-    "start": "cross-env NODE_ENV=production node server.js",
-    "postinstall": "webpack -p --colors --progress --config webpack.config.production.js",
+    "start": "cross-env NODE_ENV=production && npm build node server.js",
+    
     "build": "./node_modules/.bin/webpack -p --colors --progress --config webpack.config.production.js",
     "test": "jest"
   },
