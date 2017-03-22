@@ -1,15 +1,9 @@
-@value breakPoints: "./breakPoints.scss";
-@value mobile from breakPoints;
-
 .formCard {
   background: white;
   margin: auto;
   width: 800px;
   padding: 50px 200px;
   composes: level-1 from './shadows.scss';
-  @media mobile {
-    background: red;
-  }
 }
 
 .infoCard {
