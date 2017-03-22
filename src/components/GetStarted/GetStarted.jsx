@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import Button from '../basic/Button';
 
-import { buttonLeft, buttonRight } from './GetStarted.scss';
+import { buttonLeft, buttonRight, wrapper } from './GetStarted.scss';
 
 const GetStarted = ({ openSignUpModal, openLoginModal }) => {
-  const style = { position: 'relative' };
+
   return (
-    <div style={style} >
+    <div className={wrapper} >
       <Button className={buttonLeft} onClick={openSignUpModal} >Get started for free</Button>
       <Button
         className={buttonRight}

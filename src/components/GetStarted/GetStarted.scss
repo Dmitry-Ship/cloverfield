@@ -1,9 +1,32 @@
+@value breakPoints: "../../styles/breakPoints.scss";
+@value mobile from breakPoints;
+
+.wrapper {
+  height: 45px;
+  position: relative;
+  width: 100%;
+  @media mobile {
+    height: 100px;
+  }
+}
+
+
 .buttonLeft {
   position: absolute;
   right: 55%;
+  @media mobile {
+    right: 50%;
+    top: 0%;
+    transform: translatex(50%);
+  }
 }
 
 .buttonRight {
   position: absolute;
   left: 55%;
+  @media mobile {
+    left: 50%;
+    bottom: 0%;
+    transform: translatex(-50%);
+  }
 }

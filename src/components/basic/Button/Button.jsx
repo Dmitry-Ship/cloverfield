@@ -13,7 +13,7 @@ const Button = ({
   children,
   ...rest }) => (
     <button {...rest} className={`${styles[kind]} ${styles[size]} ${className}`} >
-      {isLoading ? <Icon name="access_time" /> : <span>{children}</span>}
+      {isLoading ? <Icon name="access_time" /> : children}
       {iconName && <Icon name={iconName} />}
     </button>
 );

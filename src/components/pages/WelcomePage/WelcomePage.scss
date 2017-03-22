@@ -1,11 +1,15 @@
 @value colors: "../../../styles/colors.scss";
 @value note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
+@value breakPoints: "../../../styles/breakPoints.scss";
+@value mobile from breakPoints;
 
 .page {
   background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url('./gifs/robot.gif');
   background-size: cover;
-  height: calc(100vh - 55px);
-  background-position: 30% 40%;
+  // background-repeat: no repeat;
+  height: auto;
+  min-height: calc(100vh - 55px);
+  padding: 2.75rem 0;
   &:before, &:after{
     content: ' ';
     display: table;
@@ -14,20 +18,26 @@
 
 .heroTitle {
   text-align: center;
-  margin-top: 160px;
+  margin-top: 5%;
   margin-bottom: 50px;
   color: white;
   font-family: Amatic SC;
   font-size: 5rem;
-
+  @media mobile {
+    font-size: 3rem;
+  }
 }
 
 .heroSub {
   text-align: center;
   margin-top: 50px;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   color: white;
   font-size: 2rem;
+  @media mobile {
+    font-size: 1rem;
+    margin-bottom: 8%;
+  }
 }
 
 .note {
@@ -39,6 +49,10 @@
   padding: 20px;
   composes: level-2 from 'styles/shadows.scss';
   animation: colorchange 5s infinite alternate;
+  @media mobile {
+    width: 100px;
+    height: 175px;
+  }
 }
 
 
@@ -57,5 +71,8 @@
   text-align: center;
   font-size: 1.5rem;
   margin: auto;
-  display: block
+  display: block;
+  @media mobile {
+    font-size: 1rem;
+  }
 }

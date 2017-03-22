@@ -3,7 +3,8 @@
 
 .button {
   border: none;
-
+  // box-sizing: padding-box;
+  // display:block;
   font-size: 1rem;
   cursor: pointer;
   transition: 300ms ease-in-out;
@@ -33,7 +34,7 @@
 }
 
 .normal {
-  padding: 0 40px;
+  padding: 0 5%;
   height: 45px;
 }
 
