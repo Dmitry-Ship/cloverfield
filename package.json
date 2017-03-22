@@ -10,6 +10,7 @@
     "build": "./node_modules/.bin/webpack -p --colors --progress --config webpack.config.production.js",
     "test": "jest"
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dmitry-Ship/cloverfield.git"
