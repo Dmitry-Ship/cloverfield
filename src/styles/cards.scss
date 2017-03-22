@@ -6,10 +6,23 @@
   composes: level-1 from './shadows.scss';
 }
 
+@media (max-width: 599px) {
+  .formCard {
+    width: 90%;
+    padding: 25px 15px;
+  }
+}
 .infoCard {
   background: white;
   margin: auto;
   width: 800px;
-  padding: 50px 180px;
+  padding: 50px 130px;
   composes: level-1 from './shadows.scss';
+}
+
+@media (max-width: 599px) {
+  .infoCard {
+    width: 90%;
+    padding: 15px 50px;
+  }
 }

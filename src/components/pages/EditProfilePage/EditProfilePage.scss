@@ -3,13 +3,14 @@
 
 .card {
   composes: formCard from 'styles/cards.scss';
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 3.5rem;
 }
 
-.page:before, .page:after{
-    content: ' ';
-    display: table;
+.page {
+  padding: 3.5rem 0;
+  // @media mobile {
+  //   padding: 2.75rem 0;
+  // }
 }
 
 .link {

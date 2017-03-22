@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '../basic/Button';
-import styles, { button, icon, input, iconWrapper, wrapper, chosen } from './Search.scss';
+import styles, { button, icon, input, iconWrapper, wrapper, chosen, filters } from './Search.scss';
 import Icon from '../basic/Icon';
 
 class Search extends Component {
@@ -65,12 +65,14 @@ class Search extends Component {
             type="text"
             placeholder="Search for..."
           />
-          <NavLink to="/search/images/all" onClick={this.handleFilter} >
-            <div className={iconWrapper} >
-              <Icon name="image" className={icon} />
-            </div>
-          </NavLink>
-          {circles}
+          <div className={filters} >
+            <NavLink to="/search/images/all" onClick={this.handleFilter} >
+              <div className={iconWrapper} >
+                <Icon name="image" className={icon} />
+              </div>
+            </NavLink>
+            {circles}
+          </div>
         </div>}
 
         <Button

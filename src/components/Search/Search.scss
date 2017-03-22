@@ -1,8 +1,19 @@
 @value colors: "../../styles/colors.scss";
 @value accent, tertiary, flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
+@value breakPoints: "../../styles/breakPoints.scss";
+@value mobile from breakPoints;
 
 .button {
-  margin: 0 10px;
+  margin: 0 .125rem;
+}
+
+.filters {
+  display: flex; 
+  @media mobile {
+    position: absolute;
+    top: 56px;
+
+  }
 }
 
 .input {
@@ -10,6 +21,7 @@
   border: 2px solid accent;
   border-radius: 50px;
   padding: 0 10px;
+  width: 170px;
 }
 .iconWrapper {
   color: accent;
@@ -18,7 +30,7 @@
   height: 32px;
   line-height: 32px;
   border-radius: 50%;
-  margin: 0px 10px;
+  margin-right: 0.125rem;
   position: relative;
   transition: 150ms ease-in-out;
   text-align: center;
@@ -60,7 +72,7 @@
   width: 32px;
   height: 32px;
   cursor: pointer;
-  margin: 0px 5px;
+  margin-right: 0.125rem;
   &:first-child {
     border-color: grey;
   }

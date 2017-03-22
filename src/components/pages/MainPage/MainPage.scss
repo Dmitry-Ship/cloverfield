@@ -1,4 +1,6 @@
-.page:before, .page:after{
-    content: ' ';
-    display: table;
+.page {
+  padding: 3.5rem 0;
+  // @media mobile {
+  //   padding: 2.75rem 0;
+  // }
 }

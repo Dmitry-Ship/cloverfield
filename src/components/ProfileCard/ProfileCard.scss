@@ -1,8 +1,7 @@
 .card {
   composes: infoCard from 'styles/cards.scss';
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 2.75rem;
 }
 
 .avatar {

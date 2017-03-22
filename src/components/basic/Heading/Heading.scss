@@ -1,9 +1,13 @@
 @value colors: "../../../styles/colors.scss";
 @value tertiary from colors;
+@value breakPoints: "../../../styles/breakPoints.scss";
+@value mobile from breakPoints;
 
 .heading {
   text-align: center;
   color: tertiary;
   font-weight: lighter;
-  // margin: 0 0 60px 0;
+  @media mobile {
+    font-size: 1.5rem;
+  }
 }

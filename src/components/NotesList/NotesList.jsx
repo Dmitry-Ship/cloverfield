@@ -6,16 +6,16 @@ import NoteContainer from '../../containers/NoteContainer';
 const NotesList = ({ notes }) => {
   const masonryOptions = {
     transitionDuration: 300,
-    gutter: 30,
+    // gutter: 30,
     fitWidth: true,
   };
 
   const style = {
-    margin: '30px auto auto auto',
+    margin: 'auto',
   };
 
   return (
-    <Masonry options={masonryOptions} style={style}>
+    <Masonry options={masonryOptions} style={style} >
       {notes.map(note => <NoteContainer note={note} key={note._id} />)}
     </Masonry>
   );
