@@ -39,8 +39,11 @@ const Routes = ({ isLoggedIn, isLoggingIn }) => (
       <Switch>
         <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
-        <ProtectedRoute path="/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
-        <ProtectedRoute path="/images/:images" component={MainPage} isLoggedIn={isLoggedIn} /> 
+        <ProtectedRoute path="/search/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
+        <ProtectedRoute path="/search/images/:images" component={MainPage} isLoggedIn={isLoggedIn} />
+        <ProtectedRoute path="/search/:query" component={MainPage} isLoggedIn={isLoggedIn} />
+        <ProtectedRoute path="/search" component={MainPage} isLoggedIn={isLoggedIn} />
+        
         <Route path="/about" component={AboutPage} />
         <ProtectedRoute path="/profile" component={ViewProfilePage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/editprofile" component={EditProfilePage} isLoggedIn={isLoggedIn} />

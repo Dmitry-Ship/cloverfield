@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow, render } from 'enzyme';
-import { describe, it } from 'mocha';
+// import { describe, it } from 'mocha';
 import chai from 'chai';
 import { Link } from 'react-router';
 import Tag from './Tag';
 // import styles from './Tag.scss';
 const expect = chai.expect;
 
-describe('<MyComponent />', () => {
+describe('<Tag />', () => {
   const tagText = 'lol';
   const onDeleteTag = () => {};
   it('renders correctly without crashing', () => {
@@ -17,7 +17,7 @@ describe('<MyComponent />', () => {
 
   it('renders <Link /> component inside', () => {
     const wrapper = shallow(<Tag tagText={tagText} onDeleteTag={onDeleteTag} />);
-    expect(wrapper.find(Link)).to.have.length(1);
+    expect(wrapper.find('Link')).to.have.length(1);
   });
 
   it('renders delete icon', () => {
@@ -27,8 +27,8 @@ describe('<MyComponent />', () => {
 
   it('renders tagText prop correctly', () => {
     const wrapper = shallow(<Tag tagText={tagText} onDeleteTag={onDeleteTag} />);
-    expect(wrapper.find(Link).text()).to.equal(tagText);
+    expect(wrapper.find(Link).text()).to.equal(`/tags/${tagText}`);
   });
-  it('deletes tag on click event');
+  // it('deletes tag on click event');
 });
 

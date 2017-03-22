@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Search from '../components/Search';
-import { search } from '../actions/noteActions';
 
-const mapDispatchToProps = dispatch => ({
-  onChange: data => dispatch(search(data)),
+const mapStateToProps = (state, ownProps) => ({
+  currentColor: ownProps.match.params.color,
+  isInSearchMode: ownProps.history.location.pathname.includes('search'),
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(Search));
+export default withRouter(connect(mapStateToProps)(Search));

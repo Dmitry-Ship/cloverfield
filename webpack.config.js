@@ -3,6 +3,7 @@ const path = require('path');
 const values = require('postcss-modules-values');
 const colorFunction = require('postcss-color-function');
 const lost = require('lost');
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -63,6 +64,7 @@ module.exports = {
           values,
           lost,
           colorFunction,
+          autoprefixer,
         ],
       },
     }),

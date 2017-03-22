@@ -11,7 +11,7 @@ const NotesList = ({ notes }) => {
   };
 
   const style = {
-    margin: 'auto',
+    margin: '30px auto auto auto',
   };
 
   return (

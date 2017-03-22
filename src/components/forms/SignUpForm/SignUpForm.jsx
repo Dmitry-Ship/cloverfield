@@ -83,6 +83,7 @@ export default class SignUpForm extends Component {
 
         <TextField
           placeholder="Username"
+          autoFocus
           value={username}
           className={input}
           onChange={this.handlUsernameChange}

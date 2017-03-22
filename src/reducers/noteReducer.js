@@ -12,9 +12,7 @@ const byId = (state = {}, action) => {
       return nextState;
     }
     case types.CREATE_NOTE_SUCCESS:
-      return Object.assign({},
-        state,
-        { [newNote._id]: newNote });
+      return { ...state, [newNote._id]: newNote };
     case types.DELETE_NOTE_SUCCESS: {
       const newState = Object.assign({}, state);
       delete newState[id];
@@ -25,9 +23,7 @@ const byId = (state = {}, action) => {
     case types.ADD_IMAGE_SUCCESS:
     case types.DELETE_TAG_SUCCESS:
     case types.DELETE_IMAGE_SUCCESS:
-      return Object.assign({},
-        state,
-        { [updatedNote._id]: updatedNote });
+      return { ...state, [updatedNote._id]: updatedNote };
     default: return state;
   }
 };
@@ -70,15 +66,6 @@ const errorMessage = (state = null, action) => {
   }
 };
 
-
-const query = (state = '', action) => {
-  switch (action.type) {
-    case types.SEARCH_SUCCESS:
-      return action.query;
-    default: return state;
-  }
-};
-
 export const getAllNotes = state => state.noteReducer.allIds.map(id => state.noteReducer.byId[id]);
 
 export const getAllTags = (state) => {
@@ -92,10 +79,7 @@ export const getAllTags = (state) => {
 
 export const getTagsSuggestions = (state, ownTags = '') => {
   const allTags = getAllTags(state);
-  const suggestions = allTags.filter((tag) => {
-    return !ownTags.includes(tag);
-  });
-  return suggestions;
+  return allTags.filter(tag => !ownTags.includes(tag));
 };
 
 export const getAllImages = (state) => {
@@ -109,18 +93,21 @@ export const getAllImages = (state) => {
 export const getQuery = state => state.noteReducer.query;
 export const getIsFetching = state => state.noteReducer.isFetching;
 export const getErrorMessage = state => state.noteReducer.errorMessage;
-export const getVisibleNotes = (state, tagText, color, images) => {
-  const allTheNotes = getAllNotes(state);
+export const getVisibleNotes = (state, tagText, color, images, query) => {
+  const allTheNotes = getAllNotes(state).reverse();
 
-  if (getQuery(state)) { return allTheNotes.filter(note => note.body.includes(getQuery(state))).reverse(); }
+  if (tagText) { return allTheNotes.filter(note => note.tags.includes(tagText)); }
 
-  if (tagText) { return allTheNotes.filter(note => note.tags.includes(tagText)).reverse(); }
+  if (color) { return allTheNotes.filter(note => note.color === color); }
 
-  if (color) { return allTheNotes.filter(note => note.color === color).reverse(); }
+  if (images) { return allTheNotes.filter(note => note.images.length > 0); }
 
-  if (images) { return allTheNotes.filter(note => note.images.length > 0).reverse(); }
+  if (query) {
+    const result = allTheNotes.filter(note => note.body.includes(query) || note.title.includes(query));
+    return result;
+  }
 
-  return allTheNotes.reverse();
+  return allTheNotes;
 };
 
-export default combineReducers({ isFetching, errorMessage, byId, allIds, query });
+export default combineReducers({ isFetching, errorMessage, byId, allIds });

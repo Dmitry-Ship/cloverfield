@@ -25,13 +25,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onUpdateTitle: title => dispatch(editNote('title', title, ownProps.note._id)),
   onUpdateBody: body => dispatch(editNote('body', body, ownProps.note._id)),
   onAddTag: tag => dispatch(addTag(tag, ownProps.note._id)),
-  onSetTag: tag => dispatch(addTag(tag, ownProps.note._id)),
   onDeleteTag: tag => dispatch(deleteTag(tag, ownProps.note._id)),
   onAddImage: image => dispatch(addImage(image, ownProps.note._id)),
   onDeleteImage: image => dispatch(deleteImage(image, ownProps.note._id)),
   onDelete: () => dispatch(deleteNote(ownProps.note._id)),
   expandImage: (images, i) => dispatch(openModal(<ExpandedImage images={images} index={i} />)),
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Note);

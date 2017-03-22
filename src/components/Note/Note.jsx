@@ -117,7 +117,6 @@ export default class Note extends Component {
           <TagArea
             onDeleteTag={onDeleteTag}
             tags={note.tags}
-            onSetTag={this.props.onSetTag}
             suggestions={this.props.tagsSuggestions}
             onAddTag={onAddTag}
           />
@@ -147,7 +146,6 @@ Note.propTypes = {
   onUpdateTitle: PropTypes.func.isRequired,
   onUpdateBody: PropTypes.func.isRequired,
   onAddTag: PropTypes.func.isRequired,
-  onSetTag: PropTypes.func.isRequired,
   onDeleteTag: PropTypes.func.isRequired,
   onDeleteImage: PropTypes.func.isRequired,
   onAddImage: PropTypes.func.isRequired,

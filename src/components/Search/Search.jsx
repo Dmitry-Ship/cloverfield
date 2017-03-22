@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { PropTypes, Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import Button from '../basic/Button';
-import styles, { button, icon, input, iconWrapper, wrapper } from './Search.scss';
+import styles, { button, icon, input, iconWrapper, wrapper, chosen } from './Search.scss';
 import Icon from '../basic/Icon';
 
 class Search extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false,
       query: '',
     };
     this.toggleSearch = this.toggleSearch.bind(this);
@@ -17,74 +16,79 @@ class Search extends Component {
   }
 
   handleFilter() {
-    this.props.onChange('');
     this.setState({ query: '' });
-    this.props.history.push('/');
   }
 
   toggleSearch() {
-    this.setState({ isOpen: !this.state.isOpen, query: '' });
-    this.props.onChange('');
-    this.props.history.push('/');
-    
+    this.setState({ query: '' });
+    const value = this.props.isInSearchMode ? '/' : '/search';
+    this.props.history.push(value);
+    if (this.props.isInSearchMode) this.nameInput.focus();
   }
 
   handleSearch(e) {
     const value = e.target.value;
     this.setState({ query: value });
-    this.props.history.push('/');
-    this.props.onChange(value);
+    this.props.history.push(`/search/${value}`);
   }
 
   render() {
-    const { match } = this.props;
     const style = {
       display: 'flex',
       flexWrap: 'nowrap',
       justifyContent: 'space-between',
       alignItems: 'center',
-      height: '56px',
       zIndex: '3',
       top: '50%',
-      background: 'white',
     };
     const colors = ['white', 'red', 'orange', 'yellow', 'grey', 'blue', 'teal', 'green'];
 
-    const circles = colors.map((item) => {
-      const chosen = item === 'white' ? styles.chosen : '';
-      return (
-        <Link onClick={this.handleFilter} key={item} to={`/colors/${item}`} >
-          <span className={`${styles[item]} ${chosen}`} />
-        </Link>
-      );
-    });
+    const circles = colors.map(item => (
+      <NavLink
+        activeClassName={chosen}
+        className={`${styles[item]}`}
+        onClick={this.handleFilter}
+        key={item}
+        to={`/search/colors/${item}`}
+      />));
 
     return (
       <div style={style} >
 
-        <div style={{ display: this.state.isOpen ? 'flex' : 'none' }} className={wrapper} >
+        {this.props.isInSearchMode && <div style={{ display: 'flex' }} className={wrapper} >
           <input
+            ref={(el) => { this.nameInput = el; }}
             onChange={this.handleSearch}
             value={this.state.query}
             className={input}
+            autoFocus
             type="text"
             placeholder="Search for..."
           />
-          <Link to="/images/all" onClick={this.handleFilter} >
+          <NavLink to="/search/images/all" onClick={this.handleFilter} >
             <div className={iconWrapper} >
               <Icon name="image" className={icon} />
             </div>
-          </Link>
+          </NavLink>
           {circles}
-        </div>
+        </div>}
 
-        {!this.state.isOpen ?
-          <Button kind="secondary" size="small" className={button} onClick={this.toggleSearch} >Search</Button> :
-          <Button kind="secondary" size="small" className={button} onClick={this.toggleSearch} >Cancel</Button>}
-
+        <Button
+          kind="secondary"
+          size="small"
+          className={button}
+          onClick={this.toggleSearch}
+        >
+          {this.props.isInSearchMode ? 'Cancel' : 'Search'}
+        </Button>
       </div>
     );
   }
 }
 
 export default Search;
+
+Search.propTypes = {
+  history: PropTypes.object.isRequired,
+  isInSearchMode: PropTypes.bool.isRequired,
+};

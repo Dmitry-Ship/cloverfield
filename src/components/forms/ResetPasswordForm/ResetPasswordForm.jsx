@@ -55,6 +55,7 @@ export default class ResetPasswordForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <TextField
           type="password"
+          autoFocus
           value={password}
           name="newPassword"
           className={input}

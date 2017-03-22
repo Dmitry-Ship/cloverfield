@@ -15,7 +15,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSubmit: (data) => dispatch(resetPassword(data, ownProps.token)),
+  onSubmit: data => dispatch(resetPassword(data, ownProps.token)),
   verifyToken: token => dispatch(verifyToken(token)),
 });
 

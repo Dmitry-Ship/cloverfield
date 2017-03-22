@@ -7,7 +7,7 @@ import Button from '../basic/Button';
 import ProfileContainer from '../../containers/ProfileContainer';
 import SearchContainer from '../../containers/SearchContainer';
 
-const TopBar = (props) => {
+const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearchMode }) => {
   const style = {
     display: 'flex',
     flexWrap: 'nowrap',
@@ -16,20 +16,24 @@ const TopBar = (props) => {
   };
   return (
     <header style={style} className={topBar} >
-      <NavBar links={props.links} />
-      <Logo className={logo} />
+      <NavBar links={links} />
+      {!isInSearchMode && <Logo className={logo} />}
       <div style={style} >
 
-        <SearchContainer />
-        {props.isLoggedIn ?
+        {isLoggedIn && <SearchContainer />}
+        {isLoggedIn ?
           <ProfileContainer /> :
           <div>
-            <Button size="small" className={button} onClick={props.openLoginModal} >Login</Button>
-            <Button size="small" className={button} kind="secondary" onClick={props.openSignUpModal} >Join</Button>
+            <Button
+              size="small"
+              className={button}
+              onClick={openSignUpModal}
+            >
+            Join
+            </Button>
+            <Button size="small" kind="secondary" className={button} onClick={openLoginModal} >Login</Button>
           </div>}
-
       </div>
-
     </header>
   );
 };
@@ -39,4 +43,7 @@ export default TopBar;
 TopBar.propTypes = {
   links: PropTypes.arrayOf(PropTypes.object).isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
+  openLoginModal: PropTypes.func.isRequired,
+  openSignUpModal: PropTypes.func.isRequired,
+  isInSearchMode: PropTypes.bool.isRequired,
 };

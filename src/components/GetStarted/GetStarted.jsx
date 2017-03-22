@@ -3,19 +3,18 @@ import Button from '../basic/Button';
 
 import { buttonLeft, buttonRight } from './GetStarted.scss';
 
-const GetStarted = props => {
-  const style = {
-    // display: 'flex',
-    // flexWrap: 'nowrap',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // width: '100%',
-    position: 'relative',
-  };
+const GetStarted = ({ openSignUpModal, openLoginModal }) => {
+  const style = { position: 'relative' };
   return (
     <div style={style} >
-      <Button className={buttonLeft} onClick={props.openSignUpModal} >Get started for free</Button>
-      <Button className={buttonRight} kind="secondary" onClick={props.openLoginModal} >I already have an account</Button>
+      <Button className={buttonLeft} onClick={openSignUpModal} >Get started for free</Button>
+      <Button
+        className={buttonRight}
+        kind="secondary"
+        onClick={openLoginModal}
+      >
+      I already have an account
+      </Button>
     </div>
   );
 };

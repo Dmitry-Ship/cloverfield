@@ -12,21 +12,21 @@ const userReducer = (state = initialState, action) => {
   const { type, user, error } = action;
   switch (type) {
     case types.FETCH_USER:
-      return Object.assign({}, state, { isFetching: true });
+      return { ...state, isFetching: true };
     case types.FETCH_USER_SUCCESS:
-      return Object.assign({}, state, { user, isFetching: false, errorMessage: {} });
+      return { ...state, user, isFetching: false, errorMessage: {} };
     case types.FETCH_USER_FAILURE:
-      return Object.assign({}, state, { isFetching: false, errorMessage: error });
+      return { ...state, isFetching: false, errorMessage: error };
     case types.EDIT_PROFILE:
     case types.CHANGE_PASSWORD:
-      return Object.assign({}, state, { isLoading: true });
+      return { ...state, isLoading: true };
     case types.EDIT_PROFILE_SUCCESS:
-      return Object.assign({}, state, { user, isLoading: false });
+      return { ...state, user, isLoading: false };
     case types.CHANGE_PASSWORD_SUCCESS:
-      return Object.assign({}, state, { isPasswordChanged: true, isLoading: false });
+      return { ...state, isPasswordChanged: true, isLoading: false };
     case types.EDIT_PROFILE_FAILURE:
     case types.CHANGE_PASSWORD_FAILURE:
-      return Object.assign({}, state, { errorMessage: error, isLoading: false });
+      return { ...state, errorMessage: error, isLoading: false };
     default: return state;
   }
 };

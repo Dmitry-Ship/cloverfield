@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 
 module.exports = (app) => {
+  console.log(`NODE_ENV: ${process.env.NODE_ENV} production, message: ${process.env.NODE_ENV ? 'hey' : 'bye' }`);
   if (isDeveloping) {
     const webpack = require('webpack');
     const webpackMiddleware = require('webpack-dev-middleware');
@@ -20,6 +21,7 @@ module.exports = (app) => {
         chunks: false,
         chunkModules: false,
         modules: false,
+
       },
     });
 

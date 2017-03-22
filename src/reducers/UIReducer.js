@@ -4,9 +4,9 @@ import * as types from '../actions/actionTypes';
 const modal = (state = { isOpen: false, content: null }, action) => {
   switch (action.type) {
     case types.OPEN_MODAL_SUCCESS:
-      return Object.assign({}, { isOpen: true, content: action.content });
+      return { ...state, isOpen: true, content: action.content };
     case types.CLOSE_MODAL_SUCCESS:
-      return Object.assign({}, { isOpen: false, content: null });
+      return { ...state, isOpen: false, content: null };
     default: return state;
   }
 };

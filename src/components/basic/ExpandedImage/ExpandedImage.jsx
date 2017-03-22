@@ -26,37 +26,45 @@ export default class ExpandedImage extends Component {
     const stop = e => e.stopPropagation();
     const isLast = images.length === index + 1;
     const isFirst = index === 0;
-    
+
     const isDataURL = (s) => {
       const regex = /^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i;
       if (s.match(regex)) { return s; }
       return `/${s}`;
     };
-    
+
     return (
       <div className={wrapper} >
-        <img className={image} src={isDataURL(images[index])} alt="" onClick={e => { stop(e); this.showNext(); }} />
+        <img
+          className={image}
+          src={isDataURL(images[index])}
+          alt=""
+          onClick={(e) => { stop(e); this.showNext(); }}
+        />
 
-         {!isLast &&
-            <img className={next} src={isDataURL(images[index + 1])} alt="" onClick={e => { stop(e); this.showNext(); }} />
-            }
+        {!isLast &&
+          <img
+            className={next}
+            src={isDataURL(images[index + 1])}
+            alt=""
+            onClick={(e) => { stop(e); this.showNext(); }}
+          />}
 
-          {!isFirst &&
-            <img className={previous} src={isDataURL(images[index - 1])} alt="" onClick={e => { stop(e); this.showPrevious(); }} />
-            }
+        {!isFirst &&
+          <img
+            className={previous}
+            src={isDataURL(images[index - 1])}
+            alt=""
+            onClick={(e) => { stop(e); this.showPrevious(); }}
+          />}
 
       </div>
     );
   }
-};
-
+}
 
 ExpandedImage.propTypes = {
-  // hideImage: PropTypes.func.isRequired,
-  // currentImage: PropTypes.string.isRequired,
-  // showNextImage: PropTypes.func.isRequired,
-  // showPreviousImage: PropTypes.func.isRequired,
-  // isLast: PropTypes.bool.isRequired,
-  // isFirst: PropTypes.bool.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  index: PropTypes.number.isRequired,
 };
 

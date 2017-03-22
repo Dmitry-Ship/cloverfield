@@ -8,12 +8,12 @@ import { openModal } from '../actions/UIActions';
 
 import TopBar from '../components/TopBar';
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store, ownProps) => ({
+  isInSearchMode: ownProps.history.location.pathname.includes('search'),
   isLoggedIn: getIsLoggedIn(store),
   links: getIsLoggedIn(store) ? [
     { label: 'Home', iconName: 'home', to: '/' },
     { label: 'Stack', iconName: 'info_outline', to: '/about' },
-    { label: 'Empty', iconName: 'not_interested', to: '/empty' },
   ] : [
     { label: 'Welcome', iconName: 'perm_identity', to: '/welcome' },
     { label: 'Stack', iconName: 'info_outline', to: '/about' },

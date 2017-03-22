@@ -59,8 +59,8 @@
   display: block;
   width: 32px;
   height: 32px;
-  margin: 0px 5px;
   cursor: pointer;
+  margin: 0px 5px;
   &:first-child {
     border-color: grey;
   }
@@ -71,7 +71,11 @@
 
 .chosen {
   composes: circle;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
   border: 2px solid black;
+  display: block;
 }
 
 .red {

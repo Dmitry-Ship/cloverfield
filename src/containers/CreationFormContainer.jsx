@@ -4,7 +4,7 @@ import React from 'react';
 import CreationForm from '../components/CreationForm';
 import { createNote } from '../actions/noteActions';
 import { openModal } from '../actions/UIActions';
-import { getTagsSuggestions, getQuery } from '../reducers/noteReducer';
+import { getTagsSuggestions } from '../reducers/noteReducer';
 import ExpandedImage from '../components/basic/ExpandedImage';
 
 
@@ -12,8 +12,8 @@ const mapStateToProps = (store, ownProps) => ({
   tagsSuggestions: tags => getTagsSuggestions(store, tags),
   tag: ownProps.match.params.tagText,
   color: ownProps.match.params.color,
-  query: getQuery(store),
-  
+  query: ownProps.match.params.query,
+  images: ownProps.match.params.images,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -21,4 +21,15 @@ const mapDispatchToProps = dispatch => ({
   expandImage: (images, i) => dispatch(openModal(<ExpandedImage images={images} index={i} />)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreationForm));
+const CreationFormContainer = ({ query, images, ...rest }) => {
+  if (query || images) {
+    return (
+      null
+    );
+  }
+  return (
+    <CreationForm {...rest} />
+  );
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreationFormContainer));

@@ -7,7 +7,7 @@ import { fetchNotes } from '../actions/noteActions';
 import { getVisibleNotes, getIsFetching, getErrorMessage } from '../reducers/noteReducer';
 
 const mapStateToProps = (store, { match }) => ({
-  notes: getVisibleNotes(store, match.params.tagText, match.params.color, match.params.images),
+  notes: getVisibleNotes(store, match.params.tagText, match.params.color, match.params.images, match.params.query),
   isFetching: getIsFetching(store),
   errorMessage: getErrorMessage(store),
 });

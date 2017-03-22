@@ -10,7 +10,6 @@ const ProfileCard = ({ user, className }) => (
     <Avatar className={avatar} src={user.userpic} />
     <h2>{user.fullName}</h2>
     <h3>@{user.username}</h3>
-
   </div>
 );
 

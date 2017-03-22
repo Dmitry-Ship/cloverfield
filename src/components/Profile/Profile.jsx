@@ -36,7 +36,7 @@ export default class Profile extends Component {
   render() {
     const { user, className, onClick, profileRoute, editRoute } = this.props;
     return (
-    <div className={`${profile} ${className}`} onClick={this.toggleMenu} ref={(node) => (this.wrapperRef = node)} >
+    <div className={`${profile} ${className}`} onClick={this.toggleMenu} ref={node => (this.wrapperRef = node)} >
       <Avatar className={avatar} src={user.userpic} />
       <PopUpMenu className={this.state.isShown ? popUpMenu : null} position="bottom" >
         <div className={item} >

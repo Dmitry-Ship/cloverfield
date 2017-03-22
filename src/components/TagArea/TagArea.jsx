@@ -22,7 +22,7 @@ export default class TagArea extends Component {
   setTag(e) {
     const value = e.target.innerHTML;
 
-    this.props.onSetTag(value);
+    this.props.onAddTag(value);
   }
 
   handlePaste(e) {
@@ -76,10 +76,11 @@ export default class TagArea extends Component {
             onPaste={this.handlePaste}
           />
 
-          {suggestions.length > 0 && <PopUpMenu className={suggestionsMenu} position="bottom" >
-            {suggestions.map(tag =>
-              <span onMouseDown={this.setTag} key={tag} className={suggestion} >{tag}</span>)}
-          </PopUpMenu>}
+          {suggestions.length > 0 &&
+            <PopUpMenu className={suggestionsMenu} position="bottom" >
+              {suggestions.map(tag =>
+                <span onMouseDown={this.setTag} key={tag} className={suggestion} >{tag}</span>)}
+            </PopUpMenu>}
         </div>
       </div>
     );
@@ -90,7 +91,6 @@ TagArea.propTypes = {
   onAddTag: PropTypes.func.isRequired,
   onDeleteTag: PropTypes.func.isRequired,
   className: PropTypes.string,
-  onSetTag: PropTypes.func.isRequired,
   suggestions: PropTypes.arrayOf(React.PropTypes.string).isRequired,
   tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
 };

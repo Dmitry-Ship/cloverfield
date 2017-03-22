@@ -12,7 +12,6 @@ import styles, {
   unfolded } from './CreationForm.scss';
 
 import NoteActions from '../NoteActions';
-
 import TagArea from '../TagArea';
 import Button from '../basic/Button';
 import AttachedImages from '../basic/AttachedImages';
@@ -22,9 +21,9 @@ export default class CreationForm extends Component {
     super(props);
     this.state = {
       className: form,
-      titleText: props.query ? props.query : '',
+      titleText: '',
       bodyText: '',
-      color: props.color ? props.color : 'white',
+      color: props.color || 'white',
       previews: [],
       imageFiles: [],
       tags: props.tag ? [props.tag] : [],
@@ -41,16 +40,13 @@ export default class CreationForm extends Component {
     this.deletePreview = this.deletePreview.bind(this);
   }
 
-
   componentDidMount() {
     document.body.addEventListener('click', this.handleClickOut);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ tags: nextProps.tag ? [nextProps.tag] : [] });
-    nextProps.color && this.setState({ color: nextProps.color });
-    nextProps.query && this.setState({ titleText: nextProps.query });
-    
+    if (nextProps.color) { this.setState({ color: nextProps.color }); }
   }
 
   componentWillUnmount() {
@@ -73,7 +69,6 @@ export default class CreationForm extends Component {
   deletePreview(preview) {
     const { previews } = this.state;
     const { imageFiles } = this.state;
-    
     const i = previews.indexOf(preview);
 
     this.setState({
@@ -179,7 +174,6 @@ export default class CreationForm extends Component {
             className={tagArea}
             onAddTag={this.handleAddTag}
             onDeleteTag={this.handleDeleteTag}
-            onSetTag={this.handleAddTag}
             suggestions={tagsSuggestions(this.state.tags)}
             tags={this.state.tags}
           />
@@ -192,7 +186,6 @@ export default class CreationForm extends Component {
               onChange={this.handleImage}
               id="CHECK"
             >
-            
               <Button kind="secondary" >Done</Button>
             </NoteActions>
           </div>

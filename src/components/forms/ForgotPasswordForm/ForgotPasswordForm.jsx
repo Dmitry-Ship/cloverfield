@@ -47,6 +47,7 @@ export default class ForgotPasswordForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <TextField
           type="email"
+          autoFocus
           value={email}
           name="email"
           className={input}

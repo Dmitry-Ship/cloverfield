@@ -3,6 +3,7 @@ const path = require('path');
 const values = require('postcss-modules-values');
 const colorFunction = require('postcss-color-function');
 const lost = require('lost');
+const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -12,7 +13,7 @@ module.exports = {
     app: './src/index',
     vendor: [
       'react',
-      'react-router',
+      'react-router-dom',
       'react-redux',
       'redux',
       'redux-thunk',
@@ -68,14 +69,10 @@ module.exports = {
           values,
           lost,
           colorFunction,
+          autoprefixer,
         ],
       },
     }),
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
-    }),
-    new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
