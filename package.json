@@ -6,11 +6,12 @@
   "node": "6.10.1",
   "scripts": {
     "start:dev": "nodemon --ignore ./src",
-    "start": "node server.js",
+    "start": "webpack -p --colors --progress --config webpack.config.production.js && node server.js",
+    "postinstall": "webpack -p --colors --progress --config webpack.config.production.js",
     "build": "./node_modules/.bin/webpack -p --colors --progress --config webpack.config.production.js",
     "test": "jest"
   },
-  
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dmitry-Ship/cloverfield.git"
