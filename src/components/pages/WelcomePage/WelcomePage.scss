@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: calc(100vh - 56px);
+  min-height: calc(100vh - 56px);
   padding: 3.5rem 0;
   @media mobile {
     padding: 2.75rem 0;
@@ -59,13 +59,18 @@
 
 @keyframes colorchange{
   0%   {background: note_red;}
+  2.5%  {background: note_orange;}  
   12.5%  {background: note_orange;}
+  15%  {background: note_yellow;}
   25%  {background: note_yellow;}
+  27.5%  {background: note_green;}
   50%  {background: note_green;}
+  52.5% {background: note_grey;}
   62.5% {background: note_grey;}
+  65% {background: note_teal;}
   75% {background: note_teal;}
-  100% {background: note_blue;}
-  
+  77.5% {background: note_blue;}
+  100% {background: note_blue;} 
 }
 
 .icon {

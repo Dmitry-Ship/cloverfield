@@ -3,6 +3,7 @@
   margin: auto;
   width: 600px;
   padding: 5rem 5rem;
+  position: relative;
   composes: level-1 from './shadows.scss';
 }
 
@@ -19,8 +20,6 @@
     padding: 2.5rem 1.5rem;
   }
 }
-
-
 
 @media only screen and (max-width: 768px) {
   .infoCard {

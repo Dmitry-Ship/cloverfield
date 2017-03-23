@@ -11,9 +11,9 @@ const Modal = ({ children, closeModal }) => {
   };
   return (
     <div className={wrapper} ref={node => (wrapperRef = node)} onClick={handleClick} >
-      {/*<div className={content} onClick={stop} >*/}
+      <div className={content} >
         {children}
-      {/*</div>*/}
+      </div>
     </div>
   );
 };
