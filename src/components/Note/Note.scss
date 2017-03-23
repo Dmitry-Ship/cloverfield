@@ -7,9 +7,9 @@
   font-family: Rubik;
   composes: dynamic from 'styles/shadows.scss';
   line-height: 20px;
-  width: 250px;
+  width: 240px;
   background: white;
-  margin: 2%;
+  margin-top: 16px;
   padding: 30px 15px 15px 15px;
   &:hover {
     .actions {

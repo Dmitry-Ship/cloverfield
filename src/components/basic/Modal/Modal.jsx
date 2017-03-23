@@ -3,13 +3,17 @@ import React, { PropTypes } from 'react';
 import { wrapper, content } from './Modal.scss';
 
 const Modal = ({ children, closeModal }) => {
-  const stop = e => e.stopPropagation();
-
+  let wrapperRef;
+  const handleClick = (e) => {
+    if (e.target === wrapperRef) {
+      closeModal();
+    }
+  };
   return (
-    <div className={wrapper} onClick={closeModal} >
-      <div className={content} onClick={stop} >
+    <div className={wrapper} ref={node => (wrapperRef = node)} onClick={handleClick} >
+      {/*<div className={content} onClick={stop} >*/}
         {children}
-      </div>
+      {/*</div>*/}
     </div>
   );
 };
