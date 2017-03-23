@@ -6,7 +6,7 @@
   "node": "6.10.1",
   "scripts": {
     "start:dev": "nodemon --ignore ./src",
-    "start": "npm run build && cross-env NODE_ENV=production node server.js",
+    "start": "npm run build && cross-env NODE_ENV=production node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server.js",
     "build": "./node_modules/.bin/webpack -p --colors --progress --config webpack.config.production.js",
     "test": "jest"
   },
