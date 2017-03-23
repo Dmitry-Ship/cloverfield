@@ -8,6 +8,8 @@
     "start:dev": "nodemon --ignore ./src",
     "start": "cross-env NODE_ENV=production node server.js",
     "postinstall": "./node_modules/.bin/webpack -p --colors --progress --config webpack.config.production.js",
+    "build": "./node_modules/.bin/webpack -p --colors --progress --config webpack.config.production.js",
+    
     "test": "jest"
   },
 
