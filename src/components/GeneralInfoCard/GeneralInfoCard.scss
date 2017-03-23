@@ -1,3 +1,6 @@
+@value breakPoints: "../../styles/breakPoints.scss";
+@value mobile from breakPoints;
+
 .card {
   composes: infoCard from 'styles/cards.scss';
   display: flex;
@@ -9,4 +12,7 @@
 
 .field {
   display: block;
+  @media mobile {
+    font-size: .8rem;
+  }
 }

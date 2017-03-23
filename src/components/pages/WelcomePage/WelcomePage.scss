@@ -23,7 +23,7 @@
 
 .heroTitle {
   text-align: center;
-  margin: 0 0 2.75rem 0;
+  margin: 0 0 1.25em 0;
   color: white;
   font-family: Amatic SC;
   font-size: 5rem;
@@ -34,13 +34,11 @@
 
 .heroSub {
   text-align: center;
-  margin-top: 2.75rem;
-  margin-bottom: 2.75rem;
+  margin: 0 0 1.25em 0;
   color: white;
   font-size: 2rem;
   @media mobile {
     font-size: 1rem;
-    margin-bottom: 8%;
   }
 }
 
@@ -49,7 +47,7 @@
   flex-direction: column;
   width: 125px;
   height: 200px;
-  margin:  0 auto 3.75rem auto;
+  margin:  0 auto 3.25rem auto;
   padding: 20px;
   composes: level-2 from 'styles/shadows.scss';
   animation: colorchange 5s infinite alternate;

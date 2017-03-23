@@ -1,11 +1,10 @@
 
 .wrapper {
-  // position: fixed;
+  position: relative;
   width: 100%;
   // top: 50%;
   // left: 50%;
   // transform: translate(-50%, -50%);
-  background: pink;
 }
 
 .image {
@@ -17,7 +16,7 @@
 
 .preview {
   height: 600px;
-  position: fixed;
+  position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
@@ -25,10 +24,10 @@
 
 .next {
   composes: preview;
-  left: 180%;
+  right: -70%;
 }
 
 .previous {
   composes: preview;
-  left: -80%;
+  right: 70%;
 }

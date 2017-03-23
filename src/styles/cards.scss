@@ -1,28 +1,30 @@
 .formCard {
   background: white;
   margin: auto;
-  width: 800px;
-  padding: 50px 200px;
+  width: 600px;
+  padding: 5rem 5rem;
   composes: level-1 from './shadows.scss';
 }
 
-@media (max-width: 599px) {
+@media only screen and (max-width: 768px) {
   .formCard {
-    width: 90%;
-    padding: 25px 15px;
+    max-width: 95%;
+    padding: 2.5rem 1.5rem;
   }
 }
+
+
 .infoCard {
   background: white;
   margin: auto;
-  width: 800px;
-  padding: 50px 130px;
+  width: 600px;
+  padding: 5rem 5rem;
   composes: level-1 from './shadows.scss';
 }
 
-@media (max-width: 599px) {
+@media only screen and (max-width: 768px) {
   .infoCard {
-    width: 90%;
-    padding: 15px 50px;
+    max-width: 90%;
+    padding: 2.5rem 2.5rem;
   }
 }
