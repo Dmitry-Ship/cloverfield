@@ -21,7 +21,7 @@
     "url": "https://github.com/Dmitry-Ship/cloverfield/issues"
   },
   "homepage": "https://github.com/Dmitry-Ship/cloverfield#readme",
-  "dependencies": {
+  "devDependencies": {
     "chai": "^3.5.0",
     "css-modules-require-hook": "^4.0.5",
     "enzyme": "^2.7.1",
@@ -36,7 +36,9 @@
     "nodemon": "^1.11.0",
     "react-addons-test-utils": "^15.4.2",
     "webpack-dev-middleware": "^1.10.0",
-    "webpack-hot-middleware": "^2.15.0",
+    "webpack-hot-middleware": "^2.15.0"
+  },
+  "dependencies": {
     "axios": "^0.15.3",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
@@ -67,8 +69,8 @@
     "react-masonry-component": "^5.0.3",
     "react-redux": "^5.0.1",
     "react-router-dom": "^4.0.0",
-    "react-textarea-autosize": "^4.0.5",
     "react-hot-loader": "^3.0.0-beta.6",
+    "react-textarea-autosize": "^4.0.5",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
