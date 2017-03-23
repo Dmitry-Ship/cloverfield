@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 
-import { wrapper, image, next, previous } from './ExpandedImage.scss';
+import { lightBox, middle, next, previous, wrapper } from './LightBox.scss';
 
-export default class ExpandedImage extends Component {
+export default class LightBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,6 +13,9 @@ export default class ExpandedImage extends Component {
   }
 
   showNext() {
+    if (this.state.index + 1 === this.props.images.length) {
+      return this.setState({ index: 0 });
+    }
     this.setState({ index: this.state.index + 1 });
   }
 
@@ -21,9 +24,9 @@ export default class ExpandedImage extends Component {
   }
 
   render() {
+    let wrapperRef;
     const { images } = this.props;
     const { index } = this.state;
-    const stop = e => e.stopPropagation();
     const isLast = images.length === index + 1;
     const isFirst = index === 0;
 
@@ -33,38 +36,42 @@ export default class ExpandedImage extends Component {
       return `/${s}`;
     };
 
+    const handleClick = (e) => {
+      if (e.target === wrapperRef) {
+        this.props.closeLightBox();
+      }
+    };
+
     return (
-      <div className={wrapper} >
-        <img
-          className={image}
-          src={isDataURL(images[index])}
-          alt=""
-          onClick={(e) => { stop(e); this.showNext(); }}
-        />
+      <div className={lightBox} onClick={handleClick} ref={node => (wrapperRef = node)}>
+        {!isFirst &&
+          <img
+            className={previous}
+            src={isDataURL(images[index - 1])}
+            alt=""
+            onClick={this.showPrevious}
+          />}
+          <img
+            className={middle}
+            src={isDataURL(images[index])}
+            alt=""
+            onClick={this.showNext}
+          />
 
         {!isLast &&
           <img
             className={next}
             src={isDataURL(images[index + 1])}
             alt=""
-            onClick={(e) => { stop(e); this.showNext(); }}
+            onClick={this.showNext}
           />}
-
-        {!isFirst &&
-          <img
-            className={previous}
-            src={isDataURL(images[index - 1])}
-            alt=""
-            onClick={(e) => { stop(e); this.showPrevious(); }}
-          />}
-
       </div>
     );
   }
 }
 
-ExpandedImage.propTypes = {
+LightBox.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
   index: PropTypes.number.isRequired,
+  closeLightBox: PropTypes.func.isRequired,
 };
-

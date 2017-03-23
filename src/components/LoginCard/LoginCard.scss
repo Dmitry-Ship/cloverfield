@@ -1,6 +1,0 @@
-@value colors: "../../styles/colors.scss";
-@value tertiary from colors;
-
-.card {
-  composes: formCard from 'styles/cards.scss';
-}

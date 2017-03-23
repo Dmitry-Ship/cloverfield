@@ -1,11 +1,8 @@
 import { connect } from 'react-redux';
-import React from 'react';
-
 import Note from '../components/Note';
-import { openModal } from '../actions/UIActions';
+import { openLightBox } from '../actions/UIActions';
 
 import { getTagsSuggestions } from '../reducers/noteReducer';
-import ExpandedImage from '../components/basic/ExpandedImage';
 
 import {
   editNote,
@@ -29,7 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onAddImage: image => dispatch(addImage(image, ownProps.note._id)),
   onDeleteImage: image => dispatch(deleteImage(image, ownProps.note._id)),
   onDelete: () => dispatch(deleteNote(ownProps.note._id)),
-  expandImage: (images, i) => dispatch(openModal(<ExpandedImage images={images} index={i} />)),
+  expandImage: (images, i) => dispatch(openLightBox(images, i)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Note);

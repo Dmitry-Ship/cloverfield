@@ -5,8 +5,6 @@ import CreationForm from '../components/CreationForm';
 import { createNote } from '../actions/noteActions';
 import { openModal } from '../actions/UIActions';
 import { getTagsSuggestions } from '../reducers/noteReducer';
-import ExpandedImage from '../components/basic/ExpandedImage';
-
 
 const mapStateToProps = (store, ownProps) => ({
   tagsSuggestions: tags => getTagsSuggestions(store, tags),
@@ -18,7 +16,7 @@ const mapStateToProps = (store, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: note => dispatch(createNote(note)),
-  expandImage: (images, i) => dispatch(openModal(<ExpandedImage images={images} index={i} />)),
+  expandImage: (images, i) => dispatch(openModal(images, i)),
 });
 
 const CreationFormContainer = ({ query, images, ...rest }) => {

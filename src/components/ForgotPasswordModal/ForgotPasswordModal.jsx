@@ -1,12 +1,12 @@
 import React from 'react';
-import { card } from './ForgotPasswordCard.scss';
 import Heading from '../basic/Heading';
-
+import Modal from '../basic/Modal';
 import ForgotPasswordForm from '../../components/forms/ForgotPasswordForm';
 
-const ForgotPasswordCard = ({ isTokenSent, onLoginClick, errors, ...rest }) => (
-  <div className={card} >
-  {errors.general &&
+const ForgotPasswordModal = ({ errors, isTokenSent, closeModal, ...rest }) => {
+  return (
+    <Modal closeModal={closeModal} >
+      {errors.general &&
       <div>
         <Heading style={{ color: 'tomato' }}>Oops, something went wrong</Heading>
         <h2 style={{ textAlign: 'center' }} >{errors.general}</h2>
@@ -16,7 +16,8 @@ const ForgotPasswordCard = ({ isTokenSent, onLoginClick, errors, ...rest }) => (
         <Heading>We will send you an email with instructions on how to reset password</Heading>
         <ForgotPasswordForm errors={errors} {...rest} />
       </div>}
-  </div>
-);
+    </Modal>
+  );
+};
 
-export default ForgotPasswordCard;
+export default ForgotPasswordModal;

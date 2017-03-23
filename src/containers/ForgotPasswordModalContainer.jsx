@@ -1,11 +1,9 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { requestToken } from '../actions/authActions';
-import ForgotPasswordCard from '../components/ForgotPasswordCard';
+import ForgotPasswordModal from '../components/ForgotPasswordModal';
 import validation from '../../helpers/validations/forgotPassword';
 import { getErrorMessage, getIsTokenSent } from '../reducers/authReducer';
-import { openModal } from '../actions/UIActions';
-import LoginCardContainer from './LoginCardContainer';
+import { openModal, closeModal } from '../actions/UIActions';
 
 const mapStateToProps = store => ({
   errors: getErrorMessage(store),
@@ -15,9 +13,10 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: data => dispatch(requestToken(data)),
-  onLoginClick: () => dispatch(openModal(<LoginCardContainer />)),
+  onLoginClick: () => dispatch(openModal('login')),
+  closeModal: () => dispatch(closeModal()),
 
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordCard);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordModal);

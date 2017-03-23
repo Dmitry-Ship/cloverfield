@@ -23,7 +23,9 @@ import ProtectedRoute from './components/routes/ProtectedRoute';
 import PublicRoute from './components/routes/PublicRoute';
 
 import TopBarContainer from './containers/TopBarContainer';
-import ModalContainer from './containers/ModalContainer';
+import ModalsContainer from './containers/ModalsContainer.jsx';
+import LightBoxContainer from './containers/LightBoxContainer.jsx';
+
 
 const mapStateToProps = store => ({
   isLoggedIn: getIsLoggedIn(store),
@@ -34,8 +36,8 @@ const Routes = ({ isLoggedIn, isLoggingIn }) => (
   <Router>
     <Layout >
       <TopBarContainer />
-      
-      <ModalContainer />
+      <ModalsContainer />
+      <LightBoxContainer />
       <Switch>
         <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />

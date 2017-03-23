@@ -1,17 +1,29 @@
 import { combineReducers } from 'redux';
 import * as types from '../actions/actionTypes';
 
-const modal = (state = { isOpen: false, content: null }, action) => {
+const modal = (state = null, action) => {
   switch (action.type) {
     case types.OPEN_MODAL_SUCCESS:
-      return { ...state, isOpen: true, content: action.content };
+      return action.modal;
     case types.CLOSE_MODAL_SUCCESS:
-      return { ...state, isOpen: false, content: null };
+      return null;
     default: return state;
   }
 };
 
-export const getIsOpen = store => store.UIReducer.modal.isOpen;
-export const getContent = store => store.UIReducer.modal.content;
+const lightBox = (state = { index: 0, images: [] }, action) => {
+  switch (action.type) {
+    case types.OPEN_LIGHTBOX_SUCCESS:
+      return { ...state, images: action.images, index: action.index };
+    case types.CLOSE_LIGHTBOX_SUCCESS:
+      return { ...state, index: 0, images: [] };
+    default: return state;
+  }
+};
 
-export default combineReducers({ modal });
+export const getModal = store => store.UIReducer.modal;
+export const getImages = store => store.UIReducer.lightBox.images;
+export const getImageIndex = store => store.UIReducer.lightBox.index;
+
+
+export default combineReducers({ modal, lightBox });

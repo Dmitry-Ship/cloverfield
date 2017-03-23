@@ -1,0 +1,45 @@
+.lightBox {
+  position: fixed;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 2;
+  background: rgba(black, 0.8);
+  // overflow-y: auto;
+}
+
+.image {
+  position: absolute;
+  top: 50%;
+  
+  cursor: pointer;  
+  display: block;
+  max-width: 70%;
+  max-height: 70%;
+}
+
+.middle {
+  composes: image; 
+  transform: translate(-50%, -50%); 
+  left: 50%;
+  
+}
+
+.next {
+  composes: image;
+  transform: translate(100%, -50%); 
+  right: 5%;
+}
+
+.previous {
+  composes: image;
+  left: 5%;
+  transform: translate(-100%, -50%); 
+  
+}

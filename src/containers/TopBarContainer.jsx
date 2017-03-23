@@ -1,9 +1,6 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getIsLoggedIn } from '../reducers/authReducer';
-import LoginCardContainer from './LoginCardContainer';
-import SignUpCardContainer from './SignUpCardContainer';
 import { openModal } from '../actions/UIActions';
 
 import TopBar from '../components/TopBar';
@@ -21,8 +18,8 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openLoginModal: () => dispatch(openModal(<LoginCardContainer />)),
-  openSignUpModal: () => dispatch(openModal(<SignUpCardContainer />)),
+  openLoginModal: () => dispatch(openModal('login')),
+  openSignUpModal: () => dispatch(openModal('signup')),
 });
 
 
