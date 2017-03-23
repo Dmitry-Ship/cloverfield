@@ -1,0 +1,18 @@
+@value breakPoints: "../../../styles/breakPoints.scss";
+@value mobile from breakPoints;
+@value colors: "../../../styles/colors.scss";
+@value tertiary, secondary from colors;
+
+
+.link {
+  margin-top: 3em;
+  display: block;
+  text-align: center;
+  color: tertiary;
+  &:hover {
+    color: secondary;
+  }
+  @media mobile {
+    font-size: .8rem;
+  }
+}

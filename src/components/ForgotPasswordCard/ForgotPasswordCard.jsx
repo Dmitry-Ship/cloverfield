@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { card, link } from './ForgotPasswordCard.scss';
-
+import { card } from './ForgotPasswordCard.scss';
 import Heading from '../basic/Heading';
 
 import ForgotPasswordForm from '../../components/forms/ForgotPasswordForm';
@@ -17,8 +15,6 @@ const ForgotPasswordCard = ({ isTokenSent, onLoginClick, errors, ...rest }) => (
       <div>
         <Heading>We will send you an email with instructions on how to reset password</Heading>
         <ForgotPasswordForm errors={errors} {...rest} />
-        <Link to="#" className={link} onClick={onLoginClick} ><h3>Nah, I remember it</h3></Link>
-
       </div>}
   </div>
 );

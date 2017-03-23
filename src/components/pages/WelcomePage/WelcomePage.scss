@@ -4,13 +4,12 @@
 @value mobile from breakPoints;
 
 .page {
-  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url('./gifs/robot.gif');
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url('./2015-09-04-oscarkeys-barnimages-001_opt.jpg');
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-position: (30%, 50%);
   height: calc(100vh - 56px);
   padding: 3.5rem 0;
   @media mobile {

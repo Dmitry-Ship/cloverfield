@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { card, link } from './SignUpCard.scss';
-
+import { card } from './SignUpCard.scss';
+import FancyLink from '../basic/FancyLink';
 import Heading from '../basic/Heading';
 
 import SignUpForm from '../../components/forms/SignUpForm';
@@ -10,7 +9,7 @@ const SignUpCard = ({ onLoginClick, ...rest }) => (
   <div className={card} >
     <Heading>Create new account</Heading>
     <SignUpForm {...rest} />
-    <Link to="#" className={link} onClick={onLoginClick} ><h3>Already have an account?</h3></Link>
+    <FancyLink to="#" onClick={onLoginClick} >Already have an account?</FancyLink>
   </div>
 );
 
