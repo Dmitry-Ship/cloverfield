@@ -13,4 +13,18 @@
   padding: 5rem 5rem;
   composes: level-1 from './shadows.scss';
 }
+@media only screen and (max-width: 768px) {
+  .formCard {
+    max-width: 95%;
+    padding: 2.5rem 1.5rem;
+  }
+}
 
+
+
+@media only screen and (max-width: 768px) {
+  .infoCard {
+    max-width: 90%;
+    padding: 2.5rem 2.5rem;
+  }
+}

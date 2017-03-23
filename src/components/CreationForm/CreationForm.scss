@@ -1,6 +1,6 @@
 @value breakPoints: "../../styles/breakPoints.scss";
-@value mobile from breakPoints;
 @value colors: "../../styles/colors.scss";
+@value mobile from breakPoints;
 @value flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
 
 .wrapper {

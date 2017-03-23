@@ -78,7 +78,8 @@ module.exports = {
       name: 'vendor',
     }),
     new ExtractTextPlugin({
-      filename: 'style.css',
+      filename: '[name].style.css',
+      ignoreOrder: true,
       allChunks: true,
     }),
     new HtmlWebpackPlugin({
