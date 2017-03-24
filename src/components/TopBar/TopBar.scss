@@ -1,10 +1,13 @@
 @value breakPoints: "../../styles/breakPoints.scss";
-@value mobile from breakPoints;
+@value mobile, extraSmall from breakPoints;
 @value colors: "../../styles/colors.scss";
 @value accent, tertiary, flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
 
-.button {
-  margin: 0 .125rem;
+.loginButton {
+  margin-left: .25rem;
+  @media extraSmall {
+    display: none;
+  }
 }
 
 .topBar {

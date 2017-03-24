@@ -135,7 +135,7 @@ export default class Note extends Component {
             name="delete"
             onClick={onDelete}
           />
-          <Link to={`notes/${note._id}`} >
+          <Link to={`/notes/${note._id}`} >
 
             <Icon
               className={icon}

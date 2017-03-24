@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { topBar, logo, button, iconWrapper, icon } from './TopBar.scss';
+import { topBar, logo, loginButton, iconWrapper, icon } from './TopBar.scss';
 import NavBar from '../basic/NavBar';
 import Logo from '../basic/Logo';
 import Button from '../basic/Button';
@@ -20,11 +20,12 @@ const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearch
       <NavBar links={links} />
       {!isInSearchMode && <Logo className={logo} />}
       <div style={style} >
-            <NavLink to={isInSearchMode ? '/' : '/search'} >
-              <div className={iconWrapper} >
-                <Icon name={isInSearchMode ? 'close' : 'search'} className={icon} />
-              </div>
-            </NavLink>
+        {isLoggedIn && 
+          <NavLink to="/search" >
+            <div className={iconWrapper} >
+              <Icon name="search" className={icon} />
+            </div>
+          </NavLink>}
 
         {isLoggedIn && <SearchContainer />}
         {isLoggedIn ?
@@ -32,12 +33,11 @@ const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearch
           <div>
             <Button
               size="small"
-              className={button}
               onClick={openSignUpModal}
             >
             Join
             </Button>
-            <Button size="small" kind="secondary" className={button} onClick={openLoginModal} >Login</Button>
+            <Button size="small" kind="secondary" className={loginButton} onClick={openLoginModal} >Login</Button>
           </div>}
       </div>
     </header>
