@@ -1,5 +1,7 @@
 @value breakPoints: "../../styles/breakPoints.scss";
 @value mobile from breakPoints;
+@value colors: "../../styles/colors.scss";
+@value accent, tertiary, flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
 
 .button {
   margin: 0 .125rem;
@@ -26,3 +28,30 @@
   transform: translate(-50%, -50%);
 }
 
+.iconWrapper {
+  color: accent;
+  border: 2px solid accent;
+  width: 32px;
+  height: 32px;
+  display: block;
+  line-height: 32px;
+  border-radius: 50%;
+  margin-right: 0.125rem;
+  position: relative;
+  transition: 150ms ease-in-out;
+  text-align: center;
+  &:hover {
+    color: white;
+    background: accent;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  margin: 0px;
+  line-height: 32px;
+}

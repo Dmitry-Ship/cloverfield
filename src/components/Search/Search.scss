@@ -1,7 +1,29 @@
 @value colors: "../../styles/colors.scss";
 @value accent, tertiary, flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
 @value breakPoints: "../../styles/breakPoints.scss";
-@value mobile from breakPoints;
+@value mobile, laptop from breakPoints;
+
+
+.searchWrapper {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 28px;
+  // max-width:500px;
+  background: white;
+  // @media laptop {
+  //   width: 400px;
+
+  // }
+  @media laptop {
+    width: 100%;
+
+  }
+}
 
 .button {
   margin: 0 .125rem;
@@ -9,9 +31,14 @@
 
 .filters {
   display: flex; 
-  @media mobile {
+  background: white;
+  justify-content: space-around;
+  align-items: center;
+  @media laptop {
     position: absolute;
-    top: 56px;
+    width: 100%;
+    top: 44px;
+    height: 45px
 
   }
 }
@@ -21,7 +48,7 @@
   border: 2px solid accent;
   border-radius: 50px;
   padding: 0 10px;
-  // width: 170px;
+  margin-right: 10px;
   width: 100%;
 }
 .iconWrapper {
@@ -29,6 +56,7 @@
   border: 2px solid accent;
   width: 32px;
   height: 32px;
+  display: block;
   line-height: 32px;
   border-radius: 50%;
   margin-right: 0.125rem;
@@ -52,26 +80,15 @@
 }
 
 .wrapper {
-  animation: appear 300ms forwards;
+  display: flex;
 }
 
-@keyframes appear {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-}
 
 .circle {
   border-radius: 50%;
   display: block;
-  width: 32px;
-  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   cursor: pointer;
   margin-right: 0.125rem;
   &:first-child {

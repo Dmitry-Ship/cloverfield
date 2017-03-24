@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '../basic/Button';
-import styles, { button, icon, input, iconWrapper, wrapper, chosen, filters } from './Search.scss';
+import styles, { button, icon, input, iconWrapper, wrapper, chosen, filters, searchWrapper } from './Search.scss';
 import Icon from '../basic/Icon';
 
 class Search extends Component {
@@ -33,14 +33,6 @@ class Search extends Component {
   }
 
   render() {
-    const style = {
-      display: 'flex',
-      flexWrap: 'nowrap',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      zIndex: '3',
-      top: '50%',
-    };
     const colors = ['white', 'red', 'orange', 'yellow', 'grey', 'blue', 'teal', 'green'];
 
     const circles = colors.map(item => (
@@ -53,9 +45,17 @@ class Search extends Component {
       />));
 
     return (
-      <div style={style} >
+      <div className={searchWrapper} >
 
-        {this.props.isInSearchMode && <div style={{ display: 'flex' }} className={wrapper} >
+        {this.props.isInSearchMode && <div className={wrapper} >
+          <div className={filters} >
+            <NavLink to="/search/images/all" onClick={this.handleFilter} >
+              <div className={iconWrapper} >
+                <Icon name="image" className={icon} />
+              </div>
+            </NavLink>
+            {circles}
+          </div>
           <input
             ref={(el) => { this.nameInput = el; }}
             onChange={this.handleSearch}
@@ -65,24 +65,15 @@ class Search extends Component {
             type="text"
             placeholder="Search for..."
           />
-          <div className={filters} >
-            <NavLink to="/search/images/all" onClick={this.handleFilter} >
-              <div className={iconWrapper} >
-                <Icon name="image" className={icon} />
-              </div>
-            </NavLink>
-            {circles}
-          </div>
+          <NavLink to={this.props.isInSearchMode ? '/' : '/search'} >
+            <div className={iconWrapper} >
+              <Icon name={this.props.isInSearchMode ? 'close' : 'search'} className={icon} />
+            </div>
+          </NavLink>
         </div>}
 
-        <Button
-          kind="secondary"
-          size="small"
-          className={button}
-          onClick={this.toggleSearch}
-        >
-          {this.props.isInSearchMode ? 'Cancel' : 'Search'}
-        </Button>
+
+
       </div>
     );
   }

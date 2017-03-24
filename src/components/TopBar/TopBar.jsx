@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 
-import { topBar, logo, button } from './TopBar.scss';
+import { topBar, logo, button, iconWrapper, icon } from './TopBar.scss';
 import NavBar from '../basic/NavBar';
 import Logo from '../basic/Logo';
 import Button from '../basic/Button';
 import ProfileContainer from '../../containers/ProfileContainer';
 import SearchContainer from '../../containers/SearchContainer';
-
+import { NavLink } from 'react-router-dom';
+import Icon from '../basic/Icon';
 const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearchMode }) => {
   const style = {
     display: 'flex',
@@ -19,6 +20,11 @@ const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearch
       <NavBar links={links} />
       {!isInSearchMode && <Logo className={logo} />}
       <div style={style} >
+            <NavLink to={isInSearchMode ? '/' : '/search'} >
+              <div className={iconWrapper} >
+                <Icon name={isInSearchMode ? 'close' : 'search'} className={icon} />
+              </div>
+            </NavLink>
 
         {isLoggedIn && <SearchContainer />}
         {isLoggedIn ?
