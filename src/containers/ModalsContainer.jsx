@@ -4,7 +4,7 @@ import LoginModalContainer from './LoginModalContainer.jsx';
 import SignUpModalContainer from './SignUpModalContainer.jsx';
 import ForgotPasswordModalContainer from './ForgotPasswordModalContainer.jsx';
 
-import { getModal } from '../reducers/UIReducer';
+import { getModal } from '../reducers';
 
 const mapStateToProps = store => ({
   modal: getModal(store),

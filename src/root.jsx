@@ -8,7 +8,7 @@ import {
 
 import './styles/index.scss';
 
-import { getIsLoggedIn, getIsLoggingIn } from './reducers/authReducer';
+import { getIsLoggedIn, getIsLoggingIn } from './reducers';
 
 import MainPage from './components/pages/MainPage';
 import AboutPage from './components/pages/AboutPage';
@@ -41,6 +41,8 @@ const Routes = ({ isLoggedIn, isLoggingIn }) => (
       <Switch>
         <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
+        <ProtectedRoute path="/notes/:noteId" component={MainPage} isLoggedIn={isLoggedIn} />
+        
         <ProtectedRoute path="/search/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/search/images/:images" component={MainPage} isLoggedIn={isLoggedIn} />
         <ProtectedRoute path="/search/:query" component={MainPage} isLoggedIn={isLoggedIn} />

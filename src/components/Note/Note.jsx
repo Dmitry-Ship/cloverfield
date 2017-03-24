@@ -8,7 +8,7 @@ import styles, {
   content,
   actions,
   icon } from './Note.scss';
-
+import { Link } from 'react-router-dom';
 import NoteActions from '../NoteActions';
 import Icon from '../basic/Icon';
 import TagArea from '../TagArea';
@@ -129,11 +129,19 @@ export default class Note extends Component {
           onChange={this.handleImage}
           id={note._id}
         >
+
           <Icon
             className={icon}
             name="delete"
             onClick={onDelete}
           />
+          <Link to={`notes/${note._id}`} >
+
+            <Icon
+              className={icon}
+              name="open_with"
+            />
+          </Link>
         </NoteActions>
       </div>
     );

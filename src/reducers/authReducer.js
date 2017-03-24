@@ -76,12 +76,12 @@ const isTokenExpired = (state = false, action) => {
   }
 };
 
-export const getErrorMessage = state => state.authReducer.errorMessage;
-export const getIsLoggedIn = state => state.authReducer.isLoggedIn;
-export const getIsLoggingIn = state => state.authReducer.isLoggingIn;
+export const getAuthErrorMessage = state => state.errorMessage;
+export const getIsLoggedIn = state => state.isLoggedIn;
+export const getIsLoggingIn = state => state.isLoggingIn;
 
-export const getIsTokenSent = state => state.authReducer.isTokenSent;
-export const getIsPasswordUpdated = state => state.authReducer.isPasswordUpdated;
-export const getIsTokenExpired = state => state.authReducer.isTokenExpired;
+export const getIsTokenSent = state => state.isTokenSent;
+export const getIsPasswordUpdated = state => state.isPasswordUpdated;
+export const getIsTokenExpired = state => state.isTokenExpired;
 
 export default combineReducers({ errorMessage, isLoggedIn, isLoggingIn, isTokenSent, isPasswordUpdated, isTokenExpired });

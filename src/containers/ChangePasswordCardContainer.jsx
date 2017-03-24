@@ -2,12 +2,13 @@ import { connect } from 'react-redux';
 import { changePassword } from '../actions/userActions';
 import ChangePasswordCard from '../components/ChangePasswordCard';
 import validation from '../../helpers/validations/changePassword';
-import { getErrorMessage, getIsPasswordChanged } from '../reducers/userReducer';
+import { getIsPasswordChanged, getUserErrorMessage } from '../reducers';
+
 
 import { openModal } from '../actions/UIActions';
 
 const mapStateToProps = store => ({
-  errors: getErrorMessage(store),
+  errors: getUserErrorMessage(store),
   validation,
   isChanged: getIsPasswordChanged(store),
 });

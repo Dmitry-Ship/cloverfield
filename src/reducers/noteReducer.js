@@ -68,6 +68,7 @@ const errorMessage = (state = null, action) => {
 
 export const getAllNotes = state => state.noteReducer.allIds.map(id => state.noteReducer.byId[id]);
 
+
 export const getAllTags = (state) => {
   const allTheNotes = getAllNotes(state);
   const tagsArr = allTheNotes.map(note => note.tags);
@@ -91,8 +92,12 @@ export const getAllImages = (state) => {
 };
 
 export const getQuery = state => state.noteReducer.query;
-export const getIsFetching = state => state.noteReducer.isFetching;
-export const getErrorMessage = state => state.noteReducer.errorMessage;
+export const getNote = (state, noteId) => {
+  return state.noteReducer.byId[noteId];
+};
+
+export const getIsFetching = state => state.isFetching;
+export const getErrorMessage = state => state.errorMessage;
 export const getVisibleNotes = (state, tagText, color, images, query) => {
   const allTheNotes = getAllNotes(state).reverse();
 

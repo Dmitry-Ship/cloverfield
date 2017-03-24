@@ -21,9 +21,8 @@ const lightBox = (state = { index: 0, images: [] }, action) => {
   }
 };
 
-export const getModal = store => store.UIReducer.modal;
-export const getImages = store => store.UIReducer.lightBox.images;
-export const getImageIndex = store => store.UIReducer.lightBox.index;
-
+export const getModal = store => store.modal;
+export const getImages = store => store.lightBox.images;
+export const getImageIndex = store => store.lightBox.index;
 
 export default combineReducers({ modal, lightBox });

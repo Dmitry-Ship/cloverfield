@@ -81,7 +81,7 @@ router.post('/', (req, res) => {
         const transporter = nodemailer.createTransport(mg(auth));
 
         transporter.sendMail({
-          from: '"Cloverfield 👻"',
+          from: '"Cloverfield 👻" <vooxi@gmail.com>',
           to: user.email,
           subject: 'Password reset',
           text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.
@@ -92,7 +92,7 @@ router.post('/', (req, res) => {
             console.log(error);
             return res.status(500).send({ general: 'you are using test settings for SMTP' });
           }
-          
+          console.log(info)
           res.end();
         });
       });

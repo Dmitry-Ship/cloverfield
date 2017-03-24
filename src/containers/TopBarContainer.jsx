@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getIsLoggedIn } from '../reducers/authReducer';
+import { getIsLoggedIn } from '../reducers';
 import { openModal } from '../actions/UIActions';
 
 import TopBar from '../components/TopBar';
@@ -12,7 +12,7 @@ const mapStateToProps = (store, ownProps) => ({
     { label: 'Home', iconName: 'home', to: '/' },
     { label: 'Stack', iconName: 'info_outline', to: '/about' },
   ] : [
-    { label: 'Welcome', iconName: 'perm_identity', to: '/welcome' },
+    { label: 'Welcome', iconName: 'home', to: '/welcome' },
     { label: 'Stack', iconName: 'info_outline', to: '/about' },
   ],
 });

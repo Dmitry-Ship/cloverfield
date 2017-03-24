@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
 import { fetchUser } from '../actions/userActions';
 import Profile from '../components/Profile';
-import { getUser } from '../reducers/userReducer';
+import { getUser } from '../reducers';
 
 const mapStateToProps = store => ({
   user: getUser(store),

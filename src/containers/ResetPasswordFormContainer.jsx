@@ -5,10 +5,10 @@ import { resetPassword, verifyToken } from '../actions/authActions';
 import ResetPasswordForm from '../components/forms/ResetPasswordForm';
 import Heading from '../components/basic/Heading';
 import validation from '../../helpers/validations/resetPassword';
-import { getErrorMessage, getIsPasswordUpdated, getIsTokenExpired } from '../reducers/authReducer';
+import { getAuthErrorMessage, getIsPasswordUpdated, getIsTokenExpired } from '../reducers';
 
 const mapStateToProps = store => ({
-  errors: getErrorMessage(store),
+  errors: getAuthErrorMessage(store),
   isPasswordUpdated: getIsPasswordUpdated(store),
   isTokenExpired: getIsTokenExpired(store),
   validation,

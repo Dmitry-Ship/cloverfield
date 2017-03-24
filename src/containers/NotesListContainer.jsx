@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 import NotesList from '../components/NotesList';
 import Loader from '../components/basic/Loader';
 import { fetchNotes } from '../actions/noteActions';
-import { getVisibleNotes, getIsFetching, getErrorMessage } from '../reducers/noteReducer';
+import { getVisibleNotes } from '../reducers/noteReducer';
+import { getIsFetching, getErrorMessage } from '../reducers';
+
 
 const mapStateToProps = (store, { match }) => ({
   notes: getVisibleNotes(store, match.params.tagText, match.params.color, match.params.images, match.params.query),

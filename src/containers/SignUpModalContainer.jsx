@@ -3,11 +3,11 @@ import { withRouter } from 'react-router';
 import { login } from '../actions/authActions';
 import SignUpModal from '../components/SignUpModal';
 import validation from '../../helpers/validations/signup';
-import { getErrorMessage, getIsLoggingIn } from '../reducers/authReducer';
+import { getAuthErrorMessage, getIsLoggingIn } from '../reducers';
 import { openModal, closeModal } from '../actions/UIActions';
 
 const mapStateToProps = store => ({
-  errors: getErrorMessage(store),
+  errors: getAuthErrorMessage(store),
   isLoggingIn: getIsLoggingIn(store),
   validation,
 });

@@ -5,7 +5,7 @@ const initialState = {
   user: {},
   errorMessage: {},
   isPasswordChanged: false,
-  getIsLoading: false,
+  isUpdating: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,21 +19,21 @@ const userReducer = (state = initialState, action) => {
       return { ...state, isFetching: false, errorMessage: error };
     case types.EDIT_PROFILE:
     case types.CHANGE_PASSWORD:
-      return { ...state, isLoading: true };
+      return { ...state, isUpdating: true };
     case types.EDIT_PROFILE_SUCCESS:
-      return { ...state, user, isLoading: false };
+      return { ...state, user, isUpdating: false };
     case types.CHANGE_PASSWORD_SUCCESS:
-      return { ...state, isPasswordChanged: true, isLoading: false };
+      return { ...state, isPasswordChanged: true, isUpdating: false };
     case types.EDIT_PROFILE_FAILURE:
     case types.CHANGE_PASSWORD_FAILURE:
-      return { ...state, errorMessage: error, isLoading: false };
+      return { ...state, errorMessage: error, isUpdating: false };
     default: return state;
   }
 };
 
-export const getUser = state => state.userReducer.user;
-export const getErrorMessage = state => state.userReducer.errorMessage;
-export const getIsPasswordChanged = state => state.userReducer.isPasswordChanged;
-export const getIsLoading = state => state.userReducer.isLoading;
+export const getUser = state => state.user;
+export const getUserErrorMessage = state => state.errorMessage;
+export const getIsPasswordChanged = state => state.isPasswordChanged;
+export const getIsUpdating = state => state.isUpdating;
 
 export default userReducer;
