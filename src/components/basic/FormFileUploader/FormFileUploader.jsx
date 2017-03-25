@@ -65,7 +65,7 @@ FormFileUploader.defaultProps = {
 };
 
 FormFileUploader.propTypes = {
-  preview: PropTypes.string.isRequired,
+  preview: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,

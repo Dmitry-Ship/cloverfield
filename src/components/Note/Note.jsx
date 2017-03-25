@@ -164,6 +164,6 @@ Note.propTypes = {
     body: PropTypes.string,
     color: PropTypes.string,
     tags: PropTypes.arrayOf(PropTypes.string),
-    images: PropTypes.arrayOf(PropTypes.string),
+    images: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };

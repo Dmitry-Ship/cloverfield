@@ -33,7 +33,7 @@ export default class LightBox extends Component {
     const isDataURL = (s) => {
       const regex = /^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i;
       if (s.match(regex)) { return s; }
-      return `/${s}`;
+      return `${s}`;
     };
 
     const handleClick = (e) => {
@@ -47,13 +47,13 @@ export default class LightBox extends Component {
         {!isFirst &&
           <img
             className={previous}
-            src={isDataURL(images[index - 1])}
+            src={isDataURL(images[index - 1].url)}
             alt=""
             onClick={this.showPrevious}
           />}
           <img
             className={middle}
-            src={isDataURL(images[index])}
+            src={isDataURL(images[index].url)}
             alt=""
             onClick={this.showNext}
           />
@@ -61,7 +61,7 @@ export default class LightBox extends Component {
         {!isLast &&
           <img
             className={next}
-            src={isDataURL(images[index + 1])}
+            src={isDataURL(images[index + 1].url)}
             alt=""
             onClick={this.showNext}
           />}
@@ -71,7 +71,7 @@ export default class LightBox extends Component {
 }
 
 LightBox.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  images: PropTypes.arrayOf(PropTypes.object).isRequired,
   index: PropTypes.number.isRequired,
   closeLightBox: PropTypes.func.isRequired,
 };

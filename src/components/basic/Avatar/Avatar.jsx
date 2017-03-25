@@ -6,7 +6,7 @@ import noUserPic from './noUserPic.png';
 
 const Avatar = ({ src, className, fallBack, to }) => (
   <Link style={{ display: 'block' }} to={to}>
-    <img style={{ display: 'block' }} className={className} src={src ? `/${src}` : fallBack} alt="" />
+    <img style={{ display: 'block' }} className={className} src={src ? `${src}` : fallBack} alt="" />
   </Link>
 );
 
