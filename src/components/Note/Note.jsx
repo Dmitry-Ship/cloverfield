@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import Textarea from 'react-textarea-autosize';
+import { Link } from 'react-router-dom';
 
 import styles, {
   image,
@@ -8,7 +9,6 @@ import styles, {
   content,
   actions,
   icon } from './Note.scss';
-import { Link } from 'react-router-dom';
 import NoteActions from '../NoteActions';
 import Icon from '../basic/Icon';
 import TagArea from '../TagArea';

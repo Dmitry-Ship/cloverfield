@@ -59,10 +59,10 @@ export default class CreationForm extends Component {
 
   handleImage({ file, preview }) {
     const { imageFiles, previews } = this.state;
-
+   
     this.setState({
       imageFiles: [...imageFiles, file],
-      previews: [...previews, preview],
+      previews: [...previews, { url: preview, _id: Math.random() }],
     });
   }
 
@@ -94,6 +94,10 @@ export default class CreationForm extends Component {
         formData.append('note-image', imageFiles[i], imageFiles[i].name);
       }
     }
+
+    // if (imageFiles.length > 0) {
+    //   formData.append('note-image', imageFiles, imageFiles.name);
+    // }
 
     this.props.onSubmit(formData);
 

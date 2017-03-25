@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const noteSchema = mongoose.Schema({
   title: String,
   body: String,
-  images: [{ url: String, is: String }],
+  images: [{ url: String, id: String }],
   color: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   isDeleted: { type: Boolean, default: false },

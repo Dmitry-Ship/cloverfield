@@ -34,14 +34,16 @@ router.get('/', (req, res) => {
 router.post('/', upload.array('note-image', 3), (req, res) => {
   const { user, files } = req;
   const { title, body, color, tags } = req.body;
+  const buffers = [];
 
-  const images = [];
-  if (files.length > 0) {
-    return cloudinary.uploader.upload_stream((result) => {
-      for (let i = 0; i < files.length; i++) {
-        images.push({ url: result.url, id: result.public_id });
-      }
+  for (let i = 0; i < files.length; i++) {
+    buffers.push(files[i].buffer);
+  }
+  let images = [];
 
+  function getImages(object, i) {
+    images.push(object)
+    if (buffers.length - 1 === i) {
       const newNote = new Note({
         title,
         body,
@@ -54,24 +56,29 @@ router.post('/', upload.array('note-image', 3), (req, res) => {
       newNote.save()
         .then(data => res.status(200).send(data))
         .catch(err => handleError(res, err, 422));
-    }).end(req.file.buffer);
-    // for (let i = 0; i < files.length; i++) {
-    //   images.push(files[i].filename);
-    // }
+    }
   }
 
-  const newNote = new Note({
-    title,
-    body,
-    color,
-    tags: JSON.parse(tags),
-    images,
-    _user: user._id,
-  });
+  if (files.length > 0) {
+    for (let i = 0; i < buffers.length; i++) {
+      cloudinary.uploader.upload_stream((result) => {
+        return getImages({ url: result.url, id: result.public_id }, i)
+      }).end(buffers[i]);
+    }
+  }
 
-  newNote.save()
-    .then(data => res.status(200).send(data))
-    .catch(err => handleError(res, err, 422));
+  // const newNote = new Note({
+  //   title,
+  //   body,
+  //   color,
+  //   tags: JSON.parse(tags),
+  //   images,
+  //   _user: user._id,
+  // });
+
+  // newNote.save()
+  //   .then(data => res.status(200).send(data))
+  //   .catch(err => handleError(res, err, 422));
 });
 
 router.delete('/:id', (req, res) => {
@@ -112,16 +119,20 @@ router.post('/:id/tags', (req, res) => {
 });
 
 router.delete('/:id/images/:image', (req, res) => {
-  Note.findOneAndUpdate({
-    $and: [
-      { _id: req.params.id },
-      { _user: req.user._id },
-    ],
-  },
-    { $pull: { images: { _id: req.params.image } } },
-    { new: true, upsert: true })
-    .then(note => res.send(note))
-    .catch(err => handleError(res, err, 422));
+  console.log(`delete images with id ${req.params.image}`)
+  cloudinary.uploader.destroy(req.params.image, (result) => { 
+    if (result === 'error') { return console.log(result) }
+    Note.findOneAndUpdate({
+      $and: [
+        { _id: req.params.id },
+        { _user: req.user._id },
+      ],
+    },
+      { $pull: { images: { id: req.params.image } } },
+      { new: true, upsert: true })
+      .then(note => res.send(note))
+      .catch(err => handleError(res, err, 422));
+  });
 });
 
 // modify
