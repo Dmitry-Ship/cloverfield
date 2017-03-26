@@ -18,8 +18,6 @@ import {
   deleteNote } from '../actions/noteActions';
 
 const mapStateToProps = (store, ownProps) => ({
-  // tagsSuggestions: getTagsSuggestions(store, getNote(store, ownProps.match.params.noteId).tags),
-  // isFetching: getIsFetching(store),
   note: getNote(store, ownProps.match.params.noteId),
 
   
