@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import ExpandedNote from '../components/ExpandedNote';
 import { openLightBox } from '../actions/UIActions';
-import { withRouter } from 'react-router-dom';
 
 import { getTagsSuggestions, getNote } from '../reducers/noteReducer';
+import { getIsFetching } from '../reducers';
+
 
 import {
+  fetchNotes,
   editNote,
   addTag,
   deleteTag,
@@ -16,7 +19,10 @@ import {
 
 const mapStateToProps = (store, ownProps) => ({
   // tagsSuggestions: getTagsSuggestions(store, getNote(store, ownProps.match.params.noteId).tags),
+  // isFetching: getIsFetching(store),
   note: getNote(store, ownProps.match.params.noteId),
+
+  
 });
 
 
@@ -30,15 +36,27 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onDeleteImage: image => dispatch(deleteImage(image, ownProps.match.params.noteId)),
   onDelete: () => dispatch(deleteNote(ownProps.match.params.noteId)),
   expandImage: (images, i) => dispatch(openLightBox(images, i)),
+  fetchNotes: () => dispatch(fetchNotes()),
 });
 
-const ExpandedNoteContainer = props => {
-  if (!props.match.params.noteId) {
-    return null;
+class ExpandedNoteContainer extends Component {
+  // componentWillMount() {
+  //   this.props.fetchNotes();
+  // }
+  render() {
+    const { match, isFetching, ...rest } = this.props;
+    if (!match.params.noteId) {
+      return null;
+    }
+    // console.log(isFetching)
+    // if (isFetching) {
+    //   return (<h1>Loading...</h1>)
+    // }
+    return (
+      // <h1>Hello</h1>
+      <ExpandedNote {...rest} />
+    );
   }
-  return (
-    <ExpandedNote {...props} />
-  )
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ExpandedNoteContainer));

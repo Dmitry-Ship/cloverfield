@@ -1,8 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-wrap: row wrap;
+}
+
 .singleImage {
   position: relative;
   &:hover > .deleteIcon {
     display: block;
   }
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;  
 }
 
 .deleteIcon {
@@ -19,10 +30,5 @@
   }
 }
 
-.image {
-  cursor: pointer;
-  display: block;
-  width: 100%;
-}
 
 

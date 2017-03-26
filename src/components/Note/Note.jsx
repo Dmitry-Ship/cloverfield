@@ -7,6 +7,7 @@ import styles, {
   input,
   titleInput,
   content,
+  actionsWrapper,
   actions,
   icon } from './Note.scss';
 import NoteActions from '../NoteActions';
@@ -87,33 +88,34 @@ export default class Note extends Component {
       <div className={`${styles.note} ${styles[note.color]}`}>
 
         <div className={content}>
-          <AttachedImages
-            expandImage={expandImage}
-            onDelete={onDeleteImage}
-            images={note.images}
-            className={image}
-          />
+          <Link to={`/notes/${note._id}`} >
+            {note.images && <AttachedImages
+              expandImage={expandImage}
+              onDelete={onDeleteImage}
+              images={note.images}
+              className={image}
+            />}
 
-          <Textarea
-            value={title}
-            placeholder="Title"
-            name="title"
-            className={titleInput}
-            onChange={this.handleTitleChange}
-            onFocus={this.handleFocus}
-            onBlur={this.handleTitleBlur}
-          />
+            <Textarea
+              value={title}
+              placeholder="Title"
+              name="title"
+              className={titleInput}
+              onChange={this.handleTitleChange}
+              onFocus={this.handleFocus}
+              onBlur={this.handleTitleBlur}
+            />
 
-          <Textarea
-            value={body}
-            name="body"
-            placeholder="Content"
-            className={input}
-            onChange={this.handleBodyChange}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBodyBlur}
-          />
-
+            <Textarea
+              value={body}
+              name="body"
+              placeholder="Content"
+              className={input}
+              onChange={this.handleBodyChange}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBodyBlur}
+            />
+          </Link>
           <TagArea
             onDeleteTag={onDeleteTag}
             tags={note.tags}
@@ -122,27 +124,30 @@ export default class Note extends Component {
           />
         </div>
 
-        <NoteActions
-          className={actions}
-          color={note.color}
-          onSetColor={onSetColor}
-          onChange={this.handleImage}
-          id={note._id}
-        >
-
-          <Icon
-            className={icon}
-            name="delete"
-            onClick={onDelete}
-          />
-          <Link to={`/notes/${note._id}`} >
+        <div className={actionsWrapper} >         
+          <NoteActions
+            className={actions}
+            color={note.color}
+            onSetColor={onSetColor}
+            onChange={this.handleImage}
+            id={note._id}
+          >
 
             <Icon
               className={icon}
-              name="open_with"
+              name="delete"
+              onClick={onDelete}
             />
-          </Link>
-        </NoteActions>
+            <Link to={`/notes/${note._id}`} >
+
+              <Icon
+                className={icon}
+                name="open_with"
+              />
+            </Link>
+          </NoteActions>
+
+        </div>
       </div>
     );
   }

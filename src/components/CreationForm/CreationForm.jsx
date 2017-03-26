@@ -59,10 +59,10 @@ export default class CreationForm extends Component {
 
   handleImage({ file, preview }) {
     const { imageFiles, previews } = this.state;
-   
+
     this.setState({
       imageFiles: [...imageFiles, file],
-      previews: [...previews, { url: preview, _id: Math.random() }],
+      previews: [...previews, { url: preview, id: Math.random() }],
     });
   }
 

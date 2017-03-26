@@ -2,24 +2,14 @@ const express = require('express');
 const Note = require('../models/Note');
 const handleError = require('../helpers/handleError');
 const multer = require('multer');
-const path = require('path');
 const cloudinary = require('cloudinary');
 
-cloudinary.config({ 
+cloudinary.config({
   cloud_name: 'dwatggown',
   api_key: '726342742897756',
   api_secret: 'xRyvoTdPk2_pH6gXHQVKKuC9sWg',
 });
 const storage = multer.memoryStorage();
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'uploads/');
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-//   },
-// });
 
 const upload = multer({ storage });
 const router = express.Router();
@@ -31,6 +21,13 @@ router.get('/', (req, res) => {
     .catch(err => handleError(res, err, 404));
 });
 
+router.get('/:id', (req, res) => {
+  Note.findOne({ $and: [{ _user: req.user._id, _id: req.params.id, isDeleted: false }] })
+    .exec()
+    .then(note => res.send(note))
+    .catch(err => handleError(res, err, 404));
+});
+
 router.post('/', upload.array('note-image', 3), (req, res) => {
   const { user, files } = req;
   const { title, body, color, tags } = req.body;
@@ -39,10 +36,11 @@ router.post('/', upload.array('note-image', 3), (req, res) => {
   for (let i = 0; i < files.length; i++) {
     buffers.push(files[i].buffer);
   }
-  let images = [];
+  const images = [];
 
   function getImages(object, i) {
-    images.push(object)
+    images.push(object);
+
     if (buffers.length - 1 === i) {
       const newNote = new Note({
         title,
@@ -54,7 +52,7 @@ router.post('/', upload.array('note-image', 3), (req, res) => {
       });
 
       newNote.save()
-        .then(data => res.status(200).send(data))
+        .then(data => { res.status(200).send(data); console.log(data) })
         .catch(err => handleError(res, err, 422));
     }
   }
@@ -65,20 +63,21 @@ router.post('/', upload.array('note-image', 3), (req, res) => {
         return getImages({ url: result.url, id: result.public_id }, i)
       }).end(buffers[i]);
     }
+    return;
   }
 
-  // const newNote = new Note({
-  //   title,
-  //   body,
-  //   color,
-  //   tags: JSON.parse(tags),
-  //   images,
-  //   _user: user._id,
-  // });
+  const newNote = new Note({
+    title,
+    body,
+    color,
+    tags: JSON.parse(tags),
+    images,
+    _user: user._id,
+  });
 
-  // newNote.save()
-  //   .then(data => res.status(200).send(data))
-  //   .catch(err => handleError(res, err, 422));
+  newNote.save()
+    .then(data => res.status(200).send(data))
+    .catch(err => handleError(res, err, 422));
 });
 
 router.delete('/:id', (req, res) => {
@@ -119,9 +118,8 @@ router.post('/:id/tags', (req, res) => {
 });
 
 router.delete('/:id/images/:image', (req, res) => {
-  console.log(`delete images with id ${req.params.image}`)
-  cloudinary.uploader.destroy(req.params.image, (result) => { 
-    if (result === 'error') { return console.log(result) }
+  cloudinary.uploader.destroy(req.params.image, (result) => {
+    if (result === 'error') { return console.log(result); }
     Note.findOneAndUpdate({
       $and: [
         { _id: req.params.id },
@@ -157,19 +155,6 @@ router.post('/:id/images', upload.single('note-image'), (req, res) => {
       .then(note => res.send(note))
       .catch(err => handleError(res, err, 422));
   }).end(req.file.buffer);
-
-  // const image = file.filename;
-
-  // Note.findOneAndUpdate({
-  //   $and: [
-  //     { _id: req.params.id },
-  //     { _user: req.user._id },
-  //   ],
-  // },
-  //   { $addToSet: { images: image } },
-  //   { new: true, upsert: true })
-  //   .then(note => res.send(note))
-  //   .catch(err => handleError(res, err, 422));
 });
 
 router.put('/:id', (req, res) => {
