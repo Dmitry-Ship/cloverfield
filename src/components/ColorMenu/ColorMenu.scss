@@ -3,6 +3,7 @@
 
 .colorMenu {
   position: relative;
+  transform: translateX(25%);
   &:hover .popupMenu {
     display: block;
   }
