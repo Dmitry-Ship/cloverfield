@@ -14,7 +14,7 @@ const NoteActions = ({ color, onSetColor, onChange, id, children, className }) =
 
   return (
     <div style={style} className={className}>
-      <ColorMenu color={color} onSetColor={onSetColor} className={icon} />
+      <ColorMenu color={color} position="topRight" onSetColor={onSetColor} className={icon} />
       <NoteFileUploader onChange={onChange} className={icon} id={id} />
       {children}
     </div>

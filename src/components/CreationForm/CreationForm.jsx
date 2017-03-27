@@ -70,7 +70,6 @@ export default class CreationForm extends Component {
     const { previews } = this.state;
     const { imageFiles } = this.state;
     const i = previews.map(p => p.id).indexOf(preview);
-    console.log(i)
 
     this.setState({
       imageFiles: imageFiles.filter((im, j) => j !== i),

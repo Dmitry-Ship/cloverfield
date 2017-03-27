@@ -8,7 +8,7 @@ $pointerSize: 10px;
   display: none;
   composes: level-3 from 'styles/shadows.scss';
   color: black;
-  z-index: 2;
+  z-index: 9;
   position: absolute;
   text-align: center;
   background: $mainColor;
@@ -29,6 +29,19 @@ $pointerSize: 10px;
     left: 50%;
     transform: translateX(-50%);
     border-color: transparent transparent $mainColor transparent;
+  }
+}
+
+.topRight {
+  composes: popupMenu;
+  transform: translateX(-13%);
+  bottom: calc(100% + #{$pointerSize});
+  left: 50%;
+  &::after, ::before {
+    top: 100%;
+    left: 13%;
+    transform: translateX(-50%);
+    border-color: $mainColor transparent transparent transparent;
   }
 }
 
