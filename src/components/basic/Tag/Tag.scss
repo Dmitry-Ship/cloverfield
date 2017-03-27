@@ -4,7 +4,7 @@
   cursor: pointer;
   display: inline-block;
   position: relative;
-  padding: 5px 23px 5px 5px;
+  padding: 5px 30px 5px 5px;
   &:hover .icon {
     opacity: 1;
   }
@@ -17,10 +17,10 @@
 .icon {
   position: absolute;
   top: 50%;
-  right: 6px;
+  right: 8px;
   transform: translateY(-50%);
   color: rgba(white, 0.5);
-  opacity: 0;
+  // opacity: 0;
   transition: all 300ms ease-in-out;
   &:hover {
     color: white;   

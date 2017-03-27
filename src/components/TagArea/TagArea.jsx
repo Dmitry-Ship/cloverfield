@@ -77,7 +77,7 @@ export default class TagArea extends Component {
           />
 
           {suggestions.length > 0 &&
-            <PopUpMenu className={suggestionsMenu} position="bottom" >
+            <PopUpMenu className={suggestionsMenu} position="top" >
               {suggestions.map(tag =>
                 <span onMouseDown={this.setTag} key={tag} className={suggestion} >{tag}</span>)}
             </PopUpMenu>}

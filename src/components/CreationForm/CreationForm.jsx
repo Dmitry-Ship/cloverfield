@@ -69,11 +69,12 @@ export default class CreationForm extends Component {
   deletePreview(preview) {
     const { previews } = this.state;
     const { imageFiles } = this.state;
-    const i = previews.indexOf(preview);
+    const i = previews.map(p => p.id).indexOf(preview);
+    console.log(i)
 
     this.setState({
       imageFiles: imageFiles.filter((im, j) => j !== i),
-      previews: previews.filter(p => p !== preview),
+      previews: previews.filter(p => p.id !== preview),
     });
   }
 
