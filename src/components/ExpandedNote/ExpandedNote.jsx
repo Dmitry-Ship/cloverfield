@@ -41,14 +41,14 @@ export default class ExpandedNote extends Component {
 
   handleTitleChange(e) {
     const value = e.target.value;
-    if (value.length >= 50) return;
+    if (value.length >= 100) return;
 
     this.setState({ title: value });
   }
 
   handleBodyChange(e) {
     const value = e.target.value;
-    if (value.length >= 500) return;
+    if (value.length >= 5000) return;
 
     this.setState({ body: value });
   }
@@ -127,12 +127,12 @@ export default class ExpandedNote extends Component {
               onBlur={this.handleBodyBlur}
             />
 
-            {/*<TagArea
+            <TagArea
               onDeleteTag={onDeleteTag}
               tags={note.tags}
               suggestions={this.props.tagsSuggestions}
               onAddTag={onAddTag}
-            />*/}
+            />
           </div>
 
           <NoteActions
@@ -142,11 +142,11 @@ export default class ExpandedNote extends Component {
             onChange={this.handleImage}
             id={note._id}
           >
-
+  
             <Icon
               className={icon}
               name="delete"
-              onClick={onDelete}
+              onClick={() => { onDelete(); history.goBack() }}
             />
           </NoteActions>
         </div>

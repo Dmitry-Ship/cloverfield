@@ -19,7 +19,6 @@ import EditProfilePage from './components/pages/EditProfilePage';
 import ViewProfilePage from './components/pages/ViewProfilePage';
 import NotFound from './components/pages/NotFoundPage';
 import Layout from './components/Layout';
-
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import PublicRoute from './components/routes/PublicRoute';
 
@@ -27,7 +26,7 @@ import TopBarContainer from './containers/TopBarContainer';
 import ModalsContainer from './containers/ModalsContainer.jsx';
 import LightBoxContainer from './containers/LightBoxContainer.jsx';
 import ExpandedNoteContainer from './containers/ExpandedNoteContainer.jsx';
-
+import ExpandedNote from './components/ExpandedNote';
 
 
 const mapStateToProps = store => ({
@@ -41,7 +40,6 @@ class Routes extends Component {
 
   componentWillUpdate(nextProps) {
     const { location } = this.props
-    // set previousLocation if props.location is not modal
     if (
       nextProps.history.action !== 'POP' &&
       (!location.state || !location.state.modal)
@@ -66,7 +64,7 @@ class Routes extends Component {
           <Switch location={isModal ? this.previousLocation : location} >
             <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
             <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
-            <ProtectedRoute path='/notes/:noteId' component={MainPage} isLoggedIn={isLoggedIn} />
+            <ProtectedRoute path='/notes/:noteId' component={ExpandedNoteContainer} isLoggedIn={isLoggedIn} />
             <ProtectedRoute path="/search/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
             <ProtectedRoute path="/search/images/:images" component={MainPage} isLoggedIn={isLoggedIn} />
             <ProtectedRoute path="/search/:query" component={MainPage} isLoggedIn={isLoggedIn} />
@@ -90,12 +88,10 @@ const RoutesContainer = withRouter(connect(mapStateToProps)(Routes));
 const MainRouter = () => (
   <Router> 
     <Route component={RoutesContainer} />
-
   </Router>
 )
 const Root = ({ store }) => (
   <Provider store={store} >
-    {/*<RoutesContainer />*/}
     <MainRouter />
   </Provider>
 );

@@ -22,6 +22,24 @@ export const fetchNotes = () => (dispatch) => {
     .catch(err => dispatch(fetchNotesFailure(err.response.data)));
 };
 
+const fetchNoteSuccess = note => ({
+  type: types.FETCH_NOTE_SUCCESS,
+  note,
+});
+
+const fetchNoteFailure = error => ({
+  type: types.FETCH_NOTE_FAILURE,
+  error,
+});
+
+export const fetchNote = id => (dispatch) => {
+  dispatch({ type: types.FETCH_NOTE });
+  axios.get(`${url}/${id}`, setAuthHeader())
+    .then(res => dispatch(fetchNoteSuccess(res.data)))
+    .catch(err => dispatch(fetchNoteFailure(err.response.data)));
+};
+
+
 const createNoteSuccess = newNote => ({
   type: types.CREATE_NOTE_SUCCESS,
   newNote,

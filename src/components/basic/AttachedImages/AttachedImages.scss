@@ -4,6 +4,7 @@
 }
 
 .singleImage {
+  margin:  0 auto;
   position: relative;
   &:hover > .deleteIcon {
     display: block;

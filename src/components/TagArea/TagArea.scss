@@ -6,14 +6,6 @@
   padding-top: 5px;
   text-align: left;
   font-size: 0.8rem;
-  &:hover .input__field {
-    cursor: pointer;
-    background: rgba(0,0,0,0.1);
-    &::after {
-      content: "+ tag";
-      color: white;
-    }
-  }
 }
 
 .input {
@@ -28,6 +20,12 @@
   min-width: 50px;
   outline: none;
   background: transparent;
+  cursor: pointer;
+    background: rgba(0,0,0,0.1);
+    &::after {
+      content: "+ tag";
+      color: white;
+    }
   &:focus {
     + .suggestionsMenu {
       display: block;

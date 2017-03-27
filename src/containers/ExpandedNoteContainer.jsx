@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ExpandedNote from '../components/ExpandedNote';
+import Loader from '../components/basic/Loader';
+
 import { openLightBox } from '../actions/UIActions';
+
 
 import { getTagsSuggestions, getNote } from '../reducers/noteReducer';
 import { getIsFetching } from '../reducers';
 
-
 import {
-  fetchNotes,
+  fetchNote,
   editNote,
   addTag,
   deleteTag,
@@ -19,7 +21,9 @@ import {
 
 const mapStateToProps = (store, ownProps) => ({
   note: getNote(store, ownProps.match.params.noteId),
-  // tagsSuggestions: getTagsSuggestions(store, getNote(store, ownProps.match.params.noteId).tags),
+  id: ownProps.match.params.noteId,
+  isFetchingNote: store.noteReducer.isFetchingNote,
+  tagsSuggestions: getTagsSuggestions(store, getNote(store, ownProps.match.params.noteId).tags),
 
   
 });
@@ -35,16 +39,20 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onDeleteImage: image => dispatch(deleteImage(image, ownProps.match.params.noteId)),
   onDelete: () => dispatch(deleteNote(ownProps.match.params.noteId)),
   expandImage: (images, i) => dispatch(openLightBox(images, i)),
-  fetchNotes: () => dispatch(fetchNotes()),
+  fetchNote: id => dispatch(fetchNote(id)),
 });
 
 class ExpandedNoteContainer extends Component {
+
+  componentWillMount() {
+    if (!this.props.note._id) {
+      this.props.fetchNote(this.props.id);
+    }
+  }
   render() {
-    const { match, isFetching, note, ...rest } = this.props;
-    if (!match.params.noteId) {
-      return null;
-    } else if (!note) {
-      return null;
+    const { match, isFetchingNote, note, ...rest } = this.props;
+    if (isFetchingNote) {
+      return <Loader />;
     }
 
     return (

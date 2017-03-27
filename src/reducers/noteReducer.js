@@ -66,6 +66,27 @@ const errorMessage = (state = null, action) => {
   }
 };
 
+const isFetchingNote = (state = false, action) => {
+  switch (action.type) {
+    case types.FETCH_NOTE:
+      return true;
+    case types.FETCH_NOTE_SUCCESS:
+      return false;
+    default: return state;
+  }
+}
+
+const note = (state = { images: [], tags: [] }, action) => {
+  switch (action.type) {
+    case types.FETCH_NOTE_SUCCESS:
+      return action.note;
+    default: return state;
+  }
+};
+
+
+
+
 export const getAllNotes = state => state.noteReducer.allIds.map(id => state.noteReducer.byId[id]);
 
 
@@ -92,9 +113,16 @@ export const getAllImages = (state) => {
 };
 
 export const getQuery = state => state.noteReducer.query;
+const getLoadedNote = state => state.noteReducer.note;
 export const getNote = (state, noteId) => {
-  return state.noteReducer.byId[noteId];
+  // return state.noteReducer.byId[noteId];
+  if (state.noteReducer.byId[noteId]) {
+    return state.noteReducer.byId[noteId];
+  } else {
+    return getLoadedNote(state);
+  }
 };
+
 
 export const getIsFetching = state => state.isFetching;
 export const getErrorMessage = state => state.errorMessage;
@@ -116,4 +144,4 @@ export const getVisibleNotes = (state, tagText, color, images, query) => {
   return allTheNotes;
 };
 
-export default combineReducers({ isFetching, errorMessage, byId, allIds });
+export default combineReducers({ isFetching, errorMessage, byId, allIds, note, isFetchingNote });
