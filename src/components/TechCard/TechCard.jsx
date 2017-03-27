@@ -11,14 +11,13 @@ import Webpack from './logos/webpack.svg';
 import Redux from './logos/redux.svg';
 import MongoDB from './logos/mongodb.svg';
 import Express from './logos/express-109.svg';
-import NPM from './logos/npm.svg';
 import ES6 from './logos/es6.svg';
 import Babel from './logos/babel-10.svg';
 import CSSModules from './logos/css-modules-logo.png';
 import PostCSS from './logos/postcss.svg';
 
 const TechCard = () => {
-  const techs = [Nodejs, ReactLogo, Sass, Git, Webpack, Redux, MongoDB, Express, NPM, ES6, Babel, CSSModules, PostCSS];
+  const techs = [Nodejs, ReactLogo, Sass, Git, Webpack, Redux, MongoDB, Express, ES6, Babel, CSSModules, PostCSS];
   return (
     <div className={card}>
       <Heading>Here is the list of technologies I was using during writing this app</Heading>

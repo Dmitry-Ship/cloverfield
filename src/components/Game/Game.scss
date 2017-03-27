@@ -1,12 +1,11 @@
 .card {
   composes: infoCard from 'styles/cards.scss';
-  padding: 80px;
   margin-top: 50px;
-  margin-bottom: 50px;
 }
 
-.form {
-  display: flex;
+.button {
+  margin: 20px auto 0 auto;
+  display: block;
 }
 
 .input {

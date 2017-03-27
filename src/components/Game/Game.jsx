@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Heading from '../basic/Heading';
 import TextField from '../basic/TextField';
 import Button from '../basic/Button';
-import { card, form, input } from './Game.scss';
+import { card, form, input, button } from './Game.scss';
 
 class Game extends Component {
   constructor() {
@@ -90,7 +90,7 @@ class Game extends Component {
             placeholder="Enter your guess"
             value={value}
           />
-          {done ? <Button onClick={this.refresh} >Try agian!</Button> : <Button />}
+          {done ? <Button className={button} onClick={this.refresh} >Try agian!</Button> : <Button className={button} />}
         </form>
       </div>
     );
