@@ -9,7 +9,7 @@
   line-height: 20px;
   width: 240px;
   background: white;
-  margin-top: 16px;
+  margin-top: 12px;
   padding-bottom: 15px;
   &:hover {
     .actions {
@@ -20,7 +20,7 @@
     }
   }
   @media mobile {
-    width: 170px;
+    width: 180px;
     font-size: .8rem;
   }
   @media extraSmall {

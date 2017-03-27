@@ -6,7 +6,7 @@ import NoteContainer from '../../containers/NoteContainer';
 const NotesList = ({ notes }) => {
   const masonryOptions = {
     transitionDuration: 200,
-    gutter: 16,
+    gutter: 12,
     fitWidth: true,
   };
 
