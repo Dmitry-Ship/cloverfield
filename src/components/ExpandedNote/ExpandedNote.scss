@@ -20,6 +20,10 @@
   overflow-y: auto;
 }
 
+.content {
+  flex-grow: 1;
+}
+
 .note {
   font-family: Rubik;
   composes: level-3 from 'styles/shadows.scss';
@@ -28,6 +32,8 @@
   background: white;
   padding: 7rem 15px 15px 15px;
   position: relative;
+  display: flex;
+  flex-direction: column;
   overflow: auto;
   &:hover {
     .actions {
@@ -43,10 +49,10 @@
   }
 }
 
-.actions {
-  opacity: 0;
-  transition: all 150ms ease-in-out;
-}
+// .actions {
+//   opacity: 0;
+//   transition: all 150ms ease-in-out;
+// }
 
 
 .icon {

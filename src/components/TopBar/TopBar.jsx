@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
-import { topBar, logo, loginButton, iconWrapper, icon, tagIndicator, tagText, tagIcon } from './TopBar.scss';
+import { topBar, logo, loginButton, iconWrapper, icon, tagIndicator, tagText } from './TopBar.scss';
 import NavBar from '../basic/NavBar';
 import Logo from '../basic/Logo';
 import Button from '../basic/Button';
@@ -23,7 +23,9 @@ const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearch
       return (
         <div className={tagIndicator}>
           <Link to="/" >
-            <Icon name="arrow_back" className={tagIcon} />
+            <div className={iconWrapper} >
+              <Icon name="arrow_back" className={icon} />
+            </div>
           </Link>
           <h3 className={tagText} >TAG: {tag}</h3>
         </div>

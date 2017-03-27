@@ -1,12 +1,13 @@
 import React, { PropTypes, Component } from 'react';
-import Textarea from 'react-textarea-autosize';
 import { Link } from 'react-router-dom';
 
 import styles, {
   image,
   input,
   titleInput,
+  linkWrapper,
   content,
+  previewWrapper,
   actionsWrapper,
   actions,
   icon } from './Note.scss';
@@ -88,38 +89,16 @@ export default class Note extends Component {
       <div className={`${styles.note} ${styles[note.color]}`}>
 
         <div className={content}>
-          <Link to={`/notes/${note._id}`} >
-            {note.images && <AttachedImages
-              expandImage={expandImage}
-              onDelete={onDeleteImage}
-              images={note.images}
-              className={image}
-            />}
+          <Link to={`/notes/${note._id}`} className={linkWrapper} >
 
-            {/*<Textarea
-              value={title}
-              placeholder="Title"
-              name="title"
-              className={titleInput}
-              onChange={this.handleTitleChange}
-              onFocus={this.handleFocus}
-              onBlur={this.handleTitleBlur}
-            />*/}
-
+            {note.images &&
+            <div className={previewWrapper} >
+              {note.images.map((im, i) => (
+                <div key={im.id} ><img className={image} src={im.url}  alt="" /></div>
+                ))}
+            </div>}
             <span className={titleInput} >{note.title}</span>
-
-            {/*<Textarea
-              value={body}
-              name="body"
-              placeholder="Content"
-              className={input}
-              onChange={this.handleBodyChange}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBodyBlur}
-            />*/}
-
             <span className={input} >{note.body}</span>
-            
           </Link>
           <TagArea
             onDeleteTag={onDeleteTag}
@@ -129,7 +108,7 @@ export default class Note extends Component {
           />
         </div>
 
-        <div className={actionsWrapper} >         
+        <div className={actionsWrapper} >     
           <NoteActions
             className={actions}
             color={note.color}

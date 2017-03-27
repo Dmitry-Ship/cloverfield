@@ -50,6 +50,8 @@
   margin: 0 0 10px 0;
   padding: 5px 10px;
   min-height: 30px;
+
+  color: black;
   // outline: none;
   // border-radius: 5px;
   // cursor: pointer;
@@ -66,10 +68,16 @@
   font-weight: bold;
 }
 
+.previewWrapper {
+  display: flex;
+  flex-wrap: row wrap;
+}
+
 .image {
-  // width: calc(100% + 30px);
-  // height: auto;
-  // transform: translate(-15px, -30px);
+  height: 100%;
+  width: 100%;
+  display: block;
+  object-fit: cover;  
 }
 
 .red {

@@ -26,12 +26,6 @@
   margin: 0;
 }
 
-.tagIcon {
-  font-size: 30px;
-  margin: 0;
-  color: accent;
-}
-
 .topBar {
   background: white;
   composes: level-1 from 'styles/shadows.scss';
