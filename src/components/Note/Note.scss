@@ -10,7 +10,7 @@
   width: 240px;
   background: white;
   margin-top: 16px;
-  // padding: 30px 15px 15px 15px;
+  padding: 30px 15px 15px 15px;
   &:hover {
     .actions {
       opacity: 1;
@@ -45,31 +45,20 @@
 }
 
 .input {
-  composes: dynamic-input from 'styles/shadows.scss';
+  // composes: dynamic-input from 'styles/shadows.scss';
   text-align: justify;
   margin: 0 0 10px 0;
   padding: 5px 10px;
-  outline: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background: rgba(white, 0);
-  transition: background 100ms ease-in-out;
-  border: 1px solid transparent;
-  resize: none;
-  overflow: hidden;
+  min-height: 30px;
+  // outline: none;
+  // border-radius: 5px;
+  // cursor: pointer;
+  // background: rgba(white, 0);
+  // transition: background 100ms ease-in-out;
+  // border: 1px solid transparent;
+  // resize: none;
+  // overflow: hidden;
   display: block;
-  width: 100%;
-  &::-webkit-input-placeholder {
-    color: rgba(black, 0);
-  }
-  &:hover {
-    background: rgba(white, 0.2);
-    border: 1px solid rgba(black, 0.1);
-  }
-  &:focus {
-    background: rgba(white, 0.3);
-    cursor: auto;
-  }
 }
 
 .titleInput {

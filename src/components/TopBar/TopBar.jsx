@@ -1,42 +1,53 @@
 import React, { PropTypes } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 
-import { topBar, logo, loginButton, iconWrapper, icon } from './TopBar.scss';
+import { topBar, logo, loginButton, iconWrapper, icon, tagIndicator, tagText, tagIcon } from './TopBar.scss';
 import NavBar from '../basic/NavBar';
 import Logo from '../basic/Logo';
 import Button from '../basic/Button';
 import ProfileContainer from '../../containers/ProfileContainer';
 import SearchContainer from '../../containers/SearchContainer';
-import { NavLink } from 'react-router-dom';
 import Icon from '../basic/Icon';
-const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearchMode }) => {
+
+const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearchMode, tag }) => {
   const style = {
     display: 'flex',
     flexWrap: 'nowrap',
     justifyContent: 'space-between',
     alignItems: 'center',
   };
+  function renderLogo() {
+    if (isInSearchMode && isLoggedIn) {
+      return <SearchContainer />;
+    } else if (tag) {
+      return (
+        <div className={tagIndicator}>
+          <Link to="/" >
+            <Icon name="arrow_back" className={tagIcon} />
+          </Link>
+          <h3 className={tagText} >TAG: {tag}</h3>
+        </div>
+      )
+    } else {
+      return <Logo className={logo} />;
+    }
+  }
   return (
     <header style={style} className={topBar} >
       <NavBar links={links} />
-      {!isInSearchMode && <Logo className={logo} />}
+      {renderLogo()}
       <div style={style} >
-        {isLoggedIn && 
+        {isLoggedIn &&
           <NavLink to="/search" >
             <div className={iconWrapper} >
               <Icon name="search" className={icon} />
             </div>
           </NavLink>}
 
-        {isLoggedIn && <SearchContainer />}
         {isLoggedIn ?
           <ProfileContainer /> :
           <div>
-            <Button
-              size="small"
-              onClick={openSignUpModal}
-            >
-            Join
-            </Button>
+            <Button size="small" onClick={openSignUpModal} >Join</Button>
             <Button size="small" kind="secondary" className={loginButton} onClick={openLoginModal} >Login</Button>
           </div>}
       </div>
@@ -52,4 +63,6 @@ TopBar.propTypes = {
   openLoginModal: PropTypes.func.isRequired,
   openSignUpModal: PropTypes.func.isRequired,
   isInSearchMode: PropTypes.bool.isRequired,
+  tag: PropTypes.string,
+  
 };

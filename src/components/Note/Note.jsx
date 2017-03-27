@@ -96,7 +96,7 @@ export default class Note extends Component {
               className={image}
             />}
 
-            <Textarea
+            {/*<Textarea
               value={title}
               placeholder="Title"
               name="title"
@@ -104,9 +104,11 @@ export default class Note extends Component {
               onChange={this.handleTitleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleTitleBlur}
-            />
+            />*/}
 
-            <Textarea
+            <span className={titleInput} >{note.title}</span>
+
+            {/*<Textarea
               value={body}
               name="body"
               placeholder="Content"
@@ -114,7 +116,10 @@ export default class Note extends Component {
               onChange={this.handleBodyChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBodyBlur}
-            />
+            />*/}
+
+            <span className={input} >{note.body}</span>
+            
           </Link>
           <TagArea
             onDeleteTag={onDeleteTag}

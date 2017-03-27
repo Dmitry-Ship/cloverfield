@@ -7,6 +7,7 @@ import TopBar from '../components/TopBar';
 
 const mapStateToProps = (store, ownProps) => ({
   isInSearchMode: ownProps.history.location.pathname.includes('search'),
+  tag: ownProps.history.location.pathname.substring(6),
   isLoggedIn: getIsLoggedIn(store),
   links: getIsLoggedIn(store) ? [
     { label: 'Home', iconName: 'home', to: '/' },
