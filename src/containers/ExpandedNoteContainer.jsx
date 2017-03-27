@@ -39,9 +39,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 class ExpandedNoteContainer extends Component {
-  // componentWillMount() {
-  //   this.props.fetchNotes();
-  // }
   render() {
     const { match, isFetching, note, ...rest } = this.props;
     if (!match.params.noteId) {
@@ -49,13 +46,8 @@ class ExpandedNoteContainer extends Component {
     } else if (!note) {
       return null;
     }
-    // console.log(isFetching)
-    // if (isFetching) {
-    //   return (<h1>Loading...</h1>)
-    // }
-    // const tagsSuggestions = getTagsSuggestions(store, ownProps.note.tags)
+
     return (
-      // <h1>Hello</h1>
       <ExpandedNote note={note} {...rest} />
     );
   }

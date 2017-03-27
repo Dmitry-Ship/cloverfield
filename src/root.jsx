@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Provider, connect } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import './styles/index.scss';
 
@@ -25,6 +26,8 @@ import PublicRoute from './components/routes/PublicRoute';
 import TopBarContainer from './containers/TopBarContainer';
 import ModalsContainer from './containers/ModalsContainer.jsx';
 import LightBoxContainer from './containers/LightBoxContainer.jsx';
+import ExpandedNoteContainer from './containers/ExpandedNoteContainer.jsx';
+
 
 
 const mapStateToProps = store => ({
@@ -32,38 +35,68 @@ const mapStateToProps = store => ({
   isLoggingIn: getIsLoggingIn(store),
 });
 
-const Routes = ({ isLoggedIn, isLoggingIn }) => (
-  <Router>
-    <Layout >
-      <TopBarContainer />
-      <ModalsContainer />
-      <LightBoxContainer />
-      <Switch>
-        <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
-        <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
-        <ProtectedRoute path="/notes/:noteId" component={MainPage} isLoggedIn={isLoggedIn} />
-        
-        <ProtectedRoute path="/search/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
-        <ProtectedRoute path="/search/images/:images" component={MainPage} isLoggedIn={isLoggedIn} />
-        <ProtectedRoute path="/search/:query" component={MainPage} isLoggedIn={isLoggedIn} />
-        <ProtectedRoute path="/search" component={MainPage} isLoggedIn={isLoggedIn} />
-        
-        <Route path="/about" component={AboutPage} />
-        <ProtectedRoute path="/profile" component={ViewProfilePage} isLoggedIn={isLoggedIn} />
-        <ProtectedRoute path="/editprofile" component={EditProfilePage} isLoggedIn={isLoggedIn} />
-        <Route path="/reset/:token" component={ResetPasswordPage} />
-        <PublicRoute path="/welcome" component={WelcomePage} isLoggedIn={isLoggedIn} />
-        <Route component={NotFound} />
-      </Switch>
-    </Layout>
+class Routes extends Component {
+
+  previousLocation = this.props.location
+
+  componentWillUpdate(nextProps) {
+    const { location } = this.props
+    // set previousLocation if props.location is not modal
+    if (
+      nextProps.history.action !== 'POP' &&
+      (!location.state || !location.state.modal)
+    ) {
+      this.previousLocation = this.props.location
+    }
+  }
+
+  render() {
+    const { isLoggedIn, isLoggingIn, location  } = this.props;
+
+    const isModal = !!(
+      location.state &&
+      location.state.modal &&
+      this.previousLocation !== location // not initial render
+    )
+    return (
+        <Layout >
+          <TopBarContainer />
+          <ModalsContainer />
+          <LightBoxContainer />
+          <Switch location={isModal ? this.previousLocation : location} >
+            <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
+            <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
+            <ProtectedRoute path='/notes/:noteId' component={MainPage} isLoggedIn={isLoggedIn} />
+            <ProtectedRoute path="/search/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
+            <ProtectedRoute path="/search/images/:images" component={MainPage} isLoggedIn={isLoggedIn} />
+            <ProtectedRoute path="/search/:query" component={MainPage} isLoggedIn={isLoggedIn} />
+            <ProtectedRoute path="/search" component={MainPage} isLoggedIn={isLoggedIn} />
+            
+            <Route path="/about" component={AboutPage} />
+            <ProtectedRoute path="/profile" component={ViewProfilePage} isLoggedIn={isLoggedIn} />
+            <ProtectedRoute path="/editprofile" component={EditProfilePage} isLoggedIn={isLoggedIn} />
+            <Route path="/reset/:token" component={ResetPasswordPage} />
+            <PublicRoute path="/welcome" component={WelcomePage} isLoggedIn={isLoggedIn} />
+            <Route component={NotFound} />
+          </Switch>
+          {isModal ? <ProtectedRoute path='/notes/:noteId' component={ExpandedNoteContainer} isLoggedIn={true} /> : null}
+        </Layout>
+    );
+  }
+}
+
+const RoutesContainer = withRouter(connect(mapStateToProps)(Routes));
+
+const MainRouter = () => (
+  <Router> 
+    <Route component={RoutesContainer} />
+
   </Router>
-);
-
-const RoutesContainer = connect(mapStateToProps)(Routes);
-
+)
 const Root = ({ store }) => (
   <Provider store={store} >
-    <RoutesContainer />
+    {/*<RoutesContainer />*/}
+    <MainRouter />
   </Provider>
 );
 

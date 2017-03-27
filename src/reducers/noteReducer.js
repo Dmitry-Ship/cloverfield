@@ -108,7 +108,8 @@ export const getVisibleNotes = (state, tagText, color, images, query) => {
   if (images) { return allTheNotes.filter(note => note.images.length > 0); }
 
   if (query) {
-    const result = allTheNotes.filter(note => note.body.includes(query) || note.title.includes(query));
+    const result = allTheNotes.filter(note => 
+      note.body.toLowerCase().includes(query.toLowerCase()) || note.title.toLowerCase().includes(query.toLowerCase()));
     return result;
   }
 

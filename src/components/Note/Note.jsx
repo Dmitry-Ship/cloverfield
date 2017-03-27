@@ -90,7 +90,7 @@ export default class Note extends Component {
       <div className={`${styles.note} ${styles[note.color]}`}>
 
         <div className={content}>
-          <Link to={`/notes/${note._id}`} className={linkWrapper} >
+          <Link to={{ pathname: `/notes/${note._id}`, state: { modal: true } }} className={linkWrapper} >
 
             {note.images &&
             <div className={previewWrapper} >

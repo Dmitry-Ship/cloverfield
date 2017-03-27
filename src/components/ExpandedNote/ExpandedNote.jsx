@@ -88,7 +88,7 @@ export default class ExpandedNote extends Component {
     const { title, body } = this.state;
     const closeNote = (e) => {
       if (e.target === wrapperRef) {
-        history.push('/');
+        history.goBack();
       }
     }
 
@@ -97,7 +97,7 @@ export default class ExpandedNote extends Component {
       <div className={wrapper} onClick={closeNote} ref={node => (wrapperRef = node)} >
 
         <div className={`${styles.note} ${styles[note.color]}`}>
-          <Icon name="arrow_back" className={iconBack} onClick={() => history.push('/')} />
+          <Icon name="arrow_back" className={iconBack} onClick={() => history.goBack()} />
 
           <div className={content}>
             <AttachedImages
