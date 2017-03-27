@@ -1,7 +1,7 @@
 @value colors: "../../styles/colors.scss";
 @value flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
 @value breakPoints: "../../styles/breakPoints.scss";
-@value mobile from breakPoints;
+@value mobile, extraSmall from breakPoints;
 
 .note {
   font-family: Rubik;
@@ -20,7 +20,11 @@
     }
   }
   @media mobile {
-    width: 150px;
+    width: 170px;
+    font-size: .8rem;
+  }
+  @media extraSmall {
+    width: 140px;
     font-size: .8rem;
   }
 }
