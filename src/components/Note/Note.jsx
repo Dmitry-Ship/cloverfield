@@ -7,6 +7,7 @@ import styles, {
   titleInput,
   linkWrapper,
   content,
+  tagLink,
   previewWrapper,
   actionsWrapper,
   actions,
@@ -100,12 +101,11 @@ export default class Note extends Component {
             <span className={titleInput} >{note.title}</span>
             <span className={input} >{note.body}</span>
           </Link>
-          <TagArea
-            onDeleteTag={onDeleteTag}
-            tags={note.tags}
-            suggestions={this.props.tagsSuggestions}
-            onAddTag={onAddTag}
-          />
+
+          {note.tags && note.tags.map((t, i) =>
+            <Link key={i} className={tagLink} to={`/tags/${t}`}>
+              {t}
+            </Link>)}
         </div>
 
         <div className={actionsWrapper} >     
@@ -122,13 +122,6 @@ export default class Note extends Component {
               name="delete"
               onClick={onDelete}
             />
-            <Link to={`/notes/${note._id}`} >
-
-              <Icon
-                className={icon}
-                name="open_with"
-              />
-            </Link>
           </NoteActions>
 
         </div>

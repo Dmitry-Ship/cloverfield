@@ -19,7 +19,7 @@ const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearch
   function renderLogo() {
     if (isInSearchMode && isLoggedIn) {
       return <SearchContainer />;
-    } else if (tag) {
+    } else if (tag && isLoggedIn) {
       return (
         <div className={tagIndicator}>
           <Link to="/" >

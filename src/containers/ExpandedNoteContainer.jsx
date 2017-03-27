@@ -19,6 +19,7 @@ import {
 
 const mapStateToProps = (store, ownProps) => ({
   note: getNote(store, ownProps.match.params.noteId),
+  // tagsSuggestions: getTagsSuggestions(store, getNote(store, ownProps.match.params.noteId).tags),
 
   
 });
@@ -42,17 +43,20 @@ class ExpandedNoteContainer extends Component {
   //   this.props.fetchNotes();
   // }
   render() {
-    const { match, isFetching, ...rest } = this.props;
+    const { match, isFetching, note, ...rest } = this.props;
     if (!match.params.noteId) {
+      return null;
+    } else if (!note) {
       return null;
     }
     // console.log(isFetching)
     // if (isFetching) {
     //   return (<h1>Loading...</h1>)
     // }
+    // const tagsSuggestions = getTagsSuggestions(store, ownProps.note.tags)
     return (
       // <h1>Hello</h1>
-      <ExpandedNote {...rest} />
+      <ExpandedNote note={note} {...rest} />
     );
   }
 }

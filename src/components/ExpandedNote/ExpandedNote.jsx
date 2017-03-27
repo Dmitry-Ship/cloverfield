@@ -87,7 +87,7 @@ export default class ExpandedNote extends Component {
       onSetColor } = this.props;
     const { title, body } = this.state;
     const closeNote = (e) => {
-        if (e.target === wrapperRef) {
+      if (e.target === wrapperRef) {
         history.push('/');
       }
     }
