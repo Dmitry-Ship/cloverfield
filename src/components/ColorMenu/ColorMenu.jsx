@@ -42,5 +42,5 @@ ColorMenu.propTypes = {
   color: PropTypes.string.isRequired,
   onSetColor: PropTypes.func.isRequired,
   className: PropTypes.string,
-  position: PropTypes.oneOf(['top', 'buttom', 'left', 'right']),
+  position: PropTypes.oneOf(['top', 'buttom', 'left', 'right', 'topRight']),
 };

@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react';
 import Textarea from 'react-textarea-autosize';
 
 import styles, {
-  image,
   input,
   titleInput,
   content,
@@ -10,7 +9,6 @@ import styles, {
   wrapper,
   iconBack,
   icon } from './ExpandedNote.scss';
-import { Link } from 'react-router-dom';
 import NoteActions from '../NoteActions';
 import Icon from '../basic/Icon';
 import TagArea from '../TagArea';
@@ -104,7 +102,6 @@ export default class ExpandedNote extends Component {
               expandImage={expandImage}
               onDelete={onDeleteImage}
               images={note.images}
-              className={image}
             />
 
             <Textarea
@@ -127,13 +124,13 @@ export default class ExpandedNote extends Component {
               onBlur={this.handleBodyBlur}
             />
 
+          </div>
             <TagArea
               onDeleteTag={onDeleteTag}
               tags={note.tags}
               suggestions={this.props.tagsSuggestions}
               onAddTag={onAddTag}
             />
-          </div>
 
           <NoteActions
             className={actions}
@@ -155,22 +152,22 @@ export default class ExpandedNote extends Component {
   }
 }
 
-// Note.propTypes = {
-//   onDelete: PropTypes.func.isRequired,
-//   onSetColor: PropTypes.func.isRequired,
-//   onUpdateTitle: PropTypes.func.isRequired,
-//   onUpdateBody: PropTypes.func.isRequired,
-//   onAddTag: PropTypes.func.isRequired,
-//   onDeleteTag: PropTypes.func.isRequired,
-//   onDeleteImage: PropTypes.func.isRequired,
-//   onAddImage: PropTypes.func.isRequired,
-//   expandImage: PropTypes.func.isRequired,
-//   note: PropTypes.shape({
-//     _id: PropTypes.string.isRequired,
-//     title: PropTypes.string,
-//     body: PropTypes.string,
-//     color: PropTypes.string,
-//     tags: PropTypes.arrayOf(PropTypes.string),
-//     images: PropTypes.arrayOf(PropTypes.string),
-//   }).isRequired,
-// };
+ExpandedNote.propTypes = {
+  onDelete: PropTypes.func.isRequired,
+  onSetColor: PropTypes.func.isRequired,
+  onUpdateTitle: PropTypes.func.isRequired,
+  onUpdateBody: PropTypes.func.isRequired,
+  onAddTag: PropTypes.func.isRequired,
+  onDeleteTag: PropTypes.func.isRequired,
+  onDeleteImage: PropTypes.func.isRequired,
+  onAddImage: PropTypes.func.isRequired,
+  expandImage: PropTypes.func.isRequired,
+  // note: PropTypes.shape({
+  //   _id: PropTypes.string.isRequired,
+  //   title: PropTypes.string,
+  //   body: PropTypes.string,
+  //   color: PropTypes.string,
+  //   tags: PropTypes.arrayOf(PropTypes.string),
+  //   images: PropTypes.arrayOf(PropTypes.string),
+  // }).isRequired,
+};

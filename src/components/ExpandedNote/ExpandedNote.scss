@@ -34,7 +34,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: scroll;
   &:hover {
     .actions {
       opacity: 1;
@@ -48,12 +48,6 @@
     min-height: 100vh;
   }
 }
-
-// .actions {
-//   opacity: 0;
-//   transition: all 150ms ease-in-out;
-// }
-
 
 .icon {
   cursor: pointer;
@@ -77,8 +71,7 @@
 
 .input {
   composes: dynamic-input from 'styles/shadows.scss';
-  text-align: justify;
-  margin: 0 0 10px 0;
+  margin: 10px 0 10px 0;
   padding: 5px 10px;
   outline: none;
   border-radius: 5px;
@@ -91,7 +84,7 @@
   display: block;
   width: 100%;
   &::-webkit-input-placeholder {
-    color: rgba(black, 0);
+    color: rgba(black, .4);
   }
   &:hover {
     background: rgba(white, 0.2);
@@ -106,12 +99,6 @@
 .titleInput {
   composes: input;
   font-weight: bold;
-}
-
-.image {
-  // width: calc(100% + 30px);
-  // height: auto;
-  // transform: translate(-15px, -30px);
 }
 
 .red {

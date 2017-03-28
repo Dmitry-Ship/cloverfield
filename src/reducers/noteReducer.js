@@ -136,8 +136,16 @@ export const getVisibleNotes = (state, tagText, color, images, query) => {
   if (images) { return allTheNotes.filter(note => note.images.length > 0); }
 
   if (query) {
-    const result = allTheNotes.filter(note => 
-      note.body.toLowerCase().includes(query.toLowerCase()) || note.title.toLowerCase().includes(query.toLowerCase()));
+    function checkTags(note, query) {
+      for (let i = 0; i < note.tags.length; i++) {
+        if (note.tags[i].toLowerCase().includes(query)) {
+          return true;
+        }
+      }
+      return false;
+    }
+    const result = allTheNotes.filter(note =>
+      note.body.toLowerCase().includes(query.toLowerCase()) || note.title.toLowerCase().includes(query.toLowerCase()) || checkTags(note, query.toLowerCase()));
     return result;
   }
 

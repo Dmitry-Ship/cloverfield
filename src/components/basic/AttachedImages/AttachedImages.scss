@@ -1,3 +1,6 @@
+@value breakPoints: "../../../styles/breakPoints.scss";
+@value mobile from breakPoints;
+
 .wrapper {
   display: flex;
   flex-wrap: row wrap;
@@ -27,6 +30,11 @@
   right: 5%;
   top: 5%;
   &:hover {
+    color: white;
+  }
+  @media mobile {
+    display: block;
+    font-size: 1.5rem;
     color: white;
   }
 }

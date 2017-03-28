@@ -14,8 +14,6 @@ import styles, {
   icon } from './Note.scss';
 import NoteActions from '../NoteActions';
 import Icon from '../basic/Icon';
-import TagArea from '../TagArea';
-import AttachedImages from '../basic/AttachedImages';
 
 export default class Note extends Component {
   constructor(props) {
@@ -25,11 +23,6 @@ export default class Note extends Component {
       body: this.props.note.body,
     };
     this.handleImage = this.handleImage.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleBodyChange = this.handleBodyChange.bind(this);
-    this.handleTitleBlur = this.handleTitleBlur.bind(this);
-    this.handleBodyBlur = this.handleBodyBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
   }
 
   handleImage({ file }) {
@@ -40,52 +33,11 @@ export default class Note extends Component {
     return this.props.onAddImage(formData);
   }
 
-  handleTitleChange(e) {
-    const value = e.target.value;
-    if (value.length >= 50) return;
-
-    this.setState({ title: value });
-  }
-
-  handleBodyChange(e) {
-    const value = e.target.value;
-    if (value.length >= 500) return;
-
-    this.setState({ body: value });
-  }
-
-  handleTitleBlur() {
-    const value = this.state.title.trim();
-
-    this.props.onUpdateTitle(value);
-    this.setState({ title: value });
-  }
-
-  handleBodyBlur() {
-    const value = this.state.body.trim();
-    this.props.onUpdateBody(value);
-    this.setState({ body: value });
-  }
-
-  handleFocus(e) {
-    const fieldName = e.target.name;
-
-    this.setState({
-      [fieldName]: this.props.note[fieldName],
-    });
-  }
-
   render() {
     const {
       note,
       onDelete,
-      onAddTag,
-      onDeleteTag,
-      expandImage,
-      onDeleteImage,
       onSetColor } = this.props;
-    const { title, body } = this.state;
-
     return (
       <div className={`${styles.note} ${styles[note.color]}`}>
 
@@ -133,13 +85,7 @@ export default class Note extends Component {
 Note.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onSetColor: PropTypes.func.isRequired,
-  onUpdateTitle: PropTypes.func.isRequired,
-  onUpdateBody: PropTypes.func.isRequired,
-  onAddTag: PropTypes.func.isRequired,
-  onDeleteTag: PropTypes.func.isRequired,
-  onDeleteImage: PropTypes.func.isRequired,
   onAddImage: PropTypes.func.isRequired,
-  expandImage: PropTypes.func.isRequired,
   note: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     title: PropTypes.string,
