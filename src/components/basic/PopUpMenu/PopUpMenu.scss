@@ -34,12 +34,12 @@ $pointerSize: 10px;
 
 .topRight {
   composes: popupMenu;
-  transform: translateX(-13%);
+  transform: translateX(-14%);
   bottom: calc(100% + #{$pointerSize});
   left: 50%;
   &::after, ::before {
     top: 100%;
-    left: 13%;
+    left: 14%;
     transform: translateX(-50%);
     border-color: $mainColor transparent transparent transparent;
   }
