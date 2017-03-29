@@ -60,7 +60,7 @@ export default class Note extends Component {
             </Link>)}
         </div>
 
-        <div className={actionsWrapper} >     
+        <div className={actionsWrapper} >
           <NoteActions
             className={actions}
             color={note.color}

@@ -21,15 +21,12 @@
 
 .wrapper {
   display: block;
-  // position: relative;
   width: 100%;
-  height: 50vh;
-  margin-bottom: 6.75rem;
-  // background: red;
+  height: 60vh;
+  margin-bottom: 3rem;
 }
 
 .buttons {
-  // position: absolute;
   bottom: 10%;
 }
 
@@ -45,7 +42,6 @@
    @media mobile {
     font-size: 3rem;
     min-width: 150px;
-    // background: red;
     top: 40%;
     left: 15%;
   }
@@ -70,7 +66,7 @@
   font-size: 2rem;
   position: absolute;
   top: 25%;
-  left: 60%;
+  left: 54%;
   
   @media mobile {
     max-width: 200px;
