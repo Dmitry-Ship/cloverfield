@@ -21,9 +21,7 @@ const mapDispatchToProps = dispatch => ({
 
 const CreationFormContainer = ({ query, images, ...rest }) => {
   if (query || images) {
-    return (
-      null
-    );
+    return null;
   }
   return (
     <CreationForm {...rest} />

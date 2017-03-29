@@ -92,7 +92,7 @@ router.post('/', (req, res) => {
             console.log(error);
             return res.status(500).send({ general: 'you are using test settings for SMTP' });
           }
-          console.log(info)
+          console.log(info);
           res.end();
         });
       });

@@ -45,6 +45,19 @@ $pointerSize: 10px;
   }
 }
 
+// .bottomLeft {
+//   composes: popupMenu;
+//   transform: translateX(-50%);
+//   top: calc(100% + #{$pointerSize});
+//   left: 50%;
+//   &::after, ::before {
+//     bottom: 100%;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     border-color: transparent transparent $mainColor transparent;
+//   }
+// }
+
 .top {
   composes: popupMenu;
   transform: translateX(-50%);

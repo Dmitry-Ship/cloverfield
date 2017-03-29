@@ -45,7 +45,7 @@ router.put('/:token', (req, res) => {
 
     user.save()
       .then(res.end())
-      .catch(err => res.status(500).json({ error: 'something went wrong' }))
+      .catch(err => res.status(500).json({ error: 'something went wrong' }));
   })
   .catch(err => res.send(err));
 });

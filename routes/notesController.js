@@ -3,12 +3,9 @@ const Note = require('../models/Note');
 const handleError = require('../helpers/handleError');
 const multer = require('multer');
 const cloudinary = require('cloudinary');
+const cloudinaryConfig = require('../config/cloudinary');
 
-cloudinary.config({
-  cloud_name: 'dwatggown',
-  api_key: '726342742897756',
-  api_secret: 'xRyvoTdPk2_pH6gXHQVKKuC9sWg',
-});
+cloudinaryConfig(cloudinary);
 const storage = multer.memoryStorage();
 
 const upload = multer({ storage });
@@ -133,7 +130,7 @@ router.delete('/:id/images/:image', (req, res) => {
   });
 });
 
-// modify
+
 router.post('/:id/images', upload.single('note-image'), (req, res) => {
   const { file } = req;
 

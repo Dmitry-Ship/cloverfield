@@ -1,85 +1,107 @@
 @value colors: "../../../styles/colors.scss";
 @value note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
 @value breakPoints: "../../../styles/breakPoints.scss";
-@value mobile from breakPoints;
+@value mobile, extraSmall from breakPoints;
 
 .page {
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url('./2015-09-04-oscarkeys-barnimages-001_opt.jpg');
+  background: url('./alex-jodoin-209777.jpg');
   background-size: cover;
   display: flex;
+  background-position: center center;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   min-height: calc(100vh - 56px);
   padding: 3.5rem 0;
+  // overflow-x: hidden;
   @media mobile {
     padding: 2.75rem 0;
   }
 }
+
 .wrapper {
   display: block;
 }
 
+.buttons {
+  position: absolute;
+  bottom: 10%;
+}
+
+
+
+.heroTitleWrapper {
+  z-index: 5;
+  display: block;
+  position: fixed;
+  top: 35%;
+  left: 20%;
+  // min-width: 400px;
+   @media mobile {
+    font-size: 3rem;
+    top: 40%;
+    left: 15%;
+  }
+}
+
 .heroTitle {
-  text-align: center;
-  margin: 0 0 1.25em 0;
+  margin: 0;
   color: white;
   font-family: Amatic SC;
-  font-size: 5rem;
+  min-width: 330px;
+  font-size: 6rem;
   @media mobile {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 }
 
 .heroSub {
-  text-align: center;
-  margin: 0 0 1.25em 0;
+  max-width: 400px;
+  margin: 0;
   color: white;
   font-size: 2rem;
+  position: absolute;
+  top: 25%;
+  left: 60%;
+  
   @media mobile {
+    max-width: 200px;
     font-size: 1rem;
+    top: 20%;
+    left: 55%;
   }
 }
 
 .note {
-  display: flex;
-  flex-direction: column;
-  width: 125px;
-  height: 200px;
-  margin:  0 auto 3.25rem auto;
-  padding: 20px;
-  composes: level-2 from 'styles/shadows.scss';
-  animation: colorchange 5s infinite alternate;
+  width: 240px;
+  height: 400px;
+  position: absolute;
   @media mobile {
+    width: 120px;
+    height: 200px;
+  }
+  @media extraSmall {
     width: 100px;
-    height: 175px;
+    height: 180px;
   }
 }
 
+.greyNote {
+  composes: note;
+  background: note_grey;
+  top: 5%;
+  left: 65%;
 
-@keyframes colorchange{
-  0%   {background: note_red;}
-  2.5%  {background: note_orange;}  
-  12.5%  {background: note_orange;}
-  15%  {background: note_yellow;}
-  25%  {background: note_yellow;}
-  27.5%  {background: note_green;}
-  50%  {background: note_green;}
-  52.5% {background: note_grey;}
-  62.5% {background: note_grey;}
-  65% {background: note_teal;}
-  75% {background: note_teal;}
-  77.5% {background: note_blue;}
-  100% {background: note_blue;} 
 }
 
-.icon {
-  text-align: center;
-  font-size: 2.5rem;
-  margin: auto;
-  display: block;
-  color: rgba(black, 0.3);
+.blueNote {
+  composes: note;
+  top: 25%;
+  left: 15%;
+  background: note_blue;
   @media mobile {
-    font-size: 1rem;
+    width: 120px;
+    height: 200px;
+    left: 10%;
   }
 }

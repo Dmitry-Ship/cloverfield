@@ -1,27 +1,15 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
 const User = require('../models/User');
 const handleError = require('../helpers/handleError');
 const validateInput = require('../helpers/validations/signup');
 const validatePasswords = require('../helpers/validations/changePassword');
-var cloudinary = require('cloudinary');
-cloudinary.config({ 
-  cloud_name: 'dwatggown',
-  api_key: '726342742897756',
-  api_secret: 'xRyvoTdPk2_pH6gXHQVKKuC9sWg',
-});
+const cloudinary = require('cloudinary');
+const cloudinaryConfig = require('../config/cloudinary');
+
+cloudinaryConfig(cloudinary);
 const router = express.Router();
 const storage = multer.memoryStorage();
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'uploads/');
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-//   },
-// });
-
 const upload = multer({ storage });
 
 router.get('/', (req, res) => {
@@ -76,7 +64,6 @@ router.put('/password', (req, res) => {
     })
     .then(newUser => res.send(newUser))
     .catch(err => res.send(err));
-
 });
 
 module.exports = router;
