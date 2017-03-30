@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import * as types from '../actions/actionTypes';
 
 const byId = (state = {}, action) => {
-  const { type, updatedNote, newNote, id, notes } = action;
+  const { type, updatedNote, newNote, id, notes, prop, value, optID } = action;
   switch (type) {
     case types.FETCH_NOTES_SUCCESS: {
       const nextState = Object.assign({}, state);
@@ -18,6 +18,10 @@ const byId = (state = {}, action) => {
       delete newState[id];
       return newState;
     }
+    /// optimistic update
+    // case types.EDIT_NOTE:
+    //   return { ...state, [optID]: { ...state[optID], [prop]: value } };
+    /// optimistic update
     case types.EDIT_NOTE_SUCCESS:
     case types.ADD_TAG_SUCCESS:
     case types.ADD_IMAGE_SUCCESS:
@@ -50,6 +54,8 @@ const isFetching = (state = false, action) => {
     default: return state;
   }
 };
+
+
 
 const errorMessage = (state = null, action) => {
   switch (action.type) {
@@ -118,9 +124,8 @@ export const getNote = (state, noteId) => {
   // return state.noteReducer.byId[noteId];
   if (state.noteReducer.byId[noteId]) {
     return state.noteReducer.byId[noteId];
-  } else {
-    return getLoadedNote(state);
   }
+  return getLoadedNote(state);
 };
 
 

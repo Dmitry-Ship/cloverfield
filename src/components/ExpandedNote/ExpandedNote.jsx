@@ -20,6 +20,7 @@ export default class ExpandedNote extends Component {
     this.state = {
       title: this.props.note.title,
       body: this.props.note.body,
+      hasChanged: false,
     };
     this.handleImage = this.handleImage.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -41,27 +42,28 @@ export default class ExpandedNote extends Component {
     const value = e.target.value;
     if (value.length >= 100) return;
 
-    this.setState({ title: value });
+    this.setState({ title: value, hasChanged: true });
   }
 
   handleBodyChange(e) {
     const value = e.target.value;
     if (value.length >= 5000) return;
 
-    this.setState({ body: value });
+    this.setState({ body: value, hasChanged: true });
   }
 
   handleTitleBlur() {
     const value = this.state.title.trim();
-
+    if (!this.state.hasChanged) { return; }
     this.props.onUpdateTitle(value);
-    this.setState({ title: value });
+    this.setState({ title: value, hasChanged: false });
   }
 
   handleBodyBlur() {
     const value = this.state.body.trim();
+    if (!this.state.hasChanged) { return; }
     this.props.onUpdateBody(value);
-    this.setState({ body: value });
+    this.setState({ body: value, hasChanged: false });
   }
 
   handleFocus(e) {

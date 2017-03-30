@@ -49,7 +49,7 @@ router.post('/', upload.array('note-image', 3), (req, res) => {
       });
 
       newNote.save()
-        .then(data => { res.status(200).send(data); console.log(data) })
+        .then((data) => { res.status(200).send(data); console.log(data); })
         .catch(err => handleError(res, err, 422));
     }
   }
@@ -57,7 +57,7 @@ router.post('/', upload.array('note-image', 3), (req, res) => {
   if (files.length > 0) {
     for (let i = 0; i < buffers.length; i++) {
       cloudinary.uploader.upload_stream((result) => {
-        return getImages({ url: result.url, id: result.public_id }, i)
+        return getImages({ url: result.url, id: result.public_id }, i);
       }).end(buffers[i]);
     }
     return;

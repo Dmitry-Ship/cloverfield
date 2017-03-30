@@ -69,7 +69,8 @@ const editNoteFailure = error => ({
 });
 
 export const editNote = (prop, value, id) => (dispatch) => {
-  dispatch({ type: types.EDIT_NOTE });
+  // other properties needed for optimistic updates
+  dispatch({ type: types.EDIT_NOTE, prop, value, optID: id });
   axios.put(`${url}/${id}`, { [prop]: value }, setAuthHeader())
     .then(res => dispatch(editNoteSuccess(res.data, prop)))
     .catch(err => dispatch(editNoteFailure(err.response.data)));
