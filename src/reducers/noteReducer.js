@@ -18,6 +18,7 @@ const byId = (state = {}, action) => {
       delete newState[id];
       return newState;
     }
+    
     /// optimistic update
     // case types.EDIT_NOTE:
     //   return { ...state, [optID]: { ...state[optID], [prop]: value } };
