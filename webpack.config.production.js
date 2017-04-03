@@ -10,7 +10,23 @@ const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: './src/index',
+  // entry: './src/index',
+  entry: {
+    main: './src/index',
+    vendor: [
+      'react',
+      'react-router-dom',
+      'react-redux',
+      'redux',
+      'redux-thunk',
+      'axios',
+      'react-dom',
+      'react-masonry-component',
+      'react-textarea-autosize',
+      'redux-logger',
+      'react-hot-loader',
+    ]
+  },
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].[chunkhash].js',
@@ -70,9 +86,9 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks: function (module) {
-        return module.context && module.context.indexOf('node_modules') !== -1;
-      },
+      // minChunks: function (module) {
+      //   return module.context && module.context.indexOf('node_modules') !== -1;
+      // },
     }),
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'manifest',
@@ -87,7 +103,7 @@ module.exports = {
       minRatio: 0.8
     }),
 
-    // new webpack.HashedModuleIdsPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
     new ExtractTextPlugin({
       filename: 'style.[contenthash].css',
       ignoreOrder: true,
@@ -95,18 +111,18 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      // minify: {
-      //   removeComments: true,
-      //   collapseWhitespace: true,
-      //   removeRedundantAttributes: true,
-      //   useShortDoctype: true,
-      //   removeEmptyAttributes: true,
-      //   removeStyleLinkTypeAttributes: true,
-      //   keepClosingSlash: true,
-      //   minifyJS: true,
-      //   minifyCSS: true,
-      //   minifyURLs: true,
-      // },
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
       template: './index.html',
     }),
   ],
