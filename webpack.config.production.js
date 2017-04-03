@@ -10,23 +10,23 @@ const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  // entry: './src/index',
-  entry: {
-    main: './src/index',
-    vendor: [
-      'react',
-      'react-router-dom',
-      'react-redux',
-      'redux',
-      'redux-thunk',
-      'axios',
-      'react-dom',
-      'react-masonry-component',
-      'react-textarea-autosize',
-      'redux-logger',
-      'react-hot-loader',
-    ]
-  },
+  entry: './src/index',
+  // entry: {
+  //   main: './src/index',
+  //   vendor: [
+  //     'react',
+  //     'react-router-dom',
+  //     'react-redux',
+  //     'redux',
+  //     'redux-thunk',
+  //     'axios',
+  //     'react-dom',
+  //     'react-masonry-component',
+  //     'react-textarea-autosize',
+  //     'redux-logger',
+  //     'react-hot-loader',
+  //   ]
+  // },
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].[chunkhash].js',
@@ -86,22 +86,22 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      // minChunks: function (module) {
-      //   return module.context && module.context.indexOf('node_modules') !== -1;
-      // },
+      minChunks: function (module) {
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
     }),
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'manifest',
     //   minChunks: Infinity,
     // }),
 
-    new CompressionPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
-      test: /\.(js|html)$/,
-      threshold: 10240,
-      minRatio: 0.8
-    }),
+    // new CompressionPlugin({
+    //   asset: "[path].gz[query]",
+    //   algorithm: "gzip",
+    //   test: /\.(js|html)$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // }),
 
     new webpack.HashedModuleIdsPlugin(),
     new ExtractTextPlugin({
