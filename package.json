@@ -7,7 +7,7 @@
   "scripts": {
     "start:dev": "nodemon --ignore ./src",
     "start": "npm run build && cross-env NODE_ENV=production node server.js",
-    "build": "rimraf ./build && webpack -p --colors --progress --config webpack.config.production.js",
+    "build": "webpack -p --colors --progress --config webpack.config.production.js",
     "test": "jest"
   },
   "repository": {
