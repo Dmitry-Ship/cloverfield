@@ -15,7 +15,7 @@ import GetStartedContainer from '../../../containers/GetStartedContainer';
 
 const WelcomePage = () => (
   <div className={page}>
-    <div className={wrapper} >
+    {/*<div className={wrapper} >
       <div className={blueNotePosition} >
         <div className={blueNoteWrapper} >
           <div className={heroTitleWrapper} >
@@ -34,7 +34,7 @@ const WelcomePage = () => (
           </p>
         </div>
       </div>
-    </div>
+    </div>*/}
     <GetStartedContainer />
   </div>
 );
