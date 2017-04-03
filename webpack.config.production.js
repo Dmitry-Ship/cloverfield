@@ -29,8 +29,10 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'build'),
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
+    filename: '[name].js',
+    
+    // filename: '[name].[chunkhash].js',
+    // chunkFilename: '[name].[chunkhash].js',
     publicPath: '/',
   },
   resolve: {
@@ -98,7 +100,9 @@ module.exports = {
 
     new webpack.HashedModuleIdsPlugin(),
     new ExtractTextPlugin({
-      filename: 'style.[contenthash].css',
+      // filename: 'style.[contenthash].css',
+      filename: 'style.css',
+      
       ignoreOrder: true,
       allChunks: true,
     }),
