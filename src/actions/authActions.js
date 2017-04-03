@@ -1,8 +1,6 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 
-import { loginURL, signUpURL, forgotPasswordURL, resetPasswordURL } from '../../config/urls';
-
 const loginSuccess = token => ({
   type: types.LOG_IN_SUCCESS,
   token,
@@ -15,7 +13,7 @@ const loginFailure = error => ({
 
 export const login = (creds, cb) => (dispatch) => {
   dispatch({ type: types.LOG_IN });
-  axios.post(loginURL, creds)
+  axios.post('/login', creds)
     .then((res) => {
       localStorage.setItem('token', res.data.token);
       dispatch(loginSuccess(res.data));
@@ -36,7 +34,7 @@ const signUpFailure = error => ({
 
 export const signUp = (creds, cb) => (dispatch) => {
   dispatch({ type: types.SIGN_UP });
-  axios.post(signUpURL, creds)
+  axios.post('/signup', creds)
     .then((res) => {
       localStorage.setItem('token', res.data.token);
       dispatch(signUpSuccess(res.data));
@@ -63,7 +61,7 @@ const requestTokenFailure = error => ({
 
 export const requestToken = creds => (dispatch) => {
   dispatch({ type: types.REQUEST_TOKEN });
-  axios.post(forgotPasswordURL, creds)
+  axios.post('/forgotpassword', creds)
     .then((res) => {
       dispatch(requestTokenSuccess(res.data));
     })
@@ -81,7 +79,7 @@ const resetPasswordFailure = error => ({
 
 export const resetPassword = (creds, token) => (dispatch) => {
   dispatch({ type: types.RESET_PASSWORD });
-  axios.put(`${resetPasswordURL}/${token}`, creds)
+  axios.put(`/resetpassword/${token}`, creds)
     .then((res) => {
       dispatch(resetPasswordSuccess(res.data));
     })
@@ -100,7 +98,7 @@ const verifyTokenFailure = error => ({
 
 export const verifyToken = token => (dispatch) => {
   dispatch({ type: types.VERIFY_TOKEN });
-  axios.get(`${resetPasswordURL}/${token}`)
+  axios.get(`/resetpassword/${token}`)
     .then((res) => {
       dispatch(verifyTokenSuccess(res.data));
     })
