@@ -1,17 +1,16 @@
 import React from 'react';
-import { 
-  page, 
-  heroTitle, 
-  greyNote, 
-  blueNoteWrapper, 
-  greyNoteWrapper, 
-  heroSub, 
-  wrapper, 
-  blueNote, 
+import {
+  page,
+  heroTitle,
+  greyNote,
+  blueNoteWrapper,
+  greyNoteWrapper,
+  heroSub,
+  wrapper,
+  blueNote,
   heroTitleWrapper,
   greyNotePosition,
-  blueNotePosition, 
-  buttons } from './WelcomePage.scss';
+  blueNotePosition } from './WelcomePage.scss';
 import GetStartedContainer from '../../../containers/GetStartedContainer';
 
 const WelcomePage = () => (
@@ -20,9 +19,9 @@ const WelcomePage = () => (
       <div className={blueNotePosition} >
         <div className={blueNoteWrapper} >
           <div className={heroTitleWrapper} >
-            <h1 className={heroTitle} >One place</h1>
-            <h1 className={heroTitle} >to store</h1>
-            <h1 className={heroTitle} >all your ideas.</h1>
+            <p className={heroTitle} >One place</p>
+            <p className={heroTitle} >to store</p>
+            <p className={heroTitle} >all your ideas.</p>
           </div>
           <div className={blueNote} />
         </div>
@@ -31,13 +30,13 @@ const WelcomePage = () => (
       <div className={greyNotePosition} >
         <div className={greyNoteWrapper}>
           <div className={greyNote} />
-          <h2 className={heroSub} >Cloverfield is an advanced todo app with ability to add images and tags.</h2>
+          <p className={heroSub} >
+            Cloverfield is an advanced todo app with ability to add images and tags.
+          </p>
         </div>
       </div>
     </div>
-    {/*<div className={buttons} >*/}
-      <GetStartedContainer />
-    {/*</div>*/}
+    <GetStartedContainer />
   </div>
 );
 

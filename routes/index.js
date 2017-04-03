@@ -6,14 +6,15 @@ const userController = require('./userController');
 const forgotPasswordController = require('./forgotPasswordController');
 const resetPasswordController = require('./resetPasswordController');
 const requireAuth = require('../middleware/requireAuth');
+const { notesURL, userURL, loginURL, signUpURL, resetPasswordURL, forgotPasswordURL } = require('../config/urls');
 
 const router = express.Router();
 
-router.use('/api/notes', requireAuth, notesController);
-router.use('/api/user', requireAuth, userController);
-router.use('/login', loginController);
-router.use('/signup', signupController);
-router.use('/forgotpassword', forgotPasswordController);
-router.use('/resetpassword', resetPasswordController);
+router.use(notesURL, requireAuth, notesController);
+router.use(userURL, requireAuth, userController);
+router.use(loginURL, loginController);
+router.use(signUpURL, signupController);
+router.use(forgotPasswordURL, forgotPasswordController);
+router.use(resetPasswordURL, resetPasswordController);
 
 module.exports = router;

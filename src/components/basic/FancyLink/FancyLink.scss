@@ -9,7 +9,7 @@
   display: block;
   text-align: center;
   color: tertiary;
-  &:hover {
+  &:active {
     color: secondary;
   }
   @media mobile {
