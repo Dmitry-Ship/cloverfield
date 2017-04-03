@@ -26,14 +26,14 @@ const WelcomePage = () => (
           <div className={blueNote} />
         </div>
       </div>
-      {/*<div className={greyNotePosition} >
+      <div className={greyNotePosition} >
         <div className={greyNoteWrapper}>
           <div className={greyNote} />
           <p className={heroSub} >
             Cloverfield is an advanced todo app with ability to add images and tags.
           </p>
         </div>
-      </div>*/}
+      </div>
     </div>
     <GetStartedContainer />
   </div>
