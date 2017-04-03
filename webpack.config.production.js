@@ -6,28 +6,15 @@ const lost = require('lost');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: {
-    app: './src/index',
-    vendor: [
-      'react',
-      'react-router-dom',
-      'react-redux',
-      'redux',
-      'redux-thunk',
-      'axios',
-      'react-dom',
-      'react-masonry-component',
-      'react-textarea-autosize',
-      'redux-logger',
-      'react-hot-loader',
-    ],
-  },
+  entry: './src/index',
   output: {
     path: path.join(__dirname, 'build'),
-    filename: '[name].bundle.js',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
     publicPath: '/',
   },
   resolve: {
@@ -69,21 +56,57 @@ module.exports = {
           values,
           lost,
           colorFunction,
-          autoprefixer,
+          autoprefixer({
+            browsers: [
+              '>1%',
+              'last 4 versions',
+              'Firefox ESR',
+              'not ie < 9',
+            ],
+          }),
         ],
       },
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
+      minChunks: function (module) {
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
     }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'manifest',
+    //   minChunks: Infinity,
+    // }),
+
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.(js|html)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+
+    new webpack.HashedModuleIdsPlugin(),
     new ExtractTextPlugin({
-      filename: '[name].style.css',
+      filename: 'style.[contenthash].css',
       ignoreOrder: true,
       allChunks: true,
     }),
     new HtmlWebpackPlugin({
       inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
       template: './index.html',
     }),
   ],

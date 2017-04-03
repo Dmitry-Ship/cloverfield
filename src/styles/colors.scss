@@ -1,15 +1,9 @@
 @value primary: #ECEFF1;
-@value primary--light: color(primary tint(15%));
-@value primary--dark: color(primary shade(15%));
 @value secondary: #B0BEC5;
-@value secondary--light color(secondary tint(15%));
-@value secondary--dark color(secondary shade(15%));
 @value tertiary #37474F;
-@value tertiary--light color(tertiary tint(15%));
-@value tertiary--dark color(tertiary shade(15%));
 @value accent #26A69A;
-@value accent--light color(accent tint(15%));
-@value accent--dark color(accent shade(15%));
+@value accent--light color(#26A69A tint(15%));
+@value accent--dark color(#26A69A shade(15%));
 
 @value note_red #ef9a9a;
 @value note_orange #FFAB91;

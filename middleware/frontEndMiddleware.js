@@ -45,6 +45,11 @@ module.exports = (app) => {
   } else {
     app.use(express.static(path.join(__dirname, '../public')));
     app.use(express.static(path.join(__dirname, '../uploads')));
+    app.get('*.js', function (req, res, next) {
+      req.url = req.url + '.gz';
+      res.set('Content-Encoding', 'gzip');
+      next();
+    });
     app.use(express.static(path.join(__dirname, '../build')));
     app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../build/index.html')));
   }

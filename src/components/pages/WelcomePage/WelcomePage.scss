@@ -25,13 +25,8 @@
   min-height: 600px;
   margin-bottom: 5rem;
   @media mobile {
-  //  background: green;
    min-height: 300px;
   }
-}
-
-.buttons {
-  bottom: 5%;
 }
 
 .blueNoteWrapper {
@@ -50,7 +45,6 @@
   top: 25%;
   @media mobile {
     left: 5%;
-    // top: 5%;
   }
 }
 
@@ -66,7 +60,6 @@
 
 .greyNoteWrapper {
   position: relative;
-  // background: green;
   width: 450px;
   height: 500px;
   @media mobile {
@@ -80,19 +73,25 @@
   display: block;
   position: absolute;
   top: 37%;
-  left: 10%;
-  min-width: 400px;
+  left: 11%;
+  min-width: 500px;
    @media mobile {
     font-size: 3rem;
-    min-width: 150px;
+    min-width: 250px;
   }
 }
 
 .heroTitle {
   margin: 0;
   color: white;
-  font-family: Amatic SC;
-  min-width: 300px;
+  font-family: Covered By Your Grace;
+  
+  // font-family: Rock Salt;
+  // font-family: Cabin Sketch;
+  // font-family: Neucha;
+  // font-family: Bad Script;
+  
+  min-width: 350px;
   font-size: 6rem;
   @media mobile {
     min-width: 150px; 
