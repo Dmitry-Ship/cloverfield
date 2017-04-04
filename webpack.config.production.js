@@ -6,7 +6,7 @@ const lost = require('lost');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -68,13 +68,13 @@ module.exports = {
       },
     }),
 
-    // new CompressionPlugin({
-    //   asset: '[path].gz[query]',
-    //   algorithm: "gzip",
-    //   test: /\.(js|html)$/,
-    //   threshold: 10240,
-    //   minRatio: 0.8
-    // }),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: "gzip",
+      test: /\.(js|html)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
 
     new webpack.HashedModuleIdsPlugin(),
     new ExtractTextPlugin({

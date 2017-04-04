@@ -47,6 +47,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "cloudinary": "^1.8.0",
+    "compression-webpack-plugin": "^0.3.2",
     "cookie-parser": "^1.4.3",
     "cross-env": "^3.2.4",
     "css-loader": "^0.26.1",
