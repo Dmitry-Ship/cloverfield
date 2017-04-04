@@ -12,6 +12,7 @@ export const getErrorMessage = state => fromNote.getErrorMessage(state.noteReduc
 export const getVisibleNotes = (state, tagText, color, images, query) => {
   fromNote.getVisibleNotes(state.noteReducer, tagText, color, images, query);
 };
+
 export const getModal = store => fromUI.getModal(store.UIReducer);
 export const getImages = store => fromUI.getImages(store.UIReducer);
 export const getImageIndex = store => fromUI.getImageIndex(store.UIReducer);

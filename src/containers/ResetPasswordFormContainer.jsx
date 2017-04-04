@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { resetPassword, verifyToken } from '../actions/authActions';
 import ResetPasswordForm from '../components/forms/ResetPasswordForm';

@@ -20,8 +20,8 @@ const byId = (state = {}, action) => {
     }
     
     /// optimistic update
-    // case types.EDIT_NOTE:
-    //   return { ...state, [optID]: { ...state[optID], [prop]: value } };
+    case types.EDIT_NOTE:
+      return { ...state, [optID]: { ...state[optID], [prop]: value } };
     /// optimistic update
     case types.EDIT_NOTE_SUCCESS:
     case types.ADD_TAG_SUCCESS:
@@ -56,8 +56,6 @@ const isFetching = (state = false, action) => {
   }
 };
 
-
-
 const errorMessage = (state = null, action) => {
   switch (action.type) {
     case types.FETCH_NOTES_FAILURE:
@@ -91,11 +89,7 @@ const note = (state = { images: [], tags: [] }, action) => {
   }
 };
 
-
-
-
 export const getAllNotes = state => state.noteReducer.allIds.map(id => state.noteReducer.byId[id]);
-
 
 export const getAllTags = (state) => {
   const allTheNotes = getAllNotes(state);
@@ -122,7 +116,6 @@ export const getAllImages = (state) => {
 export const getQuery = state => state.noteReducer.query;
 const getLoadedNote = state => state.noteReducer.note;
 export const getNote = (state, noteId) => {
-  // return state.noteReducer.byId[noteId];
   if (state.noteReducer.byId[noteId]) {
     return state.noteReducer.byId[noteId];
   }
@@ -150,8 +143,9 @@ export const getVisibleNotes = (state, tagText, color, images, query) => {
       }
       return false;
     }
+    const queryTL = query.toLowerCase();
     const result = allTheNotes.filter(note =>
-      note.body.toLowerCase().includes(query.toLowerCase()) || note.title.toLowerCase().includes(query.toLowerCase()) || checkTags(note, query.toLowerCase()));
+      note.body.toLowerCase().includes(queryTL) || note.title.toLowerCase().includes(queryTL) || checkTags(note, queryTL));
     return result;
   }
 

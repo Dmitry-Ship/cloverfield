@@ -6,7 +6,8 @@ const lost = require('lost');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
+var ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -62,7 +63,7 @@ module.exports = {
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      name: ['vendor'],
       minChunks: function (module) {
         return module.context && module.context.indexOf('node_modules') !== -1;
       },
@@ -70,13 +71,12 @@ module.exports = {
 
     new CompressionPlugin({
       asset: '[path].gz[query]',
-      algorithm: "gzip",
+      algorithm: 'gzip',
       test: /\.(js|html)$/,
       threshold: 10240,
       minRatio: 0.8
     }),
 
-    new webpack.HashedModuleIdsPlugin(),
     new ExtractTextPlugin({
       filename: 'style.[contenthash].css',
       ignoreOrder: true,
