@@ -68,13 +68,13 @@ module.exports = {
       },
     }),
 
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: "gzip",
-      test: /\.(js|html)$/,
-      threshold: 10240,
-      minRatio: 0.8
-    }),
+    // new CompressionPlugin({
+    //   asset: '[path].gz[query]',
+    //   algorithm: "gzip",
+    //   test: /\.(js|html)$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // }),
 
     new webpack.HashedModuleIdsPlugin(),
     new ExtractTextPlugin({
