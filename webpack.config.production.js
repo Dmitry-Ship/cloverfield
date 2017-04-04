@@ -56,14 +56,7 @@ module.exports = {
           values,
           lost,
           colorFunction,
-          autoprefixer({
-            browsers: [
-              '>1%',
-              'last 4 versions',
-              'Firefox ESR',
-              'not ie < 9',
-            ],
-          }),
+          autoprefixer,
         ],
       },
     }),
@@ -77,12 +70,13 @@ module.exports = {
 
     new CompressionPlugin({
       asset: '[path].gz[query]',
-      algorithm: 'gzip',
+      algorithm: "gzip",
       test: /\.(js|html)$/,
       threshold: 10240,
       minRatio: 0.8
     }),
 
+    new webpack.HashedModuleIdsPlugin(),
     new ExtractTextPlugin({
       filename: 'style.[contenthash].css',
       ignoreOrder: true,
