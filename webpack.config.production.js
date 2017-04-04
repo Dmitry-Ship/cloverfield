@@ -7,7 +7,6 @@ const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-var ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
 
 module.exports = {
   devtool: 'cheap-module-source-map',
