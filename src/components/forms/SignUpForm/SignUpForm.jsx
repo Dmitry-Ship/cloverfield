@@ -71,6 +71,9 @@ export default class SignUpForm extends Component {
             email,
             password,
             errors } = this.state;
+         
+    const { isLoggingIn } = this.props;
+
     return (
       <form onSubmit={this.handleSubmit}>
 
@@ -110,7 +113,7 @@ export default class SignUpForm extends Component {
           // required
         />
 
-        <Button className={button} >Sign Up</Button>
+        <Button className={button} isLoading={isLoggingIn} >Sign Up</Button>
       </form>
     );
   }
