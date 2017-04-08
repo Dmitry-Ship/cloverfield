@@ -4,8 +4,8 @@
 @value mobile, extraSmall from breakPoints;
 
 .note {
-  font-family: Rubik;
   composes: dynamic from 'styles/shadows.scss';
+  font-family: Lato;
   line-height: 20px;
   width: 240px;
   background: white;

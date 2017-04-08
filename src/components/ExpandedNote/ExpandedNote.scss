@@ -3,7 +3,6 @@
 @value breakPoints: "../../styles/breakPoints.scss";
 @value mobile from breakPoints;
 
-
 .wrapper {
   position: fixed;
   display: flex;
@@ -25,7 +24,7 @@
 }
 
 .note {
-  font-family: Rubik;
+  font-family: Lato;
   composes: level-3 from 'styles/shadows.scss';
   line-height: 20px;
   width: 600px;

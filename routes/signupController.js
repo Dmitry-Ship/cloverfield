@@ -17,8 +17,6 @@ const storage = multer.diskStorage({
   },
 });
 
-
-
 const upload = multer({ storage });
 const router = express.Router();
 
@@ -56,7 +54,6 @@ router.post('/', upload.single('avatar'), (req, res) => {
         _user: result._id,
       });
 
-
       const secondNote = new Note({
         title: 'Play around with this app',
         body: 'If you need to create a new note, just open the form right adove us. You can also attach an image to a note!',
@@ -73,9 +70,12 @@ router.post('/', upload.single('avatar'), (req, res) => {
         tags: 'quotes',
         _user: result._id,
       });
-      // the order is reversed because notes are desplay in descending order 
+
+      // the order is reversed because notes are desplay in descending order
+
       thirdNote.save()
-        .then(secondNote.save().then(firstNote.save()))
+        .then(secondNote.save())
+        .then(firstNote.save())
         .catch(err => handleError(res, err, 422));
 
       return res.json({ token: `Bearer ${token}` });

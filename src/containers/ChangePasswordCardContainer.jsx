@@ -16,7 +16,6 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => ({
   onSubmit: data => dispatch(changePassword(data)),
   onForgotClick: () => dispatch(openModal('forgotpassword')),
-
 });
 
 
