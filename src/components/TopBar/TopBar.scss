@@ -16,14 +16,24 @@
   align-items: center;
   color: accent;
   position: absolute;
+  background: white;
+  height: 56px;
+  z-index: 3;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  @media mobile {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .tagText {
   display: block;
   margin: 0;
+  @media mobile {
+    font-size: 1rem;
+  }
 }
 
 .topBar {

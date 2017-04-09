@@ -66,5 +66,4 @@ TopBar.propTypes = {
   openSignUpModal: PropTypes.func.isRequired,
   isInSearchMode: PropTypes.bool.isRequired,
   tag: PropTypes.string,
-  
 };
