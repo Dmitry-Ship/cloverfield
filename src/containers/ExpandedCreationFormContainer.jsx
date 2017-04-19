@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import React from 'react';
-import CreationForm from '../components/CreationForm';
+import ExpandedCreationForm from '../components/ExpandedCreationForm';
 import { createNote } from '../actions/noteActions';
-import { openModal } from '../actions/UIActions';
+import { openModal, closeModal } from '../actions/UIActions';
 import { getTagsSuggestions } from '../reducers/noteReducer';
 
 const mapStateToProps = (store, ownProps) => ({
@@ -17,16 +17,16 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   onSubmit: note => dispatch(createNote(note)),
   expandImage: (images, i) => dispatch(openModal(images, i)),
-  expand: () => dispatch(openModal('creationform')),
+  closeModal: () => dispatch(closeModal()),
 });
 
-const CreationFormContainer = ({ query, images, ...rest }) => {
+const ExpandedCreationFormContainer = ({ query, images, ...rest }) => {
   if (query || images) {
     return null;
   }
   return (
-    <CreationForm {...rest} />
+    <ExpandedCreationForm {...rest} />
   );
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreationFormContainer));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ExpandedCreationFormContainer));

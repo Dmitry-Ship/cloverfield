@@ -23,7 +23,6 @@ import ProtectedRoute from './components/routes/ProtectedRoute';
 import PublicRoute from './components/routes/PublicRoute';
 
 import TopBarContainer from './containers/TopBarContainer';
-import ModalsContainer from './containers/ModalsContainer.jsx';
 import LightBoxContainer from './containers/LightBoxContainer.jsx';
 import ExpandedNoteContainer from './containers/ExpandedNoteContainer.jsx';
 import ExpandedNote from './components/ExpandedNote';
@@ -59,7 +58,6 @@ class Routes extends Component {
     return (
         <Layout >
           <TopBarContainer />
-          <ModalsContainer />
           <LightBoxContainer />
           <Switch location={isModal ? this.previousLocation : location} >
             <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
@@ -68,8 +66,7 @@ class Routes extends Component {
             <ProtectedRoute path="/search/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
             <ProtectedRoute path="/search/images/:images" component={MainPage} isLoggedIn={isLoggedIn} />
             <ProtectedRoute path="/search/:query" component={MainPage} isLoggedIn={isLoggedIn} />
-            <ProtectedRoute path="/search" component={MainPage} isLoggedIn={isLoggedIn} />
-            
+            <ProtectedRoute path="/search" component={MainPage} isLoggedIn={isLoggedIn} />      
             <Route path="/about" component={AboutPage} />
             <ProtectedRoute path="/profile" component={ViewProfilePage} isLoggedIn={isLoggedIn} />
             <ProtectedRoute path="/editprofile" component={EditProfilePage} isLoggedIn={isLoggedIn} />

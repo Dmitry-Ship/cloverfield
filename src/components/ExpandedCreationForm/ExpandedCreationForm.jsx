@@ -1,29 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import Textarea from 'react-textarea-autosize';
-
+import Icon from '../basic/Icon';
 import styles, {
   form,
   title,
   body,
   tagArea,
+  button,
   wrapper,
+  iconBack,
   submition,
-  expandedFormTrigger,
-  noteActions,
-  unfolded } from './CreationForm.scss';
+  noteActions } from './ExpandedCreationForm.scss';
 
 import NoteActions from '../NoteActions';
 import TagArea from '../TagArea';
 import Button from '../basic/Button';
 import AttachedImages from '../basic/AttachedImages';
-import Icon from '../basic/Icon';
 
-
-export default class CreationForm extends Component {
+export default class ExpandedCreationForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      className: form,
       titleText: '',
       bodyText: '',
       color: props.color || 'white',
@@ -31,8 +28,6 @@ export default class CreationForm extends Component {
       imageFiles: [],
       tags: props.tag ? [props.tag] : [],
     };
-    this.handleFocus = this.handleFocus.bind(this);
-    this.handleClickOut = this.handleClickOut.bind(this);
     this.create = this.create.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
@@ -43,17 +38,10 @@ export default class CreationForm extends Component {
     this.deletePreview = this.deletePreview.bind(this);
   }
 
-  componentDidMount() {
-    document.body.addEventListener('click', this.handleClickOut);
-  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ tags: nextProps.tag ? [nextProps.tag] : [] });
     if (nextProps.color) { this.setState({ color: nextProps.color }); }
-  }
-
-  componentWillUnmount() {
-    document.body.removeEventListener('click', this.handleClickOut);
   }
 
   setColor(value) {
@@ -98,10 +86,6 @@ export default class CreationForm extends Component {
       }
     }
 
-    // if (imageFiles.length > 0) {
-    //   formData.append('note-image', imageFiles, imageFiles.name);
-    // }
-
     this.props.onSubmit(formData);
 
     this.setState({
@@ -135,50 +119,39 @@ export default class CreationForm extends Component {
     this.setState({ titleText: e.target.value });
   }
 
-  handleFocus() {
-    this.setState({ className: unfolded });
-  }
-
-  handleClickOut(e) {
-    if (e.target.parentNode !== this.theForm) this.setState({ className: form });
-  }
-
   render() {
-    const { titlePlaceholder, bodyPlaceholder, tagsSuggestions, expand } = this.props;
-    const { bodyText, titleText, className, color, previews } = this.state;
+    const { titlePlaceholder, bodyPlaceholder, tagsSuggestions, closeModal } = this.props;
+    const { bodyText, titleText, color, previews } = this.state;
+
     return (
-      <div>
-        <div
-          className={wrapper}
-          onClick={this.handleFocus}
-          ref={c => this.theForm = c}
+      <div className={`${wrapper} ${styles[color]}`} >
+        <Icon name="arrow_back" className={iconBack} onClick={closeModal} />
+        <form
+          encType="multipart/form-data"
+          className={form}
+          onSubmit={this.create}
         >
-          <form
-            encType="multipart/form-data"
-            className={`${className} ${styles[color]}`}
-            onSubmit={this.create}
-          >
-            {previews && <AttachedImages
-              expandImage={this.props.expandImage}
-              onDelete={this.deletePreview}
-              images={previews}
-            />}
+          {previews && <AttachedImages
+            expandImage={this.props.expandImage}
+            onDelete={this.deletePreview}
+            images={previews}
+          />}
 
-            <Textarea
-              className={title}
-              onChange={this.handleTitleChange}
-              value={titleText}
-              placeholder={titlePlaceholder}
-            />
+          <Textarea
+            className={title}
+            onChange={this.handleTitleChange}
+            value={titleText}
+            placeholder={titlePlaceholder}
+          />
 
-            <Textarea
-              className={body}
-              onChange={this.handleBodyChange}
-              value={bodyText}
-              placeholder={bodyPlaceholder}
-            />
+          <Textarea
+            className={body}
+            onChange={this.handleBodyChange}
+            value={bodyText}
+            placeholder={bodyPlaceholder}
+          />
 
-
+          <div className={`${submition} ${styles[color]}`} >
             <TagArea
               className={tagArea}
               onAddTag={this.handleAddTag}
@@ -186,37 +159,32 @@ export default class CreationForm extends Component {
               suggestions={tagsSuggestions(this.state.tags)}
               tags={this.state.tags}
             />
-            <div className={submition} >
-              <NoteActions
-                color={color}
-                className={noteActions}
-                onSetColor={this.setColor}
-                onChange={this.handleImage}
-                id="CHECK"
-              >
-                <Button kind="secondary" >Done</Button>
-              </NoteActions>
-            </div>
-          </form>
-        </div>
-          <div className={expandedFormTrigger} onClick={expand}>
-            <Icon name="mode_edit" />
+            <NoteActions
+              color={color}
+              className={noteActions}
+              onSetColor={this.setColor}
+              onChange={this.handleImage}
+              id="CHECK"
+            />
+            <Button className={button} kind="secondary" >Done</Button>
           </div>
+        </form>
       </div>
     );
   }
 }
 
-CreationForm.defaultProps = {
+ExpandedCreationForm.defaultProps = {
   color: 'white',
   titlePlaceholder: 'Title',
   bodyPlaceholder: 'Take a note',
 };
 
-CreationForm.propTypes = {
+ExpandedCreationForm.propTypes = {
   tagsSuggestions: PropTypes.func,
   titlePlaceholder: PropTypes.string,
   bodyPlaceholder: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   expandImage: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };

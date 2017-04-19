@@ -7,6 +7,7 @@ import styles, {
   content,
   actions,
   wrapper,
+  tagArea,
   iconBack,
   icon } from './ExpandedNote.scss';
 import NoteActions from '../NoteActions';
@@ -127,27 +128,30 @@ export default class ExpandedNote extends Component {
             />
 
           </div>
+
+          <div className={`${actions} ${styles[note.color]}`} >
+
             <TagArea
+              className={tagArea}
               onDeleteTag={onDeleteTag}
               tags={note.tags}
               suggestions={this.props.tagsSuggestions}
               onAddTag={onAddTag}
             />
-
-          <NoteActions
-            className={actions}
-            color={note.color}
-            onSetColor={onSetColor}
-            onChange={this.handleImage}
-            id={note._id}
-          >
-  
-            <Icon
-              className={icon}
-              name="delete"
-              onClick={() => { onDelete(); history.goBack() }}
-            />
-          </NoteActions>
+            <NoteActions
+              color={note.color}
+              onSetColor={onSetColor}
+              onChange={this.handleImage}
+              id={note._id}
+            >
+    
+              <Icon
+                className={icon}
+                name="delete"
+                onClick={() => { onDelete(); history.goBack(); }}
+              />
+            </NoteActions>
+          </div>
         </div>
       </div>
     );

@@ -54,6 +54,7 @@ export const createNote = note => (dispatch) => {
   axios.post(notesURL, note, setAuthHeader())
     .then(res => dispatch(createNoteSuccess(res.data)))
     .catch(err => dispatch(createNoteFailure(err.response.data)));
+  dispatch({ type: types.CLOSE_MODAL_SUCCESS });
 };
 
 const editNoteSuccess = (updatedNote, prop) => ({

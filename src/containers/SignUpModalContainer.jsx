@@ -22,4 +22,5 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     });
 };
 
+
 export default withRouter(connect(mapStateToProps, null, mergeProps)(SignUpModal));

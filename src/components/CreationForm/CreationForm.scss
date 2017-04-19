@@ -1,23 +1,48 @@
 @value breakPoints: "../../styles/breakPoints.scss";
 @value colors: "../../styles/colors.scss";
 @value mobile from breakPoints;
-@value flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
+@value accent, flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
 
 .wrapper {
   width: 400px;
   margin: 0 auto 2.75rem auto;
   @media mobile {
-    width: 100%;
+    display: none;
+  }
+}
+
+.expandedFormTrigger {
+  display: none;
+  @media mobile {
+    composes: level-3 from 'styles/shadows.scss';
+    display: block;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    position: fixed;
+    background: accent;
+    z-index: 2;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    i {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 
 .form {
-  composes: level-1 from 'styles/shadows.scss';
+  composes: level-1 from 'styles/shadows.scss';  
   lost-utility: clearfix;
   transition: background 150ms ease-in-out;
 }
 
 .unfolded {
+  // display: none;
   composes: form;
   .title {
     display: block;
@@ -36,14 +61,14 @@
   border: none;
   font-size: 1.3rem;
   padding: 15px;
-  display: block;
+  // display: block;
   word-wrap: break-word;
   resize: none;
   overflow: hidden;
   background: transparent;
   &::-webkit-input-placeholder {
-    color: rgba(black, .3);
   }
+
 }
 
 .title {

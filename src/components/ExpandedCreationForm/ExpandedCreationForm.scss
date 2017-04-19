@@ -1,0 +1,112 @@
+@value breakPoints: "../../styles/breakPoints.scss";
+@value colors: "../../styles/colors.scss";
+@value mobile from breakPoints;
+@value flat_wet_asphalt, note_green, note_red, note_yellow, note_blue, note_grey, note_orange, note_teal from colors;
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+  padding-top: 4rem;
+  padding-bottom: 7.5rem;
+  height: 100vh;
+  max-height: 100vh;
+  margin: 0 auto 2.75rem auto;
+  overflow-y: auto;
+}
+
+.form {
+  lost-utility: clearfix;
+  width: 100%;
+  transition: background 150ms ease-in-out;
+}
+
+.button {
+  margin:  0 auto 1rem auto;
+  display: block;
+  width: 90%;
+}
+
+.submition {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.iconBack {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  font-size: 3rem;
+  cursor: pointer;
+  color: rgba(black, 0.5);
+  &:hover {
+    color: black;
+  }
+}
+
+.field {
+  font-size: 1rem;
+  width: 100%;
+  border: none;
+  padding: 15px;
+  display: block;
+  word-wrap: break-word;
+  resize: none;
+  overflow: hidden;
+  background: transparent;
+  &::-webkit-input-placeholder {
+    color: rgba(black, .3);
+  }
+}
+
+.title {
+  composes: field;
+  font-weight: bold;
+}
+
+.body {
+  composes: field;
+}
+
+.tagArea {
+  padding: 0 1.5em;
+}
+
+.noteActions {
+  line-height: 30px;
+  margin-bottom: 20px;
+}
+
+.red {
+  background: note_red;
+}
+
+.orange {
+  background: note_orange;
+}
+
+.yellow {
+  background: note_yellow;
+}
+
+.grey {
+  background: note_grey;
+}
+
+.blue {
+  background: note_blue;
+}
+
+.teal {
+  background: note_teal;
+}
+
+.green {
+  background: note_green;
+}
+
+.white {
+  background: white;
+}

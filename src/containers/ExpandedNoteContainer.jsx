@@ -24,8 +24,6 @@ const mapStateToProps = (store, ownProps) => ({
   id: ownProps.match.params.noteId,
   isFetchingNote: store.noteReducer.isFetchingNote,
   tagsSuggestions: getTagsSuggestions(store, getNote(store, ownProps.match.params.noteId).tags),
-
-  
 });
 
 
