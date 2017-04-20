@@ -3,8 +3,10 @@ import { withRouter } from 'react-router-dom';
 import React from 'react';
 import ExpandedCreationForm from '../components/ExpandedCreationForm';
 import { createNote } from '../actions/noteActions';
-import { openModal, closeModal } from '../actions/UIActions';
+import { openModal, closeForm } from '../actions/UIActions';
 import { getTagsSuggestions } from '../reducers/noteReducer';
+import { getIsFormExpanded } from '../reducers';
+
 
 const mapStateToProps = (store, ownProps) => ({
   tagsSuggestions: tags => getTagsSuggestions(store, tags),
@@ -12,16 +14,21 @@ const mapStateToProps = (store, ownProps) => ({
   color: ownProps.match.params.color,
   query: ownProps.match.params.query,
   images: ownProps.match.params.images,
+  isExpanded: getIsFormExpanded(store),
 });
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: note => dispatch(createNote(note)),
   expandImage: (images, i) => dispatch(openModal(images, i)),
-  closeModal: () => dispatch(closeModal()),
+  closeForm: () => dispatch(closeForm()),
 });
 
-const ExpandedCreationFormContainer = ({ query, images, ...rest }) => {
+const ExpandedCreationFormContainer = ({ query, images, isExpanded, ...rest }) => {
   if (query || images) {
+    return null;
+  }
+  if (!isExpanded) {
+    console.log(isExpanded)
     return null;
   }
   return (

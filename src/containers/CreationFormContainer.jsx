@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import React from 'react';
 import CreationForm from '../components/CreationForm';
 import { createNote } from '../actions/noteActions';
-import { openModal } from '../actions/UIActions';
+import { expandForm, openModal } from '../actions/UIActions';
 import { getTagsSuggestions } from '../reducers/noteReducer';
 
 const mapStateToProps = (store, ownProps) => ({
@@ -17,7 +17,7 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   onSubmit: note => dispatch(createNote(note)),
   expandImage: (images, i) => dispatch(openModal(images, i)),
-  expand: () => dispatch(openModal('creationform')),
+  expand: () => dispatch(expandForm()),
 });
 
 const CreationFormContainer = ({ query, images, ...rest }) => {

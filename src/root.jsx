@@ -25,6 +25,8 @@ import PublicRoute from './components/routes/PublicRoute';
 import TopBarContainer from './containers/TopBarContainer';
 import LightBoxContainer from './containers/LightBoxContainer.jsx';
 import ExpandedNoteContainer from './containers/ExpandedNoteContainer.jsx';
+import ModalsContainer from './containers/ModalsContainer.jsx';
+
 import ExpandedNote from './components/ExpandedNote';
 
 
@@ -59,6 +61,8 @@ class Routes extends Component {
         <Layout >
           <TopBarContainer />
           <LightBoxContainer />
+          <ModalsContainer />
+          <Route component={ModalsContainer} />
           <Switch location={isModal ? this.previousLocation : location} >
             <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
             <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />

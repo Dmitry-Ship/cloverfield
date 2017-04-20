@@ -21,8 +21,19 @@ const lightBox = (state = { index: 0, images: [] }, action) => {
   }
 };
 
+const isFormExpanded = (state = false, action) => {
+  switch (action.type) {
+    case types.EXPAND_FORM_SUCCESS:
+      return true;
+    case types.CLOSE_FORM_SUCCESS:
+      return false;
+    default: return state;
+  }
+};
+
 export const getModal = store => store.modal;
 export const getImages = store => store.lightBox.images;
 export const getImageIndex = store => store.lightBox.index;
+export const getIsFormExpanded = store => store.isFormExpanded;
 
-export default combineReducers({ modal, lightBox });
+export default combineReducers({ modal, lightBox, isFormExpanded });

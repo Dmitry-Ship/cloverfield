@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import LoginModalContainer from './LoginModalContainer.jsx';
 import SignUpModalContainer from './SignUpModalContainer.jsx';
 import ForgotPasswordModalContainer from './ForgotPasswordModalContainer.jsx';
-import ExpandedCreationFormContainer from './ExpandedCreationFormContainer.jsx';
 
 
 import { getModal } from '../reducers';
@@ -20,8 +19,6 @@ const ModalsContainer = props => {
       return <SignUpModalContainer />;
     case 'forgotpassword':
       return <ForgotPasswordModalContainer />;
-    case 'creationform':
-      return <ExpandedCreationFormContainer />;
     default:
       return null;
   }

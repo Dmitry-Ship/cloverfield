@@ -19,3 +19,10 @@ export const closeLightBox = () => ({
   type: types.CLOSE_LIGHTBOX_SUCCESS,
 });
 
+export const expandForm = () => ({
+  type: types.EXPAND_FORM_SUCCESS,
+});
+
+export const closeForm = () => ({
+  type: types.CLOSE_FORM_SUCCESS,
+});

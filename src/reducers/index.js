@@ -16,6 +16,7 @@ export const getVisibleNotes = (state, tagText, color, images, query) => {
 export const getModal = store => fromUI.getModal(store.UIReducer);
 export const getImages = store => fromUI.getImages(store.UIReducer);
 export const getImageIndex = store => fromUI.getImageIndex(store.UIReducer);
+export const getIsFormExpanded = store => fromUI.getIsFormExpanded(store.UIReducer);
 
 export const getUser = store => fromUser.getUser(store.userReducer);
 export const getIsPasswordChanged = store => fromUser.getIsPasswordChanged(store.userReducer);

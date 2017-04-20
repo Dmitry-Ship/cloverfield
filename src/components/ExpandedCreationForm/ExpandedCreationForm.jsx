@@ -120,12 +120,12 @@ export default class ExpandedCreationForm extends Component {
   }
 
   render() {
-    const { titlePlaceholder, bodyPlaceholder, tagsSuggestions, closeModal } = this.props;
+    const { titlePlaceholder, bodyPlaceholder, tagsSuggestions, closeForm } = this.props;
     const { bodyText, titleText, color, previews } = this.state;
 
     return (
       <div className={`${wrapper} ${styles[color]}`} >
-        <Icon name="arrow_back" className={iconBack} onClick={closeModal} />
+        <Icon name="arrow_back" className={iconBack} onClick={closeForm} />
         <form
           encType="multipart/form-data"
           className={form}
@@ -186,5 +186,5 @@ ExpandedCreationForm.propTypes = {
   bodyPlaceholder: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   expandImage: PropTypes.func.isRequired,
-  closeModal: PropTypes.func.isRequired,
+  closeForm: PropTypes.func.isRequired,
 };
