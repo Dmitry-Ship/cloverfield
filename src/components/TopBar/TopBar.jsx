@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 import { topBar, logo, loginButton, iconWrapper, icon, tagIndicator, tagText } from './TopBar.scss';
@@ -29,10 +30,9 @@ const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearch
           </Link>
           <h3 className={tagText} >TAG: {tag}</h3>
         </div>
-      )
-    } else {
-      return <Logo className={logo} />;
+      );
     }
+    return <Logo className={logo} />;
   }
   return (
     <header style={style} className={topBar} >

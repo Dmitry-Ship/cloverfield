@@ -28,7 +28,6 @@ const ExpandedCreationFormContainer = ({ query, images, isExpanded, ...rest }) =
     return null;
   }
   if (!isExpanded) {
-    console.log(isExpanded)
     return null;
   }
   return (

@@ -27,8 +27,9 @@ describe('<Tag />', () => {
 
   it('renders tagText prop correctly', () => {
     const wrapper = shallow(<Tag tagText={tagText} onDeleteTag={onDeleteTag} />);
-    expect(wrapper.find(Link).text()).to.equal(`/tags/${tagText}`);
+    expect(wrapper.find(Link).text()).to.equal(tagText);
   });
-  // it('deletes tag on click event');
+  it('deletes tag on click event');
 });
+
 

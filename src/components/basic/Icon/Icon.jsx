@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Icon = ({ children, name, className, ...rest }) => (
   <i {...rest} className={`${className} material-icons`} >
@@ -6,7 +7,6 @@ const Icon = ({ children, name, className, ...rest }) => (
     {children}
   </i>
 );
-
 
 export default Icon;
 

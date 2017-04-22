@@ -8,7 +8,8 @@
     "start:dev": "nodemon --ignore ./src",
     "start": "npm run build && cross-env NODE_ENV=production node server.js",
     "build": "rimraf ./build && webpack -p --colors --progress --config webpack.config.production.js",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,10 @@
   },
   "homepage": "https://github.com/Dmitry-Ship/cloverfield#readme",
   "devDependencies": {
+    "babel-jest": "^19.0.0",
     "chai": "^3.5.0",
     "css-modules-require-hook": "^4.0.5",
-    "enzyme": "^2.7.1",
+    "enzyme": "^2.8.2",
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
@@ -33,7 +35,7 @@
     "jest": "^19.0.2",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
-    "react-addons-test-utils": "^15.4.2",
+    "react-test-renderer": "^15.5.4",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.15.0"
   },
@@ -68,12 +70,14 @@
     "postcss": "^5.2.14",
     "postcss-color-function": "^3.0.0",
     "postcss-loader": "^1.1.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.1",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-masonry-component": "^5.0.3",
     "react-redux": "^5.0.1",
-    "react-router-dom": "^4.0.0",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
     "react-textarea-autosize": "^4.0.5",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
@@ -83,7 +87,7 @@
     "serve-favicon": "^2.3.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.8",
-    "webpack": "^2.2.1"
+    "webpack": "^2.4.1"
   },
   "jest": {
     "moduleNameMapper": {

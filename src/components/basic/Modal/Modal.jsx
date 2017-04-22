@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import { wrapper, content, icon } from './Modal.scss';
 import Icon from '../Icon';
 

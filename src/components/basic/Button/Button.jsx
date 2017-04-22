@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import styles from './Button.scss';
 
@@ -13,7 +14,7 @@ const Button = ({
   children,
   ...rest }) => (
     <button {...rest} className={`${styles[kind]} ${styles[size]} ${className}`} >
-      {isLoading ? <div className={styles.loader} ></div> : children}
+      {isLoading ? <div className={styles.loader} /> : children}
       
       {iconName && <Icon name={iconName} />}
     </button>

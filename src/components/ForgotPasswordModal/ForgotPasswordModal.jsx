@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Heading from '../basic/Heading';
 import Modal from '../basic/Modal';

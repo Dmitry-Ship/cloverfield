@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should display an icon when icon name is provided 1`] = `
+<button
+  className="primary normal "
+  disabled={false}
+  onClick={null}
+  type="submit"
+>
+  Submit
+  <i
+    className=" material-icons"
+  >
+    face
+  </i>
+</button>
+`;
+
+exports[`<Button /> should display children when children are provided 1`] = `
+<button
+  className="primary normal "
+  disabled={false}
+  onClick={null}
+  type="submit"
+>
+  click me
+</button>
+`;
+
+exports[`<Button /> should display childrenu when children are provided 1`] = `
+<button
+  className="primary normal "
+  disabled={false}
+  onClick={null}
+  type="submit"
+>
+  click me
+</button>
+`;
+
+exports[`<Button /> should display loader when isLoading is true 1`] = `
+<button
+  className="primary normal "
+  disabled={false}
+  onClick={null}
+  type="submit"
+>
+  <div
+    className="loader"
+  />
+</button>
+`;
+
+exports[`<Button /> should render initial state 1`] = `
+<button
+  className="primary normal "
+  disabled={false}
+  onClick={null}
+  type="submit"
+>
+  Submit
+</button>
+`;

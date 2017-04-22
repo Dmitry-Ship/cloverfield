@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import { shown, sideMenu, content, menuItem, icon, wrapper } from './SideMenu.scss';
 

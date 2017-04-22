@@ -12,7 +12,6 @@ router.post('/', (req, res) => {
 
   const { email, password } = req.body;
 
-
   User.findOne({ email })
     .then((user) => {
       if (!user) {
