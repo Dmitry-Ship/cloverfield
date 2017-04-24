@@ -19,7 +19,6 @@ import Button from '../basic/Button';
 import AttachedImages from '../basic/AttachedImages';
 import Icon from '../basic/Icon';
 
-
 export default class CreationForm extends Component {
   constructor(props) {
     super(props);

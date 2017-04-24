@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { openModal } from '../actions/UIActions';
-
 import GetStarted from '../components/GetStarted';
 
 const mapDispatchToProps = dispatch => ({

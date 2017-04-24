@@ -5,7 +5,6 @@ import { page } from './AboutPage.scss';
 const AboutPage = () => (
   <div className={page} >
     <TechCard />
-
   </div>
 );
 

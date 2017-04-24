@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-
 import { topBar, logo, loginButton, iconWrapper, icon, tagIndicator, tagText } from './TopBar.scss';
 import NavBar from '../basic/NavBar';
 import Logo from '../basic/Logo';

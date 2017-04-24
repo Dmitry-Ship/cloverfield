@@ -18,11 +18,11 @@ const byId = (state = {}, action) => {
       delete newState[id];
       return newState;
     }
-    
-    /// optimistic update
+
+    // optimistic update
     case types.EDIT_NOTE:
       return { ...state, [optID]: { ...state[optID], [prop]: value } };
-    /// optimistic update
+    // optimistic update
     case types.EDIT_NOTE_SUCCESS:
     case types.ADD_TAG_SUCCESS:
     case types.ADD_IMAGE_SUCCESS:
@@ -79,7 +79,7 @@ const isFetchingNote = (state = false, action) => {
       return false;
     default: return state;
   }
-}
+};
 
 const note = (state = { images: [], tags: [] }, action) => {
   switch (action.type) {

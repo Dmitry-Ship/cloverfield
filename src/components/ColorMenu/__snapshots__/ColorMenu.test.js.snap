@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ColorMenu /> should render correctly 1`] = `
+<i
+  className="colorMenu null material-icons"
+>
+  palette
+  <div
+    className="top popupMenu"
+  >
+    <div
+      className="palette"
+    >
+      <span
+        className="white chosen"
+        onClick={[Function]}
+      />
+      <span
+        className="red "
+        onClick={[Function]}
+      />
+      <span
+        className="orange "
+        onClick={[Function]}
+      />
+      <span
+        className="yellow "
+        onClick={[Function]}
+      />
+      <span
+        className="grey "
+        onClick={[Function]}
+      />
+      <span
+        className="blue "
+        onClick={[Function]}
+      />
+      <span
+        className="teal "
+        onClick={[Function]}
+      />
+      <span
+        className="green "
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</i>
+`;
+
+exports[`<ColorMenu /> should render correctly when color passed in 1`] = `
+<i
+  className="colorMenu null material-icons"
+>
+  palette
+  <div
+    className="top popupMenu"
+  >
+    <div
+      className="palette"
+    >
+      <span
+        className="white "
+        onClick={[Function]}
+      />
+      <span
+        className="red chosen"
+        onClick={[Function]}
+      />
+      <span
+        className="orange "
+        onClick={[Function]}
+      />
+      <span
+        className="yellow "
+        onClick={[Function]}
+      />
+      <span
+        className="grey "
+        onClick={[Function]}
+      />
+      <span
+        className="blue "
+        onClick={[Function]}
+      />
+      <span
+        className="teal "
+        onClick={[Function]}
+      />
+      <span
+        className="green "
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</i>
+`;
+
+exports[`<ColorMenu /> should render correctly when position passed in 1`] = `
+<i
+  className="colorMenu null material-icons"
+>
+  palette
+  <div
+    className="top popupMenu"
+  >
+    <div
+      className="palette"
+    >
+      <span
+        className="white chosen"
+        onClick={[Function]}
+      />
+      <span
+        className="red "
+        onClick={[Function]}
+      />
+      <span
+        className="orange "
+        onClick={[Function]}
+      />
+      <span
+        className="yellow "
+        onClick={[Function]}
+      />
+      <span
+        className="grey "
+        onClick={[Function]}
+      />
+      <span
+        className="blue "
+        onClick={[Function]}
+      />
+      <span
+        className="teal "
+        onClick={[Function]}
+      />
+      <span
+        className="green "
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</i>
+`;

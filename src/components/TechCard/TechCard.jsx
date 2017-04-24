@@ -17,11 +17,11 @@ import CSSModules from './logos/css-modules-logo.png';
 import PostCSS from './logos/postcss.svg';
 
 const TechCard = () => {
-  const techs = [Nodejs, ReactLogo, Sass, Git, Webpack, Redux, MongoDB, Express, ES6, Babel, CSSModules, PostCSS];
+  const logos = [Nodejs, ReactLogo, Sass, Git, Webpack, Redux, MongoDB, Express, ES6, Babel, CSSModules, PostCSS];
   return (
     <div className={card}>
       <Heading>Here is the list of technologies I was using during writing this app</Heading>
-      {techs.map((item, i) => <img className={logo} key={i} src={item} alt="" />)}
+      {logos.map((item, i) => <img className={logo} key={i} src={item} alt="" />)}
     </div>
   );
 };

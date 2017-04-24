@@ -9,8 +9,6 @@ const mapStateToProps = store => ({
   index: getImageIndex(store),
 });
 
-
-
 const mapDispatchToProps = dispatch => ({
   closeLightBox: () => dispatch(closeLightBox()),
 });

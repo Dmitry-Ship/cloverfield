@@ -1,8 +1,6 @@
 import React from 'react';
 import { page, card } from './EditProfilePage.scss';
-
 import Heading from '../../basic/Heading';
-
 import EditProfileFormContainer from '../../../containers/EditProfileFormContainer';
 import ChangePasswordCardContainer from '../../../containers/ChangePasswordCardContainer';
 

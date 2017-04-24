@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PopUpMenu /> render children when passed in 1`] = `
+<div
+  className="top "
+>
+  Hello World
+</div>
+`;
+
+exports[`<PopUpMenu /> should render correctly 1`] = `
+<div
+  className="top "
+/>
+`;
+
+exports[`<PopUpMenu /> should render correctly with position passed in 1`] = `
+<div
+  className="top "
+/>
+`;

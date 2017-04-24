@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-
-import { lightBox, middle, next, previous, wrapper } from './LightBox.scss';
+import { lightBox, middle, next, previous } from './LightBox.scss';
 
 export default class LightBox extends Component {
   constructor(props) {

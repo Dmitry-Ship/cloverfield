@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import Note from '../components/Note';
 import { openLightBox } from '../actions/UIActions';
-
 import { getTagsSuggestions } from '../reducers/noteReducer';
 
 import {

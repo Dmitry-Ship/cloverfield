@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AttachedImages /> should render correctly 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="singleImage null"
+  >
+    <i
+      className="deleteIcon material-icons"
+      onClick={[Function]}
+    >
+      close
+    </i>
+    <img
+      alt=""
+      className="image"
+      onClick={[Function]}
+      src="image.jpg"
+    />
+  </div>
+  <div
+    className="singleImage null"
+  >
+    <i
+      className="deleteIcon material-icons"
+      onClick={[Function]}
+    >
+      close
+    </i>
+    <img
+      alt=""
+      className="image"
+      onClick={[Function]}
+      src="photo.jpg"
+    />
+  </div>
+</div>
+`;

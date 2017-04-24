@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import Icon from '../Icon';
-
 import { defaultLabel, heading, image, button, deleteIcon } from './FormFileUploader.scss';
 
 const FormFileUploader = ({
@@ -11,8 +9,7 @@ const FormFileUploader = ({
       onDeleteImage,
       className,
       text,
-      ...rest,
-    }) => {
+      ...rest }) => {
   const handleUpload = (e) => {
     const theImage = e.target.files[0];
     const reader = new FileReader();
@@ -49,7 +46,6 @@ const FormFileUploader = ({
           onChange={handleUpload}
         />
       </label>
-
     </div>
   );
 };
@@ -61,7 +57,6 @@ FormFileUploader.defaultProps = {
   text: '',
   accept: 'image/*',
   id: 'fileUploader',
-  name: 'image',
   required: false,
 };
 
@@ -69,10 +64,8 @@ FormFileUploader.propTypes = {
   preview: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string,
-  name: PropTypes.string,
   text: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onDeleteImage: PropTypes.func.isRequired,
-  required: PropTypes.bool,
   accept: PropTypes.string,
 };

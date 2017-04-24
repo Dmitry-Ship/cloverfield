@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import styles from './PopUpMenu.scss';
-
 
 const PopUpMenu = ({ className, children, position }) => (
   <div className={`${styles[position]} ${className}`} >

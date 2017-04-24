@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ExpandedNote from '../components/ExpandedNote';
 import Loader from '../components/basic/Loader';
-
 import { openLightBox } from '../actions/UIActions';
-
-
 import { getTagsSuggestions, getNote } from '../reducers/noteReducer';
 import { getIsFetching } from '../reducers';
 

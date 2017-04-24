@@ -35,12 +35,12 @@ export default ColorMenu;
 
 ColorMenu.defaultProps = {
   color: 'white',
-  className: '',
+  className: null,
   position: 'top',
 };
 
 ColorMenu.propTypes = {
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   onSetColor: PropTypes.func.isRequired,
   className: PropTypes.string,
   position: PropTypes.oneOf(['top', 'buttom', 'left', 'right', 'topRight']),

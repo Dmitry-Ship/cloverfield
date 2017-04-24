@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavBar /> render children when passed in 1`] = `
+<nav
+  className={null}
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexWrap": "nowrap",
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <a
+    className="active link"
+    href="/"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <div
+      className="content"
+    >
+      <i
+        className="icon material-icons"
+      >
+        home
+      </i>
+      <span
+        className="text"
+      >
+        Home
+      </span>
+    </div>
+  </a>
+  <a
+    className="link"
+    href="/about"
+    onClick={[Function]}
+    style={undefined}
+  >
+    <div
+      className="content"
+    >
+      <i
+        className="icon material-icons"
+      >
+        info_outline
+      </i>
+      <span
+        className="text"
+      >
+        Stack
+      </span>
+    </div>
+  </a>
+  Hello World
+</nav>
+`;
+
+exports[`<NavBar /> should render correctly 1`] = `
+<nav
+  className={null}
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexWrap": "nowrap",
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <a
+    className="active link"
+    href="/"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <div
+      className="content"
+    >
+      <i
+        className="icon material-icons"
+      >
+        home
+      </i>
+      <span
+        className="text"
+      >
+        Home
+      </span>
+    </div>
+  </a>
+  <a
+    className="link"
+    href="/about"
+    onClick={[Function]}
+    style={undefined}
+  >
+    <div
+      className="content"
+    >
+      <i
+        className="icon material-icons"
+      >
+        info_outline
+      </i>
+      <span
+        className="text"
+      >
+        Stack
+      </span>
+    </div>
+  </a>
+</nav>
+`;

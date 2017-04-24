@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { card, field } from './GeneralInfoCard.scss';
 
 const GeneralInfoCard = ({ tags, notes, images, className }) => (
@@ -14,7 +13,7 @@ const GeneralInfoCard = ({ tags, notes, images, className }) => (
 export default GeneralInfoCard;
 
 GeneralInfoCard.defaultProps = {
-  className: '',
+  className: null,
 };
 
 GeneralInfoCard.propTypes = {

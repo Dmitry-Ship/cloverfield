@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> renders children when passed in 1`] = `
+<div
+  className="layout"
+>
+  Hello
+</div>
+`;
+
+exports[`<Layout /> should render correctly 1`] = `
+<div
+  className="layout"
+/>
+`;

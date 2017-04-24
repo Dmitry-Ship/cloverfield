@@ -10,7 +10,6 @@ const LoginModal = ({ closeModal, onForgotClick, onSignUpClick, ...rest }) => {
     <Modal closeModal={closeModal} >
       <Heading>Welcome back</Heading>
       <LoginForm {...rest} />
-
       <FancyLink to="#" onClick={onForgotClick} >Forgot your password?</FancyLink>
       <FancyLink to="#" onClick={onSignUpClick} >New to Cloverfield? Sign Up here.</FancyLink>
     </Modal>
@@ -18,3 +17,4 @@ const LoginModal = ({ closeModal, onForgotClick, onSignUpClick, ...rest }) => {
 };
 
 export default LoginModal;
+

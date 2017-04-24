@@ -26,7 +26,6 @@ export default class EditProfileForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.user.userpic)
     this.setState({
       fullName: nextProps.user.fullName,
       username: nextProps.user.username,

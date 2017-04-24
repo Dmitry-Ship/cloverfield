@@ -46,7 +46,6 @@ class Search extends Component {
 
     return (
       <div className={searchWrapper} >
-
         {this.props.isInSearchMode && <div className={wrapper} >
           <div className={filters} >
             {circles}
@@ -60,20 +59,17 @@ class Search extends Component {
             type="text"
             placeholder="Search for..."
           />
-            <NavLink to="/search/images/all" onClick={this.handleFilter} >
-              <div className={iconWrapper} >
-                <Icon name="image" className={icon} />
-              </div>
-            </NavLink>
+          <NavLink to="/search/images/all" onClick={this.handleFilter} >
+            <div className={iconWrapper} >
+              <Icon name="image" className={icon} />
+            </div>
+          </NavLink>
           <NavLink to={this.props.isInSearchMode ? '/' : '/search'} >
             <div className={iconWrapper} >
               <Icon name={this.props.isInSearchMode ? 'close' : 'search'} className={icon} />
             </div>
           </NavLink>
         </div>}
-
-
-
       </div>
     );
   }

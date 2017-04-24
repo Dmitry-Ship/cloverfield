@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GetStarted /> should render correctly 1`] = `
+<div
+  className="wrapper"
+>
+  <button
+    className="primary normal buttonLeft"
+    disabled={false}
+    onClick={[Function]}
+    type="submit"
+  >
+    Get started for free
+  </button>
+  <button
+    className="secondary normal buttonRight"
+    disabled={false}
+    onClick={[Function]}
+    type="submit"
+  >
+    I already have an account
+  </button>
+</div>
+`;

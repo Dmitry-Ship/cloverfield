@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GeneralInfoCard /> should render correctly 1`] = `
+<div
+  className="card null"
+>
+  <h2
+    className="field"
+  >
+    📝Notes: 
+    1
+  </h2>
+  <h2
+    className="field"
+  >
+    🖼️Images: 
+    1
+  </h2>
+  <h2
+    className="field"
+  >
+    🏷️Tags: 
+    1
+  </h2>
+</div>
+`;

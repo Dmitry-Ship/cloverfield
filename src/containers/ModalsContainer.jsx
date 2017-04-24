@@ -3,16 +3,14 @@ import { connect } from 'react-redux';
 import LoginModalContainer from './LoginModalContainer.jsx';
 import SignUpModalContainer from './SignUpModalContainer.jsx';
 import ForgotPasswordModalContainer from './ForgotPasswordModalContainer.jsx';
-
-
 import { getModal } from '../reducers';
 
 const mapStateToProps = store => ({
   modal: getModal(store),
 });
 
-const ModalsContainer = props => {
-  switch (props.modal) {
+const ModalsContainer = ({ modal }) => {
+  switch (modal) {
     case 'login':
       return <LoginModalContainer />;
     case 'signup':

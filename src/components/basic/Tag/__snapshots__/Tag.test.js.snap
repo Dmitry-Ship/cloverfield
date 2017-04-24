@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tag /> should render correctly 1`] = `
+<div
+  className="tag"
+>
+  <a
+    className="link"
+    href="/tags/hello"
+    onClick={[Function]}
+  >
+    hello
+  </a>
+  <span
+    className="icon"
+    onClick={[Function]}
+  >
+    ✕
+  </span>
+</div>
+`;

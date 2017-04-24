@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Loader /> should render bouncy loader 1`] = `
+<div
+  className="wrapper "
+>
+  <div
+    className="bouncy"
+  >
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+  </div>
+  <h2
+    className="loadingText"
+  >
+    
+  </h2>
+</div>
+`;
+
+exports[`<Loader /> should render clock loader 1`] = `
+<div
+  className="wrapper "
+>
+  <div
+    className="clock"
+  >
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+  </div>
+  <h2
+    className="loadingText"
+  >
+    
+  </h2>
+</div>
+`;
+
+exports[`<Loader /> should render correctly 1`] = `
+<div
+  className="wrapper "
+>
+  <div
+    className="spinny"
+  >
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+  </div>
+  <h2
+    className="loadingText"
+  >
+    
+  </h2>
+</div>
+`;
+
+exports[`<Loader /> should render spinny loader 1`] = `
+<div
+  className="wrapper "
+>
+  <div
+    className="spinny"
+  >
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+  </div>
+  <h2
+    className="loadingText"
+  >
+    
+  </h2>
+</div>
+`;
+
+exports[`<Loader /> should render text when passed in 1`] = `
+<div
+  className="wrapper "
+>
+  <div
+    className="spinny"
+  >
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+  </div>
+  <h2
+    className="loadingText"
+  >
+    hello world
+  </h2>
+</div>
+`;
+
+exports[`<Loader /> should render triple-dots loader 1`] = `
+<div
+  className="wrapper "
+>
+  <div
+    className="triple-dots"
+  >
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+    <span
+      className="dot"
+    />
+  </div>
+  <h2
+    className="loadingText"
+  >
+    
+  </h2>
+</div>
+`;

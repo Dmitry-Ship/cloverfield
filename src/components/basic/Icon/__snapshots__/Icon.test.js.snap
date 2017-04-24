@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Icon /> should render children when passed in 1`] = `
+<i
+  className=" material-icons"
+>
+  face
+  Hello World
+</i>
+`;
+
+exports[`<Icon /> should render correctly 1`] = `
+<i
+  className=" material-icons"
+>
+  face
+</i>
+`;

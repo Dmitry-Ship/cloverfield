@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LightBox /> should render correctly 1`] = `
+<div
+  className="lightBox"
+  onClick={[Function]}
+>
+  <img
+    alt=""
+    className="previous"
+    onClick={[Function]}
+    src="image.jpg"
+  />
+  <img
+    alt=""
+    className="middle"
+    onClick={[Function]}
+    src="photo.jpg"
+  />
+  <img
+    alt=""
+    className="next"
+    onClick={[Function]}
+    src="file.jpg"
+  />
+</div>
+`;

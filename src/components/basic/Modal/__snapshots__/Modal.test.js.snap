@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Modal /> should render correctly 1`] = `
+<div
+  className="wrapper"
+  onClick={[Function]}
+>
+  <div
+    className="content"
+  >
+    <i
+      className="icon material-icons"
+      onClick={[Function]}
+    >
+      close
+    </i>
+    Hello World
+  </div>
+</div>
+`;

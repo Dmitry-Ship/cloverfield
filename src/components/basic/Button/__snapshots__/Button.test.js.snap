@@ -27,17 +27,6 @@ exports[`<Button /> should display children when children are provided 1`] = `
 </button>
 `;
 
-exports[`<Button /> should display childrenu when children are provided 1`] = `
-<button
-  className="primary normal "
-  disabled={false}
-  onClick={null}
-  type="submit"
->
-  click me
-</button>
-`;
-
 exports[`<Button /> should display loader when isLoading is true 1`] = `
 <button
   className="primary normal "

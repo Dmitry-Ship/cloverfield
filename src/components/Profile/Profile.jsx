@@ -39,7 +39,7 @@ export default class Profile extends Component {
     return (
     <div className={`${profile} ${className}`} onClick={this.toggleMenu} ref={node => (this.wrapperRef = node)} >
       <Avatar className={avatar} src={user.userpic} />
-      <PopUpMenu className={this.state.isShown ? popUpMenu : null} position="bottom" >
+      <PopUpMenu className={this.state.isShown ? popUpMenu : null} position="bottomLeft" >
         <div className={item} >
           <Link to={profileRoute} className={link} >
             <span className={name} >{user.fullName || user.username}</span>
@@ -64,5 +64,8 @@ Profile.defaultProps = {
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
+  profileRoute: PropTypes.string,
+  editRoute: PropTypes.string,
   className: PropTypes.string,
 };
