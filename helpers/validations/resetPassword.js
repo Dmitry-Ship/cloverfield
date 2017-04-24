@@ -1,11 +1,11 @@
 const validateInput = (data) => {
   const errors = {};
 
-  if (data.password === '' || null) {
+  if (!data.password) {
     errors.password = 'you have to provide your new password';
   }
 
-  if (data.confirmPassword === '' || null) {
+  if (!data.confirmPassword) {
     errors.confirmPassword = 'you have to confirm your new password';
   }
 

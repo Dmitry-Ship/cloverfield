@@ -1,15 +1,15 @@
 const validateInput = (data) => {
   const errors = {};
 
-  if (data.username === '' || null) {
+  if (!data.username) {
     errors.username = 'you have to provide your username';
   }
 
-  if (data.email === '' || null) {
+  if (!data.email) {
     errors.email = 'you have to provide your email';
   }
 
-  if (data.password === '' || null) {
+  if (!data.password) {
     errors.password = 'you have to provide your password';
   }
 

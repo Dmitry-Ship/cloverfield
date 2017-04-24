@@ -1,11 +1,11 @@
 const validateInput = (data) => {
   const errors = {};
 
-  if (data.oldPassword === '' || null) {
+  if (!data.oldPassword) {
     errors.oldPassword = 'you have to provide your old password';
   }
 
-  if (data.newPassword === '' || null) {
+  if (!data.newPassword) {
     errors.newPassword = 'you have to provide your new password';
   }
 
