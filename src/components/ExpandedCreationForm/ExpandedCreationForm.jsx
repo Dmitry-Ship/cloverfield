@@ -182,10 +182,12 @@ ExpandedCreationForm.defaultProps = {
 };
 
 ExpandedCreationForm.propTypes = {
-  tagsSuggestions: PropTypes.func,
+  tagsSuggestions: PropTypes.func.isRequired,
   titlePlaceholder: PropTypes.string,
   bodyPlaceholder: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   expandImage: PropTypes.func.isRequired,
+  color: PropTypes.string,
+  tag: PropTypes.string,
   closeForm: PropTypes.func.isRequired,
 };

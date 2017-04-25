@@ -1,8 +1,6 @@
 import React from 'react';
-
 import Heading from '../basic/Heading';
 import { card, logo } from './TechCard.scss';
-
 import Nodejs from './logos/nodejs-icon.svg';
 import ReactLogo from './logos/react.svg';
 import Sass from './logos/sass-1.svg';

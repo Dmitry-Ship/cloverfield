@@ -25,7 +25,7 @@ describe('<AttachedImages />', () => {
 
     wrapper.find('Icon').first().simulate('click');
 
-    expect(onDelete.mock.calls[0][0]).toBe(images[0].id);
+    expect(onDelete).toBeCalledWith(images[0].id);
   });
 
   it('should call expandImage', () => {
@@ -35,7 +35,6 @@ describe('<AttachedImages />', () => {
 
     wrapper.find('img').first().simulate('click');
 
-    expect(expandImage.mock.calls[0][0]).toBe(images);
-    expect(expandImage.mock.calls[0][1]).toBe(0);
+    expect(expandImage).toBeCalledWith(images, 0);
   });
 });

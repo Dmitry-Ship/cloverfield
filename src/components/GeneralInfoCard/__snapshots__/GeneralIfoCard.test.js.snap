@@ -2,7 +2,7 @@
 
 exports[`<GeneralInfoCard /> should render correctly 1`] = `
 <div
-  className="card null"
+  className="card "
 >
   <h2
     className="field"

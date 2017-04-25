@@ -12,7 +12,7 @@ const Logo = ({ className, ...rest }) => (
 export default Logo;
 
 Logo.defaultProps = {
-  className: null,
+  className: '',
   to: '/',
 };
 

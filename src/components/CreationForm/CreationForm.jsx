@@ -98,10 +98,6 @@ export default class CreationForm extends Component {
       }
     }
 
-    // if (imageFiles.length > 0) {
-    //   formData.append('note-image', imageFiles, imageFiles.name);
-    // }
-
     this.props.onSubmit(formData);
 
     this.setState({
@@ -178,7 +174,6 @@ export default class CreationForm extends Component {
               placeholder={bodyPlaceholder}
             />
 
-
             <TagArea
               className={tagArea}
               onAddTag={this.handleAddTag}
@@ -214,9 +209,12 @@ CreationForm.defaultProps = {
 };
 
 CreationForm.propTypes = {
-  tagsSuggestions: PropTypes.func,
+  tagsSuggestions: PropTypes.func.isRequired,
   titlePlaceholder: PropTypes.string,
   bodyPlaceholder: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   expandImage: PropTypes.func.isRequired,
+  expand: PropTypes.func.isRequired,
+  color: PropTypes.string,
+  tag: PropTypes.string,
 };

@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NoteActions /> renders children when position passed in 1`] = `
+<div
+  className={undefined}
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexWrap": "nowrap",
+      "justifyContent": "space-around",
+    }
+  }
+>
+  <i
+    className="colorMenu icon material-icons"
+  >
+    palette
+    <div
+      className="topRight popupMenu"
+    >
+      <div
+        className="palette"
+      >
+        <span
+          className="white chosen"
+          onClick={[Function]}
+        />
+        <span
+          className="red "
+          onClick={[Function]}
+        />
+        <span
+          className="orange "
+          onClick={[Function]}
+        />
+        <span
+          className="yellow "
+          onClick={[Function]}
+        />
+        <span
+          className="grey "
+          onClick={[Function]}
+        />
+        <span
+          className="blue "
+          onClick={[Function]}
+        />
+        <span
+          className="teal "
+          onClick={[Function]}
+        />
+        <span
+          className="green "
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+  </i>
+  <div>
+    <label
+      className="icon label"
+      htmlFor="1"
+    >
+      <i
+        className="icon material-icons"
+      >
+        image
+      </i>
+    </label>
+    <input
+      accept="image/*"
+      id="1"
+      multiple={true}
+      name="image"
+      onChange={[Function]}
+      required={false}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+      type="file"
+    />
+  </div>
+  Hello World
+</div>
+`;
+
+exports[`<NoteActions /> should render correctly 1`] = `
+<div
+  className={undefined}
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexWrap": "nowrap",
+      "justifyContent": "space-around",
+    }
+  }
+>
+  <i
+    className="colorMenu icon material-icons"
+  >
+    palette
+    <div
+      className="topRight popupMenu"
+    >
+      <div
+        className="palette"
+      >
+        <span
+          className="white chosen"
+          onClick={[Function]}
+        />
+        <span
+          className="red "
+          onClick={[Function]}
+        />
+        <span
+          className="orange "
+          onClick={[Function]}
+        />
+        <span
+          className="yellow "
+          onClick={[Function]}
+        />
+        <span
+          className="grey "
+          onClick={[Function]}
+        />
+        <span
+          className="blue "
+          onClick={[Function]}
+        />
+        <span
+          className="teal "
+          onClick={[Function]}
+        />
+        <span
+          className="green "
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+  </i>
+  <div>
+    <label
+      className="icon label"
+      htmlFor="1"
+    >
+      <i
+        className="icon material-icons"
+      >
+        image
+      </i>
+    </label>
+    <input
+      accept="image/*"
+      id="1"
+      multiple={true}
+      name="image"
+      onChange={[Function]}
+      required={false}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+      type="file"
+    />
+  </div>
+</div>
+`;

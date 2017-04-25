@@ -35,7 +35,7 @@ export default ColorMenu;
 
 ColorMenu.defaultProps = {
   color: 'white',
-  className: null,
+  className: '',
   position: 'top',
 };
 

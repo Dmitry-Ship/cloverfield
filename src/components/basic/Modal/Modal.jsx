@@ -24,5 +24,5 @@ export default Modal;
 
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  children: PropTypes.any,
+  children: PropTypes.any.isRequired,
 };

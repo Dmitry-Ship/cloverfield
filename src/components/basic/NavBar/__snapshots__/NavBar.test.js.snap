@@ -2,7 +2,7 @@
 
 exports[`<NavBar /> render children when passed in 1`] = `
 <nav
-  className={null}
+  className=""
   style={
     Object {
       "alignItems": "center",
@@ -60,7 +60,7 @@ exports[`<NavBar /> render children when passed in 1`] = `
 
 exports[`<NavBar /> should render correctly 1`] = `
 <nav
-  className={null}
+  className=""
   style={
     Object {
       "alignItems": "center",

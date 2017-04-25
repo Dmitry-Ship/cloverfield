@@ -5,7 +5,7 @@ exports[`<AttachedImages /> should render correctly 1`] = `
   className="wrapper"
 >
   <div
-    className="singleImage null"
+    className="singleImage "
   >
     <i
       className="deleteIcon material-icons"
@@ -21,7 +21,7 @@ exports[`<AttachedImages /> should render correctly 1`] = `
     />
   </div>
   <div
-    className="singleImage null"
+    className="singleImage "
   >
     <i
       className="deleteIcon material-icons"

@@ -88,6 +88,10 @@ export default class TagArea extends Component {
   }
 }
 
+TagArea.defaultProps = {
+  className: '',
+};
+
 TagArea.propTypes = {
   onAddTag: PropTypes.func.isRequired,
   onDeleteTag: PropTypes.func.isRequired,

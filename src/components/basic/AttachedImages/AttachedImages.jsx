@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { deleteIcon, singleImage, image, wrapper } from './AttachedImages.scss';
 import Icon from '../Icon';
 
@@ -18,7 +17,7 @@ const AttachedImages = ({ images, onDelete, className, expandImage }) => (
 export default AttachedImages;
 
 AttachedImages.defaultProps = {
-  className: null,
+  className: '',
 };
 
 AttachedImages.propTypes = {

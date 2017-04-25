@@ -53,6 +53,7 @@
   display: block;
   @media mobile {
     box-shadow: none;
+    transform: translateX(-50%);
     position: fixed;
     width: 100%;
     top: 55px;

@@ -17,11 +17,7 @@ exports[`<Loader /> should render bouncy loader 1`] = `
       className="dot"
     />
   </div>
-  <h2
-    className="loadingText"
-  >
-    
-  </h2>
+  
 </div>
 `;
 
@@ -42,11 +38,7 @@ exports[`<Loader /> should render clock loader 1`] = `
       className="dot"
     />
   </div>
-  <h2
-    className="loadingText"
-  >
-    
-  </h2>
+  
 </div>
 `;
 
@@ -67,11 +59,7 @@ exports[`<Loader /> should render correctly 1`] = `
       className="dot"
     />
   </div>
-  <h2
-    className="loadingText"
-  >
-    
-  </h2>
+  
 </div>
 `;
 
@@ -92,11 +80,7 @@ exports[`<Loader /> should render spinny loader 1`] = `
       className="dot"
     />
   </div>
-  <h2
-    className="loadingText"
-  >
-    
-  </h2>
+  
 </div>
 `;
 
@@ -142,10 +126,6 @@ exports[`<Loader /> should render triple-dots loader 1`] = `
       className="dot"
     />
   </div>
-  <h2
-    className="loadingText"
-  >
-    
-  </h2>
+  
 </div>
 `;

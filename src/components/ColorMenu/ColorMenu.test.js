@@ -34,6 +34,6 @@ describe('<ColorMenu />', () => {
 
     wrapper.find('span').first().simulate('click');
 
-    expect(onSetColor.mock.calls[0][0]).toBe('white');
+    expect(onSetColor).toBeCalledWith('white');
   });
 });

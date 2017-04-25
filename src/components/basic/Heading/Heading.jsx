@@ -7,7 +7,6 @@ const Heading = ({ className, children }) => (
   <h1 className={`${className} ${heading}`}>{children}</h1>
 );
 
-
 export default Heading;
 
 Heading.defaultProps = {

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import styles from './Loader.scss';
 
 const Loader = ({ type, className, text }) => (
@@ -10,7 +9,7 @@ const Loader = ({ type, className, text }) => (
       <span className={styles.dot} />
       <span className={styles.dot} />
     </div>
-    <h2 className={styles.loadingText} >{text}</h2>
+    {text && <h2 className={styles.loadingText} >{text}</h2>}
   </div>
 );
 

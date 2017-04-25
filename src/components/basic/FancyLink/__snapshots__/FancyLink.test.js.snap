@@ -2,18 +2,8 @@
 
 exports[`<FancyLink /> should render correctly 1`] = `
 <a
-  className="link null"
-  href="/"
-  onClick={[Function]}
->
-  <h3 />
-</a>
-`;
-
-exports[`<FancyLink /> should render whith children passed in 1`] = `
-<a
-  className="link null"
-  href="/"
+  className="link "
+  href="#"
   onClick={[Function]}
 >
   <h3>

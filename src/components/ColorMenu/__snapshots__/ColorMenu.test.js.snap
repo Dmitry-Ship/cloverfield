@@ -2,7 +2,7 @@
 
 exports[`<ColorMenu /> should render correctly 1`] = `
 <i
-  className="colorMenu null material-icons"
+  className="colorMenu  material-icons"
 >
   palette
   <div
@@ -50,7 +50,7 @@ exports[`<ColorMenu /> should render correctly 1`] = `
 
 exports[`<ColorMenu /> should render correctly when color passed in 1`] = `
 <i
-  className="colorMenu null material-icons"
+  className="colorMenu  material-icons"
 >
   palette
   <div
@@ -98,7 +98,7 @@ exports[`<ColorMenu /> should render correctly when color passed in 1`] = `
 
 exports[`<ColorMenu /> should render correctly when position passed in 1`] = `
 <i
-  className="colorMenu null material-icons"
+  className="colorMenu  material-icons"
 >
   palette
   <div

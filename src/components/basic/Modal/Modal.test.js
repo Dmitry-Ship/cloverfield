@@ -21,7 +21,7 @@ describe('<Modal />', () => {
 
     wrapper.find('Icon').simulate('click');
 
-    expect(closeModal.mock.calls.length).toBe(1);
+    expect(closeModal).toHaveBeenCalled();
   });
 
   it('should simulate click on wrapper', () => {
@@ -32,6 +32,6 @@ describe('<Modal />', () => {
 
     wrapper.find(`div.${styles.wrapper}`).simulate('click');
 
-    expect(closeModal.mock.calls.length).toBe(1);
+    expect(closeModal).toHaveBeenCalled();
   });
 });

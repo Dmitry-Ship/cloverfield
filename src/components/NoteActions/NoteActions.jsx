@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import ColorMenu from '../ColorMenu';
 import NoteFileUploader from '../NoteFileUploader';
 import { icon } from './NoteActions.scss';
@@ -20,6 +19,14 @@ const NoteActions = ({ color, onSetColor, onChange, id, children, className }) =
       {children}
     </div>
   );
+};
+
+NoteActions.propTypes = {
+  color: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  onSetColor: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  children: PropTypes.any,
 };
 
 export default NoteActions;

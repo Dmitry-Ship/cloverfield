@@ -37,7 +37,7 @@ const NavBar = ({ links, children, className }) => {
 export default NavBar;
 
 NavBar.defaultProps = {
-  className: null,
+  className: '',
   children: null,
 };
 

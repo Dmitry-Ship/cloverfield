@@ -13,7 +13,7 @@ const GeneralInfoCard = ({ tags, notes, images, className }) => (
 export default GeneralInfoCard;
 
 GeneralInfoCard.defaultProps = {
-  className: null,
+  className: '',
 };
 
 GeneralInfoCard.propTypes = {

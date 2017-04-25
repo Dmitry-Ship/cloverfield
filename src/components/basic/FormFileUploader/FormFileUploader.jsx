@@ -53,7 +53,7 @@ const FormFileUploader = ({
 export default FormFileUploader;
 
 FormFileUploader.defaultProps = {
-  className: null,
+  className: '',
   text: '',
   accept: 'image/*',
   id: 'fileUploader',

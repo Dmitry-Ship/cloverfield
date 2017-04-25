@@ -1,9 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Tag from './Tag';
-import styles from './Tag.scss';
 
 describe('<Tag />', () => {
   const onDeleteTag = jest.fn();
@@ -27,6 +26,6 @@ describe('<Tag />', () => {
 
     wrapper.find('span').simulate('click');
 
-    expect(onDeleteTag.mock.calls[0][0]).toBe(tagText);
+    expect(onDeleteTag).toBeCalledWith(tagText);
   });
 });

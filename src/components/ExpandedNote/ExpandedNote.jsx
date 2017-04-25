@@ -145,7 +145,7 @@ export default class ExpandedNote extends Component {
               onChange={this.handleImage}
               id={note._id}
             >
-    
+
               <Icon
                 className={icon}
                 name="delete"

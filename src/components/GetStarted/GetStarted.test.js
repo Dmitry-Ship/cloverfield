@@ -21,7 +21,7 @@ describe('<GetStarted />', () => {
 
     wrapper.find('Button').first().simulate('click');
 
-    expect(openSignUpModal.mock.calls.length).toBe(1);
+    expect(openSignUpModal).toHaveBeenCalled();
   });
 
   it('should call openLoginModal', () => {
@@ -31,6 +31,6 @@ describe('<GetStarted />', () => {
 
     wrapper.find('Button').at(1).simulate('click');
 
-    expect(openLoginModal.mock.calls.length).toBe(1);
+    expect(openLoginModal).toHaveBeenCalled();
   });
 });

@@ -16,7 +16,7 @@ PopUpMenu.defaultProps = {
 };
 
 PopUpMenu.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.any.isRequired,
   className: PropTypes.string,
   position: PropTypes.oneOf(['top', 'bottom', 'left', 'right', 'topRight', 'bottomLeft']),
 

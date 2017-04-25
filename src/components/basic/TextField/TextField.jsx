@@ -6,7 +6,7 @@ const TextField = ({ label, className, error, ...rest }) => (
   <div className={`${wrapper} ${className}`}>
     {label && <label className={topLabel} >{label}</label>}
     <input className={textField} {...rest} />
-    <p className={errorMessage}>{error}</p>
+    {error && <p className={errorMessage}>{error}</p>}
   </div>
 );
 
@@ -17,7 +17,6 @@ TextField.defaultProps = {
   type: 'text',
   placeholder: 'Placeholder',
   label: null,
-  required: false,
   error: null,
 };
 

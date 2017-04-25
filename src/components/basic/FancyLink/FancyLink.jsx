@@ -11,14 +11,13 @@ const FancyLink = ({ children, className, ...rest }) => (
 );
 
 FancyLink.defaultProps = {
-  className: null,
-  children: null,
-  to: '',
+  className: '',
+  to: '#',
 };
 
 FancyLink.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.any,
+  children: PropTypes.any.isRequired,
   to: PropTypes.string,
 };
 

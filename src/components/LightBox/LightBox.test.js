@@ -38,6 +38,6 @@ describe('<LightBox />', () => {
 
     wrapper.find('div').first().simulate('click');
 
-    expect(closeLightBox.mock.calls.length).toBe(1);
+    expect(closeLightBox).toHaveBeenCalled();
   });
 });

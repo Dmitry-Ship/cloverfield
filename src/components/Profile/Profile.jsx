@@ -35,7 +35,7 @@ export default class Profile extends Component {
   }
 
   render() {
-    const { user, className, onClick, profileRoute, editRoute } = this.props;
+    const { user, className, onLogout, profileRoute, editRoute } = this.props;
     return (
     <div className={`${profile} ${className}`} onClick={this.toggleMenu} ref={node => (this.wrapperRef = node)} >
       <Avatar className={avatar} src={user.userpic} />
@@ -49,7 +49,7 @@ export default class Profile extends Component {
         <div className={item} >
           <Link to={editRoute} className={link} >Edit Profile</Link>
         </div>
-        <div className={item} onClick={onClick} >
+        <div className={item} onClick={onLogout} >
           <p className={link} >Log Out</p>
         </div>
       </PopUpMenu>
@@ -59,13 +59,13 @@ export default class Profile extends Component {
 }
 
 Profile.defaultProps = {
-  className: null,
+  className: '',
 };
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
-  onClick: PropTypes.func,
-  profileRoute: PropTypes.string,
-  editRoute: PropTypes.string,
+  onLogout: PropTypes.func.isRequired,
+  profileRoute: PropTypes.string.isRequired,
+  editRoute: PropTypes.string.isRequired,
   className: PropTypes.string,
 };

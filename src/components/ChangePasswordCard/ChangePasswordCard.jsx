@@ -1,9 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ChangePasswordFrom from '../forms/ChangePasswordForm';
 import Heading from '../basic/Heading';
 import FancyLink from '../basic/FancyLink';
-
-
 import { card } from './ChangePasswordCard.scss';
 
 const ChangePasswordCard = ({ onForgotClick, ...rest }) => (
@@ -14,5 +13,8 @@ const ChangePasswordCard = ({ onForgotClick, ...rest }) => (
   </div>
 );
 
+ChangePasswordCard.propTypes = {
+  onForgotClick: PropTypes.func.isRequired,
+};
 
 export default ChangePasswordCard;

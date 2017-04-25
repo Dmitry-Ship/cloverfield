@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextField /> should render correctly 1`] = `
+<div
+  className="wrapper "
+>
+  <input
+    className="textField"
+    onChange={[Function]}
+    placeholder="Placeholder"
+    type="text"
+    value=""
+  />
+</div>
+`;

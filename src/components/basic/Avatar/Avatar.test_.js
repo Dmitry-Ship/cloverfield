@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Layout from './Layout';
+import Avatar from './Avatar';
 
-describe('<Layout />', () => {
+describe('<Avatar />', () => {
   it('should render correctly', () => {
     const tree = renderer.create(
-      <Layout>Hello</Layout>
+      <Avatar />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

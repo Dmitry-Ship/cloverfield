@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import Icon from '../basic/Icon';
-
 import { icon, label } from './NoteFileUploader.scss';
 
 const NoteFileUploader = ({

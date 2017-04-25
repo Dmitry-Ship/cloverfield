@@ -2,7 +2,7 @@
 
 exports[`<Logo /> should render correctly 1`] = `
 <a
-  className="logo null"
+  className="logo "
   href="/"
   onClick={[Function]}
 >
