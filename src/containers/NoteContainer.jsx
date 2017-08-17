@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import Note from '../components/Note';
-import { openLightBox } from '../actions/UIActions';
-import { getTagsSuggestions } from '../reducers/noteReducer';
+import Note from 'components/Note';
+import { openLightBox } from 'actions/UIActions';
+import { getTagsSuggestions } from 'reducers/noteReducer';
 
 import {
   editNote,
@@ -9,7 +9,8 @@ import {
   deleteTag,
   addImage,
   deleteImage,
-  deleteNote } from '../actions/noteActions';
+  deleteNote
+} from 'actions/noteActions';
 
 const mapStateToProps = (store, ownProps) => ({
   tagsSuggestions: getTagsSuggestions(store, ownProps.note.tags),

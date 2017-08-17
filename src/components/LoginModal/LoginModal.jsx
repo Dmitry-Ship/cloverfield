@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import FancyLink from '../basic/FancyLink';
-import Heading from '../basic/Heading';
-import Modal from '../basic/Modal';
-import LoginForm from '../../components/forms/LoginForm';
+import FancyLink from 'components/basic/FancyLink';
+import Heading from 'components/basic/Heading';
+import Modal from 'components/basic/Modal';
+import LoginForm from 'components/forms/LoginForm';
 
 const LoginModal = ({ closeModal, onForgotClick, onSignUpClick, ...rest }) => (
   <Modal closeModal={closeModal} >

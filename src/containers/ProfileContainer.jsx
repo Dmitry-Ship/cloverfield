@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { logout } from '../actions/authActions';
-import { fetchUser } from '../actions/userActions';
-import Profile from '../components/Profile';
-import { getUser } from '../reducers';
+import { logout } from 'actions/authActions';
+import { fetchUser } from 'actions/userActions';
+import Profile from 'components/Profile';
+import { getUser } from 'reducers';
 
 const mapStateToProps = store => ({
   user: getUser(store),
@@ -16,8 +16,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { dispatch } = dispatchProps;
   const { history } = ownProps;
   return Object.assign({}, stateProps,
-    { onLogout: () => dispatch(logout(() => history.push('/welcome'))),
-      fetchUser: () => dispatch(fetchUser()) });
+    {
+      onLogout: () => dispatch(logout(() => history.push('/welcome'))),
+      fetchUser: () => dispatch(fetchUser()),
+    });
 };
 
 class ProfileContainer extends Component {

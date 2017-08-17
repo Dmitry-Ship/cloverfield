@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import TextField from '../../basic/TextField';
-import Button from '../../basic/Button';
+import TextField from 'components/basic/TextField';
+import Button from 'components/basic/Button';
 
 import { input, button } from './ForgotPasswordForm.scss';
 
@@ -54,7 +54,7 @@ export default class ForgotPasswordForm extends Component {
           error={errors.email}
           placeholder="Email"
           onChange={this.handleEmailChange}
-          // required*/}
+        // required*/}
         />
         <Button className={button} label="Send" />
       </form>

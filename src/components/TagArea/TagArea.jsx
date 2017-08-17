@@ -6,10 +6,11 @@ import {
   input,
   input__field,
   suggestionsMenu,
-  suggestion } from './TagArea.scss';
+  suggestion
+} from './TagArea.scss';
 
-import PopUpMenu from '../basic/PopUpMenu';
-import Tag from '../basic/Tag';
+import PopUpMenu from 'components/basic/PopUpMenu';
+import Tag from 'components/basic/Tag';
 
 export default class TagArea extends Component {
   constructor() {

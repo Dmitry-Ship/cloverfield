@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Icon from '../basic/Icon';
+import Icon from 'components/basic/Icon';
 import { icon, label } from './NoteFileUploader.scss';
 
 const NoteFileUploader = ({
         name,
-        id,
-        required,
-        onChange,
-        fileType,
-        className }) => {
+  id,
+  required,
+  onChange,
+  fileType,
+  className }) => {
   const handleUpload = (e) => {
     const files = e.target.files;
 

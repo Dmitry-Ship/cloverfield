@@ -27,6 +27,8 @@ module.exports = {
         test: /\.(js|jsx)?$/,
         use: ['babel-loader'],
         exclude: /node_modules/,
+        include: path.resolve('./src'),
+        enforce: 'pre',
       },
       {
         test: /\.scss$/,

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import React from 'react';
-import CreationForm from '../components/CreationForm';
-import { createNote } from '../actions/noteActions';
-import { expandForm, openModal } from '../actions/UIActions';
-import { getTagsSuggestions } from '../reducers/noteReducer';
+import CreationForm from 'components/CreationForm';
+import { createNote } from 'actions/noteActions';
+import { expandForm, openModal } from 'actions/UIActions';
+import { getTagsSuggestions } from 'reducers/noteReducer';
 
 const mapStateToProps = (store, ownProps) => ({
   tagsSuggestions: tags => getTagsSuggestions(store, tags),

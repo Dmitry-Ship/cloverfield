@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { resetPassword, verifyToken } from '../actions/authActions';
-import ResetPasswordForm from '../components/forms/ResetPasswordForm';
-import Heading from '../components/basic/Heading';
+import { resetPassword, verifyToken } from 'actions/authActions';
+import ResetPasswordForm from 'components/forms/ResetPasswordForm';
+import Heading from 'components/basic/Heading';
 import validation from '../../helpers/validations/resetPassword';
-import { getAuthErrorMessage, getIsPasswordUpdated, getIsTokenExpired } from '../reducers';
+import { getAuthErrorMessage, getIsPasswordUpdated, getIsTokenExpired } from 'reducers';
 
 const mapStateToProps = store => ({
   errors: getAuthErrorMessage(store),
@@ -32,7 +32,7 @@ class ResetPasswordFormContainer extends Component {
           <Heading>Oops, token expired</Heading>
           <Link to="forgotpassword" ><h3>Try again</h3></Link>
         </div>
-      )
+      );
     }
 
     if (this.props.isPasswordUpdated) {
@@ -41,7 +41,7 @@ class ResetPasswordFormContainer extends Component {
           <Heading>Alrighty, your password has been changed!</Heading>
           <Link to="login" ><h3>Login with new password</h3></Link>
         </div>
-      )
+      );
     }
     return (
       <div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ChangePasswordFrom from '../forms/ChangePasswordForm';
-import Heading from '../basic/Heading';
-import FancyLink from '../basic/FancyLink';
+import ChangePasswordFrom from 'components/forms/ChangePasswordForm';
+import Heading from 'components/basic/Heading';
+import FancyLink from 'components/basic/FancyLink';
 import { card } from './ChangePasswordCard.scss';
 
 const ChangePasswordCard = ({ onForgotClick, ...rest }) => (

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { page, card } from './ResetPasswordPage.scss';
 
-import ResetPasswordFormContainer from '../../../containers/ResetPasswordFormContainer';
+import ResetPasswordFormContainer from 'containers/ResetPasswordFormContainer';
 
 const ResetPasswordPage = () => (
   <div className={page}>

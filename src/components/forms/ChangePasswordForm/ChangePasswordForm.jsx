@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import TextField from '../../basic/TextField';
-import Button from '../../basic/Button';
+import TextField from 'components/basic/TextField';
+import Button from 'components/basic/Button';
 
 import { input, button } from './ChangePasswordForm.scss';
 
@@ -65,7 +65,7 @@ export default class ChangePasswordForm extends Component {
           error={errors.oldPassword}
           placeholder="Old password"
           onChange={this.handleOldPasswordChange}
-          // required
+        // required
         />
         <TextField
           type="password"
@@ -74,7 +74,7 @@ export default class ChangePasswordForm extends Component {
           className={input}
           placeholder="New password"
           onChange={this.handleNewPasswordChange}
-          // required
+        // required
         />
         <Button className={button} >Change</Button>
       </form>

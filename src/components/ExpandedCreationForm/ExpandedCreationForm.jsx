@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Textarea from 'react-textarea-autosize';
-import Icon from '../basic/Icon';
+import Icon from 'components/basic/Icon';
 import styles, {
   form,
   title,
@@ -11,12 +11,13 @@ import styles, {
   wrapper,
   iconBack,
   submition,
-  noteActions } from './ExpandedCreationForm.scss';
+  noteActions
+} from './ExpandedCreationForm.scss';
 
-import NoteActions from '../NoteActions';
-import TagArea from '../TagArea';
-import Button from '../basic/Button';
-import AttachedImages from '../basic/AttachedImages';
+import NoteActions from 'components/NoteActions';
+import TagArea from 'components/TagArea';
+import Button from 'components/basic/Button';
+import AttachedImages from 'components/basic/AttachedImages';
 
 export default class ExpandedCreationForm extends Component {
   constructor(props) {

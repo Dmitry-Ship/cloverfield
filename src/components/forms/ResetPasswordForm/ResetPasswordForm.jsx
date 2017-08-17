@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import TextField from '../../basic/TextField';
-import Button from '../../basic/Button';
+import TextField from 'components/basic/TextField';
+import Button from 'components/basic/Button';
 
 import { input } from './ResetPasswordForm.scss';
 
@@ -63,7 +63,7 @@ export default class ResetPasswordForm extends Component {
           error={errors.password}
           placeholder="New Password"
           onChange={this.handlePasswordChange}
-          // required
+        // required
         />
         <TextField
           type="password"
@@ -72,7 +72,7 @@ export default class ResetPasswordForm extends Component {
           className={input}
           placeholder="Confirm password"
           onChange={this.handleConfirmPasswordChange}
-          // required
+        // required
         />
         <Button>Set</Button>
       </form>

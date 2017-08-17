@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getIsLoggedIn } from '../reducers';
-import { openModal } from '../actions/UIActions';
-import TopBar from '../components/TopBar';
+import { getIsLoggedIn } from 'reducers';
+import { openModal } from 'actions/UIActions';
+import TopBar from 'components/TopBar';
+import modalTypes from 'constants/modals';
 
 const mapStateToProps = (store, { history: { location } }) => ({
   isInSearchMode: location.pathname.includes('search'),
@@ -13,14 +14,14 @@ const mapStateToProps = (store, { history: { location } }) => ({
     { label: 'Home', iconName: 'home', to: '/' },
     { label: 'Stack', iconName: 'info_outline', to: '/about' },
   ] : [
-    { label: 'Welcome', iconName: 'home', to: '/welcome' },
-    { label: 'Stack', iconName: 'info_outline', to: '/about' },
+      { label: 'Welcome', iconName: 'home', to: '/welcome' },
+      { label: 'Stack', iconName: 'info_outline', to: '/about' },
   ],
 });
 
 const mapDispatchToProps = dispatch => ({
-  openLoginModal: () => dispatch(openModal('login')),
-  openSignUpModal: () => dispatch(openModal('signup')),
+  openLoginModal: () => dispatch(openModal(modalTypes.LOGIN)),
+  openSignUpModal: () => dispatch(openModal(modalTypes.SIGNUP)),
 });
 
 

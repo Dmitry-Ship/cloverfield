@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import React, { Component } from 'react';
-import NotesList from '../components/NotesList';
-import Loader from '../components/basic/Loader';
-import { fetchNotes } from '../actions/noteActions';
-import { getVisibleNotes } from '../reducers/noteReducer';
-import { getIsFetching, getErrorMessage } from '../reducers';
+import NotesList from 'components/NotesList';
+import Loader from 'components/basic/Loader';
+import { fetchNotes } from 'actions/noteActions';
+import { getVisibleNotes } from 'reducers/noteReducer';
+import { getIsFetching, getErrorMessage } from 'reducers';
 
 
 const mapStateToProps = (store, { match }) => ({

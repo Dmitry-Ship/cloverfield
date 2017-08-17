@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Search from '../components/Search';
+import Search from 'components/Search';
 
 const mapStateToProps = (state, ownProps) => ({
   currentColor: ownProps.match.params.color,

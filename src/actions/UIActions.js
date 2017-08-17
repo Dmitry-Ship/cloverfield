@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from 'constants/actionTypes';
 
 export const openModal = modal => ({
   type: types.OPEN_MODAL_SUCCESS,

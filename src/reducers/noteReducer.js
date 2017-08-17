@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as types from '../actions/actionTypes';
+import * as types from 'constants/actionTypes';
 
 const byId = (state = {}, action) => {
   const { type, updatedNote, newNote, id, notes, prop, value, optID } = action;

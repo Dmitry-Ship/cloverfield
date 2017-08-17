@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import * as types from '../actions/actionTypes';
+import * as types from 'constants/actionTypes';
 
 const isLoggingIn = (state = false, action) => {
   switch (action.type) {

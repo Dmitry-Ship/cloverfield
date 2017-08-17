@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import { requestToken } from '../actions/authActions';
-import ForgotPasswordModal from '../components/ForgotPasswordModal';
+import { requestToken } from 'actions/authActions';
+import ForgotPasswordModal from 'components/ForgotPasswordModal';
 import validation from '../../helpers/validations/forgotPassword';
-import { getAuthErrorMessage, getIsTokenSent } from '../reducers';
-import { openModal, closeModal } from '../actions/UIActions';
+import { getAuthErrorMessage, getIsTokenSent } from 'reducers';
+import { openModal, closeModal } from 'actions/UIActions';
+import modalTypes from 'constants/modals';
 
 const mapStateToProps = store => ({
   errors: getAuthErrorMessage(store),
@@ -13,7 +14,7 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: data => dispatch(requestToken(data)),
-  onLoginClick: () => dispatch(openModal('login')),
+  onLoginClick: () => dispatch(openModal(modalTypes.LOGIN)),
   closeModal: () => dispatch(closeModal()),
 
 });

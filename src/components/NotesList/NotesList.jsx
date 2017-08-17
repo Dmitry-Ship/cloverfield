@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Masonry from 'react-masonry-component';
-import NoteContainer from '../../containers/NoteContainer';
+import NoteContainer from 'containers/NoteContainer';
 
 const NotesList = ({ notes }) => {
   const masonryOptions = {

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { page } from './ViewProfilePage.scss';
+import styles from './ViewProfilePage.scss';
 
-import ProfileCardContainer from '../../../containers/ProfileCardContainer';
-import GeneralInfoCardContainer from '../../../containers/GeneralInfoCardContainer';
+import ProfileCardContainer from 'containers/ProfileCardContainer';
+import GeneralInfoCardContainer from 'containers/GeneralInfoCardContainer';
 
 const ViewProfilePage = () => (
-  <div className={page} >
+  <div className={styles.page} >
     <ProfileCardContainer />
     <GeneralInfoCardContainer />
   </div>

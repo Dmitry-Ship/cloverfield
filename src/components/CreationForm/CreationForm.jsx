@@ -11,7 +11,8 @@ import styles, {
   submition,
   expandedFormTrigger,
   noteActions,
-  unfolded } from './CreationForm.scss';
+  unfolded
+} from './CreationForm.scss';
 
 import NoteActions from '../NoteActions';
 import TagArea from '../TagArea';
@@ -56,11 +57,11 @@ export default class CreationForm extends Component {
     document.body.removeEventListener('click', this.handleClickOut);
   }
 
-  setColor(value) {
+  setColor = (value) => {
     this.setState({ color: value });
   }
 
-  handleImage({ file, preview }) {
+  handleImage = ({ file, preview }) => {
     const { imageFiles, previews } = this.state;
 
     this.setState({
@@ -194,9 +195,9 @@ export default class CreationForm extends Component {
             </div>
           </form>
         </div>
-          <div className={expandedFormTrigger} onClick={expand}>
-            <Icon name="mode_edit" />
-          </div>
+        <div className={expandedFormTrigger} onClick={expand}>
+          <Icon name="mode_edit" />
+        </div>
       </div>
     );
   }

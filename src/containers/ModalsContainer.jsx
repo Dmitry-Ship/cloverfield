@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import LoginModalContainer from './LoginModalContainer.jsx';
 import SignUpModalContainer from './SignUpModalContainer.jsx';
 import ForgotPasswordModalContainer from './ForgotPasswordModalContainer.jsx';
-import { getModal } from '../reducers';
+import { getModal } from 'reducers';
+import modalTypes from 'constants/modals';
 
 const mapStateToProps = store => ({
   modal: getModal(store),
@@ -11,11 +12,11 @@ const mapStateToProps = store => ({
 
 const ModalsContainer = ({ modal }) => {
   switch (modal) {
-    case 'login':
+    case modalTypes.LOGIN:
       return <LoginModalContainer />;
-    case 'signup':
+    case modalTypes.SIGNUP:
       return <SignUpModalContainer />;
-    case 'forgotpassword':
+    case modalTypes.FORGOTPASSWORD:
       return <ForgotPasswordModalContainer />;
     default:
       return null;

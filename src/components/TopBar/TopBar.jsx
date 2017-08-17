@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { topBar, logo, loginButton, iconWrapper, icon, tagIndicator, tagText } from './TopBar.scss';
-import NavBar from '../basic/NavBar';
-import Logo from '../basic/Logo';
-import Button from '../basic/Button';
-import ProfileContainer from '../../containers/ProfileContainer';
-import SearchContainer from '../../containers/SearchContainer';
-import Icon from '../basic/Icon';
+import NavBar from 'components/basic/NavBar';
+import Logo from 'components/basic/Logo';
+import Button from 'components/basic/Button';
+import ProfileContainer from 'containers/ProfileContainer';
+import SearchContainer from 'containers/SearchContainer';
+import Icon from 'components/basic/Icon';
 
 const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearchMode, tag }) => {
   const style = {

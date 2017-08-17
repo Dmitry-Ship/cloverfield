@@ -10,11 +10,12 @@ import styles, {
   wrapper,
   tagArea,
   iconBack,
-  icon } from './ExpandedNote.scss';
-import NoteActions from '../NoteActions';
-import Icon from '../basic/Icon';
-import TagArea from '../TagArea';
-import AttachedImages from '../basic/AttachedImages';
+  icon,
+} from './ExpandedNote.scss';
+import NoteActions from 'components/NoteActions';
+import Icon from 'components/basic/Icon';
+import TagArea from 'components/TagArea';
+import AttachedImages from 'components/basic/AttachedImages';
 
 export default class ExpandedNote extends Component {
   constructor(props) {
@@ -92,7 +93,7 @@ export default class ExpandedNote extends Component {
       if (e.target === wrapperRef) {
         history.goBack();
       }
-    }
+    };
 
 
     return (

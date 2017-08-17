@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../basic/Button';
+import Button from 'components/basic/Button';
 import { buttonLeft, buttonRight, wrapper } from './GetStarted.scss';
 
 const GetStarted = ({ openSignUpModal, openLoginModal }) => (
@@ -11,7 +11,7 @@ const GetStarted = ({ openSignUpModal, openLoginModal }) => (
       kind="secondary"
       onClick={openLoginModal}
     >
-    I already have an account
+      I already have an account
     </Button>
   </div>
 );

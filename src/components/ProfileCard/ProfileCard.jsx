@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { card, avatar } from './ProfileCard.scss';
-import Avatar from '../basic/Avatar';
-import Heading from '../basic/Heading';
+import Avatar from 'components/basic/Avatar';
+import Heading from 'components/basic/Heading';
 
 const ProfileCard = ({ user, className }) => (
   <div className={`${card} ${className}`} >

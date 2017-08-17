@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import TextField from '../../basic/TextField';
-import Button from '../../basic/Button';
+import TextField from 'components/basic/TextField';
+import Button from 'components/basic/Button';
 import { input, button } from './SignUpForm.scss';
 
 export default class SignUpForm extends Component {
@@ -68,11 +68,11 @@ export default class SignUpForm extends Component {
 
   render() {
     const { fullName,
-            username,
-            email,
-            password,
-            errors } = this.state;
-         
+      username,
+      email,
+      password,
+      errors } = this.state;
+
     const { isLoggingIn } = this.props;
 
     return (
@@ -91,7 +91,7 @@ export default class SignUpForm extends Component {
           className={input}
           onChange={this.handlUsernameChange}
           error={errors.username}
-          // required
+        // required
         />
 
         <TextField
@@ -101,7 +101,7 @@ export default class SignUpForm extends Component {
           className={input}
           onChange={this.handleEmailChange}
           error={errors.email}
-          // required
+        // required
         />
 
         <TextField
@@ -111,7 +111,7 @@ export default class SignUpForm extends Component {
           className={input}
           onChange={this.handlePasswordChange}
           error={errors.password}
-          // required
+        // required
         />
 
         <Button className={button} isLoading={isLoggingIn} >Sign Up</Button>

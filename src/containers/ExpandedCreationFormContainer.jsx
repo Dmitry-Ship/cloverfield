@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import React from 'react';
-import ExpandedCreationForm from '../components/ExpandedCreationForm';
-import { createNote } from '../actions/noteActions';
-import { openModal, closeForm } from '../actions/UIActions';
-import { getTagsSuggestions } from '../reducers/noteReducer';
-import { getIsFormExpanded } from '../reducers';
+import ExpandedCreationForm from 'components/ExpandedCreationForm';
+import { createNote } from 'actions/noteActions';
+import { openModal, closeForm } from 'actions/UIActions';
+import { getTagsSuggestions } from 'reducers/noteReducer';
+import { getIsFormExpanded } from 'reducers';
 
 
 const mapStateToProps = (store, ownProps) => ({

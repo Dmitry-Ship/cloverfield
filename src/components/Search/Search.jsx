@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles, { icon, input, iconWrapper, wrapper, chosen, filters, searchWrapper } from './Search.scss';
-import Icon from '../basic/Icon';
+import Icon from 'components/basic/Icon';
 
 class Search extends Component {
   constructor() {

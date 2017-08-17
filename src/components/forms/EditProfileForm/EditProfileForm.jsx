@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import TextField from '../../basic/TextField';
-import Button from '../../basic/Button';
-import FormFileUploader from '../../basic/FormFileUploader';
+import TextField from 'components/basic/TextField';
+import Button from 'components/basic/Button';
+import FormFileUploader from 'components/basic/FormFileUploader';
 import { input, button } from './EditProfileForm.scss';
 
 export default class EditProfileForm extends Component {
@@ -88,9 +88,9 @@ export default class EditProfileForm extends Component {
 
   render() {
     const { fullName,
-            username,
-            email,
-            errors } = this.state;
+      username,
+      email,
+      errors } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <FormFileUploader
@@ -116,7 +116,7 @@ export default class EditProfileForm extends Component {
           className={input}
           onChange={this.handlUsernameChange}
           error={errors.username}
-          // required
+        // required
         />
 
         <TextField
@@ -127,7 +127,7 @@ export default class EditProfileForm extends Component {
           className={input}
           onChange={this.handleEmailChange}
           error={errors.email}
-          // required
+        // required
         />
 
         <Button className={button} isLoading={this.props.isLoading} >Edit</Button>

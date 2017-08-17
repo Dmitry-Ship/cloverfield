@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ColorMenu from '../ColorMenu';
-import NoteFileUploader from '../NoteFileUploader';
+import ColorMenu from 'components/ColorMenu';
+import NoteFileUploader from 'components/NoteFileUploader';
 import { icon } from './NoteActions.scss';
 
 const NoteActions = ({ color, onSetColor, onChange, id, children, className }) => {

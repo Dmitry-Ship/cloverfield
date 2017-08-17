@@ -3,8 +3,8 @@ import React from 'react';
 
 import styles from './ColorMenu.scss';
 
-import PopUpMenu from '../basic/PopUpMenu';
-import Icon from '../basic/Icon';
+import PopUpMenu from 'components/basic/PopUpMenu';
+import Icon from 'components/basic/Icon';
 
 const ColorMenu = ({ color, onSetColor, className, position }) => {
   const colors = ['white', 'red', 'orange', 'yellow', 'grey', 'blue', 'teal', 'green'];

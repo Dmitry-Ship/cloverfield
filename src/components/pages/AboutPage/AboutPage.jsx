@@ -1,5 +1,5 @@
 import React from 'react';
-import TechCard from '../../TechCard';
+import TechCard from 'components/TechCard';
 import { page } from './AboutPage.scss';
 
 const AboutPage = () => (

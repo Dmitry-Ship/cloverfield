@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { changePassword } from '../actions/userActions';
-import ChangePasswordCard from '../components/ChangePasswordCard';
+import { changePassword } from 'actions/userActions';
+import ChangePasswordCard from 'components/ChangePasswordCard';
 import validation from '../../helpers/validations/changePassword';
 import { getIsPasswordChanged, getUserErrorMessage } from '../reducers';
 

@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import NoteActions from 'components/NoteActions';
+import Icon from 'components/basic/Icon';
+
 import styles, {
   image,
   input,
@@ -12,9 +15,8 @@ import styles, {
   previewWrapper,
   actionsWrapper,
   actions,
-  icon } from './Note.scss';
-import NoteActions from '../NoteActions';
-import Icon from '../basic/Icon';
+  icon,
+} from './Note.scss';
 
 export default class Note extends Component {
   constructor(props) {
@@ -46,11 +48,11 @@ export default class Note extends Component {
           <Link to={{ pathname: `/notes/${note._id}`, state: { modal: true } }} className={linkWrapper} >
 
             {note.images &&
-            <div className={previewWrapper} >
-              {note.images.map((im, i) => (
-                <div key={im.id} ><img className={image} src={im.url}  alt="" /></div>
+              <div className={previewWrapper} >
+                {note.images.map((im, i) => (
+                  <div key={im.id} ><img className={image} src={im.url} alt="" /></div>
                 ))}
-            </div>}
+              </div>}
             <span className={titleInput} >{note.title}</span>
             <span className={input} >{note.body}</span>
           </Link>
