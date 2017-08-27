@@ -5,7 +5,7 @@ import { resetPassword, verifyToken } from 'actions/authActions';
 import ResetPasswordForm from 'components/forms/ResetPasswordForm';
 import Heading from 'components/basic/Heading';
 import validation from '../../helpers/validations/resetPassword';
-import { getAuthErrorMessage, getIsPasswordUpdated, getIsTokenExpired } from 'reducers';
+import { getAuthErrorMessage, getIsPasswordUpdated, getIsTokenExpired } from 'selectors/authSelectors';
 
 const mapStateToProps = store => ({
   errors: getAuthErrorMessage(store),

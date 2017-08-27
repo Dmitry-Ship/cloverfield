@@ -31,9 +31,5 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export const getUser = state => state.user;
-export const getUserErrorMessage = state => state.errorMessage;
-export const getIsPasswordChanged = state => state.isPasswordChanged;
-export const getIsUpdating = state => state.isUpdating;
 
 export default userReducer;

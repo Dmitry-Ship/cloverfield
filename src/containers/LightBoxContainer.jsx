@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { closeLightBox } from 'actions/UIActions';
 import LightBox from 'components/LightBox';
-import { getImages, getImageIndex } from 'reducers';
+import { getImages, getImageIndex } from 'selectors/UISelectors';
 
 const mapStateToProps = store => ({
   images: getImages(store),

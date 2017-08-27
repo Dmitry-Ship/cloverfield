@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import { login } from 'actions/authActions';
 import LoginModal from 'components/LoginModal';
 import validation from '../../helpers/validations/login';
-import { getAuthErrorMessage, getIsLoggingIn } from 'reducers';
+import { getAuthErrorMessage, getIsLoggingIn } from 'selectors/authSelectors';
 import { openModal, closeModal } from 'actions/UIActions';
 import modalTypes from 'constants/modals';
 

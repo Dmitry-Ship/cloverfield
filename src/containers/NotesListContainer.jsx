@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 import NotesList from 'components/NotesList';
 import Loader from 'components/basic/Loader';
 import { fetchNotes } from 'actions/noteActions';
-import { getVisibleNotes } from 'reducers/noteReducer';
-import { getIsFetching, getErrorMessage } from 'reducers';
+import { getVisibleNotes, getIsFetching, getErrorMessage } from 'selectors/noteSelectors';
 
 
 const mapStateToProps = (store, { match }) => ({

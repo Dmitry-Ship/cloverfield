@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import { signUp } from 'actions/authActions';
 import SignUpModal from 'components/SignUpModal';
 import validation from '../../helpers/validations/signup';
-import { getAuthErrorMessage, getIsLoggingIn } from 'reducers';
+import { getAuthErrorMessage, getIsLoggingIn } from 'selectors/authSelectors';
 import { openModal, closeModal } from 'actions/UIActions';
 import modalTypes from 'constants/modals';
 

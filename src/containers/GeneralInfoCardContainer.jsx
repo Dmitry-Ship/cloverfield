@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchNotes } from 'actions/noteActions';
 import GeneralInfoCard from 'components/GeneralInfoCard';
-import { getAllNotes, getAllTags, getAllImages } from 'reducers/noteReducer';
+import { getAllNotes, getAllTags, getAllImages } from 'selectors/noteSelectors';
 
 const mapStateToProps = store => ({
   notes: getAllNotes(store).length,

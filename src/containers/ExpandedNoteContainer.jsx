@@ -4,8 +4,7 @@ import { withRouter } from 'react-router-dom';
 import ExpandedNote from 'components/ExpandedNote';
 import Loader from 'components/basic/Loader';
 import { openLightBox } from 'actions/UIActions';
-import { getTagsSuggestions, getNote } from 'reducers/noteReducer';
-import { getIsFetching } from 'reducers';
+import { getTagsSuggestions, getNote, getIsFetching } from 'selectors/noteSelectors';
 
 import {
   fetchNote,
@@ -14,13 +13,13 @@ import {
   deleteTag,
   addImage,
   deleteImage,
-  deleteNote
+  deleteNote,
 } from '../actions/noteActions';
 
 const mapStateToProps = (store, ownProps) => ({
   note: getNote(store, ownProps.match.params.noteId),
   id: ownProps.match.params.noteId,
-  isFetchingNote: store.noteReducer.isFetchingNote,
+  isFetchingNote: getIsFetching(store),
   tagsSuggestions: getTagsSuggestions(store, getNote(store, ownProps.match.params.noteId).tags),
 });
 

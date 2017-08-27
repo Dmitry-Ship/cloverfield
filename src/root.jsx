@@ -9,25 +9,25 @@ import { withRouter } from 'react-router';
 
 import './styles/index.scss';
 
-import { getIsLoggedIn, getIsLoggingIn } from './reducers';
+import { getIsLoggedIn, getIsLoggingIn } from 'selectors/authSelectors';
 
-import MainPage from './components/pages/MainPage';
-import AboutPage from './components/pages/AboutPage';
-import WelcomePage from './components/pages/WelcomePage';
-import ResetPasswordPage from './components/pages/ResetPasswordPage';
-import EditProfilePage from './components/pages/EditProfilePage';
-import ViewProfilePage from './components/pages/ViewProfilePage';
-import NotFound from './components/pages/NotFoundPage';
-import Layout from './components/Layout';
-import ProtectedRoute from './components/routes/ProtectedRoute';
-import PublicRoute from './components/routes/PublicRoute';
+import MainPage from 'components/pages/MainPage';
+import AboutPage from 'components/pages/AboutPage';
+import WelcomePage from 'components/pages/WelcomePage';
+import ResetPasswordPage from 'components/pages/ResetPasswordPage';
+import EditProfilePage from 'components/pages/EditProfilePage';
+import ViewProfilePage from 'components/pages/ViewProfilePage';
+import NotFound from 'components/pages/NotFoundPage';
+import Layout from 'components/Layout';
+import ProtectedRoute from 'components/routes/ProtectedRoute';
+import PublicRoute from 'components/routes/PublicRoute';
 
-import TopBarContainer from './containers/TopBarContainer';
-import LightBoxContainer from './containers/LightBoxContainer.jsx';
-import ExpandedNoteContainer from './containers/ExpandedNoteContainer.jsx';
-import ModalsContainer from './containers/ModalsContainer.jsx';
+import TopBarContainer from 'containers/TopBarContainer';
+import LightBoxContainer from 'containers/LightBoxContainer.jsx';
+import ExpandedNoteContainer from 'containers/ExpandedNoteContainer.jsx';
+import ModalsContainer from 'containers/ModalsContainer.jsx';
 
-import ExpandedNote from './components/ExpandedNote';
+import ExpandedNote from 'components/ExpandedNote';
 
 
 const mapStateToProps = store => ({
@@ -50,7 +50,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn, isLoggingIn, location  } = this.props;
+    const { isLoggedIn, isLoggingIn, location } = this.props;
 
     const isModal = !!(
       location.state &&
@@ -58,28 +58,28 @@ class Routes extends Component {
       this.previousLocation !== location // not initial render
     )
     return (
-        <Layout >
-          <TopBarContainer />
-          <LightBoxContainer />
-          <ModalsContainer />
-          <Route component={ModalsContainer} />
-          <Switch location={isModal ? this.previousLocation : location} >
-            <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
-            <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
-            <ProtectedRoute path='/notes/:noteId' component={ExpandedNoteContainer} isLoggedIn={isLoggedIn} />
-            <ProtectedRoute path="/search/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
-            <ProtectedRoute path="/search/images/:images" component={MainPage} isLoggedIn={isLoggedIn} />
-            <ProtectedRoute path="/search/:query" component={MainPage} isLoggedIn={isLoggedIn} />
-            <ProtectedRoute path="/search" component={MainPage} isLoggedIn={isLoggedIn} />      
-            <Route path="/about" component={AboutPage} />
-            <ProtectedRoute path="/profile" component={ViewProfilePage} isLoggedIn={isLoggedIn} />
-            <ProtectedRoute path="/editprofile" component={EditProfilePage} isLoggedIn={isLoggedIn} />
-            <Route path="/reset/:token" component={ResetPasswordPage} />
-            <PublicRoute path="/welcome" component={WelcomePage} isLoggedIn={isLoggedIn} />
-            <Route component={NotFound} />
-          </Switch>
-          {isModal ? <ProtectedRoute path='/notes/:noteId' component={ExpandedNoteContainer} isLoggedIn={true} /> : null}
-        </Layout>
+      <Layout >
+        <TopBarContainer />
+        <LightBoxContainer />
+        <ModalsContainer />
+        <Route component={ModalsContainer} />
+        <Switch location={isModal ? this.previousLocation : location} >
+          <ProtectedRoute exact path="/" component={MainPage} isLoggedIn={isLoggedIn} />
+          <ProtectedRoute path="/tags/:tagText" component={MainPage} isLoggedIn={isLoggedIn} />
+          <ProtectedRoute path='/notes/:noteId' component={ExpandedNoteContainer} isLoggedIn={isLoggedIn} />
+          <ProtectedRoute path="/search/colors/:color" component={MainPage} isLoggedIn={isLoggedIn} />
+          <ProtectedRoute path="/search/images/:images" component={MainPage} isLoggedIn={isLoggedIn} />
+          <ProtectedRoute path="/search/:query" component={MainPage} isLoggedIn={isLoggedIn} />
+          <ProtectedRoute path="/search" component={MainPage} isLoggedIn={isLoggedIn} />
+          <Route path="/about" component={AboutPage} />
+          <ProtectedRoute path="/profile" component={ViewProfilePage} isLoggedIn={isLoggedIn} />
+          <ProtectedRoute path="/editprofile" component={EditProfilePage} isLoggedIn={isLoggedIn} />
+          <Route path="/reset/:token" component={ResetPasswordPage} />
+          <PublicRoute path="/welcome" component={WelcomePage} isLoggedIn={isLoggedIn} />
+          <Route component={NotFound} />
+        </Switch>
+        {isModal ? <ProtectedRoute path='/notes/:noteId' component={ExpandedNoteContainer} isLoggedIn={true} /> : null}
+      </Layout>
     );
   }
 }
@@ -87,7 +87,7 @@ class Routes extends Component {
 const RoutesContainer = withRouter(connect(mapStateToProps)(Routes));
 
 const MainRouter = () => (
-  <Router> 
+  <Router>
     <Route component={RoutesContainer} />
   </Router>
 )

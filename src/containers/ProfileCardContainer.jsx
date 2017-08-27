@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from 'actions/userActions';
 import ProfileCard from 'components/ProfileCard';
-import { getUser } from 'reducers';
+import { getUser } from 'selectors/userSelectors';
 
 const mapStateToProps = store => ({
   user: getUser(store),

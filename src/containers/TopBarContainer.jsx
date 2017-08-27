@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getIsLoggedIn } from 'reducers';
+import { getIsLoggedIn } from 'selectors/authSelectors';
 import { openModal } from 'actions/UIActions';
 import TopBar from 'components/TopBar';
 import modalTypes from 'constants/modals';

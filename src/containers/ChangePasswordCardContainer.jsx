@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { changePassword } from 'actions/userActions';
 import ChangePasswordCard from 'components/ChangePasswordCard';
 import validation from '../../helpers/validations/changePassword';
-import { getIsPasswordChanged, getUserErrorMessage } from '../reducers';
+import { getIsPasswordChanged, getUserErrorMessage } from 'selectors/userSelectors';
 import modals from 'constants/modals';
 
 import { openModal } from '../actions/UIActions';

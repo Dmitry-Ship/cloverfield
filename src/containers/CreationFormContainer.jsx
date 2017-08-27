@@ -4,7 +4,7 @@ import React from 'react';
 import CreationForm from 'components/CreationForm';
 import { createNote } from 'actions/noteActions';
 import { expandForm, openModal } from 'actions/UIActions';
-import { getTagsSuggestions } from 'reducers/noteReducer';
+import { getTagsSuggestions } from 'selectors/noteSelectors';
 
 const mapStateToProps = (store, ownProps) => ({
   tagsSuggestions: tags => getTagsSuggestions(store, tags),
