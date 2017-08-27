@@ -16,12 +16,12 @@ const mapStateToProps = store => ({
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { dispatch } = dispatchProps;
   const { history } = ownProps;
-  return Object.assign({}, stateProps,
-    {
-      onSubmit: data => dispatch(signUp(data, () => history.push('/'))),
-      onLoginClick: () => dispatch(openModal(modalTypes.LOGIN)),
-      closeModal: () => dispatch(closeModal()),
-    });
+  return {
+    ...stateProps,
+    onSubmit: data => dispatch(signUp(data, () => history.push('/'))),
+    onLoginClick: () => dispatch(openModal(modalTypes.LOGIN)),
+    closeModal: () => dispatch(closeModal()),
+  };
 };
 
 

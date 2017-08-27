@@ -20,12 +20,12 @@ export default class ResetPasswordForm extends Component {
   }
 
   handleConfirmPasswordChange = (e) => {
-    const errors = Object.assign({}, this.state.errors, { confirmPassword: '' });
+    const errors = { ...this.state.errors, confirmPassword: '' };
     this.setState({ confirmPassword: e.target.value, errors });
   }
 
   handlePasswordChange = (e) => {
-    const errors = Object.assign({}, this.state.errors, { password: '' });
+    const errors = { ...this.state.errors, password: '' };
     this.setState({ password: e.target.value, errors });
   }
 

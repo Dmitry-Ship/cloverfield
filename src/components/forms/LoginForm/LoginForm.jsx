@@ -20,12 +20,12 @@ export default class LoginForm extends Component {
   }
 
   handleEmailChange = (e) => {
-    const errors = Object.assign({}, this.state.errors, { email: '' });
+    const errors = { ...this.state.errors, email: '' };
     this.setState({ email: e.target.value, errors });
   }
 
   handlePasswordChange = (e) => {
-    const errors = Object.assign({}, this.state.errors, { password: '' });
+    const errors = { ...this.state.errors, password: '' };
     this.setState({ password: e.target.value, errors });
   }
 

@@ -5,11 +5,11 @@ const byId = (state = {}, action) => {
   const { type, updatedNote, newNote, id, notes, prop, value, optID } = action;
   switch (type) {
     case types.FETCH_NOTES_SUCCESS: {
-      const nextState = Object.assign({}, state);
+      const notesMap = {};
       notes.forEach((note) => {
-        nextState[note._id] = note;
+        notesMap[note._id] = note;
       });
-      return nextState;
+      return { ...state, ...notesMap };
     }
     case types.CREATE_NOTE_SUCCESS:
       return { ...state, [newNote._id]: newNote };

@@ -26,7 +26,8 @@ class ResetPasswordFormContainer extends Component {
   }
 
   render() {
-    if (this.props.isTokenExpired) {
+    const { isTokenExpired, isPasswordUpdated } = this.props;
+    if (isTokenExpired) {
       return (
         <div>
           <Heading>Oops, token expired</Heading>
@@ -35,7 +36,7 @@ class ResetPasswordFormContainer extends Component {
       );
     }
 
-    if (this.props.isPasswordUpdated) {
+    if (isPasswordUpdated) {
       return (
         <div>
           <Heading>Alrighty, your password has been changed!</Heading>

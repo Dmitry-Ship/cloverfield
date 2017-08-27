@@ -15,11 +15,11 @@ const mapStateToProps = store => ({
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { dispatch } = dispatchProps;
   const { history } = ownProps;
-  return Object.assign({}, stateProps,
-    {
-      onLogout: () => dispatch(logout(() => history.push('/welcome'))),
-      fetchUser: () => dispatch(fetchUser()),
-    });
+  return {
+    ...stateProps,
+    onLogout: () => dispatch(logout(() => history.push('/welcome'))),
+    fetchUser: () => dispatch(fetchUser()),
+  };
 };
 
 class ProfileContainer extends Component {

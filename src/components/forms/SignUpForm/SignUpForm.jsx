@@ -26,17 +26,17 @@ export default class SignUpForm extends Component {
   }
 
   handlUsernameChange = (e) => {
-    const errors = Object.assign({}, this.state.errors, { username: '' });
+    const errors = { ...this.state.errors, username: '' };
     this.setState({ username: e.target.value, errors });
   }
 
   handleEmailChange = (e) => {
-    const errors = Object.assign({}, this.state.errors, { email: '' });
+    const errors = { ...this.state.errors, email: '' };
     this.setState({ email: e.target.value, errors });
   }
 
   handlePasswordChange = (e) => {
-    const errors = Object.assign({}, this.state.errors, { password: '' });
+    const errors = { ...this.state.errors, password: '' };
     this.setState({ password: e.target.value, errors });
   }
 

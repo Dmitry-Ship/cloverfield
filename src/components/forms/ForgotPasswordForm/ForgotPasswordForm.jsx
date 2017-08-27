@@ -19,7 +19,7 @@ export default class ForgotPasswordForm extends Component {
   }
 
   handleEmailChange = (e) => {
-    const errors = Object.assign({}, this.state.errors, { email: '' });
+    const errors = { ...this.state.errors, email: '' };
     this.setState({ email: e.target.value, errors });
   }
 
