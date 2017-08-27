@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
-
-import styles from './LoginForm.scss';
+import UserForm from '../UserForm'
 
 export default class LoginForm extends Component {
   constructor() {
@@ -48,29 +47,29 @@ export default class LoginForm extends Component {
     const { email, password, errors } = this.state;
     const { isLoggingIn } = this.props;
 
+    const fields = [
+      {
+        type: "email",
+        value: email,
+        name: "email",
+        error: errors.email,
+        placeholder: "Email",
+        onChange: this.handleEmailChange,
+      },
+      {
+        type: "password",
+        value: password,
+        name: "password",
+        error: errors.password,
+        placeholder: "Password",
+        onChange: this.handlePasswordChange,
+      }
+    ]
+
     return (
-      <form onSubmit={this.handleSubmit}>
-        <TextField
-          type="email"
-          value={email}
-          name="email"
-          className={styles.input}
-          error={errors.email}
-          placeholder="Email"
-          onChange={this.handleEmailChange}
-        // required
-        />
-        <TextField
-          type="password"
-          value={password}
-          error={errors.password}
-          className={styles.input}
-          placeholder="Password"
-          onChange={this.handlePasswordChange}
-        // required
-        />
-        <Button className={styles.button} isLoading={isLoggingIn} >Login</Button>
-      </form>
+      <div>
+        <UserForm fields={fields} isLoading={isLoggingIn} onSubmit={this.handleSubmit} buttonLabel="Login" />
+      </div>
     );
   }
 }

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
-import styles from './SignUpForm.scss';
+import UserForm from '../UserForm'
 
 export default class SignUpForm extends Component {
   constructor() {
@@ -70,47 +70,39 @@ export default class SignUpForm extends Component {
 
     const { isLoggingIn } = this.props;
 
+    const fields = [
+      {
+        value: fullName,
+        placeholder: "Full Name",
+        onChange: this.handleFullNameChange,
+      },
+      {
+        value: username,
+        placeholder: "Username",
+        onChange: this.handlUsernameChange,
+      },
+      {
+        type: "email",
+        value: email,
+        name: "email",
+        error: errors.email,
+        placeholder: "Email",
+        onChange: this.handleEmailChange,
+      },
+      {
+        type: "password",
+        value: password,
+        name: "password",
+        error: errors.password,
+        placeholder: "Password",
+        onChange: this.handlePasswordChange,
+      }
+    ]
+
     return (
-      <form onSubmit={this.handleSubmit}>
-
-        <TextField
-          placeholder="Full Name"
-          value={fullName}
-          className={styles.input}
-          onChange={this.handleFullNameChange}
-        />
-
-        <TextField
-          placeholder="Username"
-          value={username}
-          className={styles.input}
-          onChange={this.handlUsernameChange}
-          error={errors.username}
-        // required
-        />
-
-        <TextField
-          type="email"
-          placeholder="Email"
-          value={email}
-          className={styles.input}
-          onChange={this.handleEmailChange}
-          error={errors.email}
-        // required
-        />
-
-        <TextField
-          type="password"
-          placeholder="Password"
-          value={password}
-          className={styles.input}
-          onChange={this.handlePasswordChange}
-          error={errors.password}
-        // required
-        />
-
-        <Button className={styles.button} isLoading={isLoggingIn} >Sign Up</Button>
-      </form>
+      <div>
+        <UserForm fields={fields} isLoading={isLoggingIn} onSubmit={this.handleSubmit} buttonLabel="Sign Up" />
+      </div>
     );
   }
 }

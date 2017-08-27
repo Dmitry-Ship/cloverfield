@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
-
-import styles from './ForgotPasswordForm.scss';
+import UserForm from '../UserForm'
 
 export default class ForgotPasswordForm extends Component {
   constructor() {
@@ -39,23 +38,23 @@ export default class ForgotPasswordForm extends Component {
   }
 
   render() {
-    const { email } = this.state;
-    const { errors } = this.state;
+    const { email, errors } = this.state;
+
+    const fields = [
+      {
+        type: "email",
+        name: "email",
+        placeholder: "Email",
+        value: email,
+        error: errors.email,
+        onChange: this.handleEmailChange,
+      }
+    ]
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <TextField
-          type="email"
-          value={email}
-          name="email"
-          className={styles.input}
-          error={errors.email}
-          placeholder="Email"
-          onChange={this.handleEmailChange}
-        // required*/}
-        />
-        <Button className={styles.button} label="Send" />
-      </form>
+      <div>
+        <UserForm fields={fields} onSubmit={this.handleSubmit} buttonLabel="Send" />
+      </div>
     );
   }
 }

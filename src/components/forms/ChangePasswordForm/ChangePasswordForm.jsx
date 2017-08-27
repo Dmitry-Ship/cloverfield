@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
-
-import styles from './ChangePasswordForm.scss';
+import UserForm from '../UserForm'
 
 export default class ChangePasswordForm extends Component {
   constructor() {
@@ -52,29 +51,29 @@ export default class ChangePasswordForm extends Component {
     const { oldPassword, newPassword } = this.state;
     const { errors } = this.state;
 
+    const fields = [
+      {
+        type: "password",
+        value: oldPassword,
+        name: "oldPassword",
+        error: errors.oldPassword,
+        placeholder: "Old password",
+        onChange: this.handleOldPasswordChange,
+      },
+      {
+        type: "password",
+        value: newPassword,
+        name: "password",
+        error: errors.newPassword,
+        placeholder: "New password",
+        onChange: this.handleNewPasswordChange,
+      }
+    ]
+
     return (
-      <form onSubmit={this.handleSubmit}>
-        <TextField
-          type="password"
-          value={oldPassword}
-          name="oldPassword"
-          className={styles.input}
-          error={errors.oldPassword}
-          placeholder="Old password"
-          onChange={this.handleOldPasswordChange}
-        // required
-        />
-        <TextField
-          type="password"
-          value={newPassword}
-          error={errors.newPassword}
-          className={styles.input}
-          placeholder="New password"
-          onChange={this.handleNewPasswordChange}
-        // required
-        />
-        <Button className={styles.button} >Change</Button>
-      </form>
+      <div>
+        <UserForm fields={fields} onSubmit={this.handleSubmit} buttonLabel="Change" />
+      </div>
     );
   }
 }

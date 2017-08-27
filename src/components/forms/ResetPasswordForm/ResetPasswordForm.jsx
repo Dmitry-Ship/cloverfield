@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
-
-import styles from './ResetPasswordForm.scss';
+import UserForm from '../UserForm'
 
 export default class ResetPasswordForm extends Component {
   constructor() {
@@ -49,30 +48,28 @@ export default class ResetPasswordForm extends Component {
     const { confirmPassword, password } = this.state;
     const { errors } = this.state;
 
+    const fields = [
+      {
+        type: "password",
+        value: password,
+        name: "newPassword",
+        error: errors.password,
+        placeholder: "New Password",
+        onChange: this.handlePasswordChange,
+      },
+      {
+        type: "password",
+        value: confirmPassword,
+        error: errors.newPassword,
+        placeholder: "Confirm password",
+        onChange: this.handleConfirmPasswordChange,
+      }
+    ]
+
     return (
-      <form onSubmit={this.handleSubmit}>
-        <TextField
-          type="password"
-          autoFocus
-          value={password}
-          name="newPassword"
-          className={styles.input}
-          error={errors.password}
-          placeholder="New Password"
-          onChange={this.handlePasswordChange}
-        // required
-        />
-        <TextField
-          type="password"
-          value={confirmPassword}
-          error={errors.confirmPassword}
-          className={styles.input}
-          placeholder="Confirm password"
-          onChange={this.handleConfirmPasswordChange}
-        // required
-        />
-        <Button>Set</Button>
-      </form>
+      <div>
+        <UserForm fields={fields} onSubmit={this.handleSubmit} buttonLabel="Set" />
+      </div>
     );
   }
 }

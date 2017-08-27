@@ -5,6 +5,7 @@ import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
 import FormFileUploader from 'components/basic/FormFileUploader';
 import styles from './EditProfileForm.scss';
+import UserForm from '../UserForm'
 
 export default class EditProfileForm extends Component {
   constructor(props) {
@@ -85,8 +86,35 @@ export default class EditProfileForm extends Component {
       username,
       email,
       errors } = this.state;
+
+    const { isLoading } = this.props
+
+    const fields = [
+      {
+        label: "Full Name",
+        placeholder: "Full Name",
+        value: fullName,
+        onChange: this.handleFullNameChange,
+      },
+      {
+        value: username,
+        label: "Username",
+        placeholder: "Username",
+        onChange: this.handlUsernameChange,
+      },
+      {
+        type: "email",
+        value: email,
+        name: "email",
+        label: "Email",
+        error: errors.email,
+        placeholder: "Email",
+        onChange: this.handleEmailChange,
+      },
+    ]
+
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div>
         <FormFileUploader
           preview={this.state.preview}
           onDeleteImage={this.handleImageDelete}
@@ -94,38 +122,8 @@ export default class EditProfileForm extends Component {
           className={styles.input}
           onChange={this.handleImageUpload}
         />
-
-        <TextField
-          placeholder="Full Name"
-          label="Full Name"
-          value={fullName}
-          className={styles.input}
-          onChange={this.handleFullNameChange}
-        />
-
-        <TextField
-          placeholder="Username"
-          label="Username"
-          value={username}
-          className={styles.input}
-          onChange={this.handlUsernameChange}
-          error={errors.username}
-        // required
-        />
-
-        <TextField
-          type="email"
-          placeholder="Email"
-          label="Email"
-          value={email}
-          className={styles.input}
-          onChange={this.handleEmailChange}
-          error={errors.email}
-        // required
-        />
-
-        <Button className={styles.button} isLoading={this.props.isLoading} >Edit</Button>
-      </form>
+        <UserForm fields={fields} isLoading={isLoading} onSubmit={this.handleSubmit} buttonLabel="Edit" />
+      </div>
     );
   }
 }
