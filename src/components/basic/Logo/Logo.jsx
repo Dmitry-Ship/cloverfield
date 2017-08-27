@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { logo } from './Logo.scss';
+import styles from './Logo.scss';
 
 const Logo = ({ className, ...rest }) => (
-  <Link className={`${logo} ${className}`} {...rest} >
+  <Link className={`${styles.logo} ${className}`} {...rest} >
     Cloverfield
   </Link>
 );

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { lightBox, middle, next, previous } from './LightBox.scss';
+import styles from './LightBox.scss';
 
 export default class LightBox extends Component {
   constructor(props) {
@@ -43,24 +43,24 @@ export default class LightBox extends Component {
     };
 
     return (
-      <div className={lightBox} onClick={handleClick} ref={node => (wrapperRef = node)}>
+      <div className={styles.lightBox} onClick={handleClick} ref={node => (wrapperRef = node)}>
         {!isFirst &&
           <img
-            className={previous}
+            className={styles.previous}
             src={isDataURL(images[index - 1].url)}
             alt=""
             onClick={this.showPrevious}
           />}
-          <img
-            className={middle}
-            src={isDataURL(images[index].url)}
-            alt=""
-            onClick={this.showNext}
-          />
+        <img
+          className={styles.middle}
+          src={isDataURL(images[index].url)}
+          alt=""
+          onClick={this.showNext}
+        />
 
         {!isLast &&
           <img
-            className={next}
+            className={styles.next}
             src={isDataURL(images[index + 1].url)}
             alt=""
             onClick={this.showNext}

@@ -1,9 +1,9 @@
 import React from 'react';
 import TechCard from 'components/TechCard';
-import { page } from './AboutPage.scss';
+import styles from './AboutPage.scss';
 
 const AboutPage = () => (
-  <div className={page} >
+  <div className={styles.page} >
     <TechCard />
   </div>
 );

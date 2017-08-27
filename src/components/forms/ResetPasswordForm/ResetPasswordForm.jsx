@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
 
-import { input } from './ResetPasswordForm.scss';
+import styles from './ResetPasswordForm.scss';
 
 export default class ResetPasswordForm extends Component {
   constructor() {
@@ -59,7 +59,7 @@ export default class ResetPasswordForm extends Component {
           autoFocus
           value={password}
           name="newPassword"
-          className={input}
+          className={styles.input}
           error={errors.password}
           placeholder="New Password"
           onChange={this.handlePasswordChange}
@@ -69,7 +69,7 @@ export default class ResetPasswordForm extends Component {
           type="password"
           value={confirmPassword}
           error={errors.confirmPassword}
-          className={input}
+          className={styles.input}
           placeholder="Confirm password"
           onChange={this.handleConfirmPasswordChange}
         // required

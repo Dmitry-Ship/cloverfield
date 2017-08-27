@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { page, message } from './NotFound.scss';
+import styles from './NotFound.scss';
 
 const NotFound = () => (
-  <div className={page}>
-    <div className={message}>
+  <div className={styles.page}>
+    <div className={styles.message}>
       <i className="material-icons">error_outline</i>
       <h1>Page not found!</h1>
     </div>

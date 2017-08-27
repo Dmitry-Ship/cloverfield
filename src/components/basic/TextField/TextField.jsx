@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { wrapper, textField, errorMessage, topLabel } from './TextField.scss';
+import styles from './TextField.scss';
 
 const TextField = ({ label, className, error, ...rest }) => (
-  <div className={`${wrapper} ${className}`}>
-    {label && <label className={topLabel} >{label}</label>}
-    <input className={textField} {...rest} />
-    {error && <p className={errorMessage}>{error}</p>}
+  <div className={`${styles.wrapper} ${className}`}>
+    {label && <label className={styles.topLabel} >{label}</label>}
+    <input className={styles.textField} {...rest} />
+    {error && <p className={styles.errorMessage}>{error}</p>}
   </div>
 );
 

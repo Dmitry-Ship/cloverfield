@@ -2,17 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Textarea from 'react-textarea-autosize';
 
-import styles, {
-  form,
-  title,
-  body,
-  tagArea,
-  wrapper,
-  submition,
-  expandedFormTrigger,
-  noteActions,
-  unfolded
-} from './CreationForm.scss';
+import styles from './CreationForm.scss';
 
 import NoteActions from '../NoteActions';
 import TagArea from '../TagArea';
@@ -24,7 +14,7 @@ export default class CreationForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      className: form,
+      className: styles.form,
       titleText: '',
       bodyText: '',
       color: props.color || 'white',
@@ -32,16 +22,6 @@ export default class CreationForm extends Component {
       imageFiles: [],
       tags: props.tag ? [props.tag] : [],
     };
-    this.handleFocus = this.handleFocus.bind(this);
-    this.handleClickOut = this.handleClickOut.bind(this);
-    this.create = this.create.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleBodyChange = this.handleBodyChange.bind(this);
-    this.setColor = this.setColor.bind(this);
-    this.handleImage = this.handleImage.bind(this);
-    this.handleAddTag = this.handleAddTag.bind(this);
-    this.handleDeleteTag = this.handleDeleteTag.bind(this);
-    this.deletePreview = this.deletePreview.bind(this);
   }
 
   componentDidMount() {
@@ -70,7 +50,7 @@ export default class CreationForm extends Component {
     });
   }
 
-  deletePreview(preview) {
+  deletePreview = (preview) => {
     const { previews } = this.state;
     const { imageFiles } = this.state;
     const i = previews.map(p => p.id).indexOf(preview);
@@ -82,7 +62,7 @@ export default class CreationForm extends Component {
   }
 
 
-  create(e) {
+  create = (e) => {
     e.preventDefault();
 
     const { titleText, bodyText, color, tags, imageFiles } = this.state;
@@ -104,7 +84,7 @@ export default class CreationForm extends Component {
     this.setState({
       titleText: '',
       bodyText: '',
-      className: form,
+      className: styles.form,
       color: 'white',
       previews: [],
       imageFiles: [],
@@ -112,32 +92,32 @@ export default class CreationForm extends Component {
     });
   }
 
-  handleAddTag(newTag) {
+  handleAddTag = (newTag) => {
     const { tags } = this.state;
 
     this.setState({ tags: [...tags, newTag] });
   }
 
-  handleDeleteTag(tag) {
+  handleDeleteTag = (tag) => {
     const { tags } = this.state;
 
-    this.setState({ tags: tags.filter(t => t !== tag) });
+    this.setState = ({ tags: tags.filter(t => t !== tag) });
   }
 
-  handleBodyChange(e) {
+  handleBodyChange = (e) => {
     this.setState({ bodyText: e.target.value });
   }
 
-  handleTitleChange(e) {
+  handleTitleChange = (e) => {
     this.setState({ titleText: e.target.value });
   }
 
-  handleFocus() {
-    this.setState({ className: unfolded });
+  handleFocus = () => {
+    this.setState({ className: styles.unfolded });
   }
 
-  handleClickOut(e) {
-    if (e.target.parentNode !== this.theForm) this.setState({ className: form });
+  handleClickOut = (e) => {
+    if (e.target.parentNode !== this.theForm) this.setState({ className: styles.form });
   }
 
   render() {
@@ -146,7 +126,7 @@ export default class CreationForm extends Component {
     return (
       <div>
         <div
-          className={wrapper}
+          className={styles.wrapper}
           onClick={this.handleFocus}
           ref={c => this.theForm = c}
         >
@@ -162,30 +142,30 @@ export default class CreationForm extends Component {
             />}
 
             <Textarea
-              className={title}
+              className={styles.title}
               onChange={this.handleTitleChange}
               value={titleText}
               placeholder={titlePlaceholder}
             />
 
             <Textarea
-              className={body}
+              className={styles.body}
               onChange={this.handleBodyChange}
               value={bodyText}
               placeholder={bodyPlaceholder}
             />
 
             <TagArea
-              className={tagArea}
+              className={styles.tagArea}
               onAddTag={this.handleAddTag}
               onDeleteTag={this.handleDeleteTag}
               suggestions={tagsSuggestions(this.state.tags)}
               tags={this.state.tags}
             />
-            <div className={submition} >
+            <div className={styles.submition} >
               <NoteActions
                 color={color}
-                className={noteActions}
+                className={styles.noteActions}
                 onSetColor={this.setColor}
                 onChange={this.handleImage}
                 id="CHECK"
@@ -195,7 +175,7 @@ export default class CreationForm extends Component {
             </div>
           </form>
         </div>
-        <div className={expandedFormTrigger} onClick={expand}>
+        <div className={styles.expandedFormTrigger} onClick={expand}>
           <Icon name="mode_edit" />
         </div>
       </div>

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
 
-import { input, button } from './LoginForm.scss';
+import styles from './LoginForm.scss';
 
 export default class LoginForm extends Component {
   constructor() {
@@ -57,7 +57,7 @@ export default class LoginForm extends Component {
           type="email"
           value={email}
           name="email"
-          className={input}
+          className={styles.input}
           error={errors.email}
           placeholder="Email"
           onChange={this.handleEmailChange}
@@ -67,12 +67,12 @@ export default class LoginForm extends Component {
           type="password"
           value={password}
           error={errors.password}
-          className={input}
+          className={styles.input}
           placeholder="Password"
           onChange={this.handlePasswordChange}
         // required
         />
-        <Button className={button} isLoading={isLoggingIn} >Login</Button>
+        <Button className={styles.button} isLoading={isLoggingIn} >Login</Button>
       </form>
     );
   }

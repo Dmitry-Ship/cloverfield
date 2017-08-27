@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
 
-import { input, button } from './ForgotPasswordForm.scss';
+import styles from './ForgotPasswordForm.scss';
 
 export default class ForgotPasswordForm extends Component {
   constructor() {
@@ -50,13 +50,13 @@ export default class ForgotPasswordForm extends Component {
           type="email"
           value={email}
           name="email"
-          className={input}
+          className={styles.input}
           error={errors.email}
           placeholder="Email"
           onChange={this.handleEmailChange}
         // required*/}
         />
-        <Button className={button} label="Send" />
+        <Button className={styles.button} label="Send" />
       </form>
     );
   }

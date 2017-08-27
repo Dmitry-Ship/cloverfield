@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { card, avatar } from './ProfileCard.scss';
+import styles from './ProfileCard.scss';
 import Avatar from 'components/basic/Avatar';
 import Heading from 'components/basic/Heading';
 
 const ProfileCard = ({ user, className }) => (
-  <div className={`${card} ${className}`} >
+  <div className={`${styles.card} ${className}`} >
     <Heading>Here is your profile info and statistics</Heading>
-    <Avatar className={avatar} src={user.userpic} />
+    <Avatar className={styles.avatar} src={user.userpic} />
     <h2>{user.fullName}</h2>
     <h3>@{user.username}</h3>
   </div>

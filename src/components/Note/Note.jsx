@@ -5,18 +5,7 @@ import { Link } from 'react-router-dom';
 import NoteActions from 'components/NoteActions';
 import Icon from 'components/basic/Icon';
 
-import styles, {
-  image,
-  input,
-  titleInput,
-  linkWrapper,
-  content,
-  tagLink,
-  previewWrapper,
-  actionsWrapper,
-  actions,
-  icon,
-} from './Note.scss';
+import styles from './Note.scss';
 
 export default class Note extends Component {
   constructor(props) {
@@ -44,28 +33,28 @@ export default class Note extends Component {
     return (
       <div className={`${styles.note} ${styles[note.color]}`}>
 
-        <div className={content}>
-          <Link to={{ pathname: `/notes/${note._id}`, state: { modal: true } }} className={linkWrapper} >
+        <div className={styles.content}>
+          <Link to={{ pathname: `/notes/${note._id}`, state: { modal: true } }} className={styles.linkWrapper} >
 
             {note.images &&
-              <div className={previewWrapper} >
+              <div className={styles.previewWrapper} >
                 {note.images.map((im, i) => (
-                  <div key={im.id} ><img className={image} src={im.url} alt="" /></div>
+                  <div key={im.id} ><img className={styles.image} src={im.url} alt="" /></div>
                 ))}
               </div>}
-            <span className={titleInput} >{note.title}</span>
-            <span className={input} >{note.body}</span>
+            <span className={styles.titleInput} >{note.title}</span>
+            <span className={styles.input} >{note.body}</span>
           </Link>
 
           {note.tags && note.tags.map((t, i) =>
-            <Link key={i} className={tagLink} to={`/tags/${t}`}>
+            <Link key={i} className={styles.tagLink} to={`/tags/${t}`}>
               {t}
             </Link>)}
         </div>
 
-        <div className={actionsWrapper} >
+        <div className={styles.actionsWrapper} >
           <NoteActions
-            className={actions}
+            className={styles.actions}
             color={note.color}
             onSetColor={onSetColor}
             onChange={this.handleImage}
@@ -73,7 +62,7 @@ export default class Note extends Component {
           >
 
             <Icon
-              className={icon}
+              className={styles.icon}
               name="delete"
               onClick={onDelete}
             />

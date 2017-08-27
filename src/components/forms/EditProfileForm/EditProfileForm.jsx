@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
 import FormFileUploader from 'components/basic/FormFileUploader';
-import { input, button } from './EditProfileForm.scss';
+import styles from './EditProfileForm.scss';
 
 export default class EditProfileForm extends Component {
   constructor(props) {
@@ -97,7 +97,7 @@ export default class EditProfileForm extends Component {
           preview={this.state.preview}
           onDeleteImage={this.handleImageDelete}
           id="EditProfileUploader"
-          className={input}
+          className={styles.input}
           onChange={this.handleImageUpload}
         />
 
@@ -105,7 +105,7 @@ export default class EditProfileForm extends Component {
           placeholder="Full Name"
           label="Full Name"
           value={fullName}
-          className={input}
+          className={styles.input}
           onChange={this.handleFullNameChange}
         />
 
@@ -113,7 +113,7 @@ export default class EditProfileForm extends Component {
           placeholder="Username"
           label="Username"
           value={username}
-          className={input}
+          className={styles.input}
           onChange={this.handlUsernameChange}
           error={errors.username}
         // required
@@ -124,13 +124,13 @@ export default class EditProfileForm extends Component {
           placeholder="Email"
           label="Email"
           value={email}
-          className={input}
+          className={styles.input}
           onChange={this.handleEmailChange}
           error={errors.email}
         // required
         />
 
-        <Button className={button} isLoading={this.props.isLoading} >Edit</Button>
+        <Button className={styles.button} isLoading={this.props.isLoading} >Edit</Button>
       </form>
     );
   }

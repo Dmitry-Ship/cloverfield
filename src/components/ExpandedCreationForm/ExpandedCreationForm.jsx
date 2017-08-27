@@ -2,17 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Textarea from 'react-textarea-autosize';
 import Icon from 'components/basic/Icon';
-import styles, {
-  form,
-  title,
-  body,
-  tagArea,
-  button,
-  wrapper,
-  iconBack,
-  submition,
-  noteActions
-} from './ExpandedCreationForm.scss';
+import styles from './ExpandedCreationForm.scss';
 
 import NoteActions from 'components/NoteActions';
 import TagArea from 'components/TagArea';
@@ -93,7 +83,7 @@ export default class ExpandedCreationForm extends Component {
     this.setState({
       titleText: '',
       bodyText: '',
-      className: form,
+      className: styles.form,
       color: 'white',
       previews: [],
       imageFiles: [],
@@ -126,11 +116,11 @@ export default class ExpandedCreationForm extends Component {
     const { bodyText, titleText, color, previews } = this.state;
 
     return (
-      <div className={`${wrapper} ${styles[color]}`} >
-        <Icon name="arrow_back" className={iconBack} onClick={closeForm} />
+      <div className={`${styles.wrapper} ${styles[color]}`} >
+        <Icon name="arrow_back" className={styles.iconBack} onClick={closeForm} />
         <form
           encType="multipart/form-data"
-          className={form}
+          className={styles.form}
           onSubmit={this.create}
         >
           {previews && <AttachedImages
@@ -140,20 +130,20 @@ export default class ExpandedCreationForm extends Component {
           />}
 
           <Textarea
-            className={title}
+            className={styles.title}
             onChange={this.handleTitleChange}
             value={titleText}
             placeholder={titlePlaceholder}
           />
 
           <Textarea
-            className={body}
+            className={styles.body}
             onChange={this.handleBodyChange}
             value={bodyText}
             placeholder={bodyPlaceholder}
           />
 
-          <div className={`${submition} ${styles[color]}`} >
+          <div className={`${styles.submition} ${styles[color]}`} >
             <TagArea
               className={tagArea}
               onAddTag={this.handleAddTag}
@@ -163,12 +153,12 @@ export default class ExpandedCreationForm extends Component {
             />
             <NoteActions
               color={color}
-              className={noteActions}
+              className={styles.noteActions}
               onSetColor={this.setColor}
               onChange={this.handleImage}
               id="CHECK"
             />
-            <Button className={button} kind="secondary" >Done</Button>
+            <Button className={styles.button} kind="secondary" >Done</Button>
           </div>
         </form>
       </div>

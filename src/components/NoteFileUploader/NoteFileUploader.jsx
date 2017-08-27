@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Icon from 'components/basic/Icon';
-import { icon, label } from './NoteFileUploader.scss';
+import styles from './NoteFileUploader.scss';
 
 const NoteFileUploader = ({
         name,
@@ -31,8 +31,8 @@ const NoteFileUploader = ({
 
   return (
     <div>
-      <label className={`${className} ${label}`} htmlFor={id} >
-        <Icon className={icon} name="image" />
+      <label className={`${className} ${styles.label}`} htmlFor={id} >
+        <Icon className={styles.icon} name="image" />
       </label>
       <input
         id={id}

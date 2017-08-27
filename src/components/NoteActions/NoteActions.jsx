@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ColorMenu from 'components/ColorMenu';
 import NoteFileUploader from 'components/NoteFileUploader';
-import { icon } from './NoteActions.scss';
+import styles from './NoteActions.scss';
 
 const NoteActions = ({ color, onSetColor, onChange, id, children, className }) => {
   const style = {
@@ -14,8 +14,8 @@ const NoteActions = ({ color, onSetColor, onChange, id, children, className }) =
 
   return (
     <div style={style} className={className}>
-      <ColorMenu color={color} position="topRight" onSetColor={onSetColor} className={icon} />
-      <NoteFileUploader onChange={onChange} className={icon} id={id} />
+      <ColorMenu color={color} position="topRight" onSetColor={onSetColor} className={styles.icon} />
+      <NoteFileUploader onChange={onChange} className={styles.icon} id={id} />
       {children}
     </div>
   );

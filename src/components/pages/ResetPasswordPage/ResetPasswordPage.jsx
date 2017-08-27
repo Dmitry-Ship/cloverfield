@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { page, card } from './ResetPasswordPage.scss';
+import styles from './ResetPasswordPage.scss';
 
 import ResetPasswordFormContainer from 'containers/ResetPasswordFormContainer';
 
 const ResetPasswordPage = () => (
-  <div className={page}>
-    <div className={card} >
+  <div className={styles.page}>
+    <div className={styles.card} >
       <ResetPasswordFormContainer token={this.props.params.token} />
     </div>
   </div>

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { wrapper, content, icon } from './Modal.scss';
+import styles from './Modal.scss';
 import Icon from '../Icon';
 
 const Modal = ({ children, closeModal }) => {
@@ -11,9 +11,9 @@ const Modal = ({ children, closeModal }) => {
     }
   };
   return (
-    <div className={wrapper} onClick={handleClick} ref={node => (wrapperRef = node)} >
-      <div className={content} >
-        <Icon name="close" onClick={closeModal} className={icon} />
+    <div className={styles.wrapper} onClick={handleClick} ref={node => (wrapperRef = node)} >
+      <div className={styles.content} >
+        <Icon name="close" onClick={closeModal} className={styles.icon} />
         {children}
       </div>
     </div>

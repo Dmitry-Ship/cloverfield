@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import TextField from 'components/basic/TextField';
 import Button from 'components/basic/Button';
-import { input, button } from './SignUpForm.scss';
+import styles from './SignUpForm.scss';
 
 export default class SignUpForm extends Component {
   constructor() {
@@ -81,14 +81,14 @@ export default class SignUpForm extends Component {
         <TextField
           placeholder="Full Name"
           value={fullName}
-          className={input}
+          className={styles.input}
           onChange={this.handleFullNameChange}
         />
 
         <TextField
           placeholder="Username"
           value={username}
-          className={input}
+          className={styles.input}
           onChange={this.handlUsernameChange}
           error={errors.username}
         // required
@@ -98,7 +98,7 @@ export default class SignUpForm extends Component {
           type="email"
           placeholder="Email"
           value={email}
-          className={input}
+          className={styles.input}
           onChange={this.handleEmailChange}
           error={errors.email}
         // required
@@ -108,13 +108,13 @@ export default class SignUpForm extends Component {
           type="password"
           placeholder="Password"
           value={password}
-          className={input}
+          className={styles.input}
           onChange={this.handlePasswordChange}
           error={errors.password}
         // required
         />
 
-        <Button className={button} isLoading={isLoggingIn} >Sign Up</Button>
+        <Button className={styles.button} isLoading={isLoggingIn} >Sign Up</Button>
       </form>
     );
   }

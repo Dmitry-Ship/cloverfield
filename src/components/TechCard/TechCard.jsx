@@ -1,6 +1,6 @@
 import React from 'react';
 import Heading from 'components/basic/Heading';
-import { card, logo } from './TechCard.scss';
+import styles from './TechCard.scss';
 import Nodejs from './logos/nodejs-icon.svg';
 import ReactLogo from './logos/react.svg';
 import Sass from './logos/sass-1.svg';
@@ -17,9 +17,9 @@ import PostCSS from './logos/postcss.svg';
 const TechCard = () => {
   const logos = [Nodejs, ReactLogo, Sass, Git, Webpack, Redux, MongoDB, Express, ES6, Babel, CSSModules, PostCSS];
   return (
-    <div className={card}>
+    <div className={styles.card}>
       <Heading>Here is the list of technologies I was using during writing this app</Heading>
-      {logos.map((item, i) => <img className={logo} key={i} src={item} alt="" />)}
+      {logos.map((item, i) => <img className={styles.logo} key={i} src={item} alt="" />)}
     </div>
   );
 };

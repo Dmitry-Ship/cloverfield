@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { item, profile, avatar, popUpMenu, link, name } from './Profile.scss';
+import styles from './Profile.scss';
 
 import Avatar from 'components/basic/Avatar';
 import PopUpMenu from 'components/basic/PopUpMenu';
@@ -37,24 +37,24 @@ export default class Profile extends Component {
   render() {
     const { user, className, onLogout, profileRoute, editRoute } = this.props;
     return (
-      <div className={`${profile} ${className}`} onClick={this.toggleMenu} ref={node => (this.wrapperRef = node)} >
-        <Avatar className={avatar} src={user.userpic} />
-        <PopUpMenu className={this.state.isShown ? popUpMenu : null} position="bottomLeft" >
-          <div className={item} >
-            <Link to={profileRoute} className={link} >
+      <div className={`${styles.profile} ${className}`} onClick={this.toggleMenu} ref={node => (this.wrapperRef = node)} >
+        <Avatar className={styles.avatar} src={user.userpic} />
+        <PopUpMenu className={this.state.isShown ? styles.popUpMenu : null} position="bottomLeft" >
+          <div className={styles.item} >
+            <Link to={profileRoute} className={styles.link} >
               <span className={name} >{user.fullName || user.username}</span>
               <span>View Profile</span>
             </Link>
           </div>
-          <div className={item} >
-            <Link to={editRoute} className={link} >Edit Profile</Link>
+          <div className={styles.item} >
+            <Link to={editRoute} className={styles.link} >Edit Profile</Link>
           </div>
-          <div className={item} onClick={onLogout} >
-            <p className={link} >Log Out</p>
+          <div className={styles.item} onClick={onLogout} >
+            <p className={styles.link} >Log Out</p>
           </div>
         </PopUpMenu>
       </div>
-    )
+    );
   }
 }
 

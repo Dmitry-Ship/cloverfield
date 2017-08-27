@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { card, field } from './GeneralInfoCard.scss';
+import styles from './GeneralInfoCard.scss';
 
 const GeneralInfoCard = ({ tags, notes, images, className }) => (
-  <div className={`${card} ${className}`} >
-    <h2 className={field} >📝Notes: {notes}</h2>
-    <h2 className={field} >🖼️Images: {images}</h2>
-    <h2 className={field} >🏷️Tags: {tags}</h2>
+  <div className={`${styles.card} ${className}`} >
+    <h2 className={styles.field} >📝Notes: {notes}</h2>
+    <h2 className={styles.field} >🖼️Images: {images}</h2>
+    <h2 className={styles.field} >🏷️Tags: {tags}</h2>
   </div>
 );
 

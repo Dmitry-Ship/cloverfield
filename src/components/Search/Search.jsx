@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles, { icon, input, iconWrapper, wrapper, chosen, filters, searchWrapper } from './Search.scss';
+import styles from './Search.scss';
 import Icon from 'components/basic/Icon';
 
 class Search extends Component {
@@ -37,7 +37,7 @@ class Search extends Component {
 
     const circles = colors.map(item => (
       <NavLink
-        activeClassName={chosen}
+        activeClassName={styles.chosen}
         className={`${styles[item]}`}
         onClick={this.handleFilter}
         key={item}
@@ -45,28 +45,28 @@ class Search extends Component {
       />));
 
     return (
-      <div className={searchWrapper} >
-        {this.props.isInSearchMode && <div className={wrapper} >
-          <div className={filters} >
+      <div className={styles.searchWrapper} >
+        {this.props.isInSearchMode && <div className={styles.wrapper} >
+          <div className={styles.filters} >
             {circles}
           </div>
           <input
             ref={(el) => { this.nameInput = el; }}
             onChange={this.handleSearch}
             value={this.state.query}
-            className={input}
+            className={styles.input}
             autoFocus
             type="text"
             placeholder="Search for..."
           />
           <NavLink to="/search/images/all" onClick={this.handleFilter} >
-            <div className={iconWrapper} >
-              <Icon name="image" className={icon} />
+            <div className={styles.iconWrapper} >
+              <Icon name="image" className={styles.icon} />
             </div>
           </NavLink>
           <NavLink to={this.props.isInSearchMode ? '/' : '/search'} >
-            <div className={iconWrapper} >
-              <Icon name={this.props.isInSearchMode ? 'close' : 'search'} className={icon} />
+            <div className={styles.iconWrapper} >
+              <Icon name={this.props.isInSearchMode ? 'close' : 'search'} className={styles.icon} />
             </div>
           </NavLink>
         </div>}

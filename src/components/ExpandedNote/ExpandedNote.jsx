@@ -2,16 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Textarea from 'react-textarea-autosize';
 
-import styles, {
-  input,
-  titleInput,
-  content,
-  actions,
-  wrapper,
-  tagArea,
-  iconBack,
-  icon,
-} from './ExpandedNote.scss';
+import styles from './ExpandedNote.scss';
 import NoteActions from 'components/NoteActions';
 import Icon from 'components/basic/Icon';
 import TagArea from 'components/TagArea';
@@ -97,12 +88,12 @@ export default class ExpandedNote extends Component {
 
 
     return (
-      <div className={wrapper} onClick={closeNote} ref={node => (wrapperRef = node)} >
+      <div className={styles.wrapper} onClick={closeNote} ref={node => (wrapperRef = node)} >
 
         <div className={`${styles.note} ${styles[note.color]}`}>
-          <Icon name="arrow_back" className={iconBack} onClick={() => history.goBack()} />
+          <Icon name="arrow_back" className={styles.iconBack} onClick={() => history.goBack()} />
 
-          <div className={content}>
+          <div className={styles.content}>
             <AttachedImages
               expandImage={expandImage}
               onDelete={onDeleteImage}
@@ -113,7 +104,7 @@ export default class ExpandedNote extends Component {
               value={title}
               placeholder="Title"
               name="title"
-              className={titleInput}
+              className={styles.titleInput}
               onChange={this.handleTitleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleTitleBlur}
@@ -123,7 +114,7 @@ export default class ExpandedNote extends Component {
               value={body}
               name="body"
               placeholder="Content"
-              className={input}
+              className={styles.input}
               onChange={this.handleBodyChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBodyBlur}
@@ -131,10 +122,10 @@ export default class ExpandedNote extends Component {
 
           </div>
 
-          <div className={`${actions} ${styles[note.color]}`} >
+          <div className={`${styles.actions} ${styles[note.color]}`} >
 
             <TagArea
-              className={tagArea}
+              className={styles.tagArea}
               onDeleteTag={onDeleteTag}
               tags={note.tags}
               suggestions={this.props.tagsSuggestions}
@@ -148,7 +139,7 @@ export default class ExpandedNote extends Component {
             >
 
               <Icon
-                className={icon}
+                className={styles.icon}
                 name="delete"
                 onClick={() => { onDelete(); history.goBack(); }}
               />

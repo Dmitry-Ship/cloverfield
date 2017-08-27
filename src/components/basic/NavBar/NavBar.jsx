@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { link, icon, active, text, content } from './NavBar.scss';
+import styles from './NavBar.scss';
 import Icon from '../Icon';
 
 const NavBar = ({ links, children, className }) => {
@@ -17,14 +17,14 @@ const NavBar = ({ links, children, className }) => {
       {links.map(item => (
         <NavLink
           exact
-          activeClassName={active}
-          className={link}
+          activeClassName={styles.active}
+          className={styles.link}
           to={item.to}
           key={item.label}
         >
-          <div className={content} >
-            {item.iconName && <Icon className={icon} name={item.iconName} />}
-            {item.label && <span className={text}>{item.label}</span>}
+          <div className={styles.content} >
+            {item.iconName && <Icon className={styles.icon} name={item.iconName} />}
+            {item.label && <span className={styles.text}>{item.label}</span>}
           </div>
 
         </NavLink>

@@ -1,13 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import {
-  tagArea,
-  input,
-  input__field,
-  suggestionsMenu,
-  suggestion
-} from './TagArea.scss';
+import styles from './TagArea.scss';
 
 import PopUpMenu from 'components/basic/PopUpMenu';
 import Tag from 'components/basic/Tag';
@@ -66,22 +60,22 @@ export default class TagArea extends Component {
     const { tags, suggestions, onDeleteTag, className } = this.props;
 
     return (
-      <div className={`${tagArea} ${className}`}>
+      <div className={`${styles.tagArea} ${className}`}>
         {tags.map(tag => <Tag tagText={tag} key={tag} onDeleteTag={onDeleteTag} />)}
 
-        <div className={input}>
+        <div className={styles.input}>
           <div
             contentEditable
-            className={input__field}
+            className={styles.input__field}
             onKeyDown={this.emitChange}
             onBlur={this.handleBlur}
             onPaste={this.handlePaste}
           />
 
           {suggestions.length > 0 &&
-            <PopUpMenu className={suggestionsMenu} position="top" >
+            <PopUpMenu className={styles.suggestionsMenu} position="top" >
               {suggestions.map(tag =>
-                <span onMouseDown={this.setTag} key={tag} className={suggestion} >{tag}</span>)}
+                <span onMouseDown={this.setTag} key={tag} className={styles.suggestion} >{tag}</span>)}
             </PopUpMenu>}
         </div>
       </div>

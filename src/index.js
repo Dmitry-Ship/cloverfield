@@ -7,19 +7,19 @@ import Root from './root.jsx';
 const store = configureStore();
 
 render(
- <AppContainer>
-   <Root store={store} />
- </AppContainer>
-, document.getElementById('root'));
+  <AppContainer>
+    <Root store={store} />
+  </AppContainer>
+  , document.getElementById('root'));
 
 if (module.hot) {
   module.hot.accept('./root.jsx', () => {
     const NextApp = require('./root.jsx').default;
     render(
       <AppContainer>
-        <NextApp store={store}/>
+        <NextApp store={store} />
       </AppContainer>,
-      document.getElementById('root')
+      document.getElementById('root'),
     );
   });
 }

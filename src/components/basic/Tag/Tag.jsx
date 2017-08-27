@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { tag, link, icon } from './Tag.scss';
+import styles from './Tag.scss';
 
 const Tag = ({ tagText, onDeleteTag }) => (
-  <div className={tag}>
-    <Link className={link} to={`/tags/${tagText}`}>
+  <div className={styles.tag}>
+    <Link className={styles.link} to={`/tags/${tagText}`}>
       {tagText}
     </Link>
-    <span className={icon} onClick={() => onDeleteTag(tagText)}>✕</span>
+    <span className={styles.icon} onClick={() => onDeleteTag(tagText)}>✕</span>
   </div>
 );
 

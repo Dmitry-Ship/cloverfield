@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { topBar, logo, loginButton, iconWrapper, icon, tagIndicator, tagText } from './TopBar.scss';
+import styles from './TopBar.scss';
 import NavBar from 'components/basic/NavBar';
 import Logo from 'components/basic/Logo';
 import Button from 'components/basic/Button';
@@ -21,27 +21,27 @@ const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearch
       return <SearchContainer />;
     } else if (tag && isLoggedIn) {
       return (
-        <div className={tagIndicator}>
+        <div className={styles.tagIndicator}>
           <Link to="/" >
-            <div className={iconWrapper} >
-              <Icon name="arrow_back" className={icon} />
+            <div className={styles.iconWrapper} >
+              <Icon name="arrow_back" className={styles.icon} />
             </div>
           </Link>
-          <h3 className={tagText} >TAG: {tag}</h3>
+          <h3 className={styles.tagText} >TAG: {tag}</h3>
         </div>
       );
     }
-    return <Logo className={logo} />;
+    return <Logo className={styles.logo} />;
   }
   return (
-    <header style={style} className={topBar} >
+    <header style={style} className={styles.topBar} >
       <NavBar links={links} />
       {renderLogo()}
       <div style={style} >
         {isLoggedIn &&
           <NavLink to="/search" >
-            <div className={iconWrapper} >
-              <Icon name="search" className={icon} />
+            <div className={styles.iconWrapper} >
+              <Icon name="search" className={styles.icon} />
             </div>
           </NavLink>}
 
@@ -49,7 +49,7 @@ const TopBar = ({ openLoginModal, openSignUpModal, isLoggedIn, links, isInSearch
           <ProfileContainer /> :
           <div>
             <Button size="small" onClick={openSignUpModal} >Join</Button>
-            <Button size="small" kind="secondary" className={loginButton} onClick={openLoginModal} >Login</Button>
+            <Button size="small" kind="secondary" className={styles.loginButton} onClick={openLoginModal} >Login</Button>
           </div>}
       </div>
     </header>

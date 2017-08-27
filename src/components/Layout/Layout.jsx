@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { layout } from './Layout.scss';
+import styles from './Layout.scss';
 
 const Layout = ({ children }) => (
-  <div className={layout}>
+  <div className={styles.layout}>
     {children}
   </div>
 );
