@@ -13,20 +13,18 @@ export default class ForgotPasswordForm extends Component {
       email: '',
       errors: {},
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleEmailChange(e) {
+  handleEmailChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { email: '' });
     this.setState({ email: e.target.value, errors });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { email } = this.state;
     const data = { email };

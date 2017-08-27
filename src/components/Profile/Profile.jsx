@@ -12,8 +12,6 @@ export default class Profile extends Component {
     this.state = {
       isShown: false,
     };
-    this.toggleMenu = this.toggleMenu.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {
@@ -24,11 +22,11 @@ export default class Profile extends Component {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  toggleMenu() {
+  toggleMenu = () => {
     this.setState({ isShown: !this.state.isShown });
   }
 
-  handleClickOutside(event) {
+  handleClickOutside = (event) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.setState({ isShown: false });
     }

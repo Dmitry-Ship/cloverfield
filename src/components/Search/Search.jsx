@@ -10,23 +10,20 @@ class Search extends Component {
     this.state = {
       query: '',
     };
-    this.toggleSearch = this.toggleSearch.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleFilter = this.handleFilter.bind(this);
   }
 
-  handleFilter() {
+  handleFilter = () => {
     this.setState({ query: '' });
   }
 
-  toggleSearch() {
+  toggleSearch = () => {
     this.setState({ query: '' });
     const value = this.props.isInSearchMode ? '/' : '/search';
     this.props.history.push(value);
     if (this.props.isInSearchMode) this.nameInput.focus();
   }
 
-  handleSearch(e) {
+  handleSearch = (e) => {
     const value = e.target.value;
     this.setState({ query: value });
     this.props.history.push(`/search/${value}`);

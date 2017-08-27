@@ -16,15 +16,9 @@ export default class ExpandedNote extends Component {
       body: this.props.note.body,
       hasChanged: false,
     };
-    this.handleImage = this.handleImage.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleBodyChange = this.handleBodyChange.bind(this);
-    this.handleTitleBlur = this.handleTitleBlur.bind(this);
-    this.handleBodyBlur = this.handleBodyBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
   }
 
-  handleImage({ file }) {
+  handleImage = ({ file }) => {
     const formData = new FormData();
 
     formData.append('note-image', file, file.filename);
@@ -32,35 +26,35 @@ export default class ExpandedNote extends Component {
     return this.props.onAddImage(formData);
   }
 
-  handleTitleChange(e) {
+  handleTitleChange = (e) => {
     const value = e.target.value;
     if (value.length >= 100) return;
 
     this.setState({ title: value, hasChanged: true });
   }
 
-  handleBodyChange(e) {
+  handleBodyChange = (e) => {
     const value = e.target.value;
     if (value.length >= 5000) return;
 
     this.setState({ body: value, hasChanged: true });
   }
 
-  handleTitleBlur() {
+  handleTitleBlur = () => {
     const value = this.state.title.trim();
     if (!this.state.hasChanged) { return; }
     this.props.onUpdateTitle(value);
     this.setState({ title: value, hasChanged: false });
   }
 
-  handleBodyBlur() {
+  handleBodyBlur = () => {
     const value = this.state.body.trim();
     if (!this.state.hasChanged) { return; }
     this.props.onUpdateBody(value);
     this.setState({ body: value, hasChanged: false });
   }
 
-  handleFocus(e) {
+  handleFocus = (e) => {
     const fieldName = e.target.name;
 
     this.setState({

@@ -7,27 +7,20 @@ import PopUpMenu from 'components/basic/PopUpMenu';
 import Tag from 'components/basic/Tag';
 
 export default class TagArea extends Component {
-  constructor() {
-    super();
-    this.emitChange = this.emitChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.setTag = this.setTag.bind(this);
-    this.handlePaste = this.handlePaste.bind(this);
-  }
 
-  setTag(e) {
+  setTag = (e) => {
     const value = e.target.innerHTML;
 
     this.props.onAddTag(value);
   }
 
-  handlePaste(e) {
+  handlePaste = (e) => {
     e.preventDefault();
     const plainText = e.clipboardData.getData('text/plain');
     document.execCommand('inserttext', false, plainText);
   }
 
-  emitChange(e) {
+  emitChange = (e) => {
     const curKey = e.which;
     const value = e.target.innerHTML;
 
@@ -48,7 +41,7 @@ export default class TagArea extends Component {
     }
   }
 
-  handleBlur(e) {
+  handleBlur = (e) => {
     if (e.target.innerHTML === '' || e.target.innerHTML === ' ') return;
 
     this.props.onAddTag(e.target.innerHTML);

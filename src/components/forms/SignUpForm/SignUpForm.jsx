@@ -15,37 +15,32 @@ export default class SignUpForm extends Component {
       password: '',
       errors: {},
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFullNameChange = this.handleFullNameChange.bind(this);
-    this.handlUsernameChange = this.handlUsernameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleFullNameChange(e) {
+  handleFullNameChange = (e) => {
     this.setState({ fullName: e.target.value });
   }
 
-  handlUsernameChange(e) {
+  handlUsernameChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { username: '' });
     this.setState({ username: e.target.value, errors });
   }
 
-  handleEmailChange(e) {
+  handleEmailChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { email: '' });
     this.setState({ email: e.target.value, errors });
   }
 
-  handlePasswordChange(e) {
+  handlePasswordChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { password: '' });
     this.setState({ password: e.target.value, errors });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     const { isValid, errors } = this.props.validation(this.state);

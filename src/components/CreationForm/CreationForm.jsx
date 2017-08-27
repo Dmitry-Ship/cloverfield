@@ -101,7 +101,7 @@ export default class CreationForm extends Component {
   handleDeleteTag = (tag) => {
     const { tags } = this.state;
 
-    this.setState = ({ tags: tags.filter(t => t !== tag) });
+    this.setState({ tags: tags.filter(t => t !== tag) });
   }
 
   handleBodyChange = (e) => {

@@ -14,9 +14,6 @@ export default class ChangePasswordForm extends Component {
       newPassword: '',
       errors: {},
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleOldPasswordChange = this.handleOldPasswordChange.bind(this);
-    this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,17 +26,17 @@ export default class ChangePasswordForm extends Component {
     }
   }
 
-  handleOldPasswordChange(e) {
+  handleOldPasswordChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { oldPassword: '' });
     this.setState({ oldPassword: e.target.value, errors });
   }
 
-  handleNewPasswordChange(e) {
+  handleNewPasswordChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { newPassword: '' });
     this.setState({ newPassword: e.target.value, errors });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { oldPassword, newPassword } = this.state;
     const data = { oldPassword, newPassword };

@@ -8,18 +8,16 @@ export default class LightBox extends Component {
     this.state = {
       index: props.index,
     };
-    this.showNext = this.showNext.bind(this);
-    this.showPrevious = this.showPrevious.bind(this);
   }
 
-  showNext() {
+  showNext = () => {
     if (this.state.index + 1 === this.props.images.length) {
       return this.setState({ index: 0 });
     }
     this.setState({ index: this.state.index + 1 });
   }
 
-  showPrevious() {
+  showPrevious = () => {
     this.setState({ index: this.state.index - 1 });
   }
 

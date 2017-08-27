@@ -20,14 +20,6 @@ export default class ExpandedCreationForm extends Component {
       imageFiles: [],
       tags: props.tag ? [props.tag] : [],
     };
-    this.create = this.create.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleBodyChange = this.handleBodyChange.bind(this);
-    this.setColor = this.setColor.bind(this);
-    this.handleImage = this.handleImage.bind(this);
-    this.handleAddTag = this.handleAddTag.bind(this);
-    this.handleDeleteTag = this.handleDeleteTag.bind(this);
-    this.deletePreview = this.deletePreview.bind(this);
   }
 
 
@@ -36,11 +28,11 @@ export default class ExpandedCreationForm extends Component {
     if (nextProps.color) { this.setState({ color: nextProps.color }); }
   }
 
-  setColor(value) {
+  setColor = (value) => {
     this.setState({ color: value });
   }
 
-  handleImage({ file, preview }) {
+  handleImage = ({ file, preview }) => {
     const { imageFiles, previews } = this.state;
 
     this.setState({
@@ -49,7 +41,7 @@ export default class ExpandedCreationForm extends Component {
     });
   }
 
-  deletePreview(preview) {
+  deletePreview = (preview) => {
     const { previews } = this.state;
     const { imageFiles } = this.state;
     const i = previews.map(p => p.id).indexOf(preview);
@@ -61,7 +53,7 @@ export default class ExpandedCreationForm extends Component {
   }
 
 
-  create(e) {
+  create = (e) => {
     e.preventDefault();
 
     const { titleText, bodyText, color, tags, imageFiles } = this.state;
@@ -91,23 +83,23 @@ export default class ExpandedCreationForm extends Component {
     });
   }
 
-  handleAddTag(newTag) {
+  handleAddTag = (newTag) => {
     const { tags } = this.state;
 
     this.setState({ tags: [...tags, newTag] });
   }
 
-  handleDeleteTag(tag) {
+  handleDeleteTag = (tag) => {
     const { tags } = this.state;
 
     this.setState({ tags: tags.filter(t => t !== tag) });
   }
 
-  handleBodyChange(e) {
+  handleBodyChange = (e) => {
     this.setState({ bodyText: e.target.value });
   }
 
-  handleTitleChange(e) {
+  handleTitleChange = (e) => {
     this.setState({ titleText: e.target.value });
   }
 

@@ -14,26 +14,23 @@ export default class LoginForm extends Component {
       password: '',
       errors: {},
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleEmailChange(e) {
+  handleEmailChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { email: '' });
     this.setState({ email: e.target.value, errors });
   }
 
-  handlePasswordChange(e) {
+  handlePasswordChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { password: '' });
     this.setState({ password: e.target.value, errors });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
     const data = { email, password };

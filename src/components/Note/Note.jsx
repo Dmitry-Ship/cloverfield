@@ -14,10 +14,9 @@ export default class Note extends Component {
       title: this.props.note.title,
       body: this.props.note.body,
     };
-    this.handleImage = this.handleImage.bind(this);
   }
 
-  handleImage({ file }) {
+  handleImage = ({ file }) => {
     const formData = new FormData();
 
     formData.append('note-image', file, file.filename);

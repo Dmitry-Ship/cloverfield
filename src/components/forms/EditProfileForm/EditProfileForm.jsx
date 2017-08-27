@@ -17,12 +17,6 @@ export default class EditProfileForm extends Component {
       preview: '',
       errors: {},
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFullNameChange = this.handleFullNameChange.bind(this);
-    this.handlUsernameChange = this.handlUsernameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleImageUpload = this.handleImageUpload.bind(this);
-    this.handleImageDelete = this.handleImageDelete.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,29 +31,29 @@ export default class EditProfileForm extends Component {
     });
   }
 
-  handleImageUpload(value, secondValue) {
+  handleImageUpload = (value, secondValue) => {
     this.setState({ userpic: value, preview: secondValue });
   }
 
-  handleImageDelete() {
+  handleImageDelete = () => {
     this.setState({ userpic: null, preview: '' });
   }
 
-  handleFullNameChange(e) {
+  handleFullNameChange = (e) => {
     this.setState({ fullName: e.target.value });
   }
 
-  handlUsernameChange(e) {
+  handlUsernameChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { username: '' });
     this.setState({ username: e.target.value, errors });
   }
 
-  handleEmailChange(e) {
+  handleEmailChange = (e) => {
     const errors = Object.assign({}, this.state.errors, { email: '' });
     this.setState({ email: e.target.value, errors });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     const { isValid, errors } = this.props.validation(this.state);
