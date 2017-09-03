@@ -7,7 +7,7 @@ import { getUser, getUserErrorMessage, getIsUpdating } from 'selectors/userSelec
 
 const mapStateToProps = store => ({
   user: getUser(store),
-  errors: getUserErrorMessage(store),
+  error: getUserErrorMessage(store),
   isLoading: getIsUpdating(store),
   validation,
 });

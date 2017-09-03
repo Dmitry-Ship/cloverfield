@@ -3,7 +3,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const routes = require('./routes');
+const controllers = require('./controllers');
 const config = require('./config/main');
 const frontEndMiddleware = require('./middleware/frontEndMiddleware');
 
@@ -19,7 +19,7 @@ app.use(logger('dev'));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(routes);
+app.use(controllers);
 
 frontEndMiddleware(app);
 

@@ -28,7 +28,7 @@ export default class EditProfileForm extends Component {
       password: nextProps.user.password,
       userpic: nextProps.user.userpic,
       preview: nextProps.user.userpic,
-      errors: nextProps.errors || {},
+      errors: nextProps.error || {},
     });
   }
 

@@ -40,7 +40,8 @@ const callAPIMiddleware = () => ({ dispatch, getState }) => next => (action) => 
     try {
       const response = await fetch(url, fetchOptions)
       if (!response.ok) {
-        throw Error(response.statusText);
+        const errorMessage = await response.json()
+        throw errorMessage;
       }
 
       const data = await response.json()
@@ -49,7 +50,7 @@ const callAPIMiddleware = () => ({ dispatch, getState }) => next => (action) => 
         data,
         type: `${type}_SUCCESS`,
       })
-    } catch (error) {
+    } catch ({ error }) {
       dispatch({
         error,
         type: `${type}_FAILURE`,

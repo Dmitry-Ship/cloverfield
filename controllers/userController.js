@@ -51,22 +51,24 @@ router.put('/password', (req, res) => {
   if (!isValid) { return res.status(400).send(errors); }
 
   return User.findById(req.user._id)
-    .then((user) => {
-      user.comparePassword(req.body.oldPassword, (compareErr, isMatch) => {
+    .exec((err, user) => {
+      if (!user) {
+        return handleError(res, 'user not found', 404);
+      }
+
+      return user.comparePassword(req.body.oldPassword, (compareErr, isMatch) => {
         if (compareErr) { return res.send(compareErr); }
         if (!isMatch) {
-          console.log('isMatch', isMatch);
-          throw new Error('oops!');
-          // return res.status(400).send({ oldPassword: 'Incorrect password' });
-          // return 'loool';
+          return handleError(res, { oldPassword: 'Incorrect password' }, 400);
         }
+
         user.password = req.body.newPassword;
 
-        return user.save();
+        return user.save()
+          .then(newUser => res.send({ newUser }))
+          .catch(err => res.status(400).send({ err }));
       });
-    })
-    .then((newUser) => { console.log('i was called', newUser); res.send({ newUser }); })
-    .catch((err) => { console.log('error occured', err); res.status(400).send(err); });
+    });
 });
 
 module.exports = router;

@@ -9,14 +9,14 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
-  const { type, data, errors } = action;
+  const { type, data, error } = action;
   switch (type) {
     case types.FETCH_USER:
       return { ...state, isFetching: true };
     case types.FETCH_USER_SUCCESS:
       return { ...state, user: data.user, isFetching: false, errorMessage: {} };
     case types.FETCH_USER_FAILURE:
-      return { ...state, isFetching: false, errorMessage: errors };
+      return { ...state, isFetching: false, errorMessage: error };
     case types.EDIT_PROFILE:
     case types.CHANGE_PASSWORD:
       return { ...state, isUpdating: true };
@@ -26,7 +26,7 @@ const userReducer = (state = initialState, action) => {
       return { ...state, isPasswordChanged: true, isUpdating: false };
     case types.EDIT_PROFILE_FAILURE:
     case types.CHANGE_PASSWORD_FAILURE:
-      return { ...state, errorMessage: errors, isUpdating: false };
+      return { ...state, errorMessage: error, isUpdating: false };
     default: return state;
   }
 };

@@ -16,7 +16,7 @@ export default class ChangePasswordForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ errors: nextProps.errors });
+    this.setState({ errors: nextProps.error });
     if (nextProps.isChanged) {
       this.setState({
         oldPassword: '',

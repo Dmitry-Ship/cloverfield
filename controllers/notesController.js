@@ -13,14 +13,12 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   Note.find({ $and: [{ _user: req.user._id, isDeleted: false }] })
-    .exec()
     .then(notes => res.send({ notes }))
     .catch(err => handleError(res, err, 404));
 });
 
 router.get('/:id', (req, res) => {
   Note.findOne({ $and: [{ _user: req.user._id, _id: req.params.id, isDeleted: false }] })
-    .exec()
     .then(note => res.send({ note }))
     .catch(err => handleError(res, err, 404));
 });

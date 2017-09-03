@@ -8,7 +8,7 @@ import validation from '../../helpers/validations/resetPassword';
 import { getAuthErrorMessage, getIsPasswordUpdated, getIsTokenExpired } from 'selectors/authSelectors';
 
 const mapStateToProps = store => ({
-  errors: getAuthErrorMessage(store),
+  error: getAuthErrorMessage(store),
   isPasswordUpdated: getIsPasswordUpdated(store),
   isTokenExpired: getIsTokenExpired(store),
   validation,

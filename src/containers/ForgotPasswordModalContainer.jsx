@@ -7,7 +7,7 @@ import { openModal, closeModal } from 'actions/UIActions';
 import modalTypes from 'constants/modals';
 
 const mapStateToProps = store => ({
-  errors: getAuthErrorMessage(store),
+  error: getAuthErrorMessage(store),
   isTokenSent: getIsTokenSent(store),
   validation,
 });

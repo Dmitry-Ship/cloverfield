@@ -18,7 +18,7 @@ export default class SignUpForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ errors: nextProps.errors });
+    this.setState({ errors: nextProps.error });
   }
 
   handleFullNameChange = (e) => {

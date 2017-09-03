@@ -8,7 +8,7 @@ import modals from 'constants/modals';
 import { openModal } from '../actions/UIActions';
 
 const mapStateToProps = store => ({
-  errors: getUserErrorMessage(store),
+  error: getUserErrorMessage(store),
   validation,
   isChanged: getIsPasswordChanged(store),
 });

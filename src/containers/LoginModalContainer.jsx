@@ -8,7 +8,7 @@ import { openModal, closeModal } from 'actions/UIActions';
 import modalTypes from 'constants/modals';
 
 const mapStateToProps = store => ({
-  errors: getAuthErrorMessage(store),
+  error: getAuthErrorMessage(store),
   isLoggingIn: getIsLoggingIn(store),
   validation,
 });

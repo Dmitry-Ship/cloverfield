@@ -16,7 +16,7 @@ export default class LoginForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ errors: nextProps.errors });
+    this.setState({ errors: nextProps.error });
   }
 
   handleEmailChange = (e) => {
