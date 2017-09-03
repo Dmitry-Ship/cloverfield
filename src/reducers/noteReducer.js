@@ -2,20 +2,23 @@ import { combineReducers } from 'redux';
 import * as types from 'constants/actionTypes';
 
 const byId = (state = {}, action) => {
-  const { type, updatedNote, newNote, id, notes, prop, value, optID } = action;
+  const { type, data, prop, value, optID } = action;
+
   switch (type) {
     case types.FETCH_NOTES_SUCCESS: {
       const notesMap = {};
-      notes.forEach((note) => {
+      data.notes.forEach((note) => {
         notesMap[note._id] = note;
       });
       return { ...state, ...notesMap };
     }
-    case types.CREATE_NOTE_SUCCESS:
+    case types.CREATE_NOTE_SUCCESS: {
+      const { newNote } = data;
       return { ...state, [newNote._id]: newNote };
+    }
     case types.DELETE_NOTE_SUCCESS: {
       const newState = Object.assign({}, state);
-      delete newState[id];
+      delete newState[data.id];
       return newState;
     }
 
@@ -27,8 +30,10 @@ const byId = (state = {}, action) => {
     case types.ADD_TAG_SUCCESS:
     case types.ADD_IMAGE_SUCCESS:
     case types.DELETE_TAG_SUCCESS:
-    case types.DELETE_IMAGE_SUCCESS:
+    case types.DELETE_IMAGE_SUCCESS: {
+      const { updatedNote } = data;
       return { ...state, [updatedNote._id]: updatedNote };
+    }
     default: return state;
   }
 };
@@ -36,11 +41,11 @@ const byId = (state = {}, action) => {
 const allIds = (state = [], action) => {
   switch (action.type) {
     case types.FETCH_NOTES_SUCCESS:
-      return action.notes.map(note => note._id);
+      return action.data.notes.map(note => note._id);
     case types.CREATE_NOTE_SUCCESS:
-      return [...state, action.newNote._id];
+      return [...state, action.data.newNote._id];
     case types.DELETE_NOTE_SUCCESS:
-      return state.filter(note => note !== action.id);
+      return state.filter(note => note !== action.data.id);
     default: return state;
   }
 };
@@ -84,7 +89,7 @@ const isFetchingNote = (state = false, action) => {
 const note = (state = { images: [], tags: [] }, action) => {
   switch (action.type) {
     case types.FETCH_NOTE_SUCCESS:
-      return action.note;
+      return action.data.note;
     default: return state;
   }
 };

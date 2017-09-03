@@ -4,111 +4,69 @@ import * as types from 'constants/actionTypes';
 import setAuthHeader from '../../helpers/setAuthHeader';
 import { notesURL } from '../../config/urls';
 
-const fetchNotesSuccess = notes => ({
-  type: types.FETCH_NOTES_SUCCESS,
-  notes,
-});
-
-const fetchNotesFailure = error => ({
-  type: types.FETCH_NOTES_FAILURE,
-  error,
-});
-
 export const fetchNotes = () => (dispatch) => {
-  dispatch({ type: types.FETCH_NOTES });
-  axios.get(notesURL, setAuthHeader())
-    .then(res => dispatch(fetchNotesSuccess(res.data)))
-    .catch(err => dispatch(fetchNotesFailure(err.response.data)));
+  dispatch({
+    type: types.FETCH_NOTES,
+    $fetch: notesURL,
+  });
 };
-
-const fetchNoteSuccess = note => ({
-  type: types.FETCH_NOTE_SUCCESS,
-  note,
-});
-
-const fetchNoteFailure = error => ({
-  type: types.FETCH_NOTE_FAILURE,
-  error,
-});
 
 export const fetchNote = id => (dispatch) => {
-  dispatch({ type: types.FETCH_NOTE });
-  axios.get(`${notesURL}/${id}`, setAuthHeader())
-    .then(res => dispatch(fetchNoteSuccess(res.data)))
-    .catch(err => dispatch(fetchNoteFailure(err.response.data)));
+  dispatch({
+    type: types.FETCH_NOTE,
+    $fetch: `${notesURL}/${id}`,
+  });
 };
 
-
-const createNoteSuccess = newNote => ({
-  type: types.CREATE_NOTE_SUCCESS,
-  newNote,
-});
-
-const createNoteFailure = error => ({
-  type: types.CREATE_NOTE_FAILURE,
-  error,
-});
-
 export const createNote = note => (dispatch) => {
-  dispatch({ type: types.CREATE_NOTE });
-  axios.post(notesURL, note, setAuthHeader())
-    .then(res => dispatch(createNoteSuccess(res.data)))
-    .catch(err => dispatch(createNoteFailure(err.response.data)));
+  dispatch({
+    type: types.CREATE_NOTE,
+    $fetch: [notesURL, {
+      method: 'POST',
+      body: note,
+    }],
+  });
   dispatch({ type: types.CLOSE_FORM_SUCCESS });
 };
 
-const editNoteSuccess = (updatedNote, prop) => ({
-  type: types.EDIT_NOTE_SUCCESS,
-  updatedNote,
-  prop,
-});
-
-const editNoteFailure = error => ({
-  type: types.EDIT_NOTE_FAILURE,
-  error,
-});
-
 export const editNote = (prop, value, id) => (dispatch) => {
   // other properties needed for optimistic updates
-  dispatch({ type: types.EDIT_NOTE, prop, value, optID: id });
-  axios.put(`${notesURL}/${id}`, { [prop]: value }, setAuthHeader())
-    .then(res => dispatch(editNoteSuccess(res.data, prop)))
-    .catch(err => dispatch(editNoteFailure(err.response.data)));
+  dispatch({
+    type: types.EDIT_NOTE,
+    $fetch: [`${notesURL}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ [prop]: value }),
+      headers: { 'Content-Type': 'application/json' },
+    }],
+    prop,
+    value,
+    optID: id,
+  });
+
+  // axios.put(`${notesURL}/${id}`, { [prop]: value }, setAuthHeader())
+  //   .then(res => dispatch(editNoteSuccess(res.data, prop)))
+  //   .catch(err => dispatch(editNoteFailure(err)));
 };
-
-
-const addTagSuccess = updatedNote => ({
-  type: types.ADD_TAG_SUCCESS,
-  updatedNote,
-});
-
-const addTagFailure = error => ({
-  type: types.ADD_TAG_FAILURE,
-  error,
-});
 
 export const addTag = (tag, id) => (dispatch) => {
-  dispatch({ type: types.ADD_TAG });
-  axios.post(`${notesURL}/${id}/tags`, { tag }, setAuthHeader())
-    .then(res => dispatch(addTagSuccess(res.data)))
-    .catch(err => dispatch(addTagFailure(err.response.data)));
+  dispatch({
+    type: types.ADD_TAG,
+    $fetch: [`${notesURL}/${id}/tags`, {
+      method: 'POST',
+      body: JSON.stringify({ tag }),
+      headers: { 'Content-Type': 'application/json' },
+    }],
+  });
 };
 
-const deleteTagSuccess = updatedNote => ({
-  type: types.DELETE_TAG_SUCCESS,
-  updatedNote,
-});
-
-const deleteTagFailure = error => ({
-  type: types.DELETE_TAG_FAILURE,
-  error,
-});
-
 export const deleteTag = (tag, id) => (dispatch) => {
-  dispatch({ type: types.DELETE_TAG });
-  axios.delete(`${notesURL}/${id}/tags/${tag}`, setAuthHeader())
-    .then(res => dispatch(deleteTagSuccess(res.data, 'tags')))
-    .catch(err => dispatch(deleteTagFailure(err.response.data)));
+  dispatch({
+    type:
+    types.DELETE_TAG,
+    $fetch: [`${notesURL}/${id}/tags/${tag}`, {
+      method: 'DELETE',
+    }],
+  });
 };
 
 
@@ -146,20 +104,12 @@ export const deleteImage = (image, id) => (dispatch) => {
     .catch(err => dispatch(deleteImageFailure(err.response.data)));
 };
 
-const deleteNoteSuccess = id => ({
-  type: types.DELETE_NOTE_SUCCESS,
-  id,
-});
-
-const deleteNoteFailure = error => ({
-  type: types.DELETE_NOTE_FAILURE,
-  error,
-});
-
 export const deleteNote = id => (dispatch) => {
-  dispatch({ type: types.DELETE_NOTE });
-  axios.delete(`${notesURL}/${id}`, setAuthHeader())
-    .then(res => dispatch(deleteNoteSuccess(res.data)))
-    .catch(err => dispatch(deleteNoteFailure(err.response.data)));
+  dispatch({
+    type: types.DELETE_NOTE,
+    $fetch: [`${notesURL}/${id}`, {
+      method: 'DELETE',
+    }],
+  });
 };
 

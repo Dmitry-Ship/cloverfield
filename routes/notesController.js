@@ -14,14 +14,14 @@ const router = express.Router();
 router.get('/', (req, res) => {
   Note.find({ $and: [{ _user: req.user._id, isDeleted: false }] })
     .exec()
-    .then(notes => res.send(notes))
+    .then(notes => res.send({ notes }))
     .catch(err => handleError(res, err, 404));
 });
 
 router.get('/:id', (req, res) => {
   Note.findOne({ $and: [{ _user: req.user._id, _id: req.params.id, isDeleted: false }] })
     .exec()
-    .then(note => res.send(note))
+    .then(note => res.send({ note }))
     .catch(err => handleError(res, err, 404));
 });
 
@@ -39,7 +39,7 @@ router.post('/', upload.array('note-image', 3), (req, res) => {
     images.push(object);
 
     if (buffers.length - 1 === i) {
-      const newNote = new Note({
+      const note = new Note({
         title,
         body,
         color,
@@ -48,22 +48,20 @@ router.post('/', upload.array('note-image', 3), (req, res) => {
         _user: user._id,
       });
 
-      newNote.save()
-        .then((data) => { res.status(200).send(data); console.log(data); })
+      note.save()
+        .then((newNote) => { res.status(200).send({ newNote }); })
         .catch(err => handleError(res, err, 422));
     }
   }
 
   if (files.length > 0) {
     for (let i = 0; i < buffers.length; i++) {
-      cloudinary.uploader.upload_stream((result) => {
-        return getImages({ url: result.url, id: result.public_id }, i);
-      }).end(buffers[i]);
+      cloudinary.uploader.upload_stream(result => getImages({ url: result.url, id: result.public_id }, i)).end(buffers[i]);
     }
     return;
   }
 
-  const newNote = new Note({
+  const note = new Note({
     title,
     body,
     color,
@@ -72,8 +70,8 @@ router.post('/', upload.array('note-image', 3), (req, res) => {
     _user: user._id,
   });
 
-  newNote.save()
-    .then(data => res.status(200).send(data))
+  note.save()
+    .then(newNote => res.status(200).send({ newNote }))
     .catch(err => handleError(res, err, 422));
 });
 
@@ -84,7 +82,7 @@ router.delete('/:id', (req, res) => {
       { _user: req.user._id },
     ],
   }, { isDeleted: true })
-    .then(() => res.send(req.params.id))
+    .then(() => res.send({ id: req.params.id }))
     .catch(err => handleError(res, err, 422));
 });
 
@@ -97,7 +95,7 @@ router.delete('/:id/tags/:tag', (req, res) => {
   },
     { $pull: { tags: req.params.tag } },
     { new: true, upsert: true })
-    .then(note => res.send(note))
+    .then(updatedNote => res.send({ updatedNote }))
     .catch(err => handleError(res, err, 422));
 });
 
@@ -110,7 +108,7 @@ router.post('/:id/tags', (req, res) => {
   },
     { $addToSet: { tags: req.body.tag } },
     { new: true, upsert: true })
-    .then(note => res.send(note))
+    .then(updatedNote => res.send({ updatedNote }))
     .catch(err => handleError(res, err, 422));
 });
 
@@ -125,7 +123,7 @@ router.delete('/:id/images/:image', (req, res) => {
     },
       { $pull: { images: { id: req.params.image } } },
       { new: true, upsert: true })
-      .then(note => res.send(note))
+      .then(updatedNote => res.send({ updatedNote }))
       .catch(err => handleError(res, err, 422));
   });
 });
@@ -149,7 +147,7 @@ router.post('/:id/images', upload.single('note-image'), (req, res) => {
     },
       { $push: { images: image } },
       { new: true, upsert: true })
-      .then(note => res.send(note))
+      .then(updatedNote => res.send({ updatedNote }))
       .catch(err => handleError(res, err, 422));
   }).end(req.file.buffer);
 });
@@ -163,7 +161,7 @@ router.put('/:id', (req, res) => {
   },
     req.body,
     { new: true, upsert: true })
-    .then(note => res.send(note))
+    .then(updatedNote => res.send({ updatedNote }))
     .catch(err => handleError(res, err, 422));
 });
 

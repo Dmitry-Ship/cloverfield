@@ -137,7 +137,7 @@ export default class ExpandedCreationForm extends Component {
 
           <div className={`${styles.submition} ${styles[color]}`} >
             <TagArea
-              className={tagArea}
+              className={styles.tagArea}
               onAddTag={this.handleAddTag}
               onDeleteTag={this.handleDeleteTag}
               suggestions={tagsSuggestions(this.state.tags)}

@@ -1,9 +1,23 @@
 {
-  "presets": [[ "es2015", { "modules": false } ], "react", "stage-2"],
-  "plugins": ["react-hot-loader/babel"],
-    "env": {
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "react",
+    "stage-2"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-runtime"
+  ],
+  "env": {
     "test": {
-      "plugins": ["transform-es2015-modules-commonjs"]
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
     }
   }
 }
